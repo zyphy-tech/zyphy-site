@@ -19,6 +19,23 @@
   };
 
   var cleanup = [];
+  var lenis = null; // instância do smooth scroll (Lenis), quando ativo
+
+  /* ---------- smooth scroll (Lenis) ---------- */
+  function initSmoothScroll() {
+    if (reduce || typeof window.Lenis === "undefined") return;
+    lenis = new window.Lenis({
+      duration: 1.1,
+      easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+      smoothWheel: true
+    });
+    var raf = function (time) {
+      if (!lenis) return;
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    };
+    requestAnimationFrame(raf);
+  }
 
   /* ---------- estados reativos: menu móvel ---------- */
   function initMenu() {
@@ -194,8 +211,8 @@
       if (p > 0.6) revealContent();
     };
 
-    var lockScroll = function () { docEl.classList.add("intro-lock"); window.scrollTo(0, 0); };
-    var unlock = function () { docEl.classList.remove("intro-lock"); };
+    var lockScroll = function () { docEl.classList.add("intro-lock"); if (lenis) lenis.stop(); window.scrollTo(0, 0); };
+    var unlock = function () { docEl.classList.remove("intro-lock"); if (lenis) lenis.start(); };
     cleanup.push(unlock);
 
     var initIntro = function () {
@@ -288,7 +305,8 @@
           var n = t;
           while (n) { y += n.offsetTop; n = n.offsetParent; }
         }
-        window.scrollTo({ top: y, behavior: reduce ? "auto" : "smooth" });
+        if (lenis) lenis.scrollTo(y);
+        else window.scrollTo({ top: y, behavior: reduce ? "auto" : "smooth" });
       });
     });
 
@@ -337,6 +355,7 @@
 
   /* ---------- boot ---------- */
   function boot() {
+    initSmoothScroll();
     initHovers();
     initMenu();
     initForm();
