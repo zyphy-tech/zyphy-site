@@ -37,6 +37,65 @@
     requestAnimationFrame(raf);
   }
 
+  /* ---------- animações de entrada (GSAP + ScrollTrigger, com stagger) ---------- */
+  function initReveals() {
+    var els = doc.querySelectorAll(".zy-reveal");
+    if (!els.length) return;
+
+    // prefers-reduced-motion: nada de animação, tudo já visível (CSS cobre isso também).
+    if (reduce) {
+      els.forEach(function (el) { el.classList.add("on"); });
+      return;
+    }
+
+    // Caminho preferido: GSAP + ScrollTrigger — fade + leve slide-up escalonado.
+    if (window.gsap && window.ScrollTrigger) {
+      var gsap = window.gsap;
+      gsap.registerPlugin(window.ScrollTrigger);
+
+      // Mantém ScrollTrigger em sincronia com o smooth scroll do Lenis.
+      if (lenis && lenis.on) {
+        lenis.on("scroll", window.ScrollTrigger.update);
+        cleanup.push(function () { if (lenis && lenis.off) lenis.off("scroll", window.ScrollTrigger.update); });
+      }
+
+      gsap.set(els, { opacity: 0, y: 28 });
+      // batch agrupa elementos que entram juntos → stagger natural por bloco visual
+      // (títulos, cards e imagens surgem em cascata sutil).
+      var triggers = window.ScrollTrigger.batch(els, {
+        start: "top 88%",
+        once: true,
+        onEnter: function (batch) {
+          gsap.to(batch, {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            ease: "power2.out",
+            stagger: 0.1,
+            overwrite: true
+          });
+        }
+      });
+      // recalcula posições depois que as fontes assentam o layout
+      if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(function () { window.ScrollTrigger.refresh(); });
+      cleanup.push(function () { (triggers || []).forEach(function (t) { t.kill && t.kill(); }); });
+      return;
+    }
+
+    // Fallback (sem GSAP): IntersectionObserver, comportamento original.
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (entries, obs) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { en.target.classList.add("on"); obs.unobserve(en.target); }
+        });
+      }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
+      els.forEach(function (el) { io.observe(el); });
+      cleanup.push(function () { io.disconnect(); });
+    } else {
+      els.forEach(function (el) { el.classList.add("on"); });
+    }
+  }
+
   /* ---------- estados reativos: menu móvel ---------- */
   function initMenu() {
     var burger = doc.getElementById("zyBurger");
@@ -311,18 +370,7 @@
     });
 
     /* ---------- scroll reveal ---------- */
-    var revealEls = doc.querySelectorAll(".zy-reveal");
-    if ("IntersectionObserver" in window && !reduce) {
-      var io = new IntersectionObserver(function (entries, obs) {
-        entries.forEach(function (en) {
-          if (en.isIntersecting) { en.target.classList.add("on"); obs.unobserve(en.target); }
-        });
-      }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
-      revealEls.forEach(function (el) { io.observe(el); });
-      cleanup.push(function () { io.disconnect(); });
-    } else {
-      revealEls.forEach(function (el) { el.classList.add("on"); });
-    }
+    initReveals();
 
     /* ---------- palavra rotativa ---------- */
     var rotator = doc.getElementById("zyRotator");
