@@ -390,6 +390,17 @@ input:focus,textarea:focus{outline:none;border-color:#00CBCC !important;box-shad
 .zy-reveal[data-delay="1"]{transition-delay:.08s}
 .zy-reveal[data-delay="2"]{transition-delay:.16s}
 .zy-reveal[data-delay="3"]{transition-delay:.24s}
+/* Hover 100% CSS — mexe só em transform/box-shadow/cores, NUNCA em opacity, e não
+   dispara JS/GSAP. !important vence o style inline base (e a classe .on nos cards).
+   A transição vem do `transition` no inline de cada elemento. Chaveado pelo próprio
+   valor de data-hover, então nenhum HTML precisa mudar. */
+[data-hover="background:#00E0E1;color:#0E1515"]:hover{background:#00E0E1 !important;color:#0E1515 !important}
+[data-hover="transform:translateY(-2px);box-shadow:0 0 40px rgba(0,203,204,.35);color:#0E1515"]:hover{transform:translateY(-2px) !important;box-shadow:0 0 40px rgba(0,203,204,.35) !important;color:#0E1515 !important}
+[data-hover="transform:translateY(-2px);border-color:rgba(242,250,250,.55);color:#F2FAFA"]:hover{transform:translateY(-2px) !important;border-color:rgba(242,250,250,.55) !important;color:#F2FAFA !important}
+[data-hover="transform:translateY(-4px)"]:hover{transform:translateY(-4px) !important}
+[data-hover="background:#00b5b6;transform:translateY(-1px)"]:hover{background:#00b5b6 !important;transform:translateY(-1px) !important}
+[data-hover="color:#00CBCC;border-color:#00CBCC"]:hover{color:#00CBCC !important;border-color:#00CBCC !important}
+[data-hover="transform:translateY(-3px) scale(1.05);color:#FFFFFF"]:hover{transform:translateY(-3px) scale(1.05) !important;color:#FFFFFF !important}
 .zy-navlinks{display:flex;align-items:center;gap:26px}
 .zy-navcta{display:inline-flex}
 .zy-burger{display:none}

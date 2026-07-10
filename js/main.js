@@ -38,61 +38,90 @@
   }
 
   /* ---------- animações de entrada (GSAP + ScrollTrigger, com stagger) ---------- */
+  // Marca o elemento como revelado PERMANENTEMENTE. A visibilidade final (opacity:1,
+  // transform:none) passa a vir da classe .on no CSS — o clearProps remove qualquer
+  // inline residual do GSAP, para o hover nunca conseguir sobrescrever a opacity.
+  function settleReveal(el) {
+    el.classList.add("on");
+    if (window.gsap) window.gsap.set(el, { clearProps: "opacity,transform" });
+    else { el.style.opacity = ""; el.style.transform = ""; }
+  }
+
   function initReveals() {
     var els = doc.querySelectorAll(".zy-reveal");
     if (!els.length) return;
 
     // prefers-reduced-motion: nada de animação, tudo já visível (CSS cobre isso também).
     if (reduce) {
-      els.forEach(function (el) { el.classList.add("on"); });
+      els.forEach(settleReveal);
       return;
     }
 
     // Caminho preferido: GSAP + ScrollTrigger — fade + leve slide-up escalonado.
     if (window.gsap && window.ScrollTrigger) {
       var gsap = window.gsap;
-      gsap.registerPlugin(window.ScrollTrigger);
+      var ST = window.ScrollTrigger;
+      gsap.registerPlugin(ST);
 
       // Mantém ScrollTrigger em sincronia com o smooth scroll do Lenis.
       if (lenis && lenis.on) {
-        lenis.on("scroll", window.ScrollTrigger.update);
-        cleanup.push(function () { if (lenis && lenis.off) lenis.off("scroll", window.ScrollTrigger.update); });
+        lenis.on("scroll", ST.update);
+        cleanup.push(function () { if (lenis && lenis.off) lenis.off("scroll", ST.update); });
       }
 
-      gsap.set(els, { opacity: 0, y: 28 });
-      // batch agrupa elementos que entram juntos → stagger natural por bloco visual
-      // (títulos, cards e imagens surgem em cascata sutil).
-      var triggers = window.ScrollTrigger.batch(els, {
-        start: "top 88%",
-        once: true,
-        onEnter: function (batch) {
-          gsap.to(batch, {
-            opacity: 1,
-            y: 0,
-            duration: 0.7,
-            ease: "power2.out",
-            stagger: 0.1,
-            overwrite: true
-          });
-        }
+      // Um trigger por elemento: roda UMA vez (once + play none none none) e nunca
+      // reverte. Stagger sutil vem do data-delay (0,1,2,3) entre irmãos do mesmo bloco.
+      els.forEach(function (el) {
+        var delay = (parseInt(el.getAttribute("data-delay"), 10) || 0) * 0.1;
+        gsap.fromTo(el,
+          { opacity: 0, y: 28 },
+          {
+            opacity: 1, y: 0, duration: 0.7, ease: "power2.out", delay: delay,
+            overwrite: "auto",
+            onComplete: function () { settleReveal(el); },
+            scrollTrigger: {
+              trigger: el,
+              start: "top 88%",
+              toggleActions: "play none none none",
+              once: true
+            }
+          }
+        );
       });
-      // recalcula posições depois que as fontes assentam o layout
-      if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(function () { window.ScrollTrigger.refresh(); });
-      cleanup.push(function () { (triggers || []).forEach(function (t) { t.kill && t.kill(); }); });
+
+      // Recalcula posições quando fontes/imagens/layout assentam. As seções de 100svh
+      // e os painéis sticky mudam o cálculo do start/end do ScrollTrigger.
+      var refresh = function () { ST.refresh(); };
+      if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(refresh);
+      window.addEventListener("load", refresh);
+      cleanup.push(function () { window.removeEventListener("load", refresh); });
+
+      // Fallback de segurança: 2s após o load, qualquer .zy-reveal ainda em opacity 0
+      // é forçado a aparecer (garante que nenhum card fique preso invisível).
+      var safety = function () {
+        setTimeout(function () {
+          els.forEach(function (el) {
+            if (parseFloat(getComputedStyle(el).opacity) < 0.05) settleReveal(el);
+          });
+          ST.refresh();
+        }, 2000);
+      };
+      if (doc.readyState === "complete") safety();
+      else window.addEventListener("load", safety, { once: true });
       return;
     }
 
-    // Fallback (sem GSAP): IntersectionObserver, comportamento original.
+    // Fallback (sem GSAP): IntersectionObserver.
     if ("IntersectionObserver" in window) {
       var io = new IntersectionObserver(function (entries, obs) {
         entries.forEach(function (en) {
-          if (en.isIntersecting) { en.target.classList.add("on"); obs.unobserve(en.target); }
+          if (en.isIntersecting) { settleReveal(en.target); obs.unobserve(en.target); }
         });
       }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
       els.forEach(function (el) { io.observe(el); });
       cleanup.push(function () { io.disconnect(); });
     } else {
-      els.forEach(function (el) { el.classList.add("on"); });
+      els.forEach(settleReveal);
     }
   }
 
@@ -134,16 +163,6 @@
       window.open("https://wa.me/5511977176036?text=" + texto, "_blank", "noopener");
       setStatus("#00CBCC", "Abrindo o WhatsApp… A Zyphy responde ainda hoje!");
       form.reset();
-    });
-  }
-
-  /* ---------- hovers (substitui o antigo style-hover do runtime) ---------- */
-  function initHovers() {
-    doc.querySelectorAll("[data-hover]").forEach(function (el) {
-      var base = el.getAttribute("style") || "";
-      var hover = el.getAttribute("data-hover");
-      el.addEventListener("mouseenter", function () { el.setAttribute("style", base + ";" + hover); });
-      el.addEventListener("mouseleave", function () { el.setAttribute("style", base); });
     });
   }
 
@@ -404,7 +423,6 @@
   /* ---------- boot ---------- */
   function boot() {
     initSmoothScroll();
-    initHovers();
     initMenu();
     initForm();
     init();
