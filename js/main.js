@@ -251,7 +251,6 @@
 
     /* ---------- malha animada ---------- */
     if (!reduce) {
-      initPlexus(doc.getElementById("zyPlexusHero"));
       initPlexus(doc.getElementById("zyPlexusCta"));
     }
 

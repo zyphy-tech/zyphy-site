@@ -70,11 +70,10 @@
   <main id="conteudo" tabindex="-1">
     <!-- ================= HERO + INTRO (painel 1) ================= -->
     <section class="zy-panel panel panel--surface hero" id="topo" aria-label="Apresentação da Zyphy">
-      <canvas id="zyPlexusHero" class="canvas-fill" aria-hidden="true"></canvas>
       <div class="hero-glow" aria-hidden="true"></div>
-      <div id="zyHeroCard" class="hero-card">
+      <div id="zyHeroCard" class="hero-card hero-card--split">
 
-        <div>
+        <div class="hero-copy">
           <!-- logotipo animado -->
           <div id="zyLogo" class="hero-logo" aria-hidden="true">
             <span id="zyZ" class="hero-z"><span id="zyZInner" class="hero-z-inner">Z</span></span>
@@ -95,6 +94,11 @@
               <span class="scroll-hint-line"></span>
             </div>
           </div>
+        </div>
+
+        <div class="hero-3d" aria-hidden="true">
+          <canvas id="zyHero3D"></canvas>
+          <img data-src="assets/hero-devices.webp" alt="" class="hero-3d-fallback" hidden>
         </div>
       </div>
     </section>
