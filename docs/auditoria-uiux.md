@@ -9,7 +9,7 @@
 
 # Rodada 2 — pós-Etapa 1
 
-**Veredito geral:** o design system implementado na Etapa 1 está sólido — tokens, sombras e raios consistentes, contraste de texto exemplar (`#9FB3B3` passa **AAA** em todos os 8 fundos: 7,08–8,62:1). Porém a rodada 2 encontrou **1 problema crítico novo** que a rodada 1 não pegou: **todos os pesos bold das fontes são falsos** — o maior freio ao ar "premium". Sugestão: tratar C1, C2, A3 e A5 como uma **"Etapa 1.5"** antes da Etapa 2.
+**Veredito geral:** o design system implementado na Etapa 1 está sólido — tokens, sombras e raios consistentes, contraste de texto exemplar (`#9FB3B3` passa **AAA** em todos os 8 fundos: 7,08–8,62:1). A rodada 2 apontou o C1 ("bold falso") como crítico, mas a verificação binária na Etapa 1.5 **reclassificou-o como alarme falso** (ver C1 abaixo). **C2, A3 e A5 foram corrigidos na Etapa 1.5.**
 
 ## 1. Design system recomendado (skill: agência/estúdio tech B2B, dark premium)
 
@@ -18,7 +18,7 @@ Padrão **"Bento Grid Showcase"** com estilo **"Modern Dark (Cinema)"**:
 - **Fundos**: dark profundo mas nunca `#000000` puro; superfícies em camadas ✅ *(site já cumpre)*
 - **Cards**: radius ~16px, borda hairline `rgba(255,255,255,.08)`, glow do acento atrás do CTA ✅
 - **Cores**: tokens semânticos; muted na faixa `#94A3B8`; contraste verificado à parte no dark ✅
-- **Tipografia**: sans geométrica (títulos) + sans humanista (corpo) + mono (labels), pesos 300–700 **reais** ⚠️ *(pareamento ✅, pesos ❌ — ver C1)*
+- **Tipografia**: sans geométrica (títulos) + sans humanista (corpo) + mono (labels), pesos 300–700 **reais** ✅ *(pareamento ✅; pesos confirmados reais — variable fonts, ver C1)*
 - **Motion**: easing expo-out, micro-interações 150–300ms ✅
 - **Evitar**: excesso de animação; acento sem verificação de contraste
 
@@ -44,8 +44,8 @@ Padrão **"Bento Grid Showcase"** com estilo **"Modern Dark (Cinema)"**:
 
 | # | Problema | Onde | Correção |
 |---|---|---|---|
-| C1 | **Bold falso em todo o site.** Os `@font-face` declaram Inter 500/600/700 apontando para os arquivos de **400** e Sora 700/800 apontando para os de **600** (`assets/fonts/` só tem `inter-400*`, `sora-600*`, `plex-mono-500*`). Como existe face declarada, o browser **não sintetiza** negrito: hero (800), títulos (700) e botões (700) renderizam com glifos 400/600. A hierarquia de peso pedida pelo CSS não existe na tela | `css/styles.css:110-352`, `assets/fonts/` | Baixar os woff2 reais (Inter 500/600/700; Sora 700/800) e corrigir os `src`. Bônus: elimina ~200 linhas duplicadas |
-| C2 | Mensagem de erro do form em `#c0392b` = 2,86:1 — reprovada (mín. 4,5:1) | `js/main.js:155` | Token `--error:#FF8A80` (6,8:1) + classe em vez de cor hardcoded no JS |
+| C1 | ~~Bold falso em todo o site~~ — **ALARME FALSO, reclassificado na Etapa 1.5.** A suspeita: `@font-face` de Inter 500/600/700 e Sora 700/800 apontam para arquivos nomeados `inter-400*`/`sora-600*`. A verificação (parse do diretório de tabelas WOFF2) provou que esses arquivos são **variable fonts** com `fvar`+`gvar` — o descriptor `font-weight` fixa o eixo e o bold renderiza correto. Só o **nome dos arquivos** engana | `assets/fonts/` | ✅ Etapa 1.5: `@font-face` consolidados em faixas (`400 700` / `600 800`), ~230 linhas a menos, zero mudança visual; comentário no CSS documenta |
+| C2 | Mensagem de erro do form em `#c0392b` = 2,86:1 — reprovada (mín. 4,5:1) | `js/main.js:155` | ✅ Etapa 1.5: token `--error:#FF8A80` (6,8:1) + classe `.form-status--error` no lugar da cor hardcoded |
 
 ### 🟠 Alto
 
@@ -53,9 +53,9 @@ Padrão **"Bento Grid Showcase"** com estilo **"Modern Dark (Cinema)"**:
 |---|---|---|---|
 | A1 | Headline do hero é `<p>`; `<h1>` real é sr-only | `index.html:82-87` | *Já planejado — Etapa 2* |
 | A2 | Sem skip-link | `index.html` topo | *Já planejado — Etapa 2* |
-| A3 | Burger sem `aria-expanded`/`aria-controls`; menu não fecha com Esc nem clique fora | `index.html:52`, `js/main.js:133` | Toggle de `aria-expanded` + `aria-controls="zyMobileMenu"` + listener de Esc |
+| A3 | Burger sem `aria-expanded`/`aria-controls`; menu não fecha com Esc nem clique fora | `index.html:52`, `js/main.js:133` | ✅ Etapa 1.5: `aria-expanded` sincronizado + `aria-controls` + Esc (devolve foco) + clique fora fecha |
 | A4 | Imagens sem `width/height` nem `loading="lazy"`; `.shot` sem altura fixa → CLS real | `index.html:207-252` | *Já planejado — Etapa 3* (atenção às `.shot`) |
-| A5 | FAB WhatsApp no hover: ícone `#FFFFFF` sobre ciano = 2,02:1 — some no hover | `css/styles.css:636` | Manter `--on-accent` no hover (9,2:1) |
+| A5 | FAB WhatsApp no hover: ícone `#FFFFFF` sobre ciano = 2,02:1 — some no hover | `css/styles.css:636` | ✅ Etapa 1.5: `--on-accent` no hover (9,2:1) |
 
 ### 🟡 Médio
 
@@ -66,7 +66,7 @@ Padrão **"Bento Grid Showcase"** com estilo **"Modern Dark (Cinema)"**:
 | M3 | `--fs-11` (11px) em `.tag` e `.scroll-hint` — abaixo do piso de 12px | `css/styles.css:387,549,566` | Subir para `--fs-12` |
 | M4 | `body` sem `line-height` — nav/rodapé herdam default ~1.15 | `css/styles.css:428` | *Já planejado — Etapa 3* (1.6) |
 | M5 | Resíduos fora do 8pt: `section-head` 36, `section-lead` 14, `hero-sub/note` 18, `step` 28, `footer-bottom` 44, `footer-heading` 14 | `css/styles.css:517-631` | Normalizar p/ 16/24/32/40/48 |
-| M6 | JS duplica tokens hardcoded: sombra do header (= `--shadow-e1`), `#00CBCC` no rotator, cores de status | `js/main.js:353-354,405,155,164` | Trocar por classes/custom properties |
+| M6 | JS duplica tokens hardcoded: sombra do header (= `--shadow-e1`), `#00CBCC` no rotator, cores de status | `js/main.js:353-354,405,155,164` | Trocar por classes/custom properties *(cores de status ✅ Etapa 1.5; sombra e rotator pendentes)* |
 | M7 | Três clamps de display quase iguais (`--fs-display` 3.4rem, `--fs-hero` 3.3rem, `--fs-display-sm` 3rem) | `css/styles.css:396-398` | Consolidar em 2 tokens — *conectado ao M3 da rodada 1 (h2), adiado p/ decisão em equipe* |
 
 ### 🟢 Baixo

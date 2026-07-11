@@ -130,9 +130,19 @@
     var burger = doc.getElementById("zyBurger");
     var menu = doc.getElementById("zyMobileMenu");
     if (!burger || !menu) return;
-    burger.addEventListener("click", function () { menu.hidden = !menu.hidden; });
+    function setOpen(open) {
+      menu.hidden = !open;
+      burger.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+    burger.addEventListener("click", function () { setOpen(menu.hidden); });
     menu.querySelectorAll("[data-close-menu]").forEach(function (a) {
-      a.addEventListener("click", function () { menu.hidden = true; });
+      a.addEventListener("click", function () { setOpen(false); });
+    });
+    doc.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !menu.hidden) { setOpen(false); burger.focus(); }
+    });
+    doc.addEventListener("click", function (e) {
+      if (!menu.hidden && !menu.contains(e.target) && !burger.contains(e.target)) setOpen(false);
     });
   }
 
@@ -141,9 +151,9 @@
     var form = doc.getElementById("zyForm");
     var status = doc.getElementById("zyStatus");
     if (!form) return;
-    function setStatus(color, msg) {
+    function setStatus(isError, msg) {
       if (!status) return;
-      status.style.color = color;
+      status.classList.toggle("form-status--error", isError);
       status.textContent = msg;
     }
     form.addEventListener("submit", function (e) {
@@ -152,7 +162,7 @@
       var contato = form.contato.value.trim();
       var msg = form.mensagem.value.trim();
       if (!nome || !contato) {
-        setStatus("#c0392b", "Preencha seu nome e um e-mail ou WhatsApp para continuar.");
+        setStatus(true, "Preencha seu nome e um e-mail ou WhatsApp para continuar.");
         (!nome ? form.nome : form.contato).focus();
         return;
       }
@@ -161,7 +171,7 @@
         (msg ? "\n\nO que quero resolver: " + msg : "\n\nQuero começar um projeto com a Zyphy.")
       );
       window.open("https://wa.me/5511977176036?text=" + texto, "_blank", "noopener");
-      setStatus("#00CBCC", "Abrindo o WhatsApp… A Zyphy responde ainda hoje!");
+      setStatus(false, "Abrindo o WhatsApp… A Zyphy responde ainda hoje!");
       form.reset();
     });
   }
