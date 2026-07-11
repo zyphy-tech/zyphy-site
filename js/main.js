@@ -302,6 +302,14 @@
     var unlock = function () { docEl.classList.remove("intro-lock"); if (lenis) lenis.start(); };
     cleanup.push(unlock);
 
+    // Sinaliza o momento em que o hero fica visível de fato (intro fora da
+    // frente). A cena 3D (js/hero3d.js) orquestra a abertura da tampa a
+    // partir deste evento, via GSAP.
+    var markHeroShown = function () {
+      window.__zyHeroShownAt = performance.now();
+      doc.dispatchEvent(new CustomEvent("zy:hero-shown"));
+    };
+
     var initIntro = function () {
       computeSizes();
       measureRest();
@@ -309,8 +317,8 @@
       zEl.style.opacity = "1";
       applyProgress(1);
       var intro = doc.getElementById("zyIntro");
-      if (reduce || skip) { if (intro) intro.remove(); return; }
-      if (!intro) return;
+      if (reduce || skip) { if (intro) intro.remove(); markHeroShown(); return; }
+      if (!intro) { markHeroShown(); return; }
       lockScroll();
       var lid = doc.getElementById("zyLid");
       var lap = doc.getElementById("zyLap");
@@ -345,7 +353,7 @@
         intro.style.transition = "opacity .5s ease .95s";
         intro.style.opacity = "0";
       }, 3750);
-      T(function () { intro.remove(); unlock(); }, 5250);
+      T(function () { intro.remove(); unlock(); markHeroShown(); }, 5250);
     };
 
     var onResize = function () { computeSizes(); measureRest(); applyProgress(progress); };

@@ -54,14 +54,21 @@ function maybeBoot() {
 }
 
 if (section && canvas) {
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((e) => {
-      visible = e.isIntersecting;
+  // Os painéis do site são sticky (top:0): o hero NUNCA sai geometricamente
+  // da viewport — os painéis seguintes deslizam por cima dele. Por isso o
+  // IntersectionObserver não serve aqui; "hero visível" = ainda não coberto,
+  // ou seja, scrollY menor que a altura do hero (1º painel do fluxo).
+  const updateVisible = () => {
+    const v = window.scrollY < section.offsetHeight;
+    if (v !== visible) {
+      visible = v;
       if (onVisibilityChange) onVisibilityChange(visible);
-      maybeBoot();
-    });
-  }, { threshold: 0.05 });
-  io.observe(section);
+    }
+    maybeBoot();
+  };
+  window.addEventListener("scroll", updateVisible, { passive: true });
+  window.addEventListener("resize", updateVisible, { passive: true });
+  updateVisible();
   if (!loaded) window.addEventListener("load", () => { loaded = true; maybeBoot(); }, { once: true });
 }
 
@@ -277,7 +284,32 @@ function build(THREE) {
   const screenGlow = new THREE.PointLight(new THREE.Color(C.accent), 0.8, 8);
   screenGlow.position.set(0, 2, 1.5);
   lid.add(screenGlow);
-  lid.rotation.x = LID_OPEN; // orquestração da abertura entra com o GSAP (main.js)
+  // Reduced-motion: tampa já aberta. Caso contrário começa fechada e abre
+  // orquestrada com a entrada do texto (evento zy:hero-shown do main.js):
+  // o texto surge, a tampa abre ~0,5s depois. O atraso é do GSAP, não de
+  // setTimeout; sem GSAP (CDN fora), easing pelo clock do próprio loop.
+  const lidState = { open: reduce ? 1 : 0 };
+  const applyLid = () => { lid.rotation.x = LID_CLOSED + lidState.open * (LID_OPEN - LID_CLOSED); };
+  applyLid();
+  let lidClockAnim = null; // fallback sem GSAP: {t0, delay}
+
+  function openLid(elapsedMs) {
+    if (reduce || lidState.open === 1) return;
+    const delay = Math.max(0, 0.5 - elapsedMs / 1000);
+    if (window.gsap) {
+      window.gsap.timeline().to(lidState, {
+        open: 1, duration: 1.6, ease: "power3.out", delay, onUpdate: applyLid
+      });
+    } else {
+      lidClockAnim = { t0: -1, delay }; // t0 é preenchido no primeiro tick
+    }
+  }
+
+  if (typeof window.__zyHeroShownAt === "number") {
+    openLid(performance.now() - window.__zyHeroShownAt);
+  } else {
+    document.addEventListener("zy:hero-shown", () => openLid(0), { once: true });
+  }
   laptop.add(lid);
   laptop.rotation.y = -0.5;
   laptop.rotation.x = 0.12;
@@ -359,9 +391,19 @@ function build(THREE) {
   function tick() {
     const t = clock.getElapsedTime();
     frame++;
+    window.__zy3dFrames = frame; // sonda de debug: prova que o loop pausa fora da viewport
 
     // telas animadas (no máx. a cada 3 frames)
     if (frame % 3 === 0) { drawLaptopScreen(t); drawPhoneScreen(t); }
+
+    // fallback da abertura da tampa quando o GSAP não carregou
+    if (lidClockAnim) {
+      if (lidClockAnim.t0 < 0) lidClockAnim.t0 = t;
+      const p = Math.min(1, Math.max(0, (t - lidClockAnim.t0 - lidClockAnim.delay) / 1.6));
+      lidState.open = 1 - Math.pow(1 - p, 3);
+      applyLid();
+      if (p >= 1) lidClockAnim = null;
+    }
 
     // flutuação + parallax
     laptop.position.y = baseLapY() + Math.sin(t * 0.7) * 0.06;
