@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+<a href="#conteudo" class="skip-link">Pular para o conteúdo</a>
 <div>
 
   <!-- ================= INTRO: NOTEBOOK ABRINDO ================= -->
@@ -66,7 +67,7 @@
     <a href="#contato" class="mobile-menu-cta" data-close-menu>Começar projeto →</a>
   </div>
 
-  <main>
+  <main id="conteudo" tabindex="-1">
     <!-- ================= HERO + INTRO (painel 1) ================= -->
     <section class="zy-panel panel panel--surface hero" id="topo" aria-label="Apresentação da Zyphy">
       <canvas id="zyPlexusHero" class="canvas-fill" aria-hidden="true"></canvas>
@@ -79,12 +80,10 @@
             <span id="zyZ" class="hero-z"><span id="zyZInner" class="hero-z-inner">Z</span></span>
             <span id="zyRest" class="hero-rest">yphy</span>
           </div>
-          <h1 class="sr-only">Zyphy</h1>
-
           <!-- conteúdo do hero -->
           <div id="zyHeroContent" class="hero-content">
             <div class="badge-pill"><span class="dot dot--pulse"></span>Para empresas e pessoas</div>
-            <p class="hero-title">Tecnologia que <span class="text-accent">destrava</span> o seu dia a dia.</p>
+            <h1 class="hero-title">Tecnologia que <span class="text-accent">destrava</span> o seu dia a dia.</h1>
             <p class="hero-sub">Automatizamos processos manuais, modernizamos sistemas antigos e criamos sites, apps e dashboards sob medida, com clareza, sem complicar o que já funciona.</p>
             <div class="hero-ctas">
               <a href="#contato" class="btn-primary">Começar projeto →</a>
@@ -353,7 +352,7 @@
           </div>
         </div>
         <nav aria-label="Soluções">
-          <h4 class="footer-heading">Soluções</h4>
+          <h3 class="footer-heading">Soluções</h3>
           <div class="footer-links">
             <a href="#solucoes">Automação</a>
             <a href="#solucoes">Modernização</a>
@@ -362,7 +361,7 @@
           </div>
         </nav>
         <nav aria-label="Para quem">
-          <h4 class="footer-heading">Para quem</h4>
+          <h3 class="footer-heading">Para quem</h3>
           <div class="footer-links">
             <a href="#publicos">Empresas</a>
             <a href="#publicos">Pessoas</a>
@@ -370,7 +369,7 @@
           </div>
         </nav>
         <nav aria-label="Contato">
-          <h4 class="footer-heading">Contato</h4>
+          <h3 class="footer-heading">Contato</h3>
           <div class="footer-links">
             <a href="#contato">Começar projeto</a>
             <a href="https://wa.me/5511977176036" target="_blank" rel="noopener">+55 11 97717-6036</a>
