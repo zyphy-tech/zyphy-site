@@ -203,10 +203,16 @@
         </div>
         <div class="shot-stack">
           <div class="zy-reveal shot shot--back" data-delay="1">
-            <img src="assets/img/02-site-casa-modern-pagina-de-categorias-e-lancamen.jpg" alt="Site Casa Modern, página de categorias e lançamentos" class="img-fluid">
+            <picture>
+              <source srcset="assets/img/02-site-casa-modern-pagina-de-categorias-e-lancamen.webp" type="image/webp">
+              <img src="assets/img/02-site-casa-modern-pagina-de-categorias-e-lancamen.jpg" alt="Site Casa Modern, página de categorias e lançamentos" class="img-fluid" width="1000" height="757" loading="lazy">
+            </picture>
           </div>
           <div class="zy-reveal shot shot--front" data-delay="2">
-            <img src="assets/img/04-site-casa-modern-pagina-de-produto-poltrona-sere.jpg" alt="Site Casa Modern, página de produto Poltrona Serena" class="img-fluid">
+            <picture>
+              <source srcset="assets/img/04-site-casa-modern-pagina-de-produto-poltrona-sere.webp" type="image/webp">
+              <img src="assets/img/04-site-casa-modern-pagina-de-produto-poltrona-sere.jpg" alt="Site Casa Modern, página de produto Poltrona Serena" class="img-fluid" width="1000" height="545" loading="lazy">
+            </picture>
           </div>
         </div>
       </div>
@@ -221,7 +227,10 @@
         </div>
         <div class="grid grid--250">
           <article class="zy-reveal card card--project">
-            <div class="project-media"><img src="assets/img/05-app-fieldfix-tela-inicial-com-mapa-e-solicitacoe.jpg" alt="App FieldFix, tela inicial com mapa e solicitações"></div>
+            <div class="project-media"><picture>
+              <source srcset="assets/img/05-app-fieldfix-tela-inicial-com-mapa-e-solicitacoe.webp" type="image/webp">
+              <img src="assets/img/05-app-fieldfix-tela-inicial-com-mapa-e-solicitacoe.jpg" alt="App FieldFix, tela inicial com mapa e solicitações" width="800" height="794" loading="lazy">
+            </picture></div>
             <div class="project-body">
               <span class="project-tag">Empresas</span>
               <h3 class="project-title">Fieldfix</h3>
@@ -230,7 +239,10 @@
             </div>
           </article>
           <article class="zy-reveal card card--project" data-delay="1">
-            <div class="project-media"><img src="assets/img/06-dashboard-central-visao-geral-do-gestor-com-kpis.jpg" alt="Dashboard Central, visão geral do gestor com KPIs e mapa da equipe"></div>
+            <div class="project-media"><picture>
+              <source srcset="assets/img/06-dashboard-central-visao-geral-do-gestor-com-kpis.webp" type="image/webp">
+              <img src="assets/img/06-dashboard-central-visao-geral-do-gestor-com-kpis.jpg" alt="Dashboard Central, visão geral do gestor com KPIs e mapa da equipe" width="800" height="437" loading="lazy">
+            </picture></div>
             <div class="project-body">
               <span class="project-tag">Empresas</span>
               <h3 class="project-title">Central</h3>
@@ -239,7 +251,10 @@
             </div>
           </article>
           <article class="zy-reveal card card--project" data-delay="2">
-            <div class="project-media"><img src="assets/img/01-app-zyphy-home-tarefas-financas-e-rotina-da-casa.jpg" alt="App Zyphy Home, tarefas, finanças e rotina da casa"></div>
+            <div class="project-media"><picture>
+              <source srcset="assets/img/01-app-zyphy-home-tarefas-financas-e-rotina-da-casa.webp" type="image/webp">
+              <img src="assets/img/01-app-zyphy-home-tarefas-financas-e-rotina-da-casa.jpg" alt="App Zyphy Home, tarefas, finanças e rotina da casa" width="800" height="437" loading="lazy">
+            </picture></div>
             <div class="project-body">
               <span class="project-tag project-tag--warm">Pessoas</span>
               <h3 class="project-title">Zyphy Home</h3>
@@ -248,7 +263,10 @@
             </div>
           </article>
           <article class="zy-reveal card card--project" data-delay="3">
-            <div class="project-media"><img src="assets/img/03-flow-fluxo-de-automacao-de-aprovacao-de-despesas.jpg" alt="Flow, fluxo de automação de aprovação de despesas"></div>
+            <div class="project-media"><picture>
+              <source srcset="assets/img/03-flow-fluxo-de-automacao-de-aprovacao-de-despesas.webp" type="image/webp">
+              <img src="assets/img/03-flow-fluxo-de-automacao-de-aprovacao-de-despesas.jpg" alt="Flow, fluxo de automação de aprovação de despesas" width="800" height="437" loading="lazy">
+            </picture></div>
             <div class="project-body">
               <span class="project-tag">Empresas</span>
               <h3 class="project-title">Flow</h3>
@@ -320,12 +338,12 @@
 
         <form class="zy-reveal form-card" data-delay="1" id="zyForm" novalidate="novalidate">
           <div class="form-field">
-            <label for="zy-nome" class="form-label">Seu nome</label>
+            <label for="zy-nome" class="form-label">Seu nome <span class="form-req" aria-hidden="true">*</span></label>
             <input type="text" id="zy-nome" name="nome" class="form-input" placeholder="Como podemos te chamar?" autocomplete="name" required="required">
           </div>
           <div class="form-field">
-            <label for="zy-contato" class="form-label">Seu e-mail ou WhatsApp</label>
-            <input type="text" id="zy-contato" name="contato" class="form-input" placeholder="voce@email.com ou (00) 00000-0000" autocomplete="email" required="required">
+            <label for="zy-contato" class="form-label">Seu e-mail ou WhatsApp <span class="form-req" aria-hidden="true">*</span></label>
+            <input type="text" id="zy-contato" name="contato" class="form-input" placeholder="voce@email.com ou (00) 00000-0000" autocomplete="email" inputmode="email" required="required">
           </div>
           <div class="form-field form-field--msg">
             <label for="zy-msg" class="form-label">O que você quer resolver?</label>
