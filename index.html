@@ -10,92 +10,90 @@
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-<div style="min-height:100vh">
+<div>
 
   <!-- ================= INTRO: NOTEBOOK ABRINDO ================= -->
-  <div id="zyIntro" aria-hidden="true" style="position:fixed;inset:0;z-index:300;background:#080D0D;display:flex;align-items:center;justify-content:center;perspective:1500px;transition:opacity .5s ease">
-    <div id="zyLap" style="position:relative;width:min(600px,80vw);transform-style:preserve-3d;transition:transform 1.4s cubic-bezier(.65,0,.15,1)">
-      <div id="zyLid" style="position:relative;z-index:2;transform-origin:50% 100%;transform:rotateX(-92deg);transition:transform 1.35s cubic-bezier(.45,0,.2,1);transform-style:preserve-3d">
-        <div aria-hidden="true" style="position:absolute;inset:0;transform:rotateX(180deg) translateZ(1px);backface-visibility:hidden;background:linear-gradient(0deg,#EDF1F1,#CBD3D3);border-radius:8px 8px 20px 20px;box-shadow:0 30px 80px -30px rgba(0,0,0,.85);display:flex;align-items:center;justify-content:center">
-          <span style="font-family:Sora,sans-serif;font-weight:800;font-size:clamp(34px,6vw,58px);color:#8FA3A3;transform:scaleY(-1)">Z</span>
+  <div id="zyIntro" class="intro" aria-hidden="true">
+    <div id="zyLap" class="intro-laptop">
+      <div id="zyLid" class="intro-lid">
+        <div class="intro-lid-back" aria-hidden="true">
+          <span class="intro-lid-logo">Z</span>
         </div>
-        <div style="position:relative;backface-visibility:hidden;background:linear-gradient(180deg,#F2F5F5,#DAE0E0);border-radius:20px 20px 8px 8px;padding:13px;box-shadow:0 30px 80px -30px rgba(0,0,0,.85)">
-          <div style="position:absolute;top:6px;left:50%;transform:translateX(-50%);width:5px;height:5px;border-radius:50%;background:#1c2424"></div>
-          <div id="zyScr" style="position:relative;background:#0D1414;border-radius:11px;aspect-ratio:16/10;overflow:hidden;display:flex;align-items:center;justify-content:center">
-            <div id="zyBoot" style="font-family:'IBM Plex Mono',monospace;font-size:clamp(9px,1.4vw,13px);color:#9FB3B3;letter-spacing:.06em;display:flex;align-items:center;gap:6px;transition:opacity .3s ease"><span id="zyBootTxt"></span><span style="width:.6em;height:1.05em;background:#00CBCC;display:inline-block;animation:zyPulse 1s steps(1) infinite"></span></div>
-            <div id="zyBootZ" style="position:absolute;font-family:Sora,sans-serif;font-weight:800;font-size:clamp(60px,10vw,110px);line-height:1;color:#00CBCC;text-shadow:0 0 40px rgba(0,203,204,.5);opacity:0;transform:scale(.4);transition:opacity .4s ease,transform .5s cubic-bezier(.34,1.56,.64,1)">Z</div>
+        <div class="intro-lid-front">
+          <div class="intro-cam"></div>
+          <div id="zyScr" class="intro-screen">
+            <div id="zyBoot" class="intro-boot"><span id="zyBootTxt"></span><span class="intro-cursor"></span></div>
+            <div id="zyBootZ" class="intro-bootz">Z</div>
           </div>
         </div>
       </div>
-      <div style="position:relative;transform-origin:50% 0%;transform:rotateX(62deg);margin-top:-2px">
-        <div style="background:linear-gradient(180deg,#F0F3F3,#D6DCDC);border-radius:10px 10px 26px 26px;padding:12px 26px 16px;box-shadow:0 40px 70px -25px rgba(0,0,0,.8);height:clamp(130px,26vw,200px);box-sizing:border-box;display:flex;flex-direction:column;gap:10px">
-          <div style="flex:1;background:#DEE4E4;border-radius:10px;background-image:radial-gradient(rgba(242,250,250,.16) 1.2px, transparent 1.3px);background-size:34px 26px;background-position:16px 12px"></div>
-          <div style="width:32%;height:clamp(26px,5vw,44px);margin:0 auto;border:1px solid rgba(242,250,250,.14);border-radius:8px;background:#E6EBEB"></div>
+      <div class="intro-base">
+        <div class="intro-base-body">
+          <div class="intro-keys"></div>
+          <div class="intro-trackpad"></div>
         </div>
       </div>
-      <div aria-hidden="true" style="position:absolute;left:8%;right:8%;bottom:-26px;height:30px;background:radial-gradient(50% 100% at 50% 0%, rgba(0,0,0,.55), transparent 70%);filter:blur(6px)"></div>
+      <div class="intro-shadow" aria-hidden="true"></div>
     </div>
   </div>
 
   <!-- ================= HEADER FIXO ================= -->
-  <header id="zyHeader" style="position:fixed;inset:0 0 auto 0;z-index:100;height:68px;display:flex;align-items:center;background:rgba(12,18,18,.8);backdrop-filter:saturate(160%) blur(14px);-webkit-backdrop-filter:saturate(160%) blur(14px);border-bottom:1px solid transparent;opacity:0;transform:translateY(-100%);transition:opacity .5s ease,transform .5s ease,border-color .3s ease,box-shadow .3s ease">
-    <nav aria-label="Navegação principal" style="display:flex;align-items:center;justify-content:space-between;width:100%;max-width:1180px;margin-inline:auto;padding-inline:24px">
-      <a href="#topo" aria-label="Zyphy, início" style="font-family:Sora,sans-serif;font-weight:800;font-size:22px;letter-spacing:-0.03em;color:#F2FAFA">Z<span style="color:#00CBCC">yphy</span></a>
-      <div class="zy-navlinks" style="font-size:14px;font-weight:500;color:#9FB3B3">
+  <header id="zyHeader" class="site-header">
+    <nav class="nav-main" aria-label="Navegação principal">
+      <a href="#topo" class="brand" aria-label="Zyphy, início">Z<span class="brand-accent">yphy</span></a>
+      <div class="zy-navlinks">
         <a href="#dor">Problemas</a>
         <a href="#solucoes">Soluções</a>
         <a href="#publicos">Para quem é</a>
         <a href="#projetos">Projetos</a>
         <a href="#processo">Como funciona</a>
       </div>
-      <a class="zy-navcta" href="#contato" style="align-items:center;gap:8px;background:#00CBCC;color:#0E1515;font-weight:700;font-size:14px;padding:11px 22px;border-radius:100px;transition:background .2s ease" data-hover="background:#00E0E1;color:#0E1515">Começar projeto →</a>
-      <button class="zy-burger" type="button" aria-label="Abrir menu" id="zyBurger" style="align-items:center;justify-content:center;width:44px;height:44px;background:transparent;border:1px solid rgba(242,250,250,.2);border-radius:8px;color:#F2FAFA;cursor:pointer">
+      <a class="nav-cta" href="#contato">Começar projeto →</a>
+      <button class="zy-burger" type="button" aria-label="Abrir menu" id="zyBurger">
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
       </button>
     </nav>
-    <div id="zyProgress" aria-hidden="true" style="position:absolute;bottom:-1px;left:0;height:2px;background:#00CBCC;width:0%"></div>
+    <div id="zyProgress" class="progress-bar" aria-hidden="true"></div>
   </header>
 
   <!-- menu móvel -->
-  <!-- menu movel -->
-    <div id="zyMobileMenu" hidden style="position:fixed;inset:68px 0 auto 0;z-index:99;background:#1B2626;border-bottom:1px solid rgba(242,250,250,.1);box-shadow:0 20px 50px -35px rgba(0,0,0,.6);padding:8px 24px 28px;display:flex;flex-direction:column">
-      <a href="#dor" data-close-menu style="display:flex;align-items:center;min-height:48px;font-weight:500;border-bottom:1px solid rgba(242,250,250,.08)">Problemas</a>
-      <a href="#solucoes" data-close-menu style="display:flex;align-items:center;min-height:48px;font-weight:500;border-bottom:1px solid rgba(242,250,250,.08)">Soluções</a>
-      <a href="#publicos" data-close-menu style="display:flex;align-items:center;min-height:48px;font-weight:500;border-bottom:1px solid rgba(242,250,250,.08)">Para quem é</a>
-      <a href="#projetos" data-close-menu style="display:flex;align-items:center;min-height:48px;font-weight:500;border-bottom:1px solid rgba(242,250,250,.08)">Projetos</a>
-      <a href="#processo" data-close-menu style="display:flex;align-items:center;min-height:48px;font-weight:500;border-bottom:1px solid rgba(242,250,250,.08)">Como funciona</a>
-      <a href="#contato" data-close-menu style="display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#00CBCC;color:#0E1515;font-weight:700;font-size:15px;min-height:48px;border-radius:100px;margin-top:20px">Começar projeto →</a>
-    </div>
-  
+  <div id="zyMobileMenu" class="mobile-menu" hidden>
+    <a href="#dor" class="mobile-menu-link" data-close-menu>Problemas</a>
+    <a href="#solucoes" class="mobile-menu-link" data-close-menu>Soluções</a>
+    <a href="#publicos" class="mobile-menu-link" data-close-menu>Para quem é</a>
+    <a href="#projetos" class="mobile-menu-link" data-close-menu>Projetos</a>
+    <a href="#processo" class="mobile-menu-link" data-close-menu>Como funciona</a>
+    <a href="#contato" class="mobile-menu-cta" data-close-menu>Começar projeto →</a>
+  </div>
 
   <main>
     <!-- ================= HERO + INTRO (painel 1) ================= -->
-    <section class="zy-panel" id="topo" aria-label="Apresentação da Zyphy" style="position:relative;overflow:hidden;min-height:100svh;background:#141D1D;display:flex;flex-direction:column;justify-content:center;padding:92px 24px 40px;box-sizing:border-box">
-      <canvas id="zyPlexusHero" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%"></canvas>
-      <div aria-hidden="true" style="position:absolute;inset:0;background:radial-gradient(60% 70% at 50% 0%, rgba(0,203,204,.15), transparent 70%);pointer-events:none"></div>
-      <div id="zyHeroCard" style="position:relative;width:100%;max-width:1240px;margin-inline:auto;text-align:center">
+    <section class="zy-panel panel panel--surface hero" id="topo" aria-label="Apresentação da Zyphy">
+      <canvas id="zyPlexusHero" class="canvas-fill" aria-hidden="true"></canvas>
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div id="zyHeroCard" class="hero-card">
 
-        <div style="position:relative;width:100%">
+        <div>
           <!-- logotipo animado -->
-          <div id="zyLogo" aria-hidden="true" style="display:flex;align-items:baseline;justify-content:center;font-family:Sora,sans-serif;font-weight:800;letter-spacing:-0.04em;line-height:1;color:#F2FAFA;user-select:none;margin-bottom:30px;will-change:transform">
-            <span id="zyZ" style="display:inline-block;color:#00CBCC;text-shadow:0 0 40px rgba(0,203,204,.35);line-height:1;transform-origin:center center;will-change:transform,font-size;opacity:0"><span id="zyZInner" style="display:inline-block;transform-origin:center center;will-change:transform">Z</span></span>
-            <span id="zyRest" style="display:inline-flex;white-space:nowrap;transform:translateX(70vw);will-change:transform">yphy</span>
+          <div id="zyLogo" class="hero-logo" aria-hidden="true">
+            <span id="zyZ" class="hero-z"><span id="zyZInner" class="hero-z-inner">Z</span></span>
+            <span id="zyRest" class="hero-rest">yphy</span>
           </div>
-          <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0">Zyphy</h1>
+          <h1 class="sr-only">Zyphy</h1>
 
           <!-- conteúdo do hero -->
-          <div id="zyHeroContent" style="opacity:0;transform:translateY(28px);transition:opacity .7s ease .35s,transform .7s cubic-bezier(.22,1,.36,1) .35s">
-            <div style="display:inline-flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#00CBCC;border:1px solid rgba(0,203,204,.4);padding:7px 16px;border-radius:100px;margin-bottom:24px"><span style="width:6px;height:6px;border-radius:50%;background:#00CBCC;animation:zyPulse 1.8s infinite"></span>Para empresas e pessoas</div>
-            <p style="margin:0 auto;font-family:Sora,sans-serif;font-weight:800;font-size:clamp(2rem,4.8vw,3.3rem);line-height:1.08;letter-spacing:-0.025em;color:#F2FAFA;max-width:18ch">Tecnologia que <span style="color:#00CBCC">destrava</span> o seu dia a dia.</p>
-            <p style="margin:18px auto 0;font-size:clamp(1rem,1.6vw,1.08rem);line-height:1.7;color:#9FB3B3;max-width:54ch">Automatizamos processos manuais, modernizamos sistemas antigos e criamos sites, apps e dashboards sob medida, com clareza, sem complicar o que já funciona.</p>
-            <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:30px;justify-content:center">
-              <a href="#contato" style="display:inline-flex;align-items:center;gap:8px;background:#00CBCC;color:#0E1515;font-weight:700;font-size:15px;padding:15px 28px;border-radius:100px;min-height:48px;box-sizing:border-box;transition:transform .18s ease,box-shadow .25s ease" data-hover="transform:translateY(-2px);box-shadow:0 0 40px rgba(0,203,204,.35);color:#0E1515">Começar projeto →</a>
-              <a href="#solucoes" style="display:inline-flex;align-items:center;color:#F2FAFA;font-weight:700;font-size:15px;padding:15px 28px;border-radius:100px;border:1px solid rgba(242,250,250,.25);min-height:48px;box-sizing:border-box;transition:transform .18s ease,border-color .2s ease" data-hover="transform:translateY(-2px);border-color:rgba(242,250,250,.55);color:#F2FAFA">Ver soluções</a>
+          <div id="zyHeroContent" class="hero-content">
+            <div class="badge-pill"><span class="dot dot--pulse"></span>Para empresas e pessoas</div>
+            <p class="hero-title">Tecnologia que <span class="text-accent">destrava</span> o seu dia a dia.</p>
+            <p class="hero-sub">Automatizamos processos manuais, modernizamos sistemas antigos e criamos sites, apps e dashboards sob medida, com clareza, sem complicar o que já funciona.</p>
+            <div class="hero-ctas">
+              <a href="#contato" class="btn-primary">Começar projeto →</a>
+              <a href="#solucoes" class="btn-ghost">Ver soluções</a>
             </div>
-            <div style="display:inline-flex;align-items:center;gap:8px;margin-top:18px;font-size:13.5px;color:#9FB3B3"><span style="width:8px;height:8px;border-radius:50%;background:#00CBCC;box-shadow:0 0 10px #00CBCC"></span>Resposta no mesmo dia · sem compromisso</div>
-            <div aria-hidden="true" style="display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:clamp(20px,4vh,44px);font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:#9FB3B3">
+            <div class="hero-note"><span class="dot"></span>Resposta no mesmo dia · sem compromisso</div>
+            <div class="scroll-hint" aria-hidden="true">
               <span>Role para explorar</span>
-              <span style="width:1px;height:30px;background:linear-gradient(#00CBCC,transparent);animation:zyPulse 1.8s ease-in-out infinite"></span>
+              <span class="scroll-hint-line"></span>
             </div>
           </div>
         </div>
@@ -103,70 +101,70 @@
     </section>
 
     <!-- ================= DOR (painel 2) ================= -->
-    <section class="zy-panel" id="dor" aria-labelledby="dor-titulo" style="min-height:100svh;display:flex;align-items:center;background:#121B1B;padding:88px 24px 48px;box-sizing:border-box;box-shadow:0 -30px 60px -40px rgba(0,0,0,.55)">
-      <div style="max-width:1180px;margin-inline:auto;width:100%">
-        <div class="zy-reveal" style="max-width:680px;margin-bottom:36px">
-          <div style="display:inline-flex;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#00CBCC;background:rgba(0,203,204,.14);padding:6px 14px;border-radius:100px;margin-bottom:16px">A dor</div>
-          <h2 id="dor-titulo" style="margin:0;font-family:Sora,sans-serif;font-weight:700;font-size:clamp(1.8rem,3.8vw,2.5rem);line-height:1.12;letter-spacing:-0.02em">A tecnologia devia ajudar, não travar o seu dia.</h2>
-          <p style="margin:14px 0 0;color:#9FB3B3;font-size:1.05rem;line-height:1.7">Se algum desses cenários soa familiar, você está no lugar certo. A Zyphy existe para resolver exatamente isso.</p>
+    <section class="zy-panel panel panel--a" id="dor" aria-labelledby="dor-titulo">
+      <div class="container">
+        <div class="zy-reveal section-head">
+          <div class="kicker">A dor</div>
+          <h2 id="dor-titulo" class="section-title">A tecnologia devia ajudar, não travar o seu dia.</h2>
+          <p class="section-lead">Se algum desses cenários soa familiar, você está no lugar certo. A Zyphy existe para resolver exatamente isso.</p>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:20px">
-          <article class="zy-reveal" style="background:#1B2626;border:1px solid rgba(242,250,250,.1);border-radius:20px;padding:30px">
-            <span aria-hidden="true" style="width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;border-radius:12px;background:rgba(0,203,204,.14);color:#00CBCC;margin-bottom:16px"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 3"></path><circle cx="12" cy="12" r="9"></circle></svg></span>
-            <h3 style="margin:0 0 6px;font-family:Sora,sans-serif;font-weight:700;font-size:1.12rem">Tarefas manuais sem fim</h3>
-            <p style="margin:0;color:#9FB3B3;font-size:.95rem;line-height:1.65">Planilhas, copiar e colar, retrabalho. Horas preciosas gastas no que uma automação resolveria em segundos.</p>
+        <div class="grid grid--280">
+          <article class="zy-reveal card">
+            <span class="icon-chip" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 3"></path><circle cx="12" cy="12" r="9"></circle></svg></span>
+            <h3 class="card-title">Tarefas manuais sem fim</h3>
+            <p class="card-text">Planilhas, copiar e colar, retrabalho. Horas preciosas gastas no que uma automação resolveria em segundos.</p>
           </article>
-          <article class="zy-reveal" data-delay="1" style="background:#1B2626;border:1px solid rgba(242,250,250,.1);border-radius:20px;padding:30px">
-            <span aria-hidden="true" style="width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;border-radius:12px;background:rgba(0,203,204,.14);color:#00CBCC;margin-bottom:16px"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"></path><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"></path></svg></span>
-            <h3 style="margin:0 0 6px;font-family:Sora,sans-serif;font-weight:700;font-size:1.12rem">Sistemas antigos travando tudo</h3>
-            <p style="margin:0;color:#9FB3B3;font-size:.95rem;line-height:1.65">Aquele software que ninguém mexe com medo de quebrar. Lento, frágil e impossível de evoluir.</p>
+          <article class="zy-reveal card" data-delay="1">
+            <span class="icon-chip" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"></path><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"></path></svg></span>
+            <h3 class="card-title">Sistemas antigos travando tudo</h3>
+            <p class="card-text">Aquele software que ninguém mexe com medo de quebrar. Lento, frágil e impossível de evoluir.</p>
           </article>
-          <article class="zy-reveal" data-delay="2" style="background:#1B2626;border:1px solid rgba(242,250,250,.1);border-radius:20px;padding:30px">
-            <span aria-hidden="true" style="width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;border-radius:12px;background:rgba(0,203,204,.14);color:#00CBCC;margin-bottom:16px"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.5 2-1.4 1.4M8 16a5 5 0 0 1 0-7l4-4a5 5 0 0 1 7 7l-1.5 1.5M16 8a5 5 0 0 1 0 7l-4 4a5 5 0 0 1-7-7L6.5 10.5"></path></svg></span>
-            <h3 style="margin:0 0 6px;font-family:Sora,sans-serif;font-weight:700;font-size:1.12rem">Ideias digitais que não saem do papel</h3>
-            <p style="margin:0;color:#9FB3B3;font-size:.95rem;line-height:1.65">Um site, um app, uma ferramenta na cabeça, mas complexidade demais e clareza de menos para começar.</p>
+          <article class="zy-reveal card" data-delay="2">
+            <span class="icon-chip" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.5 2-1.4 1.4M8 16a5 5 0 0 1 0-7l4-4a5 5 0 0 1 7 7l-1.5 1.5M16 8a5 5 0 0 1 0 7l-4 4a5 5 0 0 1-7-7L6.5 10.5"></path></svg></span>
+            <h3 class="card-title">Ideias digitais que não saem do papel</h3>
+            <p class="card-text">Um site, um app, uma ferramenta na cabeça, mas complexidade demais e clareza de menos para começar.</p>
           </article>
         </div>
       </div>
     </section>
 
     <!-- ================= SOLUÇÕES (painel 3) ================= -->
-    <section class="zy-panel" id="solucoes" aria-labelledby="sol-titulo" style="min-height:100svh;display:flex;align-items:center;background:#0E1616;padding:88px 24px 48px;box-sizing:border-box;box-shadow:0 -30px 60px -40px rgba(0,0,0,.55)">
-      <div style="max-width:1180px;margin-inline:auto;width:100%">
-        <div class="zy-reveal" style="max-width:680px;margin-bottom:36px">
-          <div style="display:inline-flex;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#00CBCC;background:rgba(0,203,204,.14);padding:6px 14px;border-radius:100px;margin-bottom:16px">A solução</div>
-          <h2 id="sol-titulo" style="margin:0;font-family:Sora,sans-serif;font-weight:700;font-size:clamp(1.8rem,3.8vw,2.5rem);line-height:1.12;letter-spacing:-0.02em">Soluções sob medida, do problema ao resultado.</h2>
-          <p style="margin:14px 0 0;color:#9FB3B3;font-size:1.05rem;line-height:1.7">Nada de produto engessado. Entendemos o seu contexto e construímos exatamente o que faz sentido para você.</p>
+    <section class="zy-panel panel panel--b" id="solucoes" aria-labelledby="sol-titulo">
+      <div class="container">
+        <div class="zy-reveal section-head">
+          <div class="kicker">A solução</div>
+          <h2 id="sol-titulo" class="section-title">Soluções sob medida, do problema ao resultado.</h2>
+          <p class="section-lead">Nada de produto engessado. Entendemos o seu contexto e construímos exatamente o que faz sentido para você.</p>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:20px">
-          <article class="zy-reveal" style="background:#1B2626;border:1px solid rgba(242,250,250,.08);border-top:3px solid #00CBCC;border-radius:20px;padding:30px;box-shadow:0 12px 30px -22px rgba(0,0,0,.55);transition:transform .25s ease" data-hover="transform:translateY(-4px)">
-            <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;color:#00CBCC;margin-bottom:14px">01 /</div>
-            <h3 style="margin:0 0 8px;font-family:Sora,sans-serif;font-weight:700;font-size:1.2rem">Automação de processos</h3>
-            <p style="margin:0;color:#9FB3B3;font-size:.95rem;line-height:1.65">Transformamos tarefas manuais e repetitivas em fluxos automáticos. Menos erro, mais tempo para o que importa.</p>
-            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px">
-              <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#9FB3B3;border:1px solid rgba(242,250,250,.12);padding:5px 10px;border-radius:100px">Fluxos</span>
-              <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#9FB3B3;border:1px solid rgba(242,250,250,.12);padding:5px 10px;border-radius:100px">Integrações</span>
-              <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#9FB3B3;border:1px solid rgba(242,250,250,.12);padding:5px 10px;border-radius:100px">Rotinas</span>
+        <div class="grid grid--280">
+          <article class="zy-reveal card card--solution card--accent-top">
+            <div class="card-num">01 /</div>
+            <h3 class="card-title card-title--lg">Automação de processos</h3>
+            <p class="card-text">Transformamos tarefas manuais e repetitivas em fluxos automáticos. Menos erro, mais tempo para o que importa.</p>
+            <div class="tag-row">
+              <span class="tag">Fluxos</span>
+              <span class="tag">Integrações</span>
+              <span class="tag">Rotinas</span>
             </div>
           </article>
-          <article class="zy-reveal" data-delay="1" style="background:#1B2626;border:1px solid rgba(242,250,250,.08);border-radius:20px;padding:30px;box-shadow:0 12px 30px -22px rgba(0,0,0,.55);transition:transform .25s ease" data-hover="transform:translateY(-4px)">
-            <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;color:#00CBCC;margin-bottom:14px">02 /</div>
-            <h3 style="margin:0 0 8px;font-family:Sora,sans-serif;font-weight:700;font-size:1.2rem">Modernização de sistemas</h3>
-            <p style="margin:0;color:#9FB3B3;font-size:.95rem;line-height:1.65">Damos nova vida a sistemas antigos sem quebrar o que já funciona. Mais velocidade, segurança e base para crescer.</p>
-            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px">
-              <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#9FB3B3;border:1px solid rgba(242,250,250,.12);padding:5px 10px;border-radius:100px">Migração</span>
-              <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#9FB3B3;border:1px solid rgba(242,250,250,.12);padding:5px 10px;border-radius:100px">Refatoração</span>
-              <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#9FB3B3;border:1px solid rgba(242,250,250,.12);padding:5px 10px;border-radius:100px">Segurança</span>
+          <article class="zy-reveal card card--solution" data-delay="1">
+            <div class="card-num">02 /</div>
+            <h3 class="card-title card-title--lg">Modernização de sistemas</h3>
+            <p class="card-text">Damos nova vida a sistemas antigos sem quebrar o que já funciona. Mais velocidade, segurança e base para crescer.</p>
+            <div class="tag-row">
+              <span class="tag">Migração</span>
+              <span class="tag">Refatoração</span>
+              <span class="tag">Segurança</span>
             </div>
           </article>
-          <article class="zy-reveal" data-delay="2" style="background:#1B2626;border:1px solid rgba(242,250,250,.08);border-radius:20px;padding:30px;box-shadow:0 12px 30px -22px rgba(0,0,0,.55);transition:transform .25s ease" data-hover="transform:translateY(-4px)">
-            <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;color:#00CBCC;margin-bottom:14px">03 /</div>
-            <h3 style="margin:0 0 8px;font-family:Sora,sans-serif;font-weight:700;font-size:1.2rem">Sites, apps e dashboards</h3>
-            <p style="margin:0;color:#9FB3B3;font-size:.95rem;line-height:1.65">Criamos produtos digitais sob medida, bonitos, rápidos e fáceis de usar, feitos para o seu objetivo.</p>
-            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px">
-              <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#9FB3B3;border:1px solid rgba(242,250,250,.12);padding:5px 10px;border-radius:100px">Sites</span>
-              <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#9FB3B3;border:1px solid rgba(242,250,250,.12);padding:5px 10px;border-radius:100px">Apps</span>
-              <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#9FB3B3;border:1px solid rgba(242,250,250,.12);padding:5px 10px;border-radius:100px">Dashboards</span>
+          <article class="zy-reveal card card--solution" data-delay="2">
+            <div class="card-num">03 /</div>
+            <h3 class="card-title card-title--lg">Sites, apps e dashboards</h3>
+            <p class="card-text">Criamos produtos digitais sob medida, bonitos, rápidos e fáceis de usar, feitos para o seu objetivo.</p>
+            <div class="tag-row">
+              <span class="tag">Sites</span>
+              <span class="tag">Apps</span>
+              <span class="tag">Dashboards</span>
             </div>
           </article>
         </div>
@@ -174,89 +172,89 @@
     </section>
 
     <!-- ================= PÚBLICOS (painel 4) ================= -->
-    <section class="zy-panel" id="publicos" aria-labelledby="pub-titulo" style="min-height:100svh;display:flex;align-items:center;background:#101919;padding:88px 24px 48px;box-sizing:border-box;box-shadow:0 -30px 60px -40px rgba(0,0,0,.55)">
-      <div style="max-width:1180px;margin-inline:auto;width:100%">
-        <div class="zy-reveal" style="max-width:680px;margin-bottom:36px">
-          <div style="display:inline-flex;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#00CBCC;background:rgba(0,203,204,.14);padding:6px 14px;border-radius:100px;margin-bottom:16px">Para quem é</div>
-          <h2 id="pub-titulo" style="margin:0;font-family:Sora,sans-serif;font-weight:700;font-size:clamp(1.8rem,3.8vw,2.5rem);line-height:1.12;letter-spacing:-0.02em">Uma parceira de tecnologia para dois mundos.</h2>
-          <p style="margin:14px 0 0;color:#9FB3B3;font-size:1.05rem;line-height:1.7">Seja para destravar a operação de uma empresa ou para organizar a sua vida digital, a Zyphy fala a sua língua, sem jargão.</p>
+    <section class="zy-panel panel panel--c" id="publicos" aria-labelledby="pub-titulo">
+      <div class="container">
+        <div class="zy-reveal section-head">
+          <div class="kicker">Para quem é</div>
+          <h2 id="pub-titulo" class="section-title">Uma parceira de tecnologia para dois mundos.</h2>
+          <p class="section-lead">Seja para destravar a operação de uma empresa ou para organizar a sua vida digital, a Zyphy fala a sua língua, sem jargão.</p>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:20px">
-          <article class="zy-reveal" style="background:#141D1D;border-radius:20px;padding:36px;color:#F2FAFA">
-            <span aria-hidden="true" style="width:52px;height:52px;display:inline-flex;align-items:center;justify-content:center;border-radius:14px;background:rgba(0,203,204,.14);color:#00CBCC;margin-bottom:18px"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"></path><path d="M5 21V7l7-4 7 4v14"></path><path d="M9 9h.01M9 13h.01M9 17h.01M15 9h.01M15 13h.01M15 17h.01"></path></svg></span>
-            <h3 style="margin:0 0 8px;font-family:Sora,sans-serif;font-weight:700;font-size:1.3rem">Para empresas</h3>
-            <p style="margin:0;color:#9FB3B3;line-height:1.7">Destrave a operação, elimine tarefas manuais e modernize sistemas antigos sem parar o que já dá certo. Menos gargalos, mais tempo para crescer.</p>
+        <div class="grid grid--300">
+          <article class="zy-reveal card card--audience card--audience-dark">
+            <span class="icon-chip icon-chip--lg" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"></path><path d="M5 21V7l7-4 7 4v14"></path><path d="M9 9h.01M9 13h.01M9 17h.01M15 9h.01M15 13h.01M15 17h.01"></path></svg></span>
+            <h3 class="card-title card-title--lg">Para empresas</h3>
+            <p class="card-text card-text--lg">Destrave a operação, elimine tarefas manuais e modernize sistemas antigos sem parar o que já dá certo. Menos gargalos, mais tempo para crescer.</p>
           </article>
-          <article class="zy-reveal" data-delay="1" style="background:#1B2626;border:1px solid rgba(242,250,250,.08);border-radius:20px;padding:36px;box-shadow:0 12px 30px -22px rgba(0,0,0,.55)">
-            <span aria-hidden="true" style="width:52px;height:52px;display:inline-flex;align-items:center;justify-content:center;border-radius:14px;background:rgba(0,203,204,.14);color:#00CBCC;margin-bottom:18px"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"></path></svg></span>
-            <h3 style="margin:0 0 8px;font-family:Sora,sans-serif;font-weight:700;font-size:1.3rem">Para pessoas</h3>
-            <p style="margin:0;color:#9FB3B3;line-height:1.7">Organize a sua vida digital com soluções simples e sob medida. Tecnologia que trabalha por você, do jeito claro e prático que você sempre quis.</p>
+          <article class="zy-reveal card card--audience" data-delay="1">
+            <span class="icon-chip icon-chip--lg" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"></path></svg></span>
+            <h3 class="card-title card-title--lg">Para pessoas</h3>
+            <p class="card-text card-text--lg">Organize a sua vida digital com soluções simples e sob medida. Tecnologia que trabalha por você, do jeito claro e prático que você sempre quis.</p>
           </article>
         </div>
       </div>
     </section>
 
     <!-- ================= SEU SITE, NÃO UM TEMPLATE ================= -->
-    <section class="zy-panel" id="sobmedida" aria-labelledby="sm-titulo" style="position:relative;overflow:hidden;min-height:100svh;display:flex;align-items:center;background:#141D1D;padding:88px 24px 48px;box-sizing:border-box;box-shadow:0 -30px 60px -40px rgba(0,0,0,.55)">
-      <div style="max-width:1180px;margin-inline:auto;width:100%;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr));gap:48px;align-items:center">
+    <section class="zy-panel panel panel--surface hero-overflow" id="sobmedida" aria-labelledby="sm-titulo">
+      <div class="container sm-grid">
         <div class="zy-reveal">
-          <div style="display:inline-flex;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#00CBCC;border:1px solid rgba(0,203,204,.4);padding:6px 14px;border-radius:100px;margin-bottom:20px">Sob medida de verdade</div>
-          <h2 id="sm-titulo" style="margin:0;font-family:Sora,sans-serif;font-weight:800;font-size:clamp(2.1rem,4.6vw,3.4rem);line-height:1.1;letter-spacing:-0.025em;color:#F2FAFA">Seu site, não um <span style="color:#5F7A7A;text-decoration:line-through;text-decoration-color:#FF6B4A;text-decoration-thickness:4px">template</span>.</h2>
-          <p style="margin:22px 0 0;color:#9FB3B3;font-size:1.05rem;line-height:1.75;max-width:44ch">Nada de site genérico. Antes de construir, analisamos o seu negócio e desenhamos tudo do zero, de acordo com a sua necessidade. Uma experiência premium, tanto para você quanto para o seu cliente.</p>
+          <div class="kicker kicker--outline">Sob medida de verdade</div>
+          <h2 id="sm-titulo" class="display-title">Seu site, não um <span class="strike">template</span>.</h2>
+          <p class="sm-lead">Nada de site genérico. Antes de construir, analisamos o seu negócio e desenhamos tudo do zero, de acordo com a sua necessidade. Uma experiência premium, tanto para você quanto para o seu cliente.</p>
         </div>
-        <div style="position:relative;display:flex;flex-direction:column;align-items:stretch">
-          <div class="zy-reveal" data-delay="1" style="width:min(440px,92%);margin-left:auto;position:relative;border-radius:14px;overflow:hidden;border:1px solid rgba(242,250,250,.16);box-shadow:0 30px 60px -30px rgba(0,0,0,.6)">
-            <img src="assets/img/02-site-casa-modern-pagina-de-categorias-e-lancamen.jpg" alt="Site Casa Modern, página de categorias e lançamentos" style="width:100%;display:block">
+        <div class="shot-stack">
+          <div class="zy-reveal shot shot--back" data-delay="1">
+            <img src="assets/img/02-site-casa-modern-pagina-de-categorias-e-lancamen.jpg" alt="Site Casa Modern, página de categorias e lançamentos" class="img-fluid">
           </div>
-          <div class="zy-reveal" data-delay="2" style="width:min(420px,88%);margin-right:auto;margin-top:-56px;position:relative;z-index:2;border-radius:14px;overflow:hidden;border:1px solid rgba(242,250,250,.16);box-shadow:0 30px 60px -30px rgba(0,0,0,.6)">
-            <img src="assets/img/04-site-casa-modern-pagina-de-produto-poltrona-sere.jpg" alt="Site Casa Modern, página de produto Poltrona Serena" style="width:100%;display:block">
+          <div class="zy-reveal shot shot--front" data-delay="2">
+            <img src="assets/img/04-site-casa-modern-pagina-de-produto-poltrona-sere.jpg" alt="Site Casa Modern, página de produto Poltrona Serena" class="img-fluid">
           </div>
         </div>
       </div>
     </section>
 
     <!-- ================= PROJETOS EM ANDAMENTO ================= -->
-    <section class="zy-panel" id="projetos" aria-labelledby="proj-titulo" style="min-height:100svh;display:flex;align-items:center;background:#121B1B;padding:88px 24px 48px;box-sizing:border-box;box-shadow:0 -30px 60px -40px rgba(0,0,0,.55)">
-      <div style="max-width:1180px;margin-inline:auto;width:100%">
-        <div class="zy-reveal" style="max-width:680px;margin-bottom:36px">
-          <div style="display:inline-flex;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#00CBCC;background:rgba(0,203,204,.14);padding:6px 14px;border-radius:100px;margin-bottom:16px">Projetos em andamento</div>
-          <h2 id="proj-titulo" style="margin:0;font-family:Sora,sans-serif;font-weight:700;font-size:clamp(1.8rem,3.8vw,2.5rem);line-height:1.12;letter-spacing:-0.02em">O que estamos construindo agora.</h2>
+    <section class="zy-panel panel panel--a" id="projetos" aria-labelledby="proj-titulo">
+      <div class="container">
+        <div class="zy-reveal section-head">
+          <div class="kicker">Projetos em andamento</div>
+          <h2 id="proj-titulo" class="section-title">O que estamos construindo agora.</h2>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr));gap:20px">
-          <article class="zy-reveal" style="background:#1B2626;border:1px solid rgba(242,250,250,.1);border-radius:20px;overflow:hidden;display:flex;flex-direction:column">
-            <div style="height:170px;overflow:hidden;border-bottom:1px solid rgba(21,32,32,.08)"><img src="assets/img/05-app-fieldfix-tela-inicial-com-mapa-e-solicitacoe.jpg" alt="App FieldFix, tela inicial com mapa e solicitações" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block"></div>
-            <div style="padding:22px;display:flex;flex-direction:column;gap:10px;flex:1">
-              <span style="align-self:flex-start;font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:#00CBCC;background:rgba(0,203,204,.14);padding:4px 9px;border-radius:5px">Empresas</span>
-              <h3 style="margin:0;font-family:Sora,sans-serif;font-weight:700;font-size:1.1rem">Fieldfix</h3>
-              <p style="margin:0;color:#9FB3B3;font-size:.9rem;line-height:1.65;flex:1">App de manutenção e serviço em campo: ordens de serviço, check-in e check-out por técnico e histórico de atendimentos em um só lugar.</p>
-              <div style="display:flex;align-items:center;gap:8px;font-size:.82rem;color:#9FB3B3;padding-top:12px;border-top:1px solid rgba(242,250,250,.08)"><span style="width:7px;height:7px;border-radius:50%;background:#00CBCC;box-shadow:0 0 8px #00CBCC;animation:zyPulse 2s infinite"></span>Em andamento</div>
+        <div class="grid grid--250">
+          <article class="zy-reveal card card--project">
+            <div class="project-media"><img src="assets/img/05-app-fieldfix-tela-inicial-com-mapa-e-solicitacoe.jpg" alt="App FieldFix, tela inicial com mapa e solicitações"></div>
+            <div class="project-body">
+              <span class="project-tag">Empresas</span>
+              <h3 class="project-title">Fieldfix</h3>
+              <p class="project-desc">App de manutenção e serviço em campo: ordens de serviço, check-in e check-out por técnico e histórico de atendimentos em um só lugar.</p>
+              <div class="project-status"><span class="dot"></span>Em andamento</div>
             </div>
           </article>
-          <article class="zy-reveal" data-delay="1" style="background:#1B2626;border:1px solid rgba(242,250,250,.1);border-radius:20px;overflow:hidden;display:flex;flex-direction:column">
-            <div style="height:170px;overflow:hidden;border-bottom:1px solid rgba(21,32,32,.08)"><img src="assets/img/06-dashboard-central-visao-geral-do-gestor-com-kpis.jpg" alt="Dashboard Central, visão geral do gestor com KPIs e mapa da equipe" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block"></div>
-            <div style="padding:22px;display:flex;flex-direction:column;gap:10px;flex:1">
-              <span style="align-self:flex-start;font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:#00CBCC;background:rgba(0,203,204,.14);padding:4px 9px;border-radius:5px">Empresas</span>
-              <h3 style="margin:0;font-family:Sora,sans-serif;font-weight:700;font-size:1.1rem">Central</h3>
-              <p style="margin:0;color:#9FB3B3;font-size:.9rem;line-height:1.65;flex:1">Dashboard de controle operacional: gestores acompanham indicadores, equipes de campo e status de atendimentos em tempo real, em uma única tela.</p>
-              <div style="display:flex;align-items:center;gap:8px;font-size:.82rem;color:#9FB3B3;padding-top:12px;border-top:1px solid rgba(242,250,250,.08)"><span style="width:7px;height:7px;border-radius:50%;background:#00CBCC;box-shadow:0 0 8px #00CBCC;animation:zyPulse 2s infinite"></span>Em andamento</div>
+          <article class="zy-reveal card card--project" data-delay="1">
+            <div class="project-media"><img src="assets/img/06-dashboard-central-visao-geral-do-gestor-com-kpis.jpg" alt="Dashboard Central, visão geral do gestor com KPIs e mapa da equipe"></div>
+            <div class="project-body">
+              <span class="project-tag">Empresas</span>
+              <h3 class="project-title">Central</h3>
+              <p class="project-desc">Dashboard de controle operacional: gestores acompanham indicadores, equipes de campo e status de atendimentos em tempo real, em uma única tela.</p>
+              <div class="project-status"><span class="dot"></span>Em andamento</div>
             </div>
           </article>
-          <article class="zy-reveal" data-delay="2" style="background:#1B2626;border:1px solid rgba(242,250,250,.1);border-radius:20px;overflow:hidden;display:flex;flex-direction:column">
-            <div style="height:170px;overflow:hidden;border-bottom:1px solid rgba(21,32,32,.08)"><img src="assets/img/01-app-zyphy-home-tarefas-financas-e-rotina-da-casa.jpg" alt="App Zyphy Home, tarefas, finanças e rotina da casa" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block"></div>
-            <div style="padding:22px;display:flex;flex-direction:column;gap:10px;flex:1">
-              <span style="align-self:flex-start;font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:#FF8A66;background:rgba(255,107,74,.14);padding:4px 9px;border-radius:5px">Pessoas</span>
-              <h3 style="margin:0;font-family:Sora,sans-serif;font-weight:700;font-size:1.1rem">Zyphy Home</h3>
-              <p style="margin:0;color:#9FB3B3;font-size:.9rem;line-height:1.65;flex:1">App pessoal de organização doméstica: tarefas, contas e rotina da casa em um só lugar.</p>
-              <div style="display:flex;align-items:center;gap:8px;font-size:.82rem;color:#9FB3B3;padding-top:12px;border-top:1px solid rgba(242,250,250,.08)"><span style="width:7px;height:7px;border-radius:50%;background:#00CBCC;box-shadow:0 0 8px #00CBCC;animation:zyPulse 2s infinite"></span>Em andamento</div>
+          <article class="zy-reveal card card--project" data-delay="2">
+            <div class="project-media"><img src="assets/img/01-app-zyphy-home-tarefas-financas-e-rotina-da-casa.jpg" alt="App Zyphy Home, tarefas, finanças e rotina da casa"></div>
+            <div class="project-body">
+              <span class="project-tag project-tag--warm">Pessoas</span>
+              <h3 class="project-title">Zyphy Home</h3>
+              <p class="project-desc">App pessoal de organização doméstica: tarefas, contas e rotina da casa em um só lugar.</p>
+              <div class="project-status"><span class="dot"></span>Em andamento</div>
             </div>
           </article>
-          <article class="zy-reveal" data-delay="3" style="background:#1B2626;border:1px solid rgba(242,250,250,.1);border-radius:20px;overflow:hidden;display:flex;flex-direction:column">
-            <div style="height:170px;overflow:hidden;border-bottom:1px solid rgba(21,32,32,.08)"><img src="assets/img/03-flow-fluxo-de-automacao-de-aprovacao-de-despesas.jpg" alt="Flow, fluxo de automação de aprovação de despesas" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block"></div>
-            <div style="padding:22px;display:flex;flex-direction:column;gap:10px;flex:1">
-              <span style="align-self:flex-start;font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:#00CBCC;background:rgba(0,203,204,.14);padding:4px 9px;border-radius:5px">Empresas</span>
-              <h3 style="margin:0;font-family:Sora,sans-serif;font-weight:700;font-size:1.1rem">Flow</h3>
-              <p style="margin:0;color:#9FB3B3;font-size:.9rem;line-height:1.65;flex:1">Motor de automação de fluxos internos: conecta planilhas, e-mails e sistemas legados sem precisar reescrever nada do zero.</p>
-              <div style="display:flex;align-items:center;gap:8px;font-size:.82rem;color:#9FB3B3;padding-top:12px;border-top:1px solid rgba(242,250,250,.08)"><span style="width:7px;height:7px;border-radius:50%;background:#00CBCC;box-shadow:0 0 8px #00CBCC;animation:zyPulse 2s infinite"></span>Em andamento</div>
+          <article class="zy-reveal card card--project" data-delay="3">
+            <div class="project-media"><img src="assets/img/03-flow-fluxo-de-automacao-de-aprovacao-de-despesas.jpg" alt="Flow, fluxo de automação de aprovação de despesas"></div>
+            <div class="project-body">
+              <span class="project-tag">Empresas</span>
+              <h3 class="project-title">Flow</h3>
+              <p class="project-desc">Motor de automação de fluxos internos: conecta planilhas, e-mails e sistemas legados sem precisar reescrever nada do zero.</p>
+              <div class="project-status"><span class="dot"></span>Em andamento</div>
             </div>
           </article>
         </div>
@@ -264,99 +262,99 @@
     </section>
 
     <!-- ================= PROCESSO (painel 5) ================= -->
-    <section class="zy-panel" id="processo" aria-labelledby="proc-titulo" style="min-height:100svh;display:flex;align-items:center;background:#0E1616;padding:88px 24px 48px;box-sizing:border-box;box-shadow:0 -30px 60px -40px rgba(0,0,0,.55)">
-      <div style="max-width:1180px;margin-inline:auto;width:100%">
-        <div class="zy-reveal" style="max-width:680px;margin-bottom:40px">
-          <div style="display:inline-flex;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#00CBCC;background:rgba(0,203,204,.14);padding:6px 14px;border-radius:100px;margin-bottom:16px">Como funciona</div>
-          <h2 id="proc-titulo" style="margin:0;font-family:Sora,sans-serif;font-weight:700;font-size:clamp(1.8rem,3.8vw,2.5rem);line-height:1.12;letter-spacing:-0.02em">Do problema à solução em 4 passos.</h2>
-          <p style="margin:14px 0 0;color:#9FB3B3;font-size:1.05rem;line-height:1.7">Um caminho simples e transparente, do primeiro contato até a entrega funcionando.</p>
+    <section class="zy-panel panel panel--b" id="processo" aria-labelledby="proc-titulo">
+      <div class="container">
+        <div class="zy-reveal section-head">
+          <div class="kicker">Como funciona</div>
+          <h2 id="proc-titulo" class="section-title">Do problema à solução em 4 passos.</h2>
+          <p class="section-lead">Um caminho simples e transparente, do primeiro contato até a entrega funcionando.</p>
         </div>
-        <ol style="margin:0;padding:0;list-style:none;border-top:1px solid rgba(242,250,250,.2)">
-          <li class="zy-reveal" style="display:flex;flex-wrap:wrap;align-items:baseline;gap:12px 28px;padding:28px 0;border-bottom:1px solid rgba(242,250,250,.2)">
-            <span aria-hidden="true" style="flex:none;width:110px;font-family:Sora,sans-serif;font-weight:800;font-size:clamp(2.4rem,4.5vw,3.4rem);line-height:1;color:transparent;-webkit-text-stroke:1.5px #F2FAFA">01/</span>
-            <div style="flex:1 1 200px;min-width:180px">
-              <h3 style="margin:0;font-family:Sora,sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:.03em;text-transform:uppercase">Diagnóstico</h3>
-              <div style="margin-top:6px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#00CBCC">&gt; diagnostico.run()</div>
+        <ol class="steps">
+          <li class="zy-reveal step">
+            <span class="step-num" aria-hidden="true">01/</span>
+            <div class="step-head">
+              <h3 class="step-title">Diagnóstico</h3>
+              <div class="step-code">&gt; diagnostico.run()</div>
             </div>
-            <p style="margin:0;flex:1.3 1 260px;color:#9FB3B3;font-size:.95rem;line-height:1.65">Ouvimos o seu problema e mapeamos o que trava o seu dia a dia, sem enrolação.</p>
+            <p class="step-desc">Ouvimos o seu problema e mapeamos o que trava o seu dia a dia, sem enrolação.</p>
           </li>
-          <li class="zy-reveal" data-delay="1" style="display:flex;flex-wrap:wrap;align-items:baseline;gap:12px 28px;padding:28px 0;border-bottom:1px solid rgba(242,250,250,.2)">
-            <span aria-hidden="true" style="flex:none;width:110px;font-family:Sora,sans-serif;font-weight:800;font-size:clamp(2.4rem,4.5vw,3.4rem);line-height:1;color:transparent;-webkit-text-stroke:1.5px #F2FAFA">02/</span>
-            <div style="flex:1 1 200px;min-width:180px">
-              <h3 style="margin:0;font-family:Sora,sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:.03em;text-transform:uppercase">Plano</h3>
-              <div style="margin-top:6px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#00CBCC">&gt; plano.compile()</div>
+          <li class="zy-reveal step" data-delay="1">
+            <span class="step-num" aria-hidden="true">02/</span>
+            <div class="step-head">
+              <h3 class="step-title">Plano</h3>
+              <div class="step-code">&gt; plano.compile()</div>
             </div>
-            <p style="margin:0;flex:1.3 1 260px;color:#9FB3B3;font-size:.95rem;line-height:1.65">Desenhamos o caminho sob medida, claro e do tamanho certo para a sua realidade.</p>
+            <p class="step-desc">Desenhamos o caminho sob medida, claro e do tamanho certo para a sua realidade.</p>
           </li>
-          <li class="zy-reveal" data-delay="2" style="display:flex;flex-wrap:wrap;align-items:baseline;gap:12px 28px;padding:28px 0;border-bottom:1px solid rgba(242,250,250,.2)">
-            <span aria-hidden="true" style="flex:none;width:110px;font-family:Sora,sans-serif;font-weight:800;font-size:clamp(2.4rem,4.5vw,3.4rem);line-height:1;color:transparent;-webkit-text-stroke:1.5px #F2FAFA">03/</span>
-            <div style="flex:1 1 200px;min-width:180px">
-              <h3 style="margin:0;font-family:Sora,sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:.03em;text-transform:uppercase">Implementação</h3>
-              <div style="margin-top:6px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#00CBCC">&gt; build.deploy()</div>
+          <li class="zy-reveal step" data-delay="2">
+            <span class="step-num" aria-hidden="true">03/</span>
+            <div class="step-head">
+              <h3 class="step-title">Implementação</h3>
+              <div class="step-code">&gt; build.deploy()</div>
             </div>
-            <p style="margin:0;flex:1.3 1 260px;color:#9FB3B3;font-size:.95rem;line-height:1.65">Construímos e testamos com você acompanhando cada etapa da entrega.</p>
+            <p class="step-desc">Construímos e testamos com você acompanhando cada etapa da entrega.</p>
           </li>
-          <li class="zy-reveal" data-delay="3" style="display:flex;flex-wrap:wrap;align-items:baseline;gap:12px 28px;padding:28px 0;border-bottom:1px solid rgba(242,250,250,.2)">
-            <span aria-hidden="true" style="flex:none;width:110px;font-family:Sora,sans-serif;font-weight:800;font-size:clamp(2.4rem,4.5vw,3.4rem);line-height:1;color:transparent;-webkit-text-stroke:1.5px #F2FAFA">04/</span>
-            <div style="flex:1 1 200px;min-width:180px">
-              <h3 style="margin:0;font-family:Sora,sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:.03em;text-transform:uppercase">Suporte</h3>
-              <div style="margin-top:6px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#00CBCC">&gt; suporte.watch()</div>
+          <li class="zy-reveal step" data-delay="3">
+            <span class="step-num" aria-hidden="true">04/</span>
+            <div class="step-head">
+              <h3 class="step-title">Suporte</h3>
+              <div class="step-code">&gt; suporte.watch()</div>
             </div>
-            <p style="margin:0;flex:1.3 1 260px;color:#9FB3B3;font-size:.95rem;line-height:1.65">Sua solução no ar e a Zyphy por perto para ajustar e evoluir com você.</p>
+            <p class="step-desc">Sua solução no ar e a Zyphy por perto para ajustar e evoluir com você.</p>
           </li>
         </ol>
       </div>
     </section>
 
     <!-- ================= CTA FINAL + FORM (painel 6) ================= -->
-    <section class="zy-panel" id="contato" aria-labelledby="cta-titulo" style="min-height:100svh;display:flex;align-items:center;background:#101919;padding:88px 24px 48px;box-sizing:border-box;box-shadow:0 -30px 60px -40px rgba(0,0,0,.55)">
-      <div style="max-width:1240px;width:100%;margin-inline:auto;position:relative;background:#141D1D;border-radius:28px;padding:clamp(40px,6vw,72px) clamp(24px,5vw,64px);overflow:hidden;text-align:center;box-sizing:border-box">
-        <canvas id="zyPlexusCta" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%"></canvas>
-        <div aria-hidden="true" style="position:absolute;inset:0;background:radial-gradient(60% 70% at 50% 100%, rgba(0,203,204,.12), transparent 70%);pointer-events:none"></div>
-        <div class="zy-reveal" style="position:relative">
-          <div style="display:inline-flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#00CBCC;border:1px solid rgba(0,203,204,.4);padding:7px 16px;border-radius:100px;margin-bottom:22px"><span style="width:6px;height:6px;border-radius:50%;background:#00CBCC;animation:zyPulse 1.8s infinite"></span>Vamos começar</div>
-          <h2 id="cta-titulo" style="margin:0;font-family:Sora,sans-serif;font-weight:800;font-size:clamp(1.8rem,4.2vw,3rem);line-height:1.15;letter-spacing:-0.02em;color:#F2FAFA">Vamos construir
-            <span id="zyRotator" aria-hidden="true" style="position:relative;display:inline-block;vertical-align:bottom;height:1.15em;min-width:14.5ch;overflow:hidden;text-align:left"><span style="position:absolute;left:0;top:0;color:#00CBCC">seu site</span></span>
-            <span style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0">seu site, seu app, sua ferramenta, sua operação, sua ideia ou sua presença digital.</span>
+    <section class="zy-panel panel panel--c" id="contato" aria-labelledby="cta-titulo">
+      <div class="cta-panel">
+        <canvas id="zyPlexusCta" class="canvas-fill" aria-hidden="true"></canvas>
+        <div class="cta-glow" aria-hidden="true"></div>
+        <div class="zy-reveal cta-head">
+          <div class="badge-pill"><span class="dot dot--pulse"></span>Vamos começar</div>
+          <h2 id="cta-titulo" class="cta-title">Vamos construir
+            <span id="zyRotator" class="rotator" aria-hidden="true"><span class="rotator-word">seu site</span></span>
+            <span class="sr-only">seu site, seu app, sua ferramenta, sua operação, sua ideia ou sua presença digital.</span>
           </h2>
         </div>
 
-        <form class="zy-reveal" data-delay="1" id="zyForm" novalidate="novalidate" style="position:relative;margin:32px auto 0;max-width:520px;text-align:left;background:#1B2626;border-radius:20px;padding:28px;box-shadow:0 30px 60px -30px rgba(0,0,0,.5)">
-          <div style="margin-bottom:16px">
-            <label for="zy-nome" style="display:block;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#9FB3B3;margin-bottom:8px">Seu nome</label>
-            <input type="text" id="zy-nome" name="nome" placeholder="Como podemos te chamar?" autocomplete="name" required="required" style="width:100%;box-sizing:border-box;min-height:48px;padding:12px 16px;font-size:1rem;color:#F2FAFA;background:#0F1717;border:1px solid rgba(242,250,250,.15);border-radius:8px;transition:border-color .2s ease,box-shadow .2s ease">
+        <form class="zy-reveal form-card" data-delay="1" id="zyForm" novalidate="novalidate">
+          <div class="form-field">
+            <label for="zy-nome" class="form-label">Seu nome</label>
+            <input type="text" id="zy-nome" name="nome" class="form-input" placeholder="Como podemos te chamar?" autocomplete="name" required="required">
           </div>
-          <div style="margin-bottom:16px">
-            <label for="zy-contato" style="display:block;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#9FB3B3;margin-bottom:8px">Seu e-mail ou WhatsApp</label>
-            <input type="text" id="zy-contato" name="contato" placeholder="voce@email.com ou (00) 00000-0000" autocomplete="email" required="required" style="width:100%;box-sizing:border-box;min-height:48px;padding:12px 16px;font-size:1rem;color:#F2FAFA;background:#0F1717;border:1px solid rgba(242,250,250,.15);border-radius:8px;transition:border-color .2s ease,box-shadow .2s ease">
+          <div class="form-field">
+            <label for="zy-contato" class="form-label">Seu e-mail ou WhatsApp</label>
+            <input type="text" id="zy-contato" name="contato" class="form-input" placeholder="voce@email.com ou (00) 00000-0000" autocomplete="email" required="required">
           </div>
-          <div style="margin-bottom:20px">
-            <label for="zy-msg" style="display:block;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#9FB3B3;margin-bottom:8px">O que você quer resolver?</label>
-            <textarea id="zy-msg" name="mensagem" placeholder="Conte, em poucas palavras, o que está travando o seu dia a dia." style="width:100%;box-sizing:border-box;min-height:80px;padding:12px 16px;font-size:1rem;line-height:1.6;color:#F2FAFA;background:#0F1717;border:1px solid rgba(242,250,250,.15);border-radius:8px;resize:vertical;transition:border-color .2s ease,box-shadow .2s ease"></textarea>
+          <div class="form-field form-field--msg">
+            <label for="zy-msg" class="form-label">O que você quer resolver?</label>
+            <textarea id="zy-msg" name="mensagem" class="form-input" placeholder="Conte, em poucas palavras, o que está travando o seu dia a dia."></textarea>
           </div>
-          <button type="submit" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:52px;background:#00CBCC;color:#0E1515;font-family:Inter,sans-serif;font-weight:700;font-size:1rem;border:none;border-radius:100px;cursor:pointer;transition:background .2s ease,transform .18s ease" data-hover="background:#00b5b6;transform:translateY(-1px)">Enviar pelo WhatsApp →</button>
-          <p style="margin:12px 0 0;text-align:center;font-size:.85rem;color:#9FB3B3">Abre a conversa no WhatsApp com sua mensagem pronta · sem compromisso</p>
-          <p role="status" aria-live="polite" style="margin:8px 0 0;min-height:1.4em;text-align:center;font-weight:600;font-size:.92rem;color:#00CBCC" id="zyStatus"></p>
+          <button type="submit" class="btn-submit">Enviar pelo WhatsApp →</button>
+          <p class="form-hint">Abre a conversa no WhatsApp com sua mensagem pronta · sem compromisso</p>
+          <p role="status" aria-live="polite" class="form-status" id="zyStatus"></p>
         </form>
       </div>
     </section>
   </main>
 
   <!-- ================= RODAPÉ ================= -->
-  <footer style="position:relative;z-index:10;background:#0C1414;border-top:1px solid rgba(242,250,250,.08);padding:clamp(48px,7vw,72px) 24px 32px">
-    <div style="max-width:1180px;margin-inline:auto">
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:36px">
-        <div style="grid-column:span 1;min-width:240px">
-          <a href="#topo" aria-label="Zyphy, início" style="font-family:Sora,sans-serif;font-weight:800;font-size:26px;letter-spacing:-0.03em;color:#F2FAFA">Z<span style="color:#00CBCC">yphy</span></a>
-          <p style="margin:14px 0 0;color:#9FB3B3;max-width:42ch;line-height:1.7">Tecnologia que resolve o seu dia a dia, com clareza, sob medida e sem complicar o que já funciona.</p>
-          <div style="display:flex;gap:12px;margin-top:18px">
-            <a href="https://wa.me/5511977176036" target="_blank" rel="noopener" aria-label="Zyphy no WhatsApp" style="width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(242,250,250,.12);border-radius:10px;color:#9FB3B3;transition:color .2s ease,border-color .2s ease" data-hover="color:#00CBCC;border-color:#00CBCC"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12.04 2A9.9 9.9 0 0 0 2.1 11.9c0 1.75.46 3.46 1.34 4.97L2 22l5.28-1.38a9.9 9.9 0 0 0 4.75 1.21h.01A9.9 9.9 0 0 0 22 11.9 9.9 9.9 0 0 0 12.04 2zm0 18.02h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.13.82.84-3.05-.2-.31a8.2 8.2 0 0 1-1.26-4.38 8.22 8.22 0 0 1 14.03-5.8 8.13 8.13 0 0 1 2.42 5.8 8.22 8.22 0 0 1-8.21 8.2zm4.5-6.15c-.25-.12-1.46-.72-1.68-.8-.23-.09-.39-.13-.56.12-.16.25-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.23-1.46-1.37-1.71-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.16.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43l-.48-.01c-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.57.12.16 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.46-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"></path></svg></a>
-            <a href="mailto:contato.zyphy@gmail.com" aria-label="Enviar e-mail para a Zyphy" style="width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(242,250,250,.12);border-radius:10px;color:#9FB3B3;transition:color .2s ease,border-color .2s ease" data-hover="color:#00CBCC;border-color:#00CBCC"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m2 6 10 7 10-7"></path></svg></a>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#topo" class="brand brand--lg" aria-label="Zyphy, início">Z<span class="brand-accent">yphy</span></a>
+          <p class="footer-text">Tecnologia que resolve o seu dia a dia, com clareza, sob medida e sem complicar o que já funciona.</p>
+          <div class="footer-social">
+            <a href="https://wa.me/5511977176036" target="_blank" rel="noopener" aria-label="Zyphy no WhatsApp" class="icon-btn"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12.04 2A9.9 9.9 0 0 0 2.1 11.9c0 1.75.46 3.46 1.34 4.97L2 22l5.28-1.38a9.9 9.9 0 0 0 4.75 1.21h.01A9.9 9.9 0 0 0 22 11.9 9.9 9.9 0 0 0 12.04 2zm0 18.02h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.13.82.84-3.05-.2-.31a8.2 8.2 0 0 1-1.26-4.38 8.22 8.22 0 0 1 14.03-5.8 8.13 8.13 0 0 1 2.42 5.8 8.22 8.22 0 0 1-8.21 8.2zm4.5-6.15c-.25-.12-1.46-.72-1.68-.8-.23-.09-.39-.13-.56.12-.16.25-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.23-1.46-1.37-1.71-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.16.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43l-.48-.01c-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.57.12.16 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.46-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"></path></svg></a>
+            <a href="mailto:contato.zyphy@gmail.com" aria-label="Enviar e-mail para a Zyphy" class="icon-btn"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m2 6 10 7 10-7"></path></svg></a>
           </div>
         </div>
         <nav aria-label="Soluções">
-          <h4 style="margin:0 0 14px;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#9FB3B3">Soluções</h4>
-          <div style="display:flex;flex-direction:column;gap:8px;font-size:.95rem">
+          <h4 class="footer-heading">Soluções</h4>
+          <div class="footer-links">
             <a href="#solucoes">Automação</a>
             <a href="#solucoes">Modernização</a>
             <a href="#solucoes">Sites e apps</a>
@@ -364,31 +362,31 @@
           </div>
         </nav>
         <nav aria-label="Para quem">
-          <h4 style="margin:0 0 14px;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#9FB3B3">Para quem</h4>
-          <div style="display:flex;flex-direction:column;gap:8px;font-size:.95rem">
+          <h4 class="footer-heading">Para quem</h4>
+          <div class="footer-links">
             <a href="#publicos">Empresas</a>
             <a href="#publicos">Pessoas</a>
             <a href="#processo">Como funciona</a>
           </div>
         </nav>
         <nav aria-label="Contato">
-          <h4 style="margin:0 0 14px;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#9FB3B3">Contato</h4>
-          <div style="display:flex;flex-direction:column;gap:8px;font-size:.95rem">
+          <h4 class="footer-heading">Contato</h4>
+          <div class="footer-links">
             <a href="#contato">Começar projeto</a>
             <a href="https://wa.me/5511977176036" target="_blank" rel="noopener">+55 11 97717-6036</a>
             <a href="mailto:contato.zyphy@gmail.com">contato.zyphy@gmail.com</a>
           </div>
         </nav>
       </div>
-      <div style="margin-top:44px;padding-top:20px;border-top:1px solid rgba(242,250,250,.08);display:flex;flex-wrap:wrap;gap:6px 24px;justify-content:space-between;color:#9FB3B3;font-size:.88rem">
-        <p style="margin:0">© 2026 Zyphy. Todos os direitos reservados.</p>
-        <p style="margin:0">Feito com clareza, tecnologia que trabalha por você.</p>
+      <div class="footer-bottom">
+        <p>© 2026 Zyphy. Todos os direitos reservados.</p>
+        <p>Feito com clareza, tecnologia que trabalha por você.</p>
       </div>
     </div>
   </footer>
 
   <!-- FAB WhatsApp -->
-  <a href="https://wa.me/5511977176036?text=Olá!%20Quero%20falar%20com%20a%20Zyphy." target="_blank" rel="noopener" aria-label="Fale com a Zyphy no WhatsApp" style="position:fixed;right:24px;bottom:24px;z-index:90;width:56px;height:56px;display:inline-flex;align-items:center;justify-content:center;background:#00CBCC;color:#0E1515;border-radius:50%;box-shadow:0 12px 30px -10px rgba(0,203,204,.45);transition:transform .2s ease" data-hover="transform:translateY(-3px) scale(1.05);color:#FFFFFF">
+  <a href="https://wa.me/5511977176036?text=Olá!%20Quero%20falar%20com%20a%20Zyphy." target="_blank" rel="noopener" aria-label="Fale com a Zyphy no WhatsApp" class="fab-whatsapp">
     <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor" aria-hidden="true"><path d="M12.04 2A9.9 9.9 0 0 0 2.1 11.9c0 1.75.46 3.46 1.34 4.97L2 22l5.28-1.38a9.9 9.9 0 0 0 4.75 1.21h.01A9.9 9.9 0 0 0 22 11.9 9.9 9.9 0 0 0 12.04 2zm0 18.02h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.13.82.84-3.05-.2-.31a8.2 8.2 0 0 1-1.26-4.38 8.22 8.22 0 0 1 14.03-5.8 8.13 8.13 0 0 1 2.42 5.8 8.22 8.22 0 0 1-8.21 8.2zm4.5-6.15c-.25-.12-1.46-.72-1.68-.8-.23-.09-.39-.13-.56.12-.16.25-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.23-1.46-1.37-1.71-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.16.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43l-.48-.01c-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.57.12.16 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.46-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"></path></svg>
   </a>
 </div>
