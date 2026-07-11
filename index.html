@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Zyphy resolve os problemas de tecnologia do seu dia a dia: automatiza processos, moderniza sistemas e cria sites, apps e dashboards sob medida.">
 <title>Zyphy | Tecnologia que destrava o seu dia a dia</title>
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#0C1212">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="css/styles.css">
@@ -44,7 +48,7 @@
   <!-- ================= HEADER FIXO ================= -->
   <header id="zyHeader" class="site-header">
     <nav class="nav-main" aria-label="Navegação principal">
-      <a href="#topo" class="brand" aria-label="Zyphy, início">Z<span class="brand-accent">yphy</span></a>
+      <a href="#topo" class="brand zy-logo" aria-label="Zyphy, início"><span class="zy-logo-z">Z</span>yphy</a>
       <div class="zy-navlinks">
         <a href="#dor">Problemas</a>
         <a href="#solucoes">Soluções</a>
@@ -73,35 +77,31 @@
   <main id="conteudo" tabindex="-1">
     <!-- ================= HERO + INTRO (painel 1) ================= -->
     <section class="zy-panel panel panel--surface hero" id="topo" aria-label="Apresentação da Zyphy">
+      <div class="hero-3d" aria-hidden="true">
+        <canvas id="zyHero3D"></canvas>
+      </div>
       <div class="hero-glow" aria-hidden="true"></div>
-      <div id="zyHeroCard" class="hero-card hero-card--split">
 
-        <div class="hero-copy">
-          <!-- logotipo animado -->
-          <div id="zyLogo" class="hero-logo" aria-hidden="true">
-            <span id="zyZ" class="hero-z"><span id="zyZInner" class="hero-z-inner">Z</span></span>
-            <span id="zyRest" class="hero-rest">yphy</span>
-          </div>
-          <!-- conteúdo do hero -->
-          <div id="zyHeroContent" class="hero-content">
-            <div class="badge-pill"><span class="dot dot--pulse"></span>Para empresas e pessoas</div>
-            <h1 class="hero-title">Tecnologia que <span class="text-accent">destrava</span> o seu dia a dia.</h1>
-            <p class="hero-sub">Automatizamos processos manuais, modernizamos sistemas antigos e criamos sites, apps e dashboards sob medida, com clareza, sem complicar o que já funciona.</p>
-            <div class="hero-ctas">
-              <a href="#contato" class="btn-primary">Começar projeto →</a>
-              <a href="#solucoes" class="btn-ghost">Ver soluções</a>
-            </div>
-            <div class="hero-note"><span class="dot"></span>Resposta no mesmo dia · sem compromisso</div>
-            <div class="scroll-hint" aria-hidden="true">
-              <span>Role para explorar</span>
-              <span class="scroll-hint-line"></span>
-            </div>
-          </div>
+      <div id="zyHeroCard" class="hero-card hero-card--overlay">
+        <!-- logotipo animado -->
+        <div id="zyLogo" class="hero-logo zy-logo" aria-hidden="true">
+          <span id="zyZ" class="hero-z zy-logo-z"><span id="zyZInner" class="hero-z-inner">Z</span></span>
+          <span id="zyRest" class="hero-rest">yphy</span>
         </div>
-
-        <div class="hero-3d" aria-hidden="true">
-          <canvas id="zyHero3D"></canvas>
-          <img data-src="assets/hero-devices.webp" alt="" class="hero-3d-fallback" width="1192" height="1116" hidden>
+        <!-- conteúdo do hero -->
+        <div id="zyHeroContent" class="hero-content">
+          <div class="badge-pill"><span class="dot dot--pulse"></span>Para empresas e pessoas</div>
+          <h1 class="hero-title">Tecnologia que <span class="text-accent">destrava</span> o seu dia a dia.</h1>
+          <p class="hero-sub">Automatizamos processos manuais, modernizamos sistemas antigos e criamos sites, apps e dashboards sob medida, com clareza, sem complicar o que já funciona.</p>
+          <div class="hero-ctas">
+            <a href="#contato" class="btn-primary">Começar projeto →</a>
+            <a href="#solucoes" class="btn-ghost">Ver soluções</a>
+          </div>
+          <div class="hero-note"><span class="dot"></span>Resposta no mesmo dia · sem compromisso</div>
+          <div class="scroll-hint" aria-hidden="true">
+            <span>Role para explorar</span>
+            <span class="scroll-hint-line"></span>
+          </div>
         </div>
       </div>
     </section>
@@ -115,17 +115,17 @@
           <p class="section-lead">Se algum desses cenários soa familiar, você está no lugar certo. A Zyphy existe para resolver exatamente isso.</p>
         </div>
         <div class="grid grid--280">
-          <article class="zy-reveal card">
+          <article class="zy-reveal card zy-card">
             <span class="icon-chip" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 3"></path><circle cx="12" cy="12" r="9"></circle></svg></span>
             <h3 class="card-title">Tarefas manuais sem fim</h3>
             <p class="card-text">Planilhas, copiar e colar, retrabalho. Horas preciosas gastas no que uma automação resolveria em segundos.</p>
           </article>
-          <article class="zy-reveal card" data-delay="1">
+          <article class="zy-reveal card zy-card" data-delay="1">
             <span class="icon-chip" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"></path><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"></path></svg></span>
             <h3 class="card-title">Sistemas antigos travando tudo</h3>
             <p class="card-text">Aquele software que ninguém mexe com medo de quebrar. Lento, frágil e impossível de evoluir.</p>
           </article>
-          <article class="zy-reveal card" data-delay="2">
+          <article class="zy-reveal card zy-card" data-delay="2">
             <span class="icon-chip" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.5 2-1.4 1.4M8 16a5 5 0 0 1 0-7l4-4a5 5 0 0 1 7 7l-1.5 1.5M16 8a5 5 0 0 1 0 7l-4 4a5 5 0 0 1-7-7L6.5 10.5"></path></svg></span>
             <h3 class="card-title">Ideias digitais que não saem do papel</h3>
             <p class="card-text">Um site, um app, uma ferramenta na cabeça, mas complexidade demais e clareza de menos para começar.</p>
@@ -143,7 +143,7 @@
           <p class="section-lead">Nada de produto engessado. Entendemos o seu contexto e construímos exatamente o que faz sentido para você.</p>
         </div>
         <div class="grid grid--280">
-          <article class="zy-reveal card card--solution card--accent-top">
+          <article class="zy-reveal card zy-card">
             <div class="card-num">01 /</div>
             <h3 class="card-title card-title--lg">Automação de processos</h3>
             <p class="card-text">Transformamos tarefas manuais e repetitivas em fluxos automáticos. Menos erro, mais tempo para o que importa.</p>
@@ -153,7 +153,7 @@
               <span class="tag">Rotinas</span>
             </div>
           </article>
-          <article class="zy-reveal card card--solution" data-delay="1">
+          <article class="zy-reveal card zy-card" data-delay="1">
             <div class="card-num">02 /</div>
             <h3 class="card-title card-title--lg">Modernização de sistemas</h3>
             <p class="card-text">Damos nova vida a sistemas antigos sem quebrar o que já funciona. Mais velocidade, segurança e base para crescer.</p>
@@ -163,7 +163,7 @@
               <span class="tag">Segurança</span>
             </div>
           </article>
-          <article class="zy-reveal card card--solution" data-delay="2">
+          <article class="zy-reveal card zy-card" data-delay="2">
             <div class="card-num">03 /</div>
             <h3 class="card-title card-title--lg">Sites, apps e dashboards</h3>
             <p class="card-text">Criamos produtos digitais sob medida, bonitos, rápidos e fáceis de usar, feitos para o seu objetivo.</p>
@@ -186,12 +186,12 @@
           <p class="section-lead">Seja para destravar a operação de uma empresa ou para organizar a sua vida digital, a Zyphy fala a sua língua, sem jargão.</p>
         </div>
         <div class="grid grid--300">
-          <article class="zy-reveal card card--audience card--audience-dark">
+          <article class="zy-reveal card zy-card card--audience card--audience-dark">
             <span class="icon-chip icon-chip--lg" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"></path><path d="M5 21V7l7-4 7 4v14"></path><path d="M9 9h.01M9 13h.01M9 17h.01M15 9h.01M15 13h.01M15 17h.01"></path></svg></span>
             <h3 class="card-title card-title--lg">Para empresas</h3>
             <p class="card-text card-text--lg">Destrave a operação, elimine tarefas manuais e modernize sistemas antigos sem parar o que já dá certo. Menos gargalos, mais tempo para crescer.</p>
           </article>
-          <article class="zy-reveal card card--audience" data-delay="1">
+          <article class="zy-reveal card zy-card card--audience" data-delay="1">
             <span class="icon-chip icon-chip--lg" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"></path></svg></span>
             <h3 class="card-title card-title--lg">Para pessoas</h3>
             <p class="card-text card-text--lg">Organize a sua vida digital com soluções simples e sob medida. Tecnologia que trabalha por você, do jeito claro e prático que você sempre quis.</p>
@@ -233,7 +233,7 @@
           <h2 id="proj-titulo" class="section-title">O que estamos construindo agora.</h2>
         </div>
         <div class="grid grid--250">
-          <article class="zy-reveal card card--project">
+          <article class="zy-reveal card zy-card card--project">
             <div class="project-media"><picture>
               <source srcset="assets/img/05-app-fieldfix-tela-inicial-com-mapa-e-solicitacoe.webp" type="image/webp">
               <img src="assets/img/05-app-fieldfix-tela-inicial-com-mapa-e-solicitacoe.jpg" alt="App FieldFix, tela inicial com mapa e solicitações" width="800" height="794" loading="lazy">
@@ -245,7 +245,7 @@
               <div class="project-status"><span class="dot"></span>Em andamento</div>
             </div>
           </article>
-          <article class="zy-reveal card card--project" data-delay="1">
+          <article class="zy-reveal card zy-card card--project" data-delay="1">
             <div class="project-media"><picture>
               <source srcset="assets/img/06-dashboard-central-visao-geral-do-gestor-com-kpis.webp" type="image/webp">
               <img src="assets/img/06-dashboard-central-visao-geral-do-gestor-com-kpis.jpg" alt="Dashboard Central, visão geral do gestor com KPIs e mapa da equipe" width="800" height="437" loading="lazy">
@@ -257,7 +257,7 @@
               <div class="project-status"><span class="dot"></span>Em andamento</div>
             </div>
           </article>
-          <article class="zy-reveal card card--project" data-delay="2">
+          <article class="zy-reveal card zy-card card--project" data-delay="2">
             <div class="project-media"><picture>
               <source srcset="assets/img/01-app-zyphy-home-tarefas-financas-e-rotina-da-casa.webp" type="image/webp">
               <img src="assets/img/01-app-zyphy-home-tarefas-financas-e-rotina-da-casa.jpg" alt="App Zyphy Home, tarefas, finanças e rotina da casa" width="800" height="437" loading="lazy">
@@ -269,7 +269,7 @@
               <div class="project-status"><span class="dot"></span>Em andamento</div>
             </div>
           </article>
-          <article class="zy-reveal card card--project" data-delay="3">
+          <article class="zy-reveal card zy-card card--project" data-delay="3">
             <div class="project-media"><picture>
               <source srcset="assets/img/03-flow-fluxo-de-automacao-de-aprovacao-de-despesas.webp" type="image/webp">
               <img src="assets/img/03-flow-fluxo-de-automacao-de-aprovacao-de-despesas.jpg" alt="Flow, fluxo de automação de aprovação de despesas" width="800" height="437" loading="lazy">
@@ -369,11 +369,12 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href="#topo" class="brand brand--lg" aria-label="Zyphy, início">Z<span class="brand-accent">yphy</span></a>
+          <a href="#topo" class="brand brand--lg zy-logo" aria-label="Zyphy, início"><span class="zy-logo-z">Z</span>yphy</a>
           <p class="footer-text">Tecnologia que resolve o seu dia a dia, com clareza, sob medida e sem complicar o que já funciona.</p>
           <div class="footer-social">
             <a href="https://wa.me/5511977176036" target="_blank" rel="noopener" aria-label="Zyphy no WhatsApp" class="icon-btn"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12.04 2A9.9 9.9 0 0 0 2.1 11.9c0 1.75.46 3.46 1.34 4.97L2 22l5.28-1.38a9.9 9.9 0 0 0 4.75 1.21h.01A9.9 9.9 0 0 0 22 11.9 9.9 9.9 0 0 0 12.04 2zm0 18.02h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.13.82.84-3.05-.2-.31a8.2 8.2 0 0 1-1.26-4.38 8.22 8.22 0 0 1 14.03-5.8 8.13 8.13 0 0 1 2.42 5.8 8.22 8.22 0 0 1-8.21 8.2zm4.5-6.15c-.25-.12-1.46-.72-1.68-.8-.23-.09-.39-.13-.56.12-.16.25-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.23-1.46-1.37-1.71-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.16.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43l-.48-.01c-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.57.12.16 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.46-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"></path></svg></a>
             <a href="mailto:contato.zyphy@gmail.com" aria-label="Enviar e-mail para a Zyphy" class="icon-btn"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m2 6 10 7 10-7"></path></svg></a>
+            <a href="https://www.instagram.com/zyphytech/" target="_blank" rel="noopener noreferrer" aria-label="Instagram da Zyphy" class="icon-btn"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
           </div>
         </div>
         <nav aria-label="Soluções">
@@ -419,5 +420,6 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script src="js/main.js" defer></script>
 <script type="module" src="js/hero3d.js"></script>
+<script type="module" src="js/cta-constellation.js"></script>
 </body>
 </html>

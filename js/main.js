@@ -176,68 +176,6 @@
     });
   }
 
-  /* ---------- malha animada (linhas interligadas) ---------- */
-  function initPlexus(canvas) {
-    if (!canvas) return;
-    var ctx = canvas.getContext("2d");
-    var w = 0, h = 0, parts = [], raf = 0, running = false;
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
-
-    var resize = function () {
-      var r = canvas.getBoundingClientRect();
-      w = r.width; h = r.height;
-      canvas.width = w * dpr; canvas.height = h * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      var n = Math.max(24, Math.min(70, Math.round((w * h) / 22000)));
-      parts = Array.from({ length: n }, function () {
-        return {
-          x: Math.random() * w, y: Math.random() * h,
-          vx: (Math.random() - 0.5) * 0.35, vy: (Math.random() - 0.5) * 0.35
-        };
-      });
-    };
-
-    var LINK = 130;
-    var tick = function () {
-      ctx.clearRect(0, 0, w, h);
-      for (var k = 0; k < parts.length; k++) {
-        var p = parts[k];
-        p.x += p.vx; p.y += p.vy;
-        if (p.x < 0 || p.x > w) p.vx *= -1;
-        if (p.y < 0 || p.y > h) p.vy *= -1;
-      }
-      for (var i = 0; i < parts.length; i++) {
-        for (var j = i + 1; j < parts.length; j++) {
-          var dx = parts[i].x - parts[j].x, dy = parts[i].y - parts[j].y;
-          var d = Math.hypot(dx, dy);
-          if (d < LINK) {
-            ctx.strokeStyle = "rgba(0,203,204," + (0.16 * (1 - d / LINK)).toFixed(3) + ")";
-            ctx.lineWidth = 1;
-            ctx.beginPath(); ctx.moveTo(parts[i].x, parts[i].y); ctx.lineTo(parts[j].x, parts[j].y); ctx.stroke();
-          }
-        }
-      }
-      ctx.fillStyle = "rgba(0,203,204,.45)";
-      for (var m = 0; m < parts.length; m++) {
-        var q = parts[m];
-        ctx.beginPath(); ctx.arc(q.x, q.y, 1.4, 0, Math.PI * 2); ctx.fill();
-      }
-      if (running) raf = requestAnimationFrame(tick);
-    };
-
-    var start = function () { if (!running) { running = true; raf = requestAnimationFrame(tick); } };
-    var stop = function () { running = false; cancelAnimationFrame(raf); };
-
-    resize();
-    var ro = new ResizeObserver(resize);
-    ro.observe(canvas);
-    var io = new IntersectionObserver(function (en) {
-      en.forEach(function (x) { x.isIntersecting ? start() : stop(); });
-    }, { threshold: 0.05 });
-    io.observe(canvas);
-    cleanup.push(function () { stop(); ro.disconnect(); io.disconnect(); });
-  }
-
   /* ---------- inicialização principal (antigo componentDidMount) ---------- */
   function init() {
     var header = doc.getElementById("zyHeader");
@@ -248,11 +186,6 @@
     var restEl = doc.getElementById("zyRest");
     var heroContent = doc.getElementById("zyHeroContent");
     if (!header || !zEl || !restEl) return;
-
-    /* ---------- malha animada ---------- */
-    if (!reduce) {
-      initPlexus(doc.getElementById("zyPlexusCta"));
-    }
 
     /* ---------- calibragem (props ajustáveis) ---------- */
     var WAIT = PROPS.esperaAntesDoVoo;
