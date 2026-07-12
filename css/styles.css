@@ -319,21 +319,8 @@ img{max-width:100%;height:auto;display:block}
 .canvas-fill{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .hero-glow{position:absolute;inset:0;background:radial-gradient(60% 70% at 50% 0%, rgba(0,203,204,.15), transparent 70%);pointer-events:none;z-index:1}
 .hero-card{position:relative;z-index:2;width:100%;max-width:1240px;margin-inline:auto;text-align:center}
-/* hero full-bleed: cena 3D cobre toda a seção, texto sobreposto à esquerda */
-.hero-card--overlay{max-width:640px;margin-inline:0;text-align:left}
-.hero-card--overlay .hero-logo{justify-content:flex-start}
-.hero-card--overlay .hero-title{margin-inline:0}
-.hero-card--overlay .hero-sub{margin-inline:0}
-.hero-card--overlay .hero-ctas{justify-content:flex-start}
-.hero-card--overlay .scroll-hint{align-items:flex-start}
 .hero-3d{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
 .hero-3d canvas{width:100%;height:100%;display:block}
-@media (max-width:860px){
-  .hero-card--overlay{max-width:100%;margin-inline:auto;text-align:center}
-  .hero-card--overlay .hero-logo{justify-content:center}
-  .hero-card--overlay .hero-ctas{justify-content:center}
-  .hero-card--overlay .scroll-hint{align-items:center}
-}
 .hero-logo{display:flex;align-items:baseline;justify-content:center;font-family:var(--font-display);font-weight:800;letter-spacing:-0.04em;line-height:1;user-select:none;margin-bottom:32px;will-change:transform}
 .hero-z{display:inline-block;text-shadow:0 0 40px rgba(0,203,204,.35);line-height:1;transform-origin:center center;will-change:transform,font-size;opacity:0}
 .hero-z-inner{display:inline-block;transform-origin:center center;will-change:transform}
