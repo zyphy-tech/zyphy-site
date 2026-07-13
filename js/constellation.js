@@ -64,18 +64,21 @@ export async function createConstellation(canvas, options = {}) {
   const pPos = new Float32Array(count * 3);
   pGeo.setAttribute("position", new THREE.BufferAttribute(pPos, 3));
 
-  const dot = document.createElement("canvas");
-  dot.width = dot.height = 64;
-  const dctx = dot.getContext("2d");
-  const grad = dctx.createRadialGradient(32, 32, 0, 32, 32, 32);
-  grad.addColorStop(0, alpha(accent, 1));
-  grad.addColorStop(0.4, alpha(accent, 0.8));
-  grad.addColorStop(1, alpha(accent, 0));
-  dctx.fillStyle = grad;
-  dctx.fillRect(0, 0, 64, 64);
+  function makeDotTexture(color) {
+    const dot = document.createElement("canvas");
+    dot.width = dot.height = 64;
+    const dctx = dot.getContext("2d");
+    const grad = dctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+    grad.addColorStop(0, alpha(color, 1));
+    grad.addColorStop(0.4, alpha(color, 0.8));
+    grad.addColorStop(1, alpha(color, 0));
+    dctx.fillStyle = grad;
+    dctx.fillRect(0, 0, 64, 64);
+    return new THREE.CanvasTexture(dot);
+  }
 
   const pMat = new THREE.PointsMaterial({
-    size: dotSize, map: new THREE.CanvasTexture(dot),
+    size: dotSize, map: makeDotTexture(accent),
     transparent: true, opacity: dotOpacity, depthWrite: false,
     blending: THREE.AdditiveBlending, sizeAttenuation: true
   });
@@ -214,6 +217,21 @@ export async function createConstellation(canvas, options = {}) {
   function start() { if (!running && !reduce) { running = true; clock.start(); raf = requestAnimationFrame(tick); } }
   function stop() { running = false; cancelAnimationFrame(raf); clock.stop(); }
 
+  // Troca de tema: as cores são lidas uma vez na criação da cena, então
+  // precisam ser relidas e reaplicadas manualmente (textura do ponto, fog,
+  // cor das linhas) quando o usuário troca claro/escuro com a cena já viva.
+  function updateColors() {
+    const newAccent = cssVar("--accent");
+    const newBg = cssVar("--bg");
+    const oldMap = pMat.map;
+    pMat.map = makeDotTexture(newAccent);
+    pMat.needsUpdate = true;
+    oldMap.dispose();
+    scene.fog.color.set(newBg);
+    CYAN.set(newAccent);
+    if (!running) renderOnce();
+  }
+
   resize();
   new ResizeObserver(resize).observe(holder);
 
@@ -224,5 +242,5 @@ export async function createConstellation(canvas, options = {}) {
     syncGeometry();
   }
 
-  return { start, stop, resize };
+  return { start, stop, resize, updateColors };
 }

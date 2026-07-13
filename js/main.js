@@ -300,8 +300,7 @@
     var progressBar = doc.getElementById("zyProgress");
     var onScroll = function () {
       var scrolled = window.scrollY > 8;
-      header.style.borderBottomColor = scrolled ? "rgba(242,250,250,.08)" : "transparent";
-      header.style.boxShadow = scrolled ? "0 12px 30px -22px rgba(0,0,0,.55)" : "none";
+      header.classList.toggle("is-scrolled", scrolled);
       if (progressBar) {
         var docH = docEl.scrollHeight - window.innerHeight;
         progressBar.style.width = (docH > 0 ? (window.scrollY / docH) * 100 : 0) + "%";
@@ -352,7 +351,8 @@
         var cur = rotator.firstElementChild;
         var next = doc.createElement("span");
         next.textContent = words[(wi + 1) % words.length];
-        next.style.cssText = "position:absolute;left:0;top:0;color:#00CBCC;opacity:0;transform:translateY(100%)";
+        next.className = "rotator-word";
+        next.style.cssText = "opacity:0;transform:translateY(100%)";
         rotator.appendChild(next);
         void next.offsetWidth;
         next.style.transition = "opacity .5s ease,transform .5s ease";

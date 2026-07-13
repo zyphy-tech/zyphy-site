@@ -84,4 +84,5 @@ async function boot() {
   document.addEventListener("visibilitychange", () => {
     document.hidden ? scene.stop() : (visible && scene.start());
   });
+  document.addEventListener("zy:theme-change", () => scene.updateColors());
 }
