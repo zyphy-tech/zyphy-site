@@ -36,6 +36,7 @@ async function boot() {
   new IntersectionObserver((entries) => {
     entries.forEach((e) => { e.isIntersecting ? scene.start() : scene.stop(); });
   }, { threshold: 0.05 }).observe(holder);
+  document.addEventListener("zy:theme-change", () => scene.updateColors());
 }
 
 if (canvas && holder) {
