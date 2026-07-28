@@ -9,6 +9,20 @@
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <meta name="theme-color" content="#0C1212">
+<script>
+(function(){
+  try{
+    var stored = localStorage.getItem('zy-theme'); // 'light' | 'dark' | ausente = sistema
+    var theme = (stored === 'light' || stored === 'dark')
+      ? stored
+      : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    document.documentElement.setAttribute('data-theme', theme);
+    // hex duplicado do --bg do CSS de propósito: o stylesheet ainda não carregou aqui.
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', theme === 'light' ? '#F4F8F8' : '#0C1212');
+  }catch(e){}
+})();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="css/styles.css">
@@ -376,6 +390,11 @@
             <a href="mailto:contato.zyphy@gmail.com" aria-label="Enviar e-mail para a Zyphy" class="icon-btn"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m2 6 10 7 10-7"></path></svg></a>
             <a href="https://www.instagram.com/zyphytech/" target="_blank" rel="noopener noreferrer" aria-label="Instagram da Zyphy" class="icon-btn"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
           </div>
+          <div id="zyThemeSwitch" class="theme-switch" role="radiogroup" aria-label="Tema">
+            <button type="button" class="theme-switch-btn" data-theme-choice="system" role="radio" aria-checked="true" aria-label="Tema do sistema" tabindex="0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg></button>
+            <button type="button" class="theme-switch-btn" data-theme-choice="light" role="radio" aria-checked="false" aria-label="Tema claro" tabindex="-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><line x1="12" y1="2" x2="12" y2="4"></line><line x1="12" y1="20" x2="12" y2="22"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="2" y1="12" x2="4" y2="12"></line><line x1="20" y1="12" x2="22" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></button>
+            <button type="button" class="theme-switch-btn" data-theme-choice="dark" role="radio" aria-checked="false" aria-label="Tema escuro" tabindex="-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></button>
+          </div>
         </div>
         <nav aria-label="Soluções">
           <h3 class="footer-heading">Soluções</h3>
@@ -405,6 +424,7 @@
       </div>
       <div class="footer-bottom">
         <p>© 2026 Zyphy. Todos os direitos reservados.</p>
+        <p><a href="/fieldfix/privacidade/">Privacidade</a></p>
         <p>Feito com clareza, tecnologia que trabalha por você.</p>
       </div>
     </div>
@@ -418,6 +438,7 @@
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="js/theme.js" defer></script>
 <script src="js/main.js" defer></script>
 <script type="module" src="js/hero3d.js"></script>
 <script type="module" src="js/cta-constellation.js"></script>
