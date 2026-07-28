@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Política de Privacidade do FieldFix: como o aplicativo coleta, usa, compartilha e protege os dados de empresas e técnicos, em conformidade com a LGPD.">
+<title>Política de Privacidade | FieldFix</title>
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<meta name="theme-color" content="#0C1212">
+<style>
+  /* ---------- Tokens (espelham o design system da Zyphy) ---------- */
+  :root{
+    --bg:#0C1212;
+    --surface:#141D1D;
+    --surface-2:#1B2626;
+    --text:#F2FAFA;
+    --text-muted:#9FB3B3;
+    --accent:#00CBCC;
+    --accent-soft:rgba(0,203,204,.14);
+    --border:rgba(242,250,250,.1);
+    --border-soft:rgba(242,250,250,.08);
+    --shadow-e2:0 20px 45px -25px rgba(0,0,0,.6);
+
+    --font-display:"Sora","Segoe UI",system-ui,sans-serif;
+    --font-body:"Inter","Segoe UI",system-ui,-apple-system,sans-serif;
+    --font-mono:"IBM Plex Mono",ui-monospace,"Cascadia Mono",Consolas,monospace;
+    --radius-md:12px;
+    --radius-lg:20px;
+    --radius-pill:100px;
+  }
+
+  @media (prefers-color-scheme: light){
+    :root{
+      --bg:#F4F8F8;
+      --surface:#FFFFFF;
+      --surface-2:#E8F0F0;
+      --text:#0C1212;
+      --text-muted:#4A5C5C;
+      --accent:#006A6D;
+      --accent-soft:rgba(0,106,109,.12);
+      --border:rgba(12,18,18,.1);
+      --border-soft:rgba(12,18,18,.08);
+      --shadow-e2:0 20px 45px -25px rgba(12,18,18,.16);
+    }
+  }
+
+  /* ---------- Base ---------- */
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--font-body);
+    font-size:1rem;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent)}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+  .skip-link{
+    position:absolute;left:-9999px;top:0;
+    background:var(--accent);color:var(--bg);
+    padding:10px 16px;border-radius:0 0 var(--radius-md) 0;z-index:10;
+  }
+  .skip-link:focus{left:0}
+
+  .wrap{max-width:820px;margin:0 auto;padding:0 20px}
+
+  /* ---------- Cabeçalho ---------- */
+  .page-header{
+    border-bottom:1px solid var(--border-soft);
+    background:linear-gradient(180deg,var(--surface) 0%,var(--bg) 100%);
+    padding:56px 0 40px;
+  }
+  .brand{
+    display:inline-block;
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:1.5rem;
+    letter-spacing:-.02em;
+    text-decoration:none;
+    color:var(--text);
+    margin-bottom:24px;
+  }
+  .brand-accent{color:var(--accent)}
+
+  h1{
+    font-family:var(--font-display);
+    font-size:clamp(1.9rem,4.6vw,2.75rem);
+    line-height:1.15;
+    letter-spacing:-.02em;
+    font-weight:600;
+    margin:0 0 12px;
+  }
+  .lede{
+    color:var(--text-muted);
+    font-size:1.0625rem;
+    margin:0 0 24px;
+  }
+  .updated{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:var(--font-mono);
+    font-size:.75rem;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    color:var(--text-muted);
+    background:var(--accent-soft);
+    border:1px solid var(--border);
+    border-radius:var(--radius-pill);
+    padding:6px 14px;
+  }
+  .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex:none}
+
+  /* ---------- Conteúdo ---------- */
+  main{padding:44px 0 24px}
+  .intro{
+    background:var(--surface);
+    border:1px solid var(--border-soft);
+    border-radius:var(--radius-lg);
+    padding:22px 24px;
+    margin:0 0 44px;
+    color:var(--text-muted);
+    box-shadow:var(--shadow-e2);
+  }
+  .intro p{margin:0}
+
+  section{margin:0 0 40px;scroll-margin-top:24px}
+  h2{
+    font-family:var(--font-display);
+    font-size:1.25rem;
+    line-height:1.35;
+    letter-spacing:-.01em;
+    font-weight:600;
+    margin:0 0 14px;
+    padding-bottom:10px;
+    border-bottom:1px solid var(--border-soft);
+  }
+  h2 .num{
+    color:var(--accent);
+    font-family:var(--font-mono);
+    font-size:.875rem;
+    margin-right:10px;
+    vertical-align:1px;
+  }
+  h3{
+    font-family:var(--font-display);
+    font-size:1rem;
+    font-weight:600;
+    margin:28px 0 12px;
+  }
+  p{margin:0 0 16px;color:var(--text-muted)}
+  strong{color:var(--text);font-weight:600}
+
+  ul{margin:0 0 16px;padding:0;list-style:none}
+  li{
+    position:relative;
+    padding-left:22px;
+    margin-bottom:9px;
+    color:var(--text-muted);
+  }
+  li::before{
+    content:"";
+    position:absolute;
+    left:2px;top:.7em;
+    width:6px;height:6px;
+    border-radius:50%;
+    background:var(--accent);
+  }
+
+  /* ---------- Tabela de dados ---------- */
+  .table-scroll{
+    overflow-x:auto;
+    border:1px solid var(--border-soft);
+    border-radius:var(--radius-lg);
+    background:var(--surface);
+    box-shadow:var(--shadow-e2);
+    margin:0 0 16px;
+  }
+  table{border-collapse:collapse;width:100%;min-width:560px;font-size:.9375rem}
+  caption{
+    text-align:left;
+    padding:16px 20px 0;
+    color:var(--text-muted);
+    font-family:var(--font-mono);
+    font-size:.75rem;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+  }
+  th,td{
+    text-align:left;
+    padding:14px 20px;
+    vertical-align:top;
+    border-bottom:1px solid var(--border-soft);
+  }
+  thead th{
+    color:var(--text);
+    font-family:var(--font-mono);
+    font-size:.75rem;
+    font-weight:500;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    background:var(--surface-2);
+    white-space:nowrap;
+  }
+  tbody th{color:var(--text);font-weight:600;white-space:nowrap}
+  tbody td{color:var(--text-muted)}
+  tbody tr:last-child th,tbody tr:last-child td{border-bottom:0}
+
+  /* ---------- Cartões de subprocessadores ---------- */
+  .cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:12px;
+    margin:0 0 16px;
+  }
+  .card{
+    background:var(--surface);
+    border:1px solid var(--border-soft);
+    border-radius:var(--radius-md);
+    padding:16px 18px;
+  }
+  .card-name{
+    display:block;
+    font-family:var(--font-display);
+    font-weight:600;
+    color:var(--text);
+    margin-bottom:4px;
+  }
+  .card p{margin:0;font-size:.9375rem}
+
+  /* ---------- Destaque (contato) ---------- */
+  .callout{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-left:3px solid var(--accent);
+    border-radius:var(--radius-md);
+    padding:20px 22px;
+  }
+  .callout p:last-child{margin-bottom:0}
+  .callout .role{
+    font-family:var(--font-mono);
+    font-size:.75rem;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    color:var(--text-muted);
+    margin-bottom:6px;
+  }
+
+  /* ---------- Rodapé ---------- */
+  .page-footer{
+    border-top:1px solid var(--border-soft);
+    background:var(--surface);
+    padding:32px 0 40px;
+    margin-top:20px;
+  }
+  .chips{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin:0 0 20px;
+    padding:0;
+    list-style:none;
+  }
+  .chips li{
+    padding:5px 12px;
+    margin:0;
+    border:1px solid var(--border);
+    border-radius:var(--radius-pill);
+    font-family:var(--font-mono);
+    font-size:.75rem;
+    color:var(--text-muted);
+  }
+  .chips li::before{display:none}
+  .copyright{
+    margin:0;
+    font-size:.875rem;
+    color:var(--text-muted);
+  }
+
+  @media (max-width:600px){
+    .page-header{padding:36px 0 28px}
+    main{padding:32px 0 16px}
+    th,td{padding:12px 16px}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none !important;transition:none !important}
+  }
+</style>
+</head>
+<body>
+<a href="#conteudo" class="skip-link">Pular para o conteúdo</a>
+
+<header class="page-header">
+  <div class="wrap">
+    <span class="brand"><span class="brand-accent">Field</span>Fix</span>
+    <h1>Política de Privacidade</h1>
+    <p class="lede">Como o FieldFix coleta, usa e protege seus dados.</p>
+    <p class="updated"><span class="dot" aria-hidden="true"></span>Última atualização: 21 de julho de 2026</p>
+  </div>
+</header>
+
+<main id="conteudo" tabindex="-1">
+  <div class="wrap">
+
+    <div class="intro">
+      <p>Esta Política de Privacidade descreve como o aplicativo FieldFix ("aplicativo", "nós") trata os dados pessoais dos usuários, em conformidade com a Lei Geral de Proteção de Dados (Lei nº 13.709/2018 — LGPD). Ao usar o FieldFix, você concorda com as práticas aqui descritas.</p>
+    </div>
+
+    <section aria-labelledby="s1">
+      <h2 id="s1"><span class="num" aria-hidden="true">01</span>O que é o FieldFix</h2>
+      <p>O FieldFix é um aplicativo marketplace que conecta <strong>Empresas</strong> que precisam de serviços de manutenção a <strong>Técnicos autônomos</strong> que executam esses serviços. Pelo app, a empresa abre um chamado descrevendo o problema e a localização; o técnico visualiza chamados disponíveis, aceita, se desloca até o local e executa o serviço. Durante o atendimento, empresa e técnico se comunicam por chat interno e a empresa acompanha o deslocamento do técnico no mapa. Ao final, o serviço é registrado com checklist e fotos, e a empresa avalia o técnico.</p>
+      <p>O aplicativo <strong>não processa pagamentos</strong>. Não há gateway de pagamento nem cobrança dentro do app: o técnico solicita o repasse dos valores pelo aplicativo e o pagamento é realizado externamente (PIX ou transferência bancária), com base nos dados de recebimento que o próprio técnico informa.</p>
+      <p>O acesso de empresas é feito exclusivamente por convite — não há autocadastro. Técnicos passam por um cadastro com envio de documentos e aprovação antes de atuar na plataforma.</p>
+    </section>
+
+    <section aria-labelledby="s2">
+      <h2 id="s2"><span class="num" aria-hidden="true">02</span>Dados que coletamos</h2>
+      <div class="table-scroll">
+        <table>
+          <caption>Categorias de dados, o que é coletado e para quê</caption>
+          <thead>
+            <tr>
+              <th scope="col">Categoria</th>
+              <th scope="col">Dados</th>
+              <th scope="col">Finalidade</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Cadastro</th>
+              <td>Nome, e-mail, telefone</td>
+              <td>Criação e autenticação da conta</td>
+            </tr>
+            <tr>
+              <th scope="row">Empresa</th>
+              <td>CNPJ, endereço, CEP</td>
+              <td>Identificação e localização do chamado</td>
+            </tr>
+            <tr>
+              <th scope="row">Técnico</th>
+              <td>CPF, endereço, CEP, especialidades</td>
+              <td>Habilitação e distribuição de chamados</td>
+            </tr>
+            <tr>
+              <th scope="row">Documentos</th>
+              <td>Foto de documento de identificação (frente e verso)</td>
+              <td>Verificação de identidade e aprovação do cadastro</td>
+            </tr>
+            <tr>
+              <th scope="row">Recebimento</th>
+              <td>Chave PIX e tipo, ou banco, agência, conta, dígito, tipo de conta e CPF do titular</td>
+              <td>Repasse dos valores, feito fora do app</td>
+            </tr>
+            <tr>
+              <th scope="row">Localização</th>
+              <td>Latitude e longitude precisas do dispositivo, em tempo real durante o atendimento</td>
+              <td>Centralizar o mapa e permitir à empresa acompanhar o deslocamento do técnico</td>
+            </tr>
+            <tr>
+              <th scope="row">Conteúdo do serviço</th>
+              <td>Fotos do serviço, checklist, mensagens de chat, avaliações</td>
+              <td>Execução, comprovação e histórico do chamado</td>
+            </tr>
+            <tr>
+              <th scope="row">Notificações</th>
+              <td>Token de push do dispositivo (FCM)</td>
+              <td>Avisos de chamado novo e atualizações</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section aria-labelledby="s3">
+      <h2 id="s3"><span class="num" aria-hidden="true">03</span>Localização em tempo real</h2>
+      <p>O FieldFix utiliza a localização precisa do dispositivo durante o atendimento. A posição do técnico é transmitida ao vivo para que a empresa acompanhe o deslocamento no mapa e fica registrada no histórico do chamado como parte do comprovante do serviço prestado.</p>
+      <p>A localização é utilizada enquanto o aplicativo está em uso durante um atendimento. Você pode gerenciar a permissão de localização a qualquer momento nas configurações do dispositivo; sem ela, funções essenciais do aplicativo podem não operar.</p>
+    </section>
+
+    <section aria-labelledby="s4">
+      <h2 id="s4"><span class="num" aria-hidden="true">04</span>Como usamos os dados</h2>
+      <ul>
+        <li>Criar, autenticar e gerenciar sua conta</li>
+        <li>Conectar empresas e técnicos e viabilizar os atendimentos</li>
+        <li>Verificar a identidade do técnico durante a aprovação do cadastro</li>
+        <li>Exibir localização e permitir o acompanhamento do deslocamento</li>
+        <li>Registrar o histórico de chamados, com fotos, checklist e avaliações</li>
+        <li>Viabilizar o repasse de valores fora do aplicativo</li>
+        <li>Enviar notificações relacionadas aos chamados</li>
+        <li>Garantir a segurança e prevenir usos indevidos</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="s5">
+      <h2 id="s5"><span class="num" aria-hidden="true">05</span>Compartilhamento de dados</h2>
+      <p>O FieldFix <strong>não vende seus dados pessoais</strong>. O compartilhamento ocorre apenas quando necessário ao funcionamento do serviço:</p>
+      <ul>
+        <li><strong>Entre usuários:</strong> ao aceitar um chamado, dados necessários ao atendimento (local do serviço, informações de contato pertinentes e, durante o atendimento, a localização do técnico) são disponibilizados à outra parte envolvida.</li>
+        <li><strong>Provedores de infraestrutura:</strong> serviços de terceiros que processam dados em nosso nome sob obrigações de confidencialidade.</li>
+        <li><strong>Obrigação legal:</strong> quando exigido por lei ou autoridade competente.</li>
+      </ul>
+
+      <h3>Serviços de terceiros (subprocessadores)</h3>
+      <div class="cards">
+        <div class="card">
+          <span class="card-name">Supabase</span>
+          <p>Autenticação, banco de dados, armazenamento de arquivos e comunicação em tempo real.</p>
+        </div>
+        <div class="card">
+          <span class="card-name">Google Maps Platform</span>
+          <p>Mapas, geocodificação e rotas.</p>
+        </div>
+        <div class="card">
+          <span class="card-name">Google Firebase</span>
+          <p>Hospedagem web e notificações push (Cloud Messaging).</p>
+        </div>
+        <div class="card">
+          <span class="card-name">Google Fonts</span>
+          <p>Fontes da interface.</p>
+        </div>
+      </div>
+      <p>O tratamento por esses serviços é regido pelas respectivas políticas de privacidade.</p>
+    </section>
+
+    <section aria-labelledby="s6">
+      <h2 id="s6"><span class="num" aria-hidden="true">06</span>Permissões do dispositivo (Android)</h2>
+      <ul>
+        <li><strong>Localização</strong> (precisa e aproximada) — mapa e acompanhamento do atendimento</li>
+        <li><strong>Notificações</strong> — avisos de chamados e atualizações</li>
+        <li><strong>Câmera e galeria</strong> — envio de fotos de documentos e do serviço</li>
+        <li><strong>Internet</strong> — comunicação com os servidores</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="s7">
+      <h2 id="s7"><span class="num" aria-hidden="true">07</span>Armazenamento e segurança</h2>
+      <p>Os dados são armazenados na infraestrutura dos nossos provedores e protegidos por medidas técnicas e organizacionais, incluindo criptografia em trânsito. Adotamos práticas para proteger as informações contra acesso não autorizado, perda ou alteração indevida.</p>
+    </section>
+
+    <section aria-labelledby="s8">
+      <h2 id="s8"><span class="num" aria-hidden="true">08</span>Retenção de dados</h2>
+      <p>Mantemos seus dados enquanto sua conta estiver ativa. Após um período de inatividade de 12 meses, ou mediante solicitação de exclusão, os dados pessoais são eliminados ou anonimizados, ressalvadas as informações que precisem ser mantidas para cumprimento de obrigações legais. Você pode solicitar a exclusão da sua conta e dos dados associados a qualquer momento.</p>
+    </section>
+
+    <section aria-labelledby="s9">
+      <h2 id="s9"><span class="num" aria-hidden="true">09</span>Seus direitos</h2>
+      <p>Conforme a LGPD, você pode: confirmar a existência de tratamento; acessar seus dados; corrigir dados incompletos ou desatualizados; solicitar a exclusão; e revogar o consentimento. Para exercer esses direitos, use o contato abaixo.</p>
+    </section>
+
+    <section aria-labelledby="s10">
+      <h2 id="s10"><span class="num" aria-hidden="true">10</span>Privacidade de crianças</h2>
+      <p>O FieldFix é destinado a maiores de 18 anos e ao uso profissional. Não coletamos intencionalmente dados de menores de idade.</p>
+    </section>
+
+    <section aria-labelledby="s11">
+      <h2 id="s11"><span class="num" aria-hidden="true">11</span>Alterações nesta política</h2>
+      <p>Podemos atualizar esta política periodicamente. Alterações relevantes serão comunicadas pelo aplicativo ou por esta página, com a data de atualização revisada no topo.</p>
+    </section>
+
+    <section aria-labelledby="s12">
+      <h2 id="s12"><span class="num" aria-hidden="true">12</span>Contato</h2>
+      <div class="callout">
+        <p class="role">Encarregado pelo tratamento de dados</p>
+        <p><strong>Equipe Zyphy</strong> — responsável pelo projeto FieldFix</p>
+        <p>E-mail: <a href="mailto:fieldfix1@gmail.com">fieldfix1@gmail.com</a></p>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="page-footer">
+  <div class="wrap">
+    <ul class="chips" aria-label="Dados sensíveis tratados pelo aplicativo">
+      <li>Localização</li>
+      <li>Documentos</li>
+      <li>Dados bancários</li>
+      <li>Fotos e chat</li>
+    </ul>
+    <p class="copyright">© 2026 FieldFix · <a href="/">Zyphy</a> — Tecnologia que destrava o seu dia a dia</p>
+  </div>
+</footer>
+
+</body>
+</html>
