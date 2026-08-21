@@ -364,6 +364,7 @@ img{max-width:100%;height:auto;display:block}
 .grid--280{grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr))}
 .grid--300{grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr))}
 .grid--250{grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr))}
+.grid--fill300{grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr))}
 
 /* ---------- Hero ---------- */
 .hero{position:relative;overflow:hidden;flex-direction:column;justify-content:center;padding:96px 24px 48px}
@@ -440,6 +441,22 @@ img{max-width:100%;height:auto;display:block}
 .project-desc{margin:0;color:var(--text-muted);font-size:var(--fs-14);line-height:1.65;flex:1}
 .project-status{display:flex;align-items:center;gap:8px;font-size:var(--fs-14);color:var(--text-muted);padding-top:12px;border-top:1px solid var(--border-soft)}
 .project-status .dot{width:7px;height:7px;animation:zyPulse 2s infinite}
+
+/* ---------- Depoimentos ---------- */
+.testimonial{margin:0;display:flex;flex-direction:column;align-items:flex-start;gap:20px}
+.testimonial-quote{margin:0;font-size:var(--fs-18);line-height:1.6;color:var(--text)}
+.testimonial-quote::before{content:"\201C";display:block;font-family:var(--font-display);font-weight:700;font-size:2.5rem;line-height:1;color:var(--accent);margin-bottom:4px}
+.testimonial-author{display:flex;align-items:center;gap:12px;margin-top:auto}
+.testimonial-avatar{display:grid;place-items:center;width:44px;height:44px;flex-shrink:0;border-radius:var(--radius-circle);background:var(--accent-soft);color:var(--accent);font-family:var(--font-display);font-weight:700;font-size:var(--fs-16);overflow:hidden}
+.testimonial-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.testimonial-id{display:flex;flex-direction:column;gap:2px}
+.testimonial-name{font-weight:600;font-size:var(--fs-15)}
+.testimonial-role{color:var(--text-muted);font-size:var(--fs-14)}
+/* a tag do projeto reusa .project-tag; como link, ganha seta e hover */
+.testimonial-project{display:inline-flex;align-items:center;gap:6px}
+.project-link-arrow{font-size:var(--fs-12)}
+a.testimonial-project{transition:color .2s ease,background .2s ease}
+a.testimonial-project:hover{color:var(--accent-hover);box-shadow:inset 0 0 0 1px var(--accent-outline)}
 
 /* ---------- Processo ---------- */
 .steps{margin:0;padding:0;list-style:none;border-top:1px solid var(--border-strong)}
