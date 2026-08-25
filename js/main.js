@@ -370,11 +370,31 @@
     }
   }
 
+  /* ---------- avatares dos depoimentos ---------- */
+  // Por padrao o circulo mostra as iniciais do nome. Se o card tiver
+  // data-avatar com o caminho de uma foto, ela e carregada em segundo plano e
+  // so substitui as iniciais quando terminar de carregar; se a foto faltar,
+  // o fallback continua no lugar.
+  function initAvatars() {
+    doc.querySelectorAll(".testimonial-avatar[data-avatar]").forEach(function (el) {
+      var src = (el.getAttribute("data-avatar") || "").trim();
+      if (!src) return;
+      var img = new Image();
+      img.onload = function () {
+        img.alt = "";
+        el.textContent = "";
+        el.appendChild(img);
+      };
+      img.src = src;
+    });
+  }
+
   /* ---------- boot ---------- */
   function boot() {
     initSmoothScroll();
     initMenu();
     initForm();
+    initAvatars();
     init();
   }
 
