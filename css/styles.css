@@ -428,6 +428,9 @@ img{max-width:100%;height:auto;display:block}
 /* rodape do card de portfolio: link para o site entregue */
 .project-link{display:flex;align-items:center;gap:6px;margin-top:auto;padding-top:12px;border-top:1px solid var(--border-soft);font-size:var(--fs-14);color:var(--accent);text-decoration:none;transition:color .2s ease}
 .project-link:hover{color:var(--accent-hover);text-decoration:underline;text-underline-offset:3px}
+/* rodape com dois CTAs: o separador e o espacamento passam para o wrapper */
+.project-links{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:auto;padding-top:12px;border-top:1px solid var(--border-soft)}
+.project-links .project-link{margin-top:0;padding-top:0;border-top:none}
 
 /* ---------- Depoimentos ---------- */
 .testimonial{margin:0;display:flex;flex-direction:column;align-items:flex-start;gap:20px}
