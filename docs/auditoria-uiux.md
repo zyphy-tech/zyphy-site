@@ -2,8 +2,100 @@
 
 > Ferramenta: skill `ui-ux-pro-max` (design-system + domínios `style`, `typography`, `color`, `ux`) + medições reais do código e cálculo de contraste WCAG.
 
-- **Rodada 2** (2026-07-10, pós-Etapa 1) — ativa, abaixo.
+- **Rodada 3** (2026-08-28, pós-portfólio/depoimentos/tema claro) — ativa, abaixo.
+- **Rodada 2** (2026-07-10, pós-Etapa 1) — arquivada mais abaixo; backlog dela fechado na rodada 3.
 - **Rodada 1** (2026-07-10, pré-tokens) — arquivada no fim do arquivo; originou as Etapas 1–3.
+
+---
+
+# Rodada 3 — pós-portfólio, depoimentos e tema claro (2026-08-28)
+
+> Escopo: fechar o backlog aberto da rodada 2 + auditar o que entrou depois dela
+> (seções `#portfolio` e `#depoimentos`, tema claro). Skill `ui-ux-pro-max`
+> (`--design-system`) + medições reais no navegador + cálculo WCAG.
+
+**Veredito:** nenhum crítico. O tema claro — nunca medido até agora — **passa AA em
+todos os pares reais de texto**. Os problemas eram os itens médios/baixos que ficaram
+pendentes da rodada 2 e **alvos de toque abaixo de 44px nos componentes novos**
+(links do portfólio, pill de depoimento) e no rodapé. Todos corrigidos.
+
+## 1. Design system da skill — de novo descartado
+
+O `--design-system` devolveu "Dark Mode (OLED)" com acento **vermelho `#DC2626`** e
+fundo **claro `#F8FAFC`** — incoerente entre si e alheio à marca. Igual às rodadas 1
+e 2: **o dark+ciano da Zyphy vence a paleta genérica.** Aproveitado só o que é regra
+geral (piso de 12px, alvo de 44px, `touch-action`, estados de erro).
+
+## 2. Contrastes medidos — TEMA CLARO (primeira medição)
+
+Pior caso de cada cor contra os 8 fundos claros (`--bg`, `--surface`, `--surface-2`,
+`--surface-3`, painéis a/b/c, rodapé):
+
+| Par | Pior ratio | Melhor | WCAG |
+|---|---|---|---|
+| `#0C1212` texto | **16,34:1** | 18,90 | AAA ✅ |
+| `#4A5C5C` muted | **6,10:1** | 7,06 | AA ✅ |
+| `#006A6D` acento | **5,53:1** | 6,40 | AA ✅ |
+| `#C62828` erro | **4,86:1** | 5,62 | AA ✅ |
+| `#FFFFFF` sobre acento (botão) | 6,40:1 | — | AA ✅ |
+| `#FFFFFF` sobre `--accent-hover` | **4,95:1** | — | AA ✅ (folga pequena) |
+| ~~`#B5551E` warm~~ | ~~4,24:1~~ | ~~4,90~~ | token removido (B6) |
+
+**Sem falhas reais.** O único par reprovado (`--warm`) só era usado por
+`.project-tag--warm`, que **não existia em nenhum lugar do HTML** (CSS órfão) — em vez
+de recolorir, o CSS morto foi removido (B6), e com ele o token.
+
+## 3. Lista priorizada
+
+### 🔴 Crítico
+*Nenhum.*
+
+### 🟠 Alto
+
+| # | Problema | Onde | Correção | Status |
+|---|---|---|---|---|
+| A1 | `.project-link` ("Ver site no ar") com alvo de **~21px** de altura | `css/styles.css` portfólio | `min-height:44px` + `box-sizing:border-box` | ✅ |
+| A2 | `.testimonial-project` (pill do depoimento) com alvo de **27px** | `css/styles.css` depoimentos | `::after` de 44px centralizado — **área de toque cresce, a pill não** | ✅ |
+| A3 | Links do rodapé com alvo de **~24px** e gap 8px | `.footer-links` | `min-height:44px` + `padding-block:10px`, gap 8→4 (mantém o ritmo visual) | ✅ |
+| A4 | `--fs-11` (11px) em `.tag`, `.scroll-hint` e `.project-tag` — abaixo do piso de 12px *(M3 da rodada 2)* | `css/styles.css` | Todos p/ `--fs-12`; token `--fs-11` **removido** | ✅ |
+
+### 🟡 Médio
+
+| # | Problema | Onde | Correção | Status |
+|---|---|---|---|---|
+| M1 | Erro do form anunciado como `role="status"` (polite) e **campo inválido sem destaque** *(M2 da rodada 2)* | `js/main.js`, `css/styles.css` | `role`/`aria-live` alternam alert/assertive no erro; `.form-input--invalid` + `aria-invalid` no campo; destaque **limpa no `input`** e no envio com sucesso | ✅ |
+| M2 | Campo focado **e** inválido mostrava anel ciano — o foco escondia o erro | `css/styles.css` | `.form-input--invalid:focus` mantém o anel vermelho | ✅ |
+| M3 | Sem `touch-action:manipulation` — 300ms de atraso no toque *(B2 da rodada 2)* | `css/styles.css` | Regra única nos interativos (zoom por pinça continua livre) | ✅ |
+| M4 | `::placeholder` sem cor — default do browser, inconsistente entre os dois temas *(B5 da rodada 2)* | `css/styles.css` | `::placeholder{color:var(--text-muted);opacity:1}` | ✅ |
+
+### 🟢 Baixo
+
+| # | Problema | Onde | Correção | Status |
+|---|---|---|---|---|
+| B1 | `:focus-visible` com `border-radius:6px` hardcoded *(B1 da rodada 2)* | `css/styles.css` | Token novo `--radius-xs:6px` | ✅ |
+| B2 | Ring do erro em rgba hardcoded — não acompanhava o tema | `css/styles.css` | Token `--error-ring` por tema (claro e escuro) | ✅ |
+| B3 | `.project-media` com borda `rgba(21,32,32,.08)` hardcoded — quase invisível no claro | `css/styles.css` | `var(--border-soft)` | ✅ |
+| B4 | `#FFFFFF` sobre `--accent-hover` no claro = 4,95:1 — passa, mas com folga curta | tokens do tema claro | Escurecer `--accent-hover` se algum dia o botão receber texto menor | ⏸ aceito |
+| B5 | `--fs-15` / `--fs-14` ainda convivem com a escala 12/16/18/20/24 | `css/styles.css` | Consolidar escala — junto do M7 da rodada 2 (clamps de display) | ⏸ backlog |
+| B6 | `.project-tag--warm` + tokens `--warm`/`--warm-soft` e `.project-tag--mock` são **CSS órfão** (0 usos no HTML) — sobra das seções `#projetos`/`#sobmedida` removidas em 2026-08-24 | `css/styles.css` | **Removidos** (6 linhas). Recuperar com `git checkout <commit>^ -- css/styles.css` | ✅ |
+
+## 4. Verificado no navegador (Chrome, localhost:8000)
+
+- Alvos medidos por `getBoundingClientRect`: rodapé **10 links a 44px**, portfólio
+  **5 links a 44px**, pill de depoimento 27px visual + `::after` de 44px confirmado.
+- Tamanhos de fonte confirmados em **12px** nos três seletores.
+- Form submetido vazio: `role="alert"`, `aria-live="assertive"`, `aria-invalid="true"`
+  nos dois campos, foco no primeiro inválido, **borda vermelha visível no screenshot**.
+- **Zero erros de console** em ambos os temas.
+- Tema claro percorrido em todas as seções (dor, soluções, públicos, portfólio, rodapé).
+
+⚠️ **Não verificado:** viewport mobile real — a janela do Chrome não aceitou o resize
+(ficou em 1920). Nenhuma das correções depende de largura (só `min-height`, `padding`
+e `font-size`), então o risco é baixo, mas **falta um olhar em 375px**.
+
+⚠️ **Armadilha reconfirmada:** o `getComputedStyle` devolveu `border-color` defasado
+para o campo inválido (mostrou o valor antigo enquanto o screenshot já mostrava a
+borda vermelha). Vale a regra da rodada anterior: **julgar estilo pelo screenshot.**
 
 ---
 
@@ -80,7 +172,6 @@ Padrão **"Bento Grid Showcase"** com estilo **"Modern Dark (Cinema)"**:
 | B5 | `::placeholder` sem cor definida (default do browser sobre `#0F1717`) | `css/styles.css:614` | `::placeholder{color:var(--text-muted)}` |
 | B6 | JPEGs ~356 KB no total | `assets/img/` | *Já planejado — Etapa 3* (WebP ≈ −50%) |
 
----
 ---
 
 # Rodada 1 — pré-tokens *(arquivada)*

@@ -154,13 +154,28 @@
     function setStatus(isError, msg) {
       if (!status) return;
       status.classList.toggle("form-status--error", isError);
+      // erro precisa interromper o leitor de tela (assertive); sucesso pode esperar a fila
+      status.setAttribute("role", isError ? "alert" : "status");
+      status.setAttribute("aria-live", isError ? "assertive" : "polite");
       status.textContent = msg;
     }
+    function markInvalid(field, invalid) {
+      if (!field) return;
+      field.classList.toggle("form-input--invalid", invalid);
+      if (invalid) field.setAttribute("aria-invalid", "true");
+      else field.removeAttribute("aria-invalid");
+    }
+    // limpa o destaque assim que o usuário corrige o campo
+    [form.nome, form.contato].forEach(function (field) {
+      if (field) field.addEventListener("input", function () { markInvalid(field, false); });
+    });
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       var nome = form.nome.value.trim();
       var contato = form.contato.value.trim();
       var msg = form.mensagem.value.trim();
+      markInvalid(form.nome, !nome);
+      markInvalid(form.contato, !contato);
       if (!nome || !contato) {
         setStatus(true, "Preencha seu nome e um e-mail ou WhatsApp para continuar.");
         (!nome ? form.nome : form.contato).focus();
@@ -172,6 +187,8 @@
       );
       window.open("https://wa.me/5511977176036?text=" + texto, "_blank", "noopener");
       setStatus(false, "Abrindo o WhatsApp… A Zyphy responde ainda hoje!");
+      markInvalid(form.nome, false);
+      markInvalid(form.contato, false);
       form.reset();
     });
   }
