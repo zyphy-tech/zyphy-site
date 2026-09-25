@@ -5,7 +5,10 @@
 
    Movimento 3 (dado que muda de valor): as barras fazem tween da altura
    antiga para a nova quando o filtro muda, e "ligam" uma vez a partir de zero
-   na primeira vez que o dashboard aparece. Os indicadores trocam direto, sem
+   na primeira vez que o dashboard aparece. Esse "ligar" tem gatilho próprio
+   (gráfico 60% visível) e espera a banda do dashboard terminar de expandir
+   (movimento 2, evento zy:band-expanded do js/main.js): os dois movimentos
+   nunca começam juntos. Os indicadores trocam direto, sem
    contagem animada (contador animado é proibido pelo brief §3).
    Com prefers-reduced-motion: estado final direto, sempre.
    ========================================================================== */
@@ -44,14 +47,30 @@
   var fmtCents = new Intl.NumberFormat("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   var NBSP = " ";
 
-  // duração vem do token --dur-data (css/tokens.css)
-  function tokenMs(name, fallback) {
-    var v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
-    var n = parseFloat(v);
-    if (isNaN(n)) return fallback;
+  // valores de geometria e duração vêm de css/tokens.css; nada fixo aqui
+  function token(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+  function tokenMs(name) {
+    var v = token(name), n = parseFloat(v);
     return /ms$/.test(v) ? n : n * 1000;
   }
-  var DURATION = tokenMs("--dur-data", 600);
+  function tokenNum(name) { return parseFloat(token(name)); }  // px ou número puro
+  var DURATION = tokenMs("--dur-data");
+  var G; // geometria do gráfico, lida uma vez (tokens não mudam em runtime)
+  function geometry() {
+    if (G) return G;
+    G = {
+      top: tokenNum("--chart-pad-top"),
+      bottom: tokenNum("--chart-pad-bottom"),
+      left: tokenNum("--chart-pad-left"),
+      tickGap: tokenNum("--chart-tick-gap"),
+      labelOffset: tokenNum("--chart-label-offset"),
+      labelMin: tokenNum("--chart-label-min"),
+      barMin: tokenNum("--chart-bar-min"),
+      fill: tokenNum("--chart-bar-fill"),
+      fillDense: tokenNum("--chart-bar-fill-dense")
+    };
+    return G;
+  }
 
   // escala "redonda" do eixo y: ~4 linhas de grade
   function niceScale(max) {
@@ -92,13 +111,14 @@
     var t = target(state.period);
     var w = chartEl.clientWidth, h = chartEl.clientHeight;
     if (!w || !h) return;
-    var pad = { top: 8, right: 0, bottom: 28, left: 64 };
+    var g = geometry();
+    var pad = { top: g.top, right: 0, bottom: g.bottom, left: g.left };
     var pw = w - pad.left - pad.right, ph = h - pad.top - pad.bottom;
     var n = heights.length;
     var slot = pw / n;
-    var barW = Math.max(2, slot * (n > 20 ? 0.6 : 0.68));
+    var barW = Math.max(g.barMin, slot * (n > 20 ? g.fillDense : g.fill));
     // rótulo do eixo x a cada N barras, para não encavalar em tela estreita
-    var every = Math.max(1, Math.ceil(30 / slot));
+    var every = Math.max(1, Math.ceil(g.labelMin / slot));
     if (state.period === "d30") every = Math.max(every, 5);
 
     var svg = el("svg", { viewBox: "0 0 " + w + " " + h, width: w, height: h, focusable: "false" });
@@ -106,7 +126,7 @@
     for (var v = 0; v <= t.scale.max + 1e-6; v += t.scale.step) {
       var y = pad.top + ph - (v / t.scale.max) * ph;
       svg.appendChild(el("line", { class: "grid", x1: pad.left, x2: w, y1: y, y2: y }));
-      var tick = el("text", { class: "tick", x: pad.left - 12, y: y, "text-anchor": "end", "dominant-baseline": "middle" });
+      var tick = el("text", { class: "tick", x: pad.left - g.tickGap, y: y, "text-anchor": "end", "dominant-baseline": "middle" });
       tick.textContent = fmtInt.format(v);
       svg.appendChild(tick);
     }
@@ -121,7 +141,7 @@
       // 30 dias: dia 1 e múltiplos de 5; demais: um rótulo a cada "every"
       var showLabel = state.period === "d30" ? (i === 0 || (i + 1) % every === 0) : i % every === 0;
       if (showLabel) {
-        var lx = el("text", { class: "tick", x: x + barW / 2, y: h - 6, "text-anchor": "middle" });
+        var lx = el("text", { class: "tick", x: x + barW / 2, y: h - g.labelOffset, "text-anchor": "middle" });
         lx.textContent = PERIOD[state.period].label(i);
         svg.appendChild(lx);
       }
@@ -187,14 +207,29 @@
   } else {
     state.shown = initial.map(function () { return 0; });
     draw(state.shown);
-    // "liga" uma vez quando o dashboard aparece de verdade
+    // "liga" uma vez: precisa do gráfico visível (gatilho próprio, 60%) E da
+    // banda já expandida. Se o usuário clicar num filtro antes, liga ali mesmo.
+    var band = root.closest(".band--expand");
+    var seen = false;
+    var bandDone = !band || band.dataset.expanded === "true";
+    var reveal = function () {
+      if (state.revealed || !seen || !bandDone) return;
+      state.revealed = true;
+      animateTo(target(state.period).heights);
+    };
+    if (band && !bandDone) {
+      band.addEventListener("zy:band-expanded", function () { bandDone = true; reveal(); }, { once: true });
+    }
     var io = new IntersectionObserver(function (entries) {
       if (!entries[0].isIntersecting) return;
       io.disconnect();
-      state.revealed = true;
-      animateTo(target(state.period).heights);
-    }, { threshold: 0.4 });
+      seen = true;
+      reveal();
+    }, { threshold: 0.6 });
     io.observe(chartEl);
+    buttons.forEach(function (b) {
+      b.addEventListener("click", function () { if (!state.revealed) { seen = bandDone = true; reveal(); } }, { capture: true });
+    });
   }
 
   // redesenha no tamanho novo, sem animar

@@ -45,14 +45,29 @@
     var bands = doc.querySelectorAll(".band--expand");
     if (!bands.length || !doc.documentElement.classList.contains("motion")) return;
     if (!("IntersectionObserver" in window)) {
-      bands.forEach(function (b) { b.classList.add("is-in"); });
+      bands.forEach(function (b) { b.classList.add("is-in"); b.dataset.expanded = "true"; });
       return;
+    }
+    // avisa quando a expansão terminou (o dashboard espera isso para ligar as
+    // barras, assim os dois movimentos nunca começam no mesmo instante)
+    var css = getComputedStyle(doc.documentElement);
+    var durBand = parseFloat(css.getPropertyValue("--dur-band")) || 0;
+    var settle = parseFloat(css.getPropertyValue("--dur-settle")) || 0;
+    function done(band) {
+      if (band.dataset.expanded === "true") return;
+      band.dataset.expanded = "true";
+      band.dispatchEvent(new CustomEvent("zy:band-expanded"));
     }
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
-        entry.target.classList.add("is-in");
-        io.unobserve(entry.target);
+        var band = entry.target;
+        band.addEventListener("transitionend", function (e) {
+          if (e.pseudoElement === "::before") done(band);
+        });
+        setTimeout(function () { done(band); }, durBand + settle); // se o transitionend não vier
+        band.classList.add("is-in");
+        io.unobserve(band);
       });
     }, { rootMargin: "0px 0px -25% 0px" });
     bands.forEach(function (b) { io.observe(b); });
@@ -91,6 +106,17 @@
       if (!nome || !contato) {
         setStatus(true, "Preencha seu nome e um e-mail ou WhatsApp para continuar.");
         (!nome ? form.nome : form.contato).focus();
+        return;
+      }
+      // um campo, dois formatos: e-mail (algo@algo.algo) ou telefone com DDD
+      // (10 a 13 dígitos, aceitando espaço, parênteses, traço e +55)
+      var isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contato);
+      var digits = contato.replace(/[\s().+-]/g, "");
+      var isPhone = /^\d{10,13}$/.test(digits);
+      if (!isEmail && !isPhone) {
+        markInvalid(form.contato, true);
+        setStatus(true, "Digite um e-mail, como voce@email.com, ou um WhatsApp com DDD, como (11) 91234‑5678."); // espaço e hífen inseparáveis: o número não quebra
+        form.contato.focus();
         return;
       }
       var texto = encodeURIComponent(

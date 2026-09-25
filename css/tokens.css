@@ -1,7 +1,16 @@
 /* ==========================================================================
    Zyphy v3 — tokens. Fonte de verdade: brief-zyphy-site-v3.md, direção da
    Fase 3 aprovada. Nenhum valor de cor, fonte, tamanho, espaço, raio ou
-   duração aparece fora deste arquivo.
+   duração aparece fora deste arquivo, em CSS ou JS (o JS lê daqui por
+   getComputedStyle). Exceções conferidas por varredura, todas técnicas:
+     - breakpoints dentro de @media: CSS não aceita var() em media query
+     - utilitário .sr-only (1px / -1px / clip), técnica padrão de a11y
+     - translateY(-250%) do skip link (esconde fora da tela até o foco)
+     - .001ms do bloco de reduced-motion (desliga transição, não é estilo)
+     - 100vw e 0px na fórmula do sangramento do hero (geometria, não medida)
+     - <meta name="theme-color"> no HTML: meta não lê variável CSS
+     - limiares do IntersectionObserver (rootMargin, threshold) ficam no JS:
+       são regra de disparo, não valor de estilo
 
    Conceito: plaqueta de máquina. Uma família de tom (petróleo, derivada do
    ciano da marca) executada até o fim, acento raro, letra neutra comprimida.
@@ -100,6 +109,18 @@
   --bar-idle:var(--sage-600);
   --bar-active:var(--accent);
   --chart-grid:rgba(227,239,237,.1);
+  /* geometria do gráfico (lida pelo js/dashboard.js) */
+  --dash-pad:clamp(var(--space-5),4vw,var(--space-7));
+  --chart-h:clamp(200px,28vw,320px);
+  --chart-pad-top:var(--space-2);
+  --chart-pad-bottom:28px;                   /* faixa dos rótulos do eixo x */
+  --chart-pad-left:var(--space-8);           /* faixa dos rótulos do eixo y */
+  --chart-tick-gap:var(--space-3);           /* rótulo y até a grade */
+  --chart-label-offset:6px;                  /* rótulo x até a base do svg */
+  --chart-label-min:30px;                    /* espaço mínimo entre rótulos x */
+  --chart-bar-min:2px;
+  --chart-bar-fill:.68;                      /* fração do slot ocupada pela barra */
+  --chart-bar-fill-dense:.6;                 /* idem, com mais de 20 barras */
 
   /* placeholder do hero enquanto a imagem autoral não chega (brief §6) */
   --placeholder:var(--ink-900);  /* tom base: difere do hero (950) e do dashboard (850) */
@@ -141,6 +162,9 @@
   --numeric-data:tabular-nums;
 
   --measure:60ch;
+  --measure-lead:44ch;        /* sub do hero */
+  --measure-h2:18ch;
+  --measure-statement:20ch;   /* frase do contato */
 
   /* ---------- Espaço (base 8) ---------- */
   --space-1:4px;
@@ -164,12 +188,20 @@
   --header-h:68px;
   --tap:44px;                                /* alvo de toque mínimo */
   --control-h:48px;                          /* botão e campo */
-  --fab-size:56px;
   --form-max:760px;
   --ring:3px;                                /* anel de erro do campo */
   --focus-offset:3px;
   --underline-offset:4px;
   --header-blur:12px;
+  --header-opacity:92%;                      /* fundo do header sobre o conteúdo */
+  --hairline:1px;                            /* divisória e borda */
+  --focus-width:2px;                         /* contorno de foco */
+  --textarea-min-h:128px;
+  --status-min-h:1.4em;                      /* reserva a linha da mensagem do form */
+  /* largura mínima de coluna nas grades auto-fit */
+  --col-min-steps:240px;
+  --col-min-audience:260px;
+  --col-min-quotes:280px;
 
   /* proporções */
   --ratio-hero:4/5;                          /* imagem do hero, desktop */
@@ -180,7 +212,6 @@
   --r-none:0;          /* imagens e bandas */
   --r-control:4px;     /* botão, input */
   --r-screen:12px;     /* o dashboard, único objeto com cara de tela */
-  --r-round:50%;       /* FAB */
 
   /* ---------- Movimento ----------
      Três comportamentos, e só eles:
@@ -192,6 +223,7 @@
   --dur-fast:200ms;       /* hover e foco */
   --dur-data:600ms;       /* tween dos dados */
   --dur-band:900ms;       /* banda que expande */
+  --dur-settle:100ms;     /* folga até dar a expansão por terminada, se o transitionend não vier */
   --band-inset-start:6%;  /* recorte lateral da banda antes de expandir */
   --band-radius-start:var(--r-screen);
   /* faixa de projetos: largura total = container x escala; o deslocamento
@@ -200,7 +232,6 @@
   --track-range:entry 50% exit 50%;  /* trecho do scroll em que a faixa anda */
 
   /* ---------- Camadas ---------- */
-  --z-fab:90;
   --z-menu:99;
   --z-header:100;
   --z-skip:400;

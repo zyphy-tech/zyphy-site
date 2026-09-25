@@ -66,14 +66,14 @@
     </nav>
   </header>
 
-  <!-- menu móvel -->
-  <div id="zyMobileMenu" class="mobile-menu" hidden>
+  <!-- menu móvel: landmark próprio, nome diferente do nav do desktop -->
+  <nav id="zyMobileMenu" class="mobile-menu" aria-label="Navegação no celular" hidden>
     <a href="#solucoes" class="mobile-menu-link" data-close-menu>Soluções</a>
     <a href="#processo" class="mobile-menu-link" data-close-menu>Como construímos</a>
     <a href="#projetos" class="mobile-menu-link" data-close-menu>Projetos</a>
     <a href="#contato" class="mobile-menu-link" data-close-menu>Contato</a>
     <a href="#contato" class="btn btn--primary mobile-menu-cta" data-close-menu>Começar projeto</a>
-  </div>
+  </nav>
 
   <main id="conteudo" tabindex="-1">
 
@@ -313,7 +313,10 @@
           </div>
           <div class="form-field">
             <label for="zy-contato" class="form-label">Seu e-mail ou WhatsApp <span class="form-req" aria-hidden="true">*</span></label>
-            <input type="text" id="zy-contato" name="contato" class="form-input" placeholder="voce@email.com ou (00) 00000-0000" autocomplete="email" inputmode="email" required="required">
+            <!-- aceita e-mail OU telefone: teclado padrão (tem letras, @ e números),
+                 sem inputmode/autocomplete de um tipo só. Formato checado no js/main.js -->
+            <input type="text" id="zy-contato" name="contato" class="form-input" placeholder="voce@email.com ou (00) 00000-0000" autocapitalize="off" autocorrect="off" spellcheck="false" aria-describedby="zy-contato-dica" required="required">
+            <p class="form-field-hint" id="zy-contato-dica">E-mail ou WhatsApp com DDD.</p>
           </div>
           <div class="form-field form-field--wide">
             <label for="zy-msg" class="form-label">O que você quer resolver?</label>
@@ -340,16 +343,12 @@
         <li><a href="https://wa.me/5511977176036" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp +55 11 97717-6036 (abre em nova aba)">WhatsApp</a></li>
         <li><a href="mailto:contato.zyphy@gmail.com">contato.zyphy@gmail.com</a></li>
         <li><a href="https://www.instagram.com/zyphytech/" target="_blank" rel="noopener noreferrer" aria-label="Instagram da Zyphy (abre em nova aba)">Instagram</a></li>
-        <li><a href="/fieldfix/privacidade/">Privacidade</a></li>
+        <li><a href="/privacidade/">Privacidade</a></li>
       </ul>
       <p class="footer-copy">© 2026 Zyphy</p>
     </div>
   </footer>
 
-  <!-- WhatsApp flutuante: neutro, para não gastar o acento -->
-  <a href="https://wa.me/5511977176036?text=Olá!%20Quero%20falar%20com%20a%20Zyphy." target="_blank" rel="noopener noreferrer" aria-label="Fale com a Zyphy no WhatsApp (abre em nova aba)" class="fab-whatsapp">
-    <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor" aria-hidden="true"><path d="M12.04 2A9.9 9.9 0 0 0 2.1 11.9c0 1.75.46 3.46 1.34 4.97L2 22l5.28-1.38a9.9 9.9 0 0 0 4.75 1.21h.01A9.9 9.9 0 0 0 22 11.9 9.9 9.9 0 0 0 12.04 2zm0 18.02h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.13.82.84-3.05-.2-.31a8.2 8.2 0 0 1-1.26-4.38 8.22 8.22 0 0 1 14.03-5.8 8.13 8.13 0 0 1 2.42 5.8 8.22 8.22 0 0 1-8.21 8.2zm4.5-6.15c-.25-.12-1.46-.72-1.68-.8-.23-.09-.39-.13-.56.12-.16.25-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.23-1.46-1.37-1.71-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.16.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43l-.48-.01c-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.57.12.16 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.46-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"></path></svg>
-  </a>
 
 <script src="js/main.js" defer></script>
 <script src="js/dashboard.js" defer></script>
