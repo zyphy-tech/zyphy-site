@@ -20,6 +20,26 @@
   unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
 
+/* reserva métrica da display, só enquanto a Sofia não chega (preload no <head>).
+   Impact: existe no Windows e no macOS e não está na lista proibida do brief.
+   Calibrado medindo o H1 real em Chromium e Firefox (60px, coluna de 335px):
+     largura  Sofia 322.6 / 310.0 / 184.1  ->  Impact ajustada 322.6 / 317.9 / 188.1
+     base     Sofia 45 / 99 / 153          ->  Impact ajustada 45 / 99 / 153
+   A altura do bloco de 3 linhas não muda (line-height fixo em em).
+   Os overrides são multiplicados pelo size-adjust, por isso valem
+   métrica da Sofia (90% / 30% / 0) dividida por 0.832.
+   Sem Impact (Android, iOS) cai no sans-serif do sistema, sem calibração. */
+@font-face{
+  font-family:'Sofia Fallback';
+  font-style:normal;
+  font-weight:800;
+  src:local('Impact');
+  size-adjust:83.2%;
+  ascent-override:108.17%;
+  descent-override:36.06%;
+  line-gap-override:0%;
+}
+
 /* corpo: Archivo variável (eixo de peso 100–900, largura normal) */
 @font-face{
   font-family:'Archivo';
@@ -35,15 +55,18 @@
 
   /* ---------- Cor: primitivos (família petróleo, matiz ~180°) ----------
      Contraste medido (WCAG):
-       mist-100 sobre 950/900/850/petrol  16.7 / 15.0 / 12.6 / 11.2
-       mist-400 sobre 950/900/850/petrol   8.2 /  7.4 /  6.2 /  5.5
-       accent   sobre 950/900/850/petrol   9.7 /  8.8 /  7.4 /  6.5
-       on-accent sobre accent              9.7
-       error    sobre 950/900/850/petrol   8.6 /  7.7 /  6.5 /  5.8
-       bar-idle sobre 850 (objeto gráfico) 3.1  (mínimo 3:1)          */
-  --ink-950:#060D0D;     /* banda mais funda */
-  --ink-900:#0D1B1B;     /* banda base */
-  --ink-850:#172B2B;     /* banda elevada */
+       mist-100 sobre 950/900/850/petrol  16.8 / 14.0 / 11.0 / 11.2
+       mist-400 sobre 950/900/850/petrol   8.3 /  6.9 /  5.5 /  5.5
+       accent   sobre 950/900/850/petrol   9.8 /  8.2 /  6.5 /  6.5
+       on-accent sobre accent              9.8
+       error    sobre 950/900/850/petrol   8.7 /  7.2 /  5.7 /  5.8
+       bar-idle sobre 950, tela do dashboard (objeto gráfico) 4.1 (mínimo 3:1)
+     Degrau entre bandas vizinhas: 950/900 1.20, 900/850 1.27, 950/850 1.53,
+     petrol/900 1.25, petrol/950 1.51. Afastado na Fase 5: com 1.11 a troca
+     950/900 não aparecia no screenshot. */
+  --ink-950:#050B0B;     /* banda mais funda */
+  --ink-900:#112222;     /* banda base */
+  --ink-850:#1E3535;     /* banda elevada */
   --petrol-700:#0E3634;  /* a única banda de cor chapada */
   --mist-100:#E3EFED;    /* texto */
   --mist-400:#93ADAA;    /* texto secundário, labels */
@@ -79,10 +102,10 @@
   --chart-grid:rgba(227,239,237,.1);
 
   /* placeholder do hero enquanto a imagem autoral não chega (brief §6) */
-  --placeholder:var(--ink-850);
+  --placeholder:var(--ink-900);  /* tom base: difere do hero (950) e do dashboard (850) */
 
   /* ---------- Tipografia ---------- */
-  --font-display:'Sofia Sans Extra Condensed',sans-serif;
+  --font-display:'Sofia Sans Extra Condensed','Sofia Fallback',sans-serif;
   --font-body:'Archivo',system-ui,sans-serif;
 
   --weight-display:800;
@@ -94,6 +117,9 @@
      H1: piso 60px medido em 375px (linha mais longa 323px de 335px úteis);
          teto 144px em 1440px (linha mais longa ~775px, cerca de 7 de 12 colunas) */
   --fs-h1:clamp(3.75rem,10vw,9rem);
+  /* trava de largura: a linha mais longa do H1 mede 5.38em; 18% da coluna
+     (cqi) garante 3 linhas mesmo com barra de rolagem ou coluna estreita */
+  --fs-h1-fit:18cqi;
   --fs-statement:clamp(3rem,8vw,8rem);   /* frase do contato */
   --fs-h2:clamp(2.5rem,6vw,5.5rem);
   --fs-step-num:clamp(3.5rem,7vw,6rem);  /* números 1–4 do processo */
@@ -137,6 +163,13 @@
   --col-gap:clamp(16px,2vw,24px);
   --header-h:68px;
   --tap:44px;                                /* alvo de toque mínimo */
+  --control-h:48px;                          /* botão e campo */
+  --fab-size:56px;
+  --form-max:760px;
+  --ring:3px;                                /* anel de erro do campo */
+  --focus-offset:3px;
+  --underline-offset:4px;
+  --header-blur:12px;
 
   /* proporções */
   --ratio-hero:4/5;                          /* imagem do hero, desktop */
@@ -153,7 +186,7 @@
      Três comportamentos, e só eles:
      1. lateral nos projetos (CSS scroll-driven; fallback estático)
      2. banda que expande no dashboard e no contato (IntersectionObserver)
-     3. dado que muda de valor no dashboard (tween por WAAPI)
+     3. dado que muda de valor no dashboard (tween por requestAnimationFrame)
      prefers-reduced-motion: estado final direto, mesmo caminho do fallback */
   --ease-out:cubic-bezier(.215,.61,.355,1);
   --dur-fast:200ms;       /* hover e foco */
@@ -161,5 +194,14 @@
   --dur-band:900ms;       /* banda que expande */
   --band-inset-start:6%;  /* recorte lateral da banda antes de expandir */
   --band-radius-start:var(--r-screen);
-  --track-shift:-18%;     /* deslocamento total da faixa de projetos */
+  /* faixa de projetos: largura total = container x escala; o deslocamento
+     leva do 1º card alinhado à esquerda ao 4º inteiro na borda direita */
+  --track-scale:1.5;
+  --track-range:entry 50% exit 50%;  /* trecho do scroll em que a faixa anda */
+
+  /* ---------- Camadas ---------- */
+  --z-fab:90;
+  --z-menu:99;
+  --z-header:100;
+  --z-skip:400;
 }

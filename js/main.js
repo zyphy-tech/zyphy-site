@@ -1,6 +1,6 @@
 /* ==========================================================================
-   Zyphy — comportamento do site (vanilla, scroll nativo): header, menu e
-   formulário. A animação do hero mora em js/hero-flow.js.
+   Zyphy — comportamento do site (vanilla, scroll nativo): header, menu,
+   bandas que expandem e formulário. O dashboard mora em js/dashboard.js.
    ========================================================================== */
 (function () {
   "use strict";
@@ -35,6 +35,27 @@
     doc.addEventListener("click", function (e) {
       if (!menu.hidden && !menu.contains(e.target) && !burger.contains(e.target)) setOpen(false);
     });
+  }
+
+  /* ---------- bandas que expandem (movimento 2) ----------
+     Marca as duas mudanças de modo da página: de ler para interagir
+     (dashboard) e de ler para agir (contato). Roda uma vez por banda.
+     Sem a classe .motion (reduced-motion) o CSS já mostra o estado final. */
+  function initBands() {
+    var bands = doc.querySelectorAll(".band--expand");
+    if (!bands.length || !doc.documentElement.classList.contains("motion")) return;
+    if (!("IntersectionObserver" in window)) {
+      bands.forEach(function (b) { b.classList.add("is-in"); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-in");
+        io.unobserve(entry.target);
+      });
+    }, { rootMargin: "0px 0px -25% 0px" });
+    bands.forEach(function (b) { io.observe(b); });
   }
 
   /* ---------- formulário → WhatsApp ---------- */
@@ -87,6 +108,7 @@
   function boot() {
     initHeader();
     initMenu();
+    initBands();
     initForm();
   }
 
