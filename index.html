@@ -81,7 +81,8 @@
     <section class="band band--deep hero" id="topo" aria-labelledby="hero-titulo">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <h1 id="hero-titulo" class="display-h1"><span class="line">Tecnologia que</span> <span class="line">destrava o seu</span> <span class="line">dia a dia.</span></h1>
+          <!-- quebras: 3 linhas pelos .line no desktop; 4 linhas pelos br.br-m no celular -->
+          <h1 id="hero-titulo" class="display-h1"><span class="line">Tecnologia<br class="br-m"> que</span> <span class="line"><br class="br-m">destrava o<br class="br-m"> seu</span> <span class="line">dia a dia.</span></h1>
           <p class="hero-sub">Automação, sistemas e produtos digitais sob medida para empresas e pessoas — construídos por quem vai colocar a mão no código.</p>
           <div class="hero-ctas">
             <a href="#contato" class="btn btn--primary">Começar projeto</a>
@@ -126,197 +127,219 @@
       </div>
     </section>
 
-    <!-- ================= ONDE A GENTE ENTRA (banda base) ================= -->
+    <!-- ================= ONDE A GENTE ENTRA (banda base) =================
+         A dor é o título de cada linha. No desktop o H2 fica fixo à esquerda
+         enquanto as três dores passam à direita. -->
     <section class="band band--base" id="solucoes" aria-labelledby="sol-titulo">
-      <div class="container">
-        <h2 id="sol-titulo" class="display-h2">Onde a gente entra.</h2>
-        <ul class="fix-list">
-          <li class="fix-item">
-            <h3 class="fix-title">Automação de processos</h3>
-            <p class="fix-text">Planilha, copia-e-cola, retrabalho. Viram rotina automática integrada ao que você já usa.</p>
-          </li>
-          <li class="fix-item">
-            <h3 class="fix-title">Modernização de sistemas</h3>
-            <p class="fix-text">Aquele sistema antigo que ninguém mexe com medo de quebrar. Vira uma base nova, migrada por partes, sem parar o que já funciona.</p>
-          </li>
-          <li class="fix-item">
-            <h3 class="fix-title">Sites, apps e dashboards</h3>
-            <p class="fix-text">A ideia está na cabeça, mas falta por onde começar. Vira site, app ou dashboard sob medida, pronto para usar.</p>
-          </li>
-        </ul>
-        <div class="audience">
-          <div class="audience-col">
-            <h3 class="audience-title">Para empresas</h3>
-            <ul class="audience-list">
-              <li>Automação de processos</li>
-              <li>Sistemas sob medida</li>
-              <li>Modernização de legado</li>
-            </ul>
-          </div>
-          <div class="audience-col">
-            <h3 class="audience-title">Para pessoas</h3>
-            <ul class="audience-list">
-              <li>Site ou app do seu projeto</li>
-              <li>Automação do dia a dia</li>
-              <li>Suporte contínuo</li>
-            </ul>
+      <div class="container sol-grid">
+        <h2 id="sol-titulo" class="display-h2 sol-title">Onde a gente entra.</h2>
+        <div class="sol-body">
+          <ul class="fix-list">
+            <li class="fix-item">
+              <h3 class="fix-pain">Planilha, <span class="nowrap">copia-e-cola</span>, retrabalho.</h3>
+              <p class="fix-service">Automação de processos</p>
+              <p class="fix-text">Viram rotina automática integrada ao que você já usa.</p>
+            </li>
+            <li class="fix-item">
+              <h3 class="fix-pain">Aquele sistema antigo que ninguém mexe com medo de quebrar.</h3>
+              <p class="fix-service">Modernização de sistemas</p>
+              <p class="fix-text">Vira uma base nova, migrada por partes, sem parar o que já funciona.</p>
+            </li>
+            <li class="fix-item">
+              <h3 class="fix-pain">A ideia está na cabeça, mas falta por onde começar.</h3>
+              <p class="fix-service">Sites, apps e dashboards</p>
+              <p class="fix-text">Vira site, app ou dashboard sob medida, pronto para usar.</p>
+            </li>
+          </ul>
+          <div class="audience">
+            <div class="audience-col">
+              <h3 class="audience-title">Para empresas</h3>
+              <ul class="audience-list">
+                <li>Sistemas sob medida</li>
+                <li>Modernização de legado</li>
+              </ul>
+            </div>
+            <div class="audience-col">
+              <h3 class="audience-title">Para pessoas</h3>
+              <ul class="audience-list">
+                <li>Site ou app do seu projeto</li>
+                <li>Automação do dia a dia</li>
+                <li>Suporte contínuo</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ================= COMO A GENTE CONSTRÓI (banda elevada) ================= -->
+    <!-- ================= COMO A GENTE CONSTRÓI (banda elevada) =================
+         Escada: no desktop cada passo começa duas colunas depois do anterior. -->
     <section class="band band--raised" id="processo" aria-labelledby="proc-titulo">
       <div class="container">
         <h2 id="proc-titulo" class="display-h2">Como a gente constrói.</h2>
         <ol class="steps">
           <li class="step">
             <span class="step-num" aria-hidden="true">1</span>
-            <h3 class="step-title">Diagnóstico</h3>
-            <p class="step-desc">Você recebe um mapa de 1 página do que está travando e o que vale automatizar.</p>
+            <div class="step-body">
+              <h3 class="step-title">Diagnóstico</h3>
+              <p class="step-desc">Você recebe um mapa de 1 página do que está travando e o que vale automatizar.</p>
+            </div>
           </li>
           <li class="step">
             <span class="step-num" aria-hidden="true">2</span>
-            <h3 class="step-title">Plano</h3>
-            <p class="step-desc">Escopo, prazo e preço fechados por escrito antes de qualquer linha de código.</p>
+            <div class="step-body">
+              <h3 class="step-title">Plano</h3>
+              <p class="step-desc">Escopo, prazo e preço fechados por escrito antes de qualquer linha de código.</p>
+            </div>
           </li>
           <li class="step">
             <span class="step-num" aria-hidden="true">3</span>
-            <h3 class="step-title">Construção</h3>
-            <p class="step-desc">Link de preview a cada entrega. Você acompanha em vez de esperar 3 meses.</p>
+            <div class="step-body">
+              <h3 class="step-title">Construção</h3>
+              <p class="step-desc">Link de preview a cada entrega. Você acompanha em vez de esperar 3 meses.</p>
+            </div>
           </li>
           <li class="step">
             <span class="step-num" aria-hidden="true">4</span>
-            <h3 class="step-title">No ar e depois</h3>
-            <p class="step-desc">Deploy, monitoramento e ajustes incluídos por 7 dias.</p>
+            <div class="step-body">
+              <h3 class="step-title">No ar e depois</h3>
+              <p class="step-desc">Deploy, monitoramento e ajustes incluídos por 7 dias.</p>
+            </div>
           </li>
         </ol>
         <p class="stack-line">Construímos com Next.js, Flutter, Supabase e Vercel. Sem template de terceiros.</p>
       </div>
     </section>
 
-    <!-- ================= PROJETOS COM FICHA TÉCNICA (banda funda) ================= -->
-    <!-- Lighthouse 13.5.0, mobile, mediana de 3 execuções, 23/09/2026 -->
+    <!-- ================= PROJETOS COM FICHA TÉCNICA (banda funda) =================
+         Cada projeto é uma plaqueta: imagem, ficha e depoimento do cliente.
+         Desktop com suporte a scroll-driven: seção fixa e plaquetas correndo na
+         horizontal (movimento 1). Celular, Firefox e reduced-motion: pilha
+         vertical, com o mesmo HTML e o mesmo CSS base.
+         Lighthouse 13.5.0, mobile, mediana de 3 execuções, 23/09/2026 -->
     <section class="band band--deep projects-section" id="projetos" aria-labelledby="port-titulo">
-      <div class="container">
-        <h2 id="port-titulo" class="display-h2">O que já está no ar.</h2>
-        <p class="section-note">4 projetos no ar, 1 app publicado.</p>
-      </div>
-      <div class="projects-viewport">
-        <div class="container">
-          <div class="projects">
-            <article class="project">
-              <div class="project-media"><picture>
-                <source srcset="assets/img/07-site-stahltek-rotuladoras-home-com-linha-de-producao.webp" type="image/webp">
-                <img src="assets/img/07-site-stahltek-rotuladoras-home-com-linha-de-producao.jpg" alt="Site da Stahltek Rotuladoras, home com ilustração de linha de produção" width="800" height="500" loading="lazy">
+      <div class="projects-pin">
+        <div class="container projects-head">
+          <h2 id="port-titulo" class="display-h2">O que já está no ar.</h2>
+          <p class="section-note">4 projetos no ar, 1 app publicado.</p>
+          <p class="spec-source">Performance e acessibilidade: Lighthouse, mobile, mediana de 3 execuções em 23/09/2026.</p>
+        </div>
+        <div class="projects-rail">
+          <div class="projects-track">
+            <article class="plaque" aria-labelledby="proj-stahltek">
+              <div class="plaque-media"><picture>
+              <source srcset="assets/img/07-site-stahltek-rotuladoras-home-com-linha-de-producao.webp" type="image/webp">
+              <img src="assets/img/07-site-stahltek-rotuladoras-home-com-linha-de-producao.jpg" alt="Site da Stahltek Rotuladoras, home com ilustração de linha de produção" width="800" height="500" loading="lazy">
               </picture></div>
-              <h3 class="project-title">Stahltek Rotuladoras</h3>
-              <p class="project-desc">Fabricante de rotuladoras industriais: catálogo de equipamentos, serviço de manutenção e pedido de orçamento.</p>
-              <dl class="spec">
+              <div class="plaque-body">
+                <h3 class="plaque-title" id="proj-stahltek">Stahltek Rotuladoras</h3>
+                <p class="project-desc">Fabricante de rotuladoras industriais: catálogo de equipamentos, serviço de manutenção e pedido de orçamento.</p>
+                <dl class="spec">
                 <dt>Tipo</dt><dd>Site institucional</dd>
                 <dt>Stack</dt><dd>HTML, CSS e JS</dd>
                 <dt>Integração</dt><dd>Orçamento direto no WhatsApp</dd>
                 <dt>Performance</dt><dd>84</dd>
                 <dt>Acessibilidade</dt><dd>99</dd>
-              </dl>
-              <p class="project-links">
+                </dl>
+                <p class="project-links">
                 <a class="project-link" href="https://site-stahltek.vercel.app" target="_blank" rel="noopener noreferrer" aria-label="site-stahltek.vercel.app, site da Stahltek Rotuladoras (abre em nova aba)">site-stahltek.vercel.app</a>
-              </p>
-            </article>
-            <article class="project">
-              <div class="project-media">
-                <img src="assets/img/10-vora-jewelry-loja-iced-out-com-visualizador-360.png" alt="Vora Jewelry, loja iced-out com visualizador 360 graus dos produtos" width="800" height="500" loading="lazy">
+                </p>
+                <figure class="plaque-quote">
+                  <blockquote><p>“Conseguimos mostrar nossos serviços e equipamentos de forma muito mais clara.”</p></blockquote>
+                  <figcaption>Carlos Eduardo, Gerente Comercial<!-- cargo pendente de confirmação -->, Stahltek Rotuladoras</figcaption>
+                </figure>
               </div>
-              <h3 class="project-title">Vora Jewelry</h3>
-              <p class="project-desc">Loja de joias iced-out com hero em vídeo e peças personalizáveis.</p>
-              <dl class="spec">
+            </article>
+            <article class="plaque" aria-labelledby="proj-vora">
+              <div class="plaque-media">
+              <img src="assets/img/10-vora-jewelry-loja-iced-out-com-visualizador-360.png" alt="Vora Jewelry, loja iced-out com visualizador 360 graus dos produtos" width="800" height="500" loading="lazy">
+              </div>
+              <div class="plaque-body">
+                <h3 class="plaque-title" id="proj-vora">Vora Jewelry</h3>
+                <p class="project-desc">Loja de joias iced-out com hero em vídeo e peças personalizáveis.</p>
+                <dl class="spec">
                 <dt>Tipo</dt><dd>Loja</dd>
                 <dt>Stack</dt><dd>Next.js 16, Tailwind v4, shadcn/ui</dd>
                 <dt>Destaque</dt><dd>Visualizador 360° dos produtos</dd>
                 <dt>Performance</dt><dd>86</dd>
                 <dt>Acessibilidade</dt><dd>87</dd>
-              </dl>
-              <p class="project-links">
+                </dl>
+                <p class="project-links">
                 <a class="project-link" href="https://vora-jewelry.vercel.app" target="_blank" rel="noopener noreferrer" aria-label="vora-jewelry.vercel.app, loja Vora Jewelry (abre em nova aba)">vora-jewelry.vercel.app</a>
-              </p>
-            </article>
-            <article class="project">
-              <div class="project-media">
-                <img src="assets/img/11-site-tecnova-assistencia-tecnica-de-celulares.png" alt="Site da TecNova, home de assistência técnica com celular em destaque antes da desmontagem" width="800" height="500" loading="lazy">
+                </p>
+                <figure class="plaque-quote">
+                  <blockquote><p>“Os produtos estão bem organizados e a parte de personalização é um diferencial bem interessante.”</p></blockquote>
+                  <figcaption>Severina Silva, Fundadora<!-- cargo pendente de confirmação -->, Vora Jewelry</figcaption>
+                </figure>
               </div>
-              <h3 class="project-title">TecNova</h3>
-              <p class="project-desc">Assistência técnica de celulares, com o aparelho se desmontando conforme a página rola.</p>
-              <dl class="spec">
+            </article>
+            <article class="plaque" aria-labelledby="proj-tecnova">
+              <div class="plaque-media">
+              <img src="assets/img/11-site-tecnova-assistencia-tecnica-de-celulares.png" alt="Site da TecNova, home de assistência técnica com celular em destaque antes da desmontagem" width="800" height="500" loading="lazy">
+              </div>
+              <div class="plaque-body">
+                <h3 class="plaque-title" id="proj-tecnova">TecNova</h3>
+                <p class="project-desc">Assistência técnica de celulares, com o aparelho se desmontando conforme a página rola.</p>
+                <dl class="spec">
                 <dt>Tipo</dt><dd>Site institucional</dd>
                 <dt>Stack</dt><dd>HTML, GSAP ScrollTrigger</dd>
                 <dt>Destaque</dt><dd>Desmontagem do produto controlada por scroll</dd>
                 <dt>Performance</dt><dd>84</dd>
                 <dt>Acessibilidade</dt><dd>96</dd>
-              </dl>
-              <p class="project-links">
+                </dl>
+                <p class="project-links">
                 <a class="project-link" href="https://tecnova-site-chi.vercel.app" target="_blank" rel="noopener noreferrer" aria-label="tecnova-site-chi.vercel.app, site da TecNova (abre em nova aba)">tecnova-site-chi.vercel.app</a>
-              </p>
-            </article>
-            <article class="project">
-              <div class="project-media">
-                <img src="assets/img/13-fieldfix-app-manutencao-sob-demanda.png" alt="Site do FieldFix, hero com painel de acompanhamento de um chamado de manutenção em tempo real" width="800" height="500" loading="lazy">
+                </p>
+                <figure class="plaque-quote">
+                  <blockquote><p>“O site ficou simples de navegar e transmite muito mais confiança para nossos clientes.”</p></blockquote>
+                  <figcaption>Cleyton Alves, Proprietário<!-- cargo pendente de confirmação -->, TecNova</figcaption>
+                </figure>
               </div>
-              <h3 class="project-title">FieldFix</h3>
-              <p class="project-desc">Marketplace de manutenção sob demanda: a empresa abre o chamado, o técnico mais próximo aceita e tudo é acompanhado em tempo real.</p>
-              <dl class="spec">
+            </article>
+            <article class="plaque" aria-labelledby="proj-fieldfix">
+              <div class="plaque-media">
+              <img src="assets/img/13-fieldfix-app-manutencao-sob-demanda.png" alt="Site do FieldFix, hero com painel de acompanhamento de um chamado de manutenção em tempo real" width="800" height="500" loading="lazy">
+              </div>
+              <div class="plaque-body">
+                <h3 class="plaque-title" id="proj-fieldfix">FieldFix</h3>
+                <p class="project-desc">Marketplace de manutenção sob demanda: a empresa abre o chamado, o técnico mais próximo aceita e tudo é acompanhado em tempo real.</p>
+                <dl class="spec">
                 <dt>Tipo</dt><dd>App Android e iOS</dd>
                 <dt>Stack</dt><dd>Flutter, Supabase (Auth, Postgres, Realtime)</dd>
                 <dt>Status</dt><dd>Publicado na Google Play</dd>
-              </dl>
-              <p class="project-links">
+                </dl>
+                <p class="project-links">
                 <a class="project-link" href="https://fieldfix-one.vercel.app" target="_blank" rel="noopener noreferrer" aria-label="fieldfix-one.vercel.app, site do FieldFix (abre em nova aba)">fieldfix-one.vercel.app</a>
                 <a class="project-link" href="https://play.google.com/store/apps/details?id=com.fieldfix.app" target="_blank" rel="noopener noreferrer" aria-label="FieldFix no Google Play (abre em nova aba)">Google Play</a>
-              </p>
+                </p>
+              </div>
             </article>
           </div>
         </div>
       </div>
-      <div class="container">
-        <p class="spec-source">Performance e acessibilidade: Lighthouse, mobile, mediana de 3 execuções em 23/09/2026.</p>
-      </div>
     </section>
 
-    <!-- ================= DEPOIMENTOS (banda base, estáticos) ================= -->
-    <section class="band band--base" id="depoimentos" aria-labelledby="depo-titulo">
-      <div class="container">
-        <h2 id="depo-titulo" class="display-h2">Quem já trabalhou com a gente.</h2>
-        <div class="quotes">
-          <figure class="quote">
-            <blockquote class="quote-text"><p>“Conseguimos mostrar nossos serviços e equipamentos de forma muito mais clara.”</p></blockquote>
-            <figcaption class="quote-author">Carlos Eduardo, Gerente Comercial, Stahltek Rotuladoras</figcaption>
-          </figure>
-          <figure class="quote">
-            <blockquote class="quote-text"><p>“Os produtos estão bem organizados e a parte de personalização é um diferencial bem interessante.”</p></blockquote>
-            <figcaption class="quote-author">Severina Silva, Fundadora, Vora Jewelry</figcaption>
-          </figure>
-          <figure class="quote">
-            <blockquote class="quote-text"><p>“O site ficou simples de navegar e transmite muito mais confiança para nossos clientes.”</p></blockquote>
-            <figcaption class="quote-author">Cleyton Alves, Proprietário, TecNova</figcaption>
-          </figure>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= CONTATO (banda de cor, expande) ================= -->
+    <!-- ================= CONTATO (banda de cor, expande) =================
+         A frase ocupa a primeira tela da banda; o formulário vem na segunda. -->
     <section class="band band--color band--expand" id="contato" aria-labelledby="cta-titulo">
       <div class="container">
-        <h2 id="cta-titulo" class="display-statement">Conta pra gente o que está travando.</h2>
+        <div class="contact-lead">
+          <h2 id="cta-titulo" class="display-statement">Conta pra gente o que está travando.</h2>
+        </div>
         <form class="contact-form" id="zyForm" novalidate="novalidate">
           <div class="form-field">
             <label for="zy-nome" class="form-label">Seu nome <span class="form-req" aria-hidden="true">*</span></label>
-            <input type="text" id="zy-nome" name="nome" class="form-input" placeholder="Como podemos te chamar?" autocomplete="name" required="required">
+            <input type="text" id="zy-nome" name="nome" class="form-input" placeholder="Como podemos te chamar?" autocomplete="name" aria-describedby="zy-nome-erro" required="required">
+            <!-- erro fica logo abaixo do campo; role=alert anuncia quando o texto aparece -->
+            <p class="form-error" id="zy-nome-erro" role="alert"></p>
           </div>
           <div class="form-field">
             <label for="zy-contato" class="form-label">Seu e-mail ou WhatsApp <span class="form-req" aria-hidden="true">*</span></label>
             <!-- aceita e-mail OU telefone: teclado padrão (tem letras, @ e números),
                  sem inputmode/autocomplete de um tipo só. Formato checado no js/main.js -->
-            <input type="text" id="zy-contato" name="contato" class="form-input" placeholder="voce@email.com ou (00) 00000-0000" autocapitalize="off" autocorrect="off" spellcheck="false" aria-describedby="zy-contato-dica" required="required">
+            <input type="text" id="zy-contato" name="contato" class="form-input" placeholder="voce@email.com ou (00) 00000-0000" autocapitalize="off" autocorrect="off" spellcheck="false" aria-describedby="zy-contato-dica zy-contato-erro" required="required">
             <p class="form-field-hint" id="zy-contato-dica">E-mail ou WhatsApp com DDD.</p>
+            <p class="form-error" id="zy-contato-erro" role="alert"></p>
           </div>
           <div class="form-field form-field--wide">
             <label for="zy-msg" class="form-label">O que você quer resolver?</label>

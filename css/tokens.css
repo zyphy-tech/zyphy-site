@@ -31,21 +31,26 @@
 
 /* reserva métrica da display, só enquanto a Sofia não chega (preload no <head>).
    Impact: existe no Windows e no macOS e não está na lista proibida do brief.
-   Calibrado medindo o H1 real em Chromium e Firefox (60px, coluna de 335px):
-     largura  Sofia 322.6 / 310.0 / 184.1  ->  Impact ajustada 322.6 / 317.9 / 188.1
-     base     Sofia 45 / 99 / 153          ->  Impact ajustada 45 / 99 / 153
-   A altura do bloco de 3 linhas não muda (line-height fixo em em).
-   Os overrides são multiplicados pelo size-adjust, por isso valem
-   métrica da Sofia (90% / 30% / 0) dividida por 0.832.
+   Recalibrada para o H1 de 4 linhas no celular, medindo o H1 real com a Sofia
+   atrasada, em Chromium e Firefox (valores iguais nos dois):
+     375px, 72px, coluna 335   Sofia   286.0 / 92.0 / 275.4 / 317.5
+                               reserva 279.6 / 88.3 / 275.8 / 317.4
+     1440px, 144px, coluna 857 Sofia   774.2 / 743.9 / 441.9  (3 linhas)
+                               reserva 756.5 / 745.4 / 441.0  (3 linhas)
+   Critério: a linha mais larga do celular (SEU DIA A DIA.) igual à da Sofia,
+   então a reserva nunca quebra numa linha a mais. Topo das linhas e altura do
+   bloco (259px / 389px) idênticos: a troca de fonte não desloca nada.
+   Os overrides são multiplicados pelo size-adjust, por isso valem a métrica
+   da Sofia (90% / 30% / 0) dividida por 0.813.
    Sem Impact (Android, iOS) cai no sans-serif do sistema, sem calibração. */
 @font-face{
   font-family:'Sofia Fallback';
   font-style:normal;
   font-weight:800;
   src:local('Impact');
-  size-adjust:83.2%;
-  ascent-override:108.17%;
-  descent-override:36.06%;
+  size-adjust:81.3%;
+  ascent-override:110.70%;
+  descent-override:36.90%;
   line-gap-override:0%;
 }
 
@@ -111,7 +116,7 @@
   --chart-grid:rgba(227,239,237,.1);
   /* geometria do gráfico (lida pelo js/dashboard.js) */
   --dash-pad:clamp(var(--space-5),4vw,var(--space-7));
-  --chart-h:clamp(200px,28vw,320px);
+  --chart-h:clamp(200px,36vh,400px);   /* com os indicadores, a tela ocupa ~70% da altura em 1440 */
   --chart-pad-top:var(--space-2);
   --chart-pad-bottom:28px;                   /* faixa dos rótulos do eixo x */
   --chart-pad-left:var(--space-8);           /* faixa dos rótulos do eixo y */
@@ -134,18 +139,27 @@
   --weight-medium:500;
   --weight-strong:600;
 
-  /* escala: display fluido, texto fixo.
-     H1: piso 60px medido em 375px (linha mais longa 323px de 335px úteis);
-         teto 144px em 1440px (linha mais longa ~775px, cerca de 7 de 12 colunas) */
-  --fs-h1:clamp(3.75rem,10vw,9rem);
-  /* trava de largura: a linha mais longa do H1 mede 5.38em; 18% da coluna
-     (cqi) garante 3 linhas mesmo com barra de rolagem ou coluna estreita */
+  /* escala: display fluido, texto fixo. Quatro níveis de display, todos em
+     Sofia 800; a hierarquia vem de tamanho e tom, nunca de peso.
+     XL  H1 e frase do contato   72px em 375 / 144px (H1) e 200px (contato) em 1440
+     L   números do processo     96px em 375 / 200px em 1440
+     H2                          64px em 375 / 120px em 1440
+     M   dores e indicadores     40px em 375 /  72px em 1440
+     H1: 4 linhas no celular (abaixo de 600px, quebra natural balanceada) e
+         3 linhas fixas acima disso. */
+  --fs-h1:clamp(4.5rem,10vw,9rem);
+  /* travas de largura por coluna (cqi): 3 linhas, a mais longa mede 5.38em;
+     4 linhas, a mais longa (SEU DIA A DIA.) mede 4.41em -> 22cqi deixa folga
+     também para barra de rolagem de 15px (coluna de 320px: 70px, 4 linhas) */
   --fs-h1-fit:18cqi;
-  --fs-statement:clamp(3rem,8vw,8rem);   /* frase do contato */
-  --fs-h2:clamp(2.5rem,6vw,5.5rem);
-  --fs-step-num:clamp(3.5rem,7vw,6rem);  /* números 1–4 do processo */
+  --fs-h1-fit-narrow:22cqi;
+  --fs-statement:clamp(4.5rem,14vw,12.5rem); /* frase do contato */
+  --fs-h2:clamp(4rem,8.5vw,7.5rem);
+  --fs-step-num:clamp(6rem,14vw,12.5rem);  /* números 1–4 do processo */
+  --fs-m:clamp(2.5rem,5vw,4.5rem);         /* dores das soluções e indicadores */
   --fs-h3:1.5rem;
-  --fs-kpi:1.75rem;                      /* indicadores do dashboard */
+  --fs-kpi:var(--fs-m);
+  --fs-quote:1.375rem;                     /* depoimento dentro da plaqueta */
   --fs-lead:1.1875rem;                   /* sub do hero, 19px */
   --fs-body:1.0625rem;                   /* 17px */
   --fs-small:0.9375rem;                  /* 15px: ficha técnica, nota */
@@ -164,7 +178,6 @@
   --measure:60ch;
   --measure-lead:44ch;        /* sub do hero */
   --measure-h2:18ch;
-  --measure-statement:20ch;   /* frase do contato */
 
   /* ---------- Espaço (base 8) ---------- */
   --space-1:4px;
@@ -199,9 +212,7 @@
   --textarea-min-h:128px;
   --status-min-h:1.4em;                      /* reserva a linha da mensagem do form */
   /* largura mínima de coluna nas grades auto-fit */
-  --col-min-steps:240px;
-  --col-min-audience:260px;
-  --col-min-quotes:280px;
+  --col-min-audience:220px;
 
   /* proporções */
   --ratio-hero:4/5;                          /* imagem do hero, desktop */
@@ -226,10 +237,15 @@
   --dur-settle:100ms;     /* folga até dar a expansão por terminada, se o transitionend não vier */
   --band-inset-start:6%;  /* recorte lateral da banda antes de expandir */
   --band-radius-start:var(--r-screen);
-  /* faixa de projetos: largura total = container x escala; o deslocamento
-     leva do 1º card alinhado à esquerda ao 4º inteiro na borda direita */
-  --track-scale:1.5;
-  --track-range:entry 50% exit 50%;  /* trecho do scroll em que a faixa anda */
+  /* projetos no desktop: seção fixa (sticky) e plaquetas correndo na
+     horizontal pelo scroll vertical. Distância horizontal = largura da faixa
+     menos a tela; a seção ganha essa mesma altura extra, então 1px de scroll
+     vertical anda 1px na horizontal */
+  --plaque-w:min(80vw,1200px);
+  --plaque-gap:var(--space-8);
+  --plaque-count:4;
+  --proj-range:contain 0% contain 100%;  /* anda enquanto a seção cobre a tela inteira */
+  --proj-distance:calc(var(--plaque-count) * var(--plaque-w) + (var(--plaque-count) - 1) * var(--plaque-gap) + 2 * var(--gutter) - 100vw);
 
   /* ---------- Camadas ---------- */
   --z-menu:99;

@@ -18,6 +18,8 @@ img{max-width:100%;height:auto;display:block}
 main:focus{outline:none}
 
 /* ---------- Utilidades ---------- */
+/* palavra composta com hífen que não pode quebrar (copia-e-cola) */
+.nowrap{white-space:nowrap}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .skip-link{position:fixed;top:var(--space-2);left:var(--space-2);z-index:var(--z-skip);background:var(--accent);color:var(--on-accent);font-weight:var(--weight-strong);font-size:var(--fs-small);padding:var(--space-3) var(--space-5);border-radius:var(--r-control);transform:translateY(-250%);transition:transform var(--dur-fast) ease}
 .skip-link:focus{transform:translateY(0)}
@@ -40,11 +42,19 @@ main:focus{outline:none}
 .motion .band--expand.is-in::before{clip-path:inset(0 0 round var(--r-none))}
 
 /* ---------- Tipografia de exibição ---------- */
-.display-h1,.display-h2,.display-statement,.step-num{font-family:var(--font-display);font-weight:var(--weight-display);letter-spacing:var(--tracking-display);text-transform:var(--case-display);line-height:var(--lh-display)}
+.display-h1,.display-h2,.display-statement,.step-num,.fix-pain,.dash-kpi dd{font-family:var(--font-display);font-weight:var(--weight-display);letter-spacing:var(--tracking-display);text-transform:var(--case-display);line-height:var(--lh-display)}
 .display-h1{margin:0;font-size:min(var(--fs-h1),var(--fs-h1-fit))}
 .display-h1 .line{display:block}
+.display-h1 .br-m{display:none}
+/* celular: 4 linhas fixas (TECNOLOGIA / QUE / DESTRAVA O / SEU DIA A DIA.).
+   Em 72px e coluna de 335px, QUE DESTRAVA não cabe (~364px): QUE fica sozinho */
+@media (max-width:599px){
+  .display-h1{font-size:min(var(--fs-h1),var(--fs-h1-fit-narrow))}
+  .display-h1 .line{display:inline}
+  .display-h1 .br-m{display:inline}
+}
 .display-h2{margin:0 0 var(--title-gap);font-size:var(--fs-h2);max-width:var(--measure-h2);text-wrap:balance}
-.display-statement{margin:0 0 var(--title-gap);font-size:var(--fs-statement);max-width:var(--measure-statement);text-wrap:balance}
+.display-statement{margin:0;font-size:var(--fs-statement);text-wrap:balance}
 
 /* ---------- Header ---------- */
 .site-header{position:fixed;inset:0 0 auto 0;z-index:var(--z-header);height:var(--header-h);display:flex;align-items:center;background:color-mix(in srgb,var(--band-deep) var(--header-opacity),transparent);backdrop-filter:blur(var(--header-blur));-webkit-backdrop-filter:blur(var(--header-blur));border-bottom:var(--hairline) solid transparent;transition:border-color var(--dur-fast) ease}
@@ -103,7 +113,10 @@ main:focus{outline:none}
 .dash-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-5);margin:var(--space-7) 0 0}
 .dash-kpi{margin:0}
 .dash-kpi dt{font-size:var(--fs-small);color:var(--text-muted)}
-.dash-kpi dd{margin:var(--space-1) 0 0;font-size:var(--fs-kpi);font-weight:var(--weight-strong);line-height:var(--lh-heading);font-variant-numeric:var(--numeric-data);white-space:nowrap}
+.dash-kpi{min-width:0}
+/* Sofia tem tnum (dígitos de 460/1000 em): mesma quantidade de dígitos, mesma
+   largura. A célula da grade é fixa, então a troca de período não empurra nada */
+.dash-kpi dd{margin:var(--space-2) 0 0;font-size:var(--fs-kpi);text-transform:none;font-variant-numeric:var(--numeric-data);white-space:nowrap}
 .dash-chart-label{margin:var(--space-7) 0 var(--space-3);font-size:var(--fs-small);color:var(--text-muted)}
 .dash-chart{height:var(--chart-h)}
 .dash-chart svg{display:block;width:100%;height:100%;overflow:visible}
@@ -112,42 +125,61 @@ main:focus{outline:none}
 .dash-chart .grid{stroke:var(--chart-grid);stroke-width:var(--hairline)}
 .dash-chart .tick{fill:var(--text-muted);font-family:var(--font-body);font-size:var(--fs-micro);font-variant-numeric:var(--numeric-data)}
 .dash-caption{margin-top:var(--space-5);font-size:var(--fs-small);color:var(--text-muted)}
-@media (max-width:640px){
+/* 3 colunas só quando R$ 1.390.967 (o maior valor, 4.66em) cabe na célula com
+   folga; abaixo de 900px o faturamento ganha a linha inteira */
+@media (max-width:900px){
   .dash-kpis{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
   .dash-kpi:nth-child(2){grid-column:1 / -1;order:-1}
 }
 
-/* ---------- Onde a gente entra ---------- */
+/* ---------- Onde a gente entra: a dor é o título ---------- */
+.sol-grid{display:grid;grid-template-columns:minmax(0,1fr)}
 .fix-list{list-style:none;margin:0;padding:0}
-.fix-item{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--space-2);padding:var(--space-6) 0;border-top:var(--hairline) solid var(--line)}
-.fix-item:last-child{border-bottom:var(--hairline) solid var(--line)}
-@media (min-width:760px){
-  .fix-item{grid-template-columns:repeat(var(--columns),minmax(0,1fr));column-gap:var(--col-gap);align-items:baseline}
-  .fix-title{grid-column:1 / span 4}
-  .fix-text{grid-column:5 / span 8}
-}
-.fix-title{margin:0;font-size:var(--fs-h3);font-weight:var(--weight-strong);line-height:var(--lh-heading)}
-.fix-text{margin:0;color:var(--text-muted)}
-.audience{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(var(--col-min-audience),100%),1fr));gap:var(--space-6) var(--space-7);margin-top:var(--space-9)}
+.fix-item{padding:var(--space-7) 0;border-top:var(--hairline) solid var(--line)}
+.fix-item:first-child{border-top:none;padding-top:0}
+.fix-pain{margin:0;font-size:var(--fs-m);text-wrap:balance}
+.fix-service{margin:var(--space-5) 0 0;font-weight:var(--weight-strong)}
+.fix-text{margin:var(--space-1) 0 0;color:var(--text-muted)}
+.audience{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(var(--col-min-audience),100%),1fr));gap:var(--space-6) var(--space-7);margin-top:var(--space-8)}
 .audience-title{margin:0 0 var(--space-3);font-size:var(--fs-h3);font-weight:var(--weight-strong);line-height:var(--lh-heading)}
 .audience-list{list-style:none;margin:0;padding:0}
 .audience-list li{padding:var(--space-3) 0;border-top:var(--hairline) solid var(--line);color:var(--text-muted)}
+@media (min-width:1100px){
+  .sol-grid{grid-template-columns:repeat(var(--columns),minmax(0,1fr));column-gap:var(--col-gap);align-items:start}
+  /* H2 fixo à esquerda enquanto as dores passam (layout, não animação) */
+  .sol-title{grid-column:1 / span 4;position:sticky;top:calc(var(--header-h) + var(--space-6));margin-bottom:0}
+  .sol-body{grid-column:5 / span 8}
+}
 
-/* ---------- Como a gente constrói ---------- */
-.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(var(--col-min-steps),100%),1fr));gap:var(--space-7) var(--col-gap)}
-.step-num{display:block;font-size:var(--fs-step-num);color:var(--text-muted);margin-bottom:var(--space-4)}
+/* ---------- Como a gente constrói: escada ---------- */
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:var(--space-8)}
+.step{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:var(--space-5);align-items:end}
+.step-num{font-size:var(--fs-step-num);color:var(--text-muted);font-variant-numeric:var(--numeric-data)}
 .step-title{margin:0 0 var(--space-2);font-size:var(--fs-h3);font-weight:var(--weight-strong);line-height:var(--lh-heading)}
 .step-desc{margin:0;color:var(--text-muted)}
 .stack-line{margin:var(--space-9) 0 0}
+@media (min-width:1100px){
+  .steps{grid-template-columns:repeat(var(--columns),minmax(0,1fr));column-gap:var(--col-gap)}
+  /* cada passo começa duas colunas depois do anterior; o 4º termina na borda */
+  .step{grid-column:span 6}
+  .step:nth-child(1){grid-column:1 / span 6}
+  .step:nth-child(2){grid-column:3 / span 6}
+  .step:nth-child(3){grid-column:5 / span 6}
+  .step:nth-child(4){grid-column:7 / span 6}
+}
 
-/* ---------- Projetos ---------- */
-.section-note{margin:calc(-1 * var(--title-gap) + var(--space-5)) 0 var(--space-7);color:var(--text-muted)}
-.projects{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--space-8) var(--col-gap)}
-@media (min-width:760px){ .projects{grid-template-columns:repeat(2,minmax(0,1fr))} }
-.project{display:flex;flex-direction:column;min-width:0}
-.project-media{aspect-ratio:var(--ratio-project);overflow:hidden;background:var(--band-raised);border-radius:var(--r-none)}
-.project-media img{width:100%;height:100%;object-fit:cover;object-position:center top}
-.project-title{margin:var(--space-5) 0 0;font-size:var(--fs-h3);font-weight:var(--weight-strong);line-height:var(--lh-heading)}
+/* ---------- Projetos: plaquetas ---------- */
+/* base = pilha vertical. Vale para celular, Firefox (sem scroll-driven) e
+   reduced-motion: é o mesmo código, sem ramificação. */
+.projects-head .display-h2{margin-bottom:var(--space-5)}
+.section-note{margin:0;color:var(--text-muted)}
+.spec-source{margin:var(--space-2) 0 0;font-size:var(--fs-small);color:var(--text-muted)}
+.projects-track{box-sizing:border-box;display:grid;gap:var(--space-9);width:100%;max-width:calc(var(--container) + 2 * var(--gutter));margin:var(--space-8) auto 0;padding-inline:var(--gutter)}
+.plaque{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--space-5);min-width:0}
+.plaque-media{aspect-ratio:var(--ratio-project);overflow:hidden;background:var(--band-raised);border-radius:var(--r-none)}
+.plaque-media img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.plaque-body{min-width:0}
+.plaque-title{margin:0;font-size:var(--fs-h3);font-weight:var(--weight-strong);line-height:var(--lh-heading)}
 .project-desc{margin:var(--space-2) 0 0;color:var(--text-muted);font-size:var(--fs-small)}
 .spec{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:var(--space-2) var(--space-5);margin:var(--space-5) 0 0;font-size:var(--fs-small)}
 .spec dt{color:var(--text-muted)}
@@ -155,34 +187,35 @@ main:focus{outline:none}
 .project-links{display:flex;flex-wrap:wrap;gap:0 var(--space-5);margin:var(--space-3) 0 0}
 .project-link{display:inline-flex;align-items:center;min-height:var(--tap);font-size:var(--fs-small);text-decoration:underline;text-decoration-color:var(--text-muted);text-underline-offset:var(--underline-offset);transition:text-decoration-color var(--dur-fast) ease}
 .project-link:hover{text-decoration-color:var(--text)}
-.spec-source{margin:var(--space-7) 0 0;font-size:var(--fs-small);color:var(--text-muted)}
+.plaque-quote{margin:var(--space-5) 0 0;padding-top:var(--space-5);border-top:var(--hairline) solid var(--line)}
+.plaque-quote blockquote{margin:0}
+.plaque-quote p{margin:0;font-size:var(--fs-quote);font-weight:var(--weight-medium);line-height:var(--lh-heading)}
+.plaque-quote figcaption{margin-top:var(--space-3);font-size:var(--fs-small);color:var(--text-muted)}
+@media (min-width:760px){
+  .plaque{grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:var(--space-6);align-items:start}
+}
 
-/* movimento 1: faixa lateral. Só com suporte a scroll-driven, sem
-   reduced-motion e em tela larga; fora disso vale a grade estática acima,
-   que é o mesmo estado para Firefox sem suporte e para reduced-motion. */
-@supports (animation-timeline: view()){
-  @media (prefers-reduced-motion:no-preference) and (min-width:1100px){
-    .projects-viewport{overflow-x:clip}
-    .projects{grid-template-columns:repeat(4,minmax(0,1fr));width:calc(var(--track-scale) * 100%);animation:zyTrack linear both;animation-timeline:view();animation-range:var(--track-range)}
-    /* teclado: ao focar um link dentro da faixa, ela para e vira rolável,
-       para o foco nunca ficar fora da tela */
-    .projects-viewport:focus-within{overflow-x:auto}
-    .projects-viewport:focus-within .projects{animation:none}
+/* movimento 1 (desktop): seção fixa e plaquetas correndo na horizontal pelo
+   scroll vertical. Precisa de scroll-driven com timeline nomeada, tela larga
+   e alta o bastante para a plaqueta caber, e sem reduced-motion. */
+@supports (view-timeline-name:--a) and (animation-timeline:--a){
+  @media (prefers-reduced-motion:no-preference) and (min-width:1100px) and (min-height:760px){
+    .projects-section{view-timeline-name:--proj;view-timeline-axis:block;height:calc(100vh + var(--proj-distance));padding-block:0}
+    .projects-pin{position:sticky;top:0;box-sizing:border-box;height:100vh;padding-top:var(--header-h);display:flex;flex-direction:column;justify-content:center}
+    .projects-rail{container-type:inline-size;overflow-x:clip}
+    .projects-track{display:flex;gap:var(--plaque-gap);width:max-content;max-width:none;margin:var(--space-7) 0 0;animation:zyTrack linear both;animation-timeline:--proj;animation-range:var(--proj-range)}
+    .plaque{flex:none;width:var(--plaque-w)}
   }
 }
+/* da 1ª plaqueta alinhada à esquerda até a última encostada na borda direita */
 @keyframes zyTrack{
   from{transform:translateX(0)}
-  to{transform:translateX(calc((1 - 1 / var(--track-scale)) * -100%))}
+  to{transform:translateX(calc(100cqw - 100%))}
 }
 
-/* ---------- Depoimentos (estáticos) ---------- */
-.quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(var(--col-min-quotes),100%),1fr));gap:var(--space-7) var(--col-gap)}
-.quote{margin:0}
-.quote-text{margin:0}
-.quote-text p{margin:0;font-size:var(--fs-h3);line-height:var(--lh-heading)}
-.quote-author{margin-top:var(--space-4);font-size:var(--fs-small);color:var(--text-muted)}
-
 /* ---------- Contato ---------- */
+/* a frase ocupa a primeira tela da banda; o formulário vem depois */
+.contact-lead{display:flex;align-items:center;min-height:calc(100svh - var(--header-h) - 2 * var(--section-pad));margin-bottom:var(--section-pad)}
 .contact-form{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--space-5);max-width:var(--form-max)}
 @media (min-width:700px){ .contact-form{grid-template-columns:repeat(2,minmax(0,1fr))} }
 .form-field--wide{grid-column:1 / -1}
@@ -190,6 +223,8 @@ main:focus{outline:none}
 .form-label{display:block;font-size:var(--fs-small);font-weight:var(--weight-medium);margin-bottom:var(--space-2)}
 .form-req{color:var(--text-muted)}
 .form-field-hint{margin:var(--space-2) 0 0;font-size:var(--fs-small);color:var(--text-muted)}
+.form-error{margin:var(--space-2) 0 0;font-size:var(--fs-small);font-weight:var(--weight-medium);color:var(--error)}
+.form-error:empty{display:none}
 .form-input{width:100%;box-sizing:border-box;min-height:var(--control-h);padding:var(--space-3) var(--space-4);font-size:var(--fs-body);color:var(--text);background:var(--band-deep);border:var(--hairline) solid var(--line);border-radius:var(--r-control);transition:border-color var(--dur-fast) ease}
 .form-input:focus-visible{border-color:var(--focus-ring)}
 textarea.form-input{min-height:var(--textarea-min-h);line-height:var(--lh-body);resize:vertical}
@@ -198,7 +233,6 @@ textarea.form-input{min-height:var(--textarea-min-h);line-height:var(--lh-body);
 .form-input--invalid,.form-input--invalid:focus{border-color:var(--error) !important;box-shadow:0 0 0 var(--ring) var(--error-ring)}
 .form-status{margin:0;min-height:var(--status-min-h);font-weight:var(--weight-medium);font-size:var(--fs-small)}
 .form-status:empty{display:none}
-.form-status--error{color:var(--error)}
 
 /* ---------- Rodapé ---------- */
 .site-footer{padding-block:var(--space-8) var(--space-9)}
