@@ -139,6 +139,12 @@
   --hero-ratio:1912/1080;        /* proporção do vídeo e do poster */
   --hero-screen-at:.445;         /* borda esquerda da tampa, em fração da largura do quadro */
   --hero-clearance:var(--space-8);  /* folga entre o fim do H1 e a tampa */
+  /* centro ótico do texto no desktop: o bloco é centralizado entre estes dois
+     respiros, então fica acima do meio, com mais espaço embaixo que em cima.
+     Em cima parte da altura do menu; embaixo cresce com a altura da tela.
+     1366x768: 38px em cima / 121 embaixo; 1920x1080: 159 / 289 */
+  --hero-pad-top:calc(var(--header-h) + var(--space-6));
+  --hero-pad-bottom:max(var(--space-8),15svh);
   /* sombra atrás da coluna de texto: só leitura, e só junto com o texto (que
      entra no último quadro). Segura o tom até o fim da coluna e some na folga,
      antes da tampa. 80% é o mínimo medido para o sub (mist-400) ficar acima de

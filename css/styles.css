@@ -107,7 +107,7 @@ main:focus{outline:none}
    o bloco do vídeo, na proporção do quadro, é ancorado para a tampa do
    notebook (--hero-screen-at) cair em --screen-x e estica até a borda direita. */
 @media (min-width:1100px){
-  .hero{--copy-end:calc(max(var(--gutter),(100% - var(--container)) / 2) + (min(var(--container),100% - 2 * var(--gutter)) - var(--col-gap)) / 2);--screen-x:calc(var(--copy-end) + var(--hero-clearance));position:relative;isolation:isolate;overflow:clip;min-height:100svh;box-sizing:border-box;display:flex;align-items:flex-end;padding-bottom:var(--title-gap)}
+  .hero{--copy-end:calc(max(var(--gutter),(100% - var(--container)) / 2) + (min(var(--container),100% - 2 * var(--gutter)) - var(--col-gap)) / 2);--screen-x:calc(var(--copy-end) + var(--hero-clearance));position:relative;isolation:isolate;overflow:clip;min-height:100svh;box-sizing:border-box;display:flex;align-items:center;padding-top:var(--hero-pad-top);padding-bottom:var(--hero-pad-bottom)}
   .hero-grid{grid-template-columns:repeat(var(--columns),minmax(0,1fr));column-gap:var(--col-gap)}
   .hero-copy{grid-column:1 / span 6}
   .hero-media{position:absolute;top:0;left:var(--screen-x);z-index:-1;height:100%;width:auto;aspect-ratio:var(--hero-ratio);min-width:calc((100% - var(--screen-x)) / (1 - var(--hero-screen-at)));margin:0;transform:translateX(calc(var(--hero-screen-at) * -100%));-webkit-mask-image:linear-gradient(90deg,transparent,var(--mask-opaque) var(--space-9));mask-image:linear-gradient(90deg,transparent,var(--mask-opaque) var(--space-9))}
