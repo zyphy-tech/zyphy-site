@@ -212,6 +212,7 @@
   --col-gap:clamp(16px,2vw,24px);
   --header-h:68px;
   --tap:44px;                                /* alvo de toque mínimo */
+  --icon:24px;                               /* ícones das redes */
   --control-h:48px;                          /* botão e campo */
   --form-max:760px;
   --ring:3px;                                /* anel de erro do campo */

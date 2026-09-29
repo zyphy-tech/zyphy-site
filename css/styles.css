@@ -242,6 +242,8 @@ main:focus{outline:none}
 .contact-form{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--space-5);max-width:var(--form-max)}
 @media (min-width:700px){ .contact-form{grid-template-columns:repeat(2,minmax(0,1fr))} }
 .form-field--wide{grid-column:1 / -1}
+.contact-direct{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-3);margin-top:var(--space-7)}
+.contact-direct-label{margin:0;font-size:var(--fs-small);color:var(--text-muted)}
 .form-field{margin:0}
 .form-label{display:block;font-size:var(--fs-small);font-weight:var(--weight-medium);margin-bottom:var(--space-2)}
 .form-req{color:var(--text-muted)}
@@ -265,7 +267,17 @@ textarea.form-input{min-height:var(--textarea-min-h);line-height:var(--lh-body);
 .footer-links a{display:inline-flex;align-items:center;min-height:var(--tap);color:var(--text-muted);transition:color var(--dur-fast) ease}
 .footer-links a:hover{color:var(--text)}
 @media (max-width:599px){ .footer-links{flex-direction:column} }
-.footer-copy{margin:0;width:100%;color:var(--text-muted);font-size:var(--fs-small)}
+/* redes e contato direto (rodapé e contato): ícone na cor do texto, alvo de
+   44px; o ciano aparece só no foco de teclado */
+.social{list-style:none;margin:0;padding:0;display:flex;gap:var(--space-2)}
+.social-link{display:inline-flex;align-items:center;justify-content:center;width:var(--tap);height:var(--tap);color:var(--text);border-radius:var(--r-control)}
+.social-link:focus-visible{color:var(--accent)}
+.social-icon{width:var(--icon);height:var(--icon);fill:currentColor}
+.site-footer .social{margin-inline:calc(-1 * (var(--tap) - var(--icon)) / 2)}
+/* ícones e links do rodapé ficam juntos à direita (na privacidade há os dois) */
+@media (min-width:600px){ .site-footer .social{margin-left:auto} }
+/* max-width:none: sem isso o p{max-width} global segura o copyright na mesma linha dos ícones */
+.footer-copy{margin:0;width:100%;max-width:none;color:var(--text-muted);font-size:var(--fs-small)}
 
 
 /* ---------- Reduced motion ---------- */

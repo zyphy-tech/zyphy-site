@@ -158,7 +158,7 @@
         "Olá! Sou " + nome + " (" + contato + ")." +
         (msg ? "\n\nO que quero resolver: " + msg : "\n\nQuero começar um projeto com a Zyphy.")
       );
-      window.open("https://wa.me/5511977176036?text=" + texto, "_blank", "noopener");
+      window.open("https://wa.me/5511924507188?text=" + texto, "_blank", "noopener");
       if (status) status.textContent = "Abrindo o WhatsApp com sua mensagem.";
       form.reset();
     });
