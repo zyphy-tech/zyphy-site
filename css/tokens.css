@@ -147,12 +147,14 @@
      M   dores e indicadores     40px em 375 /  72px em 1440
      H1: 4 linhas no celular (abaixo de 600px, quebra natural balanceada) e
          3 linhas fixas acima disso. */
-  --fs-h1:clamp(4.5rem,10vw,9rem);
+  --fs-h1-max:9rem;
+  --fs-h1:clamp(4.5rem,10vw,var(--fs-h1-max));
   /* travas de largura por coluna (cqi): 3 linhas, a mais longa mede 5.38em;
      4 linhas, a mais longa (SEU DIA A DIA.) mede 4.41em -> 22cqi deixa folga
      também para barra de rolagem de 15px (coluna de 320px: 70px, 4 linhas) */
   --fs-h1-fit:18cqi;
   --fs-h1-fit-narrow:22cqi;
+  /* 600–1099px o hero é uma coluna só: o H1 cresce até a trava da coluna */
   --fs-statement:clamp(4.5rem,14vw,12.5rem); /* frase do contato */
   --fs-h2:clamp(4rem,8.5vw,7.5rem);
   --fs-step-num:clamp(6rem,14vw,12.5rem);  /* números 1–4 do processo */

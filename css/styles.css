@@ -53,6 +53,11 @@ main:focus{outline:none}
   .display-h1 .line{display:inline}
   .display-h1 .br-m{display:inline}
 }
+/* tablet: hero em coluna única, então o H1 ocupa a largura da coluna em vez
+   de ficar preso aos 10vw pensados para as 8 colunas do desktop */
+@media (min-width:600px) and (max-width:1099px){
+  .display-h1{font-size:min(var(--fs-h1-max),var(--fs-h1-fit))}
+}
 .display-h2{margin:0 0 var(--title-gap);font-size:var(--fs-h2);max-width:var(--measure-h2);text-wrap:balance}
 .display-statement{margin:0;font-size:var(--fs-statement);text-wrap:balance}
 
@@ -131,6 +136,11 @@ main:focus{outline:none}
   .dash-kpis{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
   .dash-kpi:nth-child(2){grid-column:1 / -1;order:-1}
 }
+/* celular: o filtro cai para a linha de baixo e ocupa a largura do card */
+@media (max-width:599px){
+  .dash-filter{display:flex;width:100%}
+  .dash-filter-btn{flex:1}
+}
 
 /* ---------- Onde a gente entra: a dor é o título ---------- */
 .sol-grid{display:grid;grid-template-columns:minmax(0,1fr)}
@@ -176,7 +186,7 @@ main:focus{outline:none}
 .spec-source{margin:var(--space-2) 0 0;font-size:var(--fs-small);color:var(--text-muted)}
 .projects-track{box-sizing:border-box;display:grid;gap:var(--space-9);width:100%;max-width:calc(var(--container) + 2 * var(--gutter));margin:var(--space-8) auto 0;padding-inline:var(--gutter)}
 .plaque{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--space-5);min-width:0}
-.plaque-media{aspect-ratio:var(--ratio-project);overflow:hidden;background:var(--band-raised);border-radius:var(--r-none)}
+.plaque-media{box-sizing:border-box;aspect-ratio:var(--ratio-project);overflow:hidden;background:var(--band-raised);border:var(--hairline) solid var(--line);border-radius:var(--r-none)}
 .plaque-media img{width:100%;height:100%;object-fit:cover;object-position:center top}
 .plaque-body{min-width:0}
 .plaque-title{margin:0;font-size:var(--fs-h3);font-weight:var(--weight-strong);line-height:var(--lh-heading)}
@@ -191,7 +201,7 @@ main:focus{outline:none}
 .plaque-quote blockquote{margin:0}
 .plaque-quote p{margin:0;font-size:var(--fs-quote);font-weight:var(--weight-medium);line-height:var(--lh-heading)}
 .plaque-quote figcaption{margin-top:var(--space-3);font-size:var(--fs-small);color:var(--text-muted)}
-@media (min-width:760px){
+@media (min-width:1100px){
   .plaque{grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:var(--space-6);align-items:start}
 }
 
@@ -215,7 +225,10 @@ main:focus{outline:none}
 
 /* ---------- Contato ---------- */
 /* a frase ocupa a primeira tela da banda; o formulário vem depois */
-.contact-lead{display:flex;align-items:center;min-height:calc(100svh - var(--header-h) - 2 * var(--section-pad));margin-bottom:var(--section-pad)}
+.contact-lead{margin-bottom:var(--space-8)}
+@media (min-width:760px){
+  .contact-lead{display:flex;align-items:center;min-height:calc(100svh - var(--header-h) - 2 * var(--section-pad));margin-bottom:var(--section-pad)}
+}
 .contact-form{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--space-5);max-width:var(--form-max)}
 @media (min-width:700px){ .contact-form{grid-template-columns:repeat(2,minmax(0,1fr))} }
 .form-field--wide{grid-column:1 / -1}
@@ -241,6 +254,7 @@ textarea.form-input{min-height:var(--textarea-min-h);line-height:var(--lh-body);
 .footer-links{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:0 var(--space-5);font-size:var(--fs-small)}
 .footer-links a{display:inline-flex;align-items:center;min-height:var(--tap);color:var(--text-muted);transition:color var(--dur-fast) ease}
 .footer-links a:hover{color:var(--text)}
+@media (max-width:599px){ .footer-links{flex-direction:column} }
 .footer-copy{margin:0;width:100%;color:var(--text-muted);font-size:var(--fs-small)}
 
 
