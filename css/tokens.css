@@ -7,7 +7,6 @@
      - utilitário .sr-only (1px / -1px / clip), técnica padrão de a11y
      - translateY(-250%) do skip link (esconde fora da tela até o foco)
      - .001ms do bloco de reduced-motion (desliga transição, não é estilo)
-     - 100vw e 0px na fórmula do sangramento do hero (geometria, não medida)
      - <meta name="theme-color"> no HTML: meta não lê variável CSS
      - limiares de disparo ficam no JS, com nome (rootMargin do
        IntersectionObserver, HEADER_SCROLL_THRESHOLD): são regra de
@@ -142,14 +141,16 @@
   /* centro ótico do texto no desktop: o bloco é centralizado entre estes dois
      respiros, então fica acima do meio, com mais espaço embaixo que em cima.
      Em cima parte da altura do menu; embaixo cresce com a altura da tela.
-     1366x768: 38px em cima / 121 embaixo; 1920x1080: 159 / 289 */
+     1366x768: 38px em cima / 122 embaixo; 1920x1080: 158 / 289 */
   --hero-pad-top:calc(var(--header-h) + var(--space-6));
   --hero-pad-bottom:max(var(--space-8),15svh);
-  /* sombra atrás da coluna de texto: só leitura, e só junto com o texto (que
-     entra no último quadro). Segura o tom até o fim da coluna e some na folga,
-     antes da tampa. 80% é o mínimo medido para o sub (mist-400) ficar acima de
-     4.5:1 em qualquer quadro, então também cobre a revelação de emergência. */
-  --hero-shade:color-mix(in srgb,var(--band-deep) 80%,transparent);
+  /* sombra atrás da coluna de texto: só leitura, desde o primeiro quadro.
+     Segura o tom até o fim da coluna e some na folga, antes da tampa.
+     Medido quadro a quadro (pixel mais claro atrás de cada linha, 1100 a
+     1920px): H1 precisa 49% (3:1, texto grande), sub 61% (4.5:1, pior em
+     1100px), "Ver projetos" 57%, nota 56%. Com sub e nota em mist-400 seriam
+     79% e 77%; por isso os dois usam --text. 62% cobre todos com folga. */
+  --hero-shade:color-mix(in srgb,var(--band-deep) 62%,transparent);
   --hero-shade-hold:1;
   --hero-scrim-bottom:linear-gradient(0deg,var(--band-deep) 0%,transparent 22%);
   --hero-focus-mobile:62% 50%;
@@ -251,7 +252,8 @@
   --r-screen:12px;     /* o dashboard, único objeto com cara de tela */
 
   /* ---------- Movimento ----------
-     Três comportamentos, e só eles:
+     Três comportamentos de scroll/interação, e só eles. O vídeo do hero é a
+     orquestração de entrada e fica fora desta conta (brief §7):
      1. lateral nos projetos (CSS scroll-driven; fallback estático)
      2. banda que expande no dashboard e no contato (IntersectionObserver)
      3. dado que muda de valor no dashboard (tween por requestAnimationFrame)
@@ -260,8 +262,6 @@
   --dur-fast:200ms;       /* hover e foco */
   --dur-data:600ms;       /* tween dos dados */
   --dur-band:900ms;       /* banda que expande */
-  --dur-reveal:800ms;     /* texto e sombra do hero entram no último quadro do vídeo */
-  --intro-failsafe:7s;    /* se o JS não revelar (falha, vídeo travado), o CSS revela sozinho */
   --dur-settle:100ms;     /* folga até dar a expansão por terminada, se o transitionend não vier */
   --band-inset-start:6%;  /* recorte lateral da banda antes de expandir */
   --band-radius-start:var(--r-screen);

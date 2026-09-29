@@ -240,17 +240,27 @@ inventar um por seção é ruído.
 **Vídeo do hero (decisão do Weslley, 2026-09-29):** o vídeo do hero é a
 orquestração de entrada da página e fica **fora da conta dos três
 comportamentos de scroll**. Toca uma vez, sem som, e para no último
-quadro (sem loop). **Vídeo primeiro, texto depois** (revisão do mesmo
-dia): o texto do hero e a sombra atrás dele ficam escondidos enquanto o
-vídeo toca e entram juntos no último quadro — a sombra nunca aparece
-sobre o vídeo em movimento. Entram antes se a pessoa rolar ou usar o
-teclado, e sozinhos em 7s se o vídeo não terminar. Vale para todas as
-telas: no celular e no tablet o vídeo fica acima do texto, em versão de
-960px no celular. Sem vídeo só com reduced-motion ou economia de dados. Duração de 4,875s (117 quadros a 24fps), abaixo dos
-5s do WCAG 2.2.2, então dispensa botão de pausa; o corte tirou os
-primeiros quadros para o último continuar igual ao poster. No desktop o texto fica na área escura da
-esquerda. O último quadro é o poster, a imagem do reduced-motion e da
-economia de dados (sem vídeo) e a og:image.
+quadro (sem loop). **O H1 aparece desde o primeiro quadro, em qualquer
+tela;** subtítulo e botões também, porque com a sombra abaixo o contraste
+passa em todos os quadros (atraso máximo permitido: 1s, só se o contraste
+não passasse sem ele). **Celular sem vídeo:** só a imagem parada, tudo
+visível no carregamento. Tablet e desktop tocam o vídeo; no tablet ele
+fica abaixo do texto. Sem vídeo também com reduced-motion ou economia de
+dados.
+
+Sombra atrás do texto no desktop: 62%, desde o início. Medida quadro a
+quadro (pixel mais claro atrás de cada linha): H1 precisa 49% (3:1, texto
+grande), subtítulo 61%, "Ver projetos" 57%, linha de resposta 56%. Para
+chegar nisso, subtítulo e linha de resposta usam a cor do texto em vez
+da muted (com a muted precisariam de ~80%). Decisão do Weslley,
+29/09/2026, depois de uma versão "vídeo primeiro, texto depois" que
+escondia o texto durante o vídeo e foi desfeita.
+
+Duração de 4,875s (117 quadros a 24fps), abaixo dos 5s do WCAG 2.2.2,
+então dispensa botão de pausa; o corte tirou os primeiros quadros para o
+último continuar igual ao poster. No desktop o texto fica na área escura
+da esquerda. O último quadro é o poster, a imagem do celular, do
+reduced-motion e da economia de dados (sem vídeo) e a og:image.
 
 GSAP permitido. Lenis fica de fora — scroll nativo basta e reduz JS.
 
