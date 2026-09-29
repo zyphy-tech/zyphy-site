@@ -70,7 +70,8 @@ main:focus{outline:none}
 @media (max-width:900px){
   .nav-links,.nav-main .nav-cta{display:none}
   .nav-burger{display:inline-flex}
-  .nav-main .nav-wa{display:inline-flex;margin-left:auto;margin-right:calc(var(--space-2) - var(--space-5))}
+  /* mesma borda do botão do menu, que fica ao lado; no rodapé o ícone segue sem borda */
+  .nav-main .nav-wa{display:inline-flex;box-sizing:border-box;border:var(--hairline) solid var(--line);margin-left:auto;margin-right:calc(var(--space-2) - var(--space-5))}
 }
 
 /* ---------- Menu móvel ---------- */
