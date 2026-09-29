@@ -77,10 +77,16 @@
           </div>
           <p class="hero-note">Resposta no mesmo dia, sem compromisso.</p>
         </div>
-        <!-- último quadro do vídeo: é o que o celular, o reduced-motion e a economia
-             de dados veem, e o poster do vídeo. O <video> entra por js/main.js (initHeroVideo). -->
+        <!-- onde o vídeo toca (600px+ sem reduced-motion), a imagem é o PRIMEIRO
+             quadro e vira o poster: o vídeo começa de onde a imagem está, sem
+             "voltar". No celular e no reduced-motion é o ÚLTIMO quadro, o estado
+             final. Se o vídeo não tocar (economia de dados, erro, autoplay
+             bloqueado), o js/main.js tira as fontes data-first-frame e o último
+             quadro aparece. O <video> entra por js/main.js (initHeroVideo). -->
         <div class="hero-media">
           <picture>
+            <source data-first-frame type="image/webp" media="(min-width:600px) and (prefers-reduced-motion:no-preference)" srcset="assets/img/hero-first-960.webp 960w, assets/img/hero-first-1912.webp 1912w" sizes="100vw">
+            <source data-first-frame media="(min-width:600px) and (prefers-reduced-motion:no-preference)" srcset="assets/img/hero-first-960.jpg 960w, assets/img/hero-first-1912.jpg 1912w" sizes="100vw">
             <source type="image/webp" srcset="assets/img/hero-final-960.webp 960w, assets/img/hero-final-1912.webp 1912w" sizes="100vw">
             <img class="hero-still" src="assets/img/hero-final-960.jpg" srcset="assets/img/hero-final-960.jpg 960w, assets/img/hero-final-1912.jpg 1912w" sizes="100vw" width="1912" height="1080" alt="Notebook sobre uma mesa escura, à noite, com um painel de indicadores na tela">
           </picture>

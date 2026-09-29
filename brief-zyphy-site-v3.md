@@ -259,7 +259,10 @@ escondia o texto durante o vídeo e foi desfeita.
 Duração de 4,875s (117 quadros a 24fps), abaixo dos 5s do WCAG 2.2.2,
 então dispensa botão de pausa; o corte tirou os primeiros quadros para o
 último continuar igual ao poster. No desktop o texto fica na área escura
-da esquerda. O último quadro é o poster, a imagem do celular, do
+da esquerda. O **primeiro quadro** é o poster e a imagem parada onde o
+vídeo toca (tablet e desktop), para o vídeo começar de onde a imagem está
+sem "voltar"; se o vídeo não tocar (erro, autoplay bloqueado), a imagem
+volta ao último quadro. O **último quadro** é a imagem do celular, do
 reduced-motion e da economia de dados (sem vídeo) e a og:image.
 
 GSAP permitido. Lenis fica de fora — scroll nativo basta e reduz JS.

@@ -170,16 +170,22 @@
   /* ---------- vídeo do hero: orquestração de entrada da página ----------
      Toca uma vez, sem som, e para no último quadro (sem loop). O texto fica
      visível desde o início (a sombra do CSS garante o contraste). Fica fora
-     do celular, do reduced-motion e da economia de dados: ali a imagem parada
-     já é o estado final. O poster é o mesmo último quadro, então autoplay
-     bloqueado também termina no lugar certo. */
+     do celular e do reduced-motion (ali o <picture> já mostra o último
+     quadro) e da economia de dados.
+     Onde toca, o <picture> mostra o PRIMEIRO quadro, que também é o poster:
+     o vídeo começa de onde a imagem está, sem "voltar". Se ele não for tocar
+     (economia de dados, erro, autoplay bloqueado), finalFrame() tira as
+     fontes do primeiro quadro e a imagem parada volta a ser o último. */
   function initHeroVideo() {
     var media = doc.querySelector(".hero-media");
     var still = media && media.querySelector(".hero-still");
     if (!still) return;
     if (window.matchMedia("(max-width:599px), (prefers-reduced-motion:reduce)").matches) return;
+    function finalFrame() {
+      media.querySelectorAll("source[data-first-frame]").forEach(function (s) { s.remove(); });
+    }
     var conn = navigator.connection;
-    if (conn && conn.saveData) return;
+    if (conn && conn.saveData) { finalFrame(); return; }
 
     var video = doc.createElement("video");
     video.className = "hero-video";
@@ -196,11 +202,13 @@
       source.type = s[1];
       video.appendChild(source);
     });
-    /* se nenhuma fonte carregar, o vídeo sai e a imagem parada fica */
-    video.lastElementChild.addEventListener("error", function () { video.remove(); });
+    /* sem vídeo (nenhuma fonte carregou ou autoplay bloqueado): ele sai e a
+       imagem parada fica, já no último quadro */
+    function giveUp() { video.remove(); finalFrame(); }
+    video.lastElementChild.addEventListener("error", giveUp);
     media.appendChild(video);
     var p = video.play();
-    if (p && p.catch) p.catch(function () {});
+    if (p && p.catch) p.catch(giveUp);
   }
 
   function boot() {
