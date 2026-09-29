@@ -26,7 +26,7 @@
 <meta property="og:image:alt" content="Notebook sobre uma mesa escura, à noite, com um painel de indicadores na tela">
 <meta name="twitter:card" content="summary_large_image">
 
-<!-- H1 é o LCP: a fonte display chega antes do primeiro paint possível -->
+<!-- fonte do H1: chega antes de o texto entrar (no fim do vídeo, ou direto sem ele) -->
 <link rel="preload" href="assets/fonts/sofia-sans-extra-condensed-800-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/styles.css">
@@ -77,8 +77,8 @@
           </div>
           <p class="hero-note">Resposta no mesmo dia, sem compromisso.</p>
         </div>
-        <!-- último quadro do vídeo: é o que o celular e o reduced-motion veem, e o
-             poster do vídeo. O <video> entra por js/main.js (initHeroVideo). -->
+        <!-- último quadro do vídeo: é o que o reduced-motion e a economia de dados
+             veem, e o poster do vídeo. O <video> entra por js/main.js (initHeroVideo). -->
         <div class="hero-media">
           <picture>
             <source type="image/webp" srcset="assets/img/hero-final-960.webp 960w, assets/img/hero-final-1912.webp 1912w" sizes="100vw">

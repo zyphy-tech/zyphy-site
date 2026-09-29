@@ -97,8 +97,10 @@ main:focus{outline:none}
 .hero-sub{margin:var(--space-6) 0 0;font-size:var(--fs-lead);color:var(--text-muted);max-width:var(--measure-lead)}
 .hero-ctas{display:flex;flex-wrap:wrap;gap:var(--space-3);margin-top:var(--space-6)}
 .hero-note{margin:var(--space-4) 0 0;font-size:var(--fs-small);color:var(--text-muted)}
-/* celular e tablet: imagem/vídeo abaixo do texto, sangrando até as duas bordas */
-.hero-media{position:relative;aspect-ratio:var(--ratio-hero-mobile);background:var(--band-deep);margin-inline:calc(-1 * var(--gutter));overflow:hidden}
+/* celular e tablet: imagem/vídeo acima do texto, logo abaixo do header,
+   sangrando até as duas bordas (o vídeo toca primeiro, o texto vem depois) */
+.hero-media{order:-1;position:relative;aspect-ratio:var(--ratio-hero-mobile);background:var(--band-deep);margin-inline:calc(-1 * var(--gutter));overflow:hidden}
+@media (max-width:1099px){ .hero{padding-top:var(--header-h)} }
 .hero-still,.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--hero-focus-mobile);display:block}
 /* desktop: o vídeo fica atrás do hero e o texto sobre a área escura da esquerda.
    --copy-end é onde termina a coluna do texto (6 de 12 colunas do .container);
@@ -110,11 +112,20 @@ main:focus{outline:none}
   .hero-copy{grid-column:1 / span 6}
   .hero-media{position:absolute;top:0;left:var(--screen-x);z-index:-1;height:100%;width:auto;aspect-ratio:var(--hero-ratio);min-width:calc((100% - var(--screen-x)) / (1 - var(--hero-screen-at)));margin:0;transform:translateX(calc(var(--hero-screen-at) * -100%));-webkit-mask-image:linear-gradient(90deg,transparent,var(--mask-opaque) var(--space-9));mask-image:linear-gradient(90deg,transparent,var(--mask-opaque) var(--space-9))}
   .hero-media::after{content:"";position:absolute;inset:0;background:var(--hero-scrim-bottom)}
-  /* sombra atrás do texto, fixa durante todo o vídeo: medido pelo pixel mais
-     claro atrás de cada linha, sem ela o H1 fica abaixo de 4.5:1 em todos os
-     quadros (luzes da janela) e o sub a partir de ~1,7s (papéis) */
+  /* sombra atrás do texto: entra junto com ele, no último quadro (ver
+     "abertura" abaixo). Sem ela o H1 fica abaixo de 4.5:1 sobre as luzes da
+     janela, então as duas nunca aparecem separadas */
   .hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,var(--hero-shade) 0,var(--hero-shade) calc(var(--copy-end) * var(--hero-shade-hold)),transparent var(--screen-x))}
 }
+
+/* abertura: o vídeo toca sozinho e o texto (com a sombra, no desktop) entra
+   no último quadro. html.intro vem do js/boot.js, só com motion e sem
+   economia de dados; o js/main.js põe .intro-done no fim do vídeo, em erro,
+   autoplay bloqueado ou quando a pessoa rola/tecla. Se nada disso acontecer,
+   a animação de segurança revela sozinha em --intro-failsafe. */
+.intro .hero-copy,.intro .hero::after{opacity:0;animation:zyReveal 0s var(--intro-failsafe) forwards}
+.intro.intro-done .hero-copy,.intro.intro-done .hero::after{opacity:1;animation:none;transition:opacity var(--dur-reveal) var(--ease-out)}
+@keyframes zyReveal{to{opacity:1}}
 
 /* ---------- Dashboard ao vivo ---------- */
 .dash-figure{margin:0}

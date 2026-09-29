@@ -139,9 +139,10 @@
   --hero-ratio:1912/1080;        /* proporção do vídeo e do poster */
   --hero-screen-at:.445;         /* borda esquerda da tampa, em fração da largura do quadro */
   --hero-clearance:var(--space-8);  /* folga entre o fim do H1 e a tampa */
-  /* sombra atrás da coluna de texto: só leitura. Segura o tom até o fim da
-     coluna e some na folga, antes da tampa. 80% é o mínimo medido para o sub
-     (mist-400) ficar acima de 4.5:1 em todos os quadros (pior: papéis, ~2,6s). */
+  /* sombra atrás da coluna de texto: só leitura, e só junto com o texto (que
+     entra no último quadro). Segura o tom até o fim da coluna e some na folga,
+     antes da tampa. 80% é o mínimo medido para o sub (mist-400) ficar acima de
+     4.5:1 em qualquer quadro, então também cobre a revelação de emergência. */
   --hero-shade:color-mix(in srgb,var(--band-deep) 80%,transparent);
   --hero-shade-hold:1;
   --hero-scrim-bottom:linear-gradient(0deg,var(--band-deep) 0%,transparent 22%);
@@ -253,6 +254,8 @@
   --dur-fast:200ms;       /* hover e foco */
   --dur-data:600ms;       /* tween dos dados */
   --dur-band:900ms;       /* banda que expande */
+  --dur-reveal:800ms;     /* texto e sombra do hero entram no último quadro do vídeo */
+  --intro-failsafe:7s;    /* se o JS não revelar (falha, vídeo travado), o CSS revela sozinho */
   --dur-settle:100ms;     /* folga até dar a expansão por terminada, se o transitionend não vier */
   --band-inset-start:6%;  /* recorte lateral da banda antes de expandir */
   --band-radius-start:var(--r-screen);

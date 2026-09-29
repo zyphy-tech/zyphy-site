@@ -240,11 +240,17 @@ inventar um por seção é ruído.
 **Vídeo do hero (decisão do Weslley, 2026-09-29):** o vídeo do hero é a
 orquestração de entrada da página e fica **fora da conta dos três
 comportamentos de scroll**. Toca uma vez, sem som, e para no último
-quadro (sem loop). Duração de 4,875s (117 quadros a 24fps), abaixo dos
+quadro (sem loop). **Vídeo primeiro, texto depois** (revisão do mesmo
+dia): o texto do hero e a sombra atrás dele ficam escondidos enquanto o
+vídeo toca e entram juntos no último quadro — a sombra nunca aparece
+sobre o vídeo em movimento. Entram antes se a pessoa rolar ou usar o
+teclado, e sozinhos em 7s se o vídeo não terminar. Vale para todas as
+telas: no celular e no tablet o vídeo fica acima do texto, em versão de
+960px no celular. Sem vídeo só com reduced-motion ou economia de dados. Duração de 4,875s (117 quadros a 24fps), abaixo dos
 5s do WCAG 2.2.2, então dispensa botão de pausa; o corte tirou os
-primeiros quadros para o último continuar igual ao poster. O H1 aparece desde o início, na área escura da
-esquerda. O último quadro é o poster, a imagem do reduced-motion e do
-celular (sem vídeo) e a og:image.
+primeiros quadros para o último continuar igual ao poster. No desktop o texto fica na área escura da
+esquerda. O último quadro é o poster, a imagem do reduced-motion e da
+economia de dados (sem vídeo) e a og:image.
 
 GSAP permitido. Lenis fica de fora — scroll nativo basta e reduz JS.
 

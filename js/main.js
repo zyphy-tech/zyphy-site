@@ -167,15 +167,32 @@
   }
 
   /* ---------- vídeo do hero: orquestração de entrada da página ----------
-     Toca uma vez, sem som, e para no último quadro (sem loop). Fica fora do
-     celular e do reduced-motion: ali a imagem parada já é o estado final.
-     O poster é o mesmo último quadro, então autoplay bloqueado também termina
-     no lugar certo. */
+     Toca uma vez, sem som, e para no último quadro (sem loop); só então o
+     texto entra (.intro-done, ver "abertura" no CSS). Sem vídeo quando o
+     boot.js não pôs .intro (reduced-motion ou economia de dados): ali a imagem
+     parada já é o estado final. O poster é o mesmo último quadro, então
+     autoplay bloqueado também termina no lugar certo. */
   function initHeroVideo() {
+    var root = doc.documentElement;
     var media = doc.querySelector(".hero-media");
     var still = media && media.querySelector(".hero-still");
-    if (!still) return;
-    if (window.matchMedia("(max-width:599px), (prefers-reduced-motion:reduce)").matches) return;
+    if (!still || !root.classList.contains("intro")) return;
+
+    var revealed = false;
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      root.classList.add("intro-done");
+      window.removeEventListener("scroll", onScroll);
+      doc.removeEventListener("keydown", reveal);
+    }
+    /* quem já está rolando ou navegando por teclado não espera o vídeo */
+    function onScroll() { if (window.scrollY > HEADER_SCROLL_THRESHOLD) reveal(); }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    doc.addEventListener("keydown", reveal);
+
+    /* celular: versão de 960px (0,4–0,6 MB em vez de 1–2,2 MB) */
+    var suffix = window.matchMedia("(max-width:599px)").matches ? "-960" : "";
 
     var video = doc.createElement("video");
     video.className = "hero-video";
@@ -186,17 +203,18 @@
     video.setAttribute("aria-hidden", "true");
     video.preload = "auto";
     video.poster = still.currentSrc || still.src;
-    [["assets/video/hero.webm", "video/webm"], ["assets/video/hero.mp4", "video/mp4"]].forEach(function (s) {
+    [["assets/video/hero" + suffix + ".webm", "video/webm"], ["assets/video/hero" + suffix + ".mp4", "video/mp4"]].forEach(function (s) {
       var source = doc.createElement("source");
       source.src = s[0];
       source.type = s[1];
       video.appendChild(source);
     });
     /* se nenhuma fonte carregar, o vídeo sai e a imagem parada fica */
-    video.lastElementChild.addEventListener("error", function () { video.remove(); });
+    video.lastElementChild.addEventListener("error", function () { video.remove(); reveal(); });
+    video.addEventListener("ended", reveal);
     media.appendChild(video);
     var p = video.play();
-    if (p && p.catch) p.catch(function () {});
+    if (p && p.catch) p.catch(reveal);
   }
 
   function boot() {
