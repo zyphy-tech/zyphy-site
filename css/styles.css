@@ -194,7 +194,9 @@ main:focus{outline:none}
 .projects-head .display-h2{margin-bottom:var(--space-5)}
 .section-note{margin:0;color:var(--text-muted)}
 .spec-source{margin:var(--space-2) 0 0;font-size:var(--fs-small);color:var(--text-muted)}
-.projects-track{box-sizing:border-box;display:grid;gap:var(--space-9);width:100%;max-width:calc(var(--container) + 2 * var(--gutter));margin:var(--space-8) auto 0;padding-inline:var(--gutter)}
+/* linhas iguais: toda plaqueta tem a altura da mais alta, mesmo sem
+   depoimento ou métrica (FieldFix). Na faixa horizontal o flex estica igual */
+.projects-track{box-sizing:border-box;display:grid;grid-auto-rows:1fr;gap:var(--space-9);width:100%;max-width:calc(var(--container) + 2 * var(--gutter));margin:var(--space-8) auto 0;padding-inline:var(--gutter)}
 .plaque{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--space-5);min-width:0}
 .plaque-media{box-sizing:border-box;aspect-ratio:var(--ratio-project);overflow:hidden;background:var(--band-raised);border:var(--hairline) solid var(--line);border-radius:var(--r-none)}
 .plaque-media img{width:100%;height:100%;object-fit:cover;object-position:center top}
@@ -223,7 +225,7 @@ main:focus{outline:none}
     .projects-section{view-timeline-name:--proj;view-timeline-axis:block;height:calc(100vh + var(--proj-distance));padding-block:0}
     .projects-pin{position:sticky;top:0;box-sizing:border-box;height:100vh;padding-top:var(--header-h);display:flex;flex-direction:column;justify-content:center}
     .projects-rail{container-type:inline-size;overflow-x:clip}
-    .projects-track{display:flex;gap:var(--plaque-gap);width:max-content;max-width:none;margin:var(--space-7) 0 0;animation:zyTrack linear both;animation-timeline:--proj;animation-range:var(--proj-range)}
+    .projects-track{display:flex;align-items:stretch;gap:var(--plaque-gap);width:max-content;max-width:none;margin:var(--space-7) 0 0;animation:zyTrack linear both;animation-timeline:--proj;animation-range:var(--proj-range)}
     .plaque{flex:none;width:var(--plaque-w)}
   }
 }
@@ -274,7 +276,7 @@ textarea.form-input{min-height:var(--textarea-min-h);line-height:var(--lh-body);
 .social-link:focus-visible{color:var(--accent)}
 .social-icon{width:var(--icon);height:var(--icon);fill:currentColor}
 .site-footer .social{margin-inline:calc(-1 * (var(--tap) - var(--icon)) / 2)}
-/* ícones e links do rodapé ficam juntos à direita (na privacidade há os dois) */
+/* ícones e links do rodapé ficam juntos à direita */
 @media (min-width:600px){ .site-footer .social{margin-left:auto} }
 /* max-width:none: sem isso o p{max-width} global segura o copyright na mesma linha dos ícones */
 .footer-copy{margin:0;width:100%;max-width:none;color:var(--text-muted);font-size:var(--fs-small)}
@@ -285,23 +287,3 @@ textarea.form-input{min-height:var(--textarea-min-h);line-height:var(--lh-body);
   html{scroll-behavior:auto}
   *,*::before,*::after{transition-duration:.001ms !important}
 }
-
-/* ---------- Página de privacidade (rascunho) ---------- */
-.draft-banner{position:relative;margin-top:var(--header-h);background:var(--band-color);padding-block:var(--space-4)}
-.draft-banner p{margin:0;font-size:var(--fs-small);max-width:none}
-.legal{padding-top:var(--space-8)}
-.legal .display-h2{margin-bottom:var(--space-6)}
-.legal-lead{margin:0;font-size:var(--fs-lead);color:var(--text-muted)}
-.legal-meta{margin:var(--space-4) 0 0;font-size:var(--fs-small);color:var(--text-muted)}
-.legal-section{margin-top:var(--space-8);max-width:var(--measure)}
-.legal-h2{margin:0 0 var(--space-4);font-size:var(--fs-h3);font-weight:var(--weight-strong);line-height:var(--lh-heading)}
-.legal-h3{margin:var(--space-5) 0 var(--space-2);font-size:var(--fs-body);font-weight:var(--weight-strong);line-height:var(--lh-heading)}
-.legal-section p{margin:0 0 var(--space-4)}
-.legal-list{margin:0 0 var(--space-4);padding-left:var(--space-5)}
-.legal-list li{margin-bottom:var(--space-2)}
-.legal-table{margin:0 0 var(--space-4)}
-.legal-table dt{padding-top:var(--space-4);border-top:var(--hairline) solid var(--line);font-weight:var(--weight-medium)}
-.legal-table dd{margin:var(--space-1) 0 var(--space-4);color:var(--text-muted)}
-.legal a{text-decoration:underline;text-decoration-color:var(--text-muted);text-underline-offset:var(--underline-offset)}
-/* marcação visível do que falta preencher: não pode passar despercebida */
-.fill{background:none;color:var(--error);font-weight:var(--weight-strong)}
