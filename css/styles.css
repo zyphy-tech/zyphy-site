@@ -150,6 +150,10 @@ main:focus{outline:none}
 @keyframes zyBarIn{from{opacity:0}}
 @keyframes zyBarOut{to{opacity:0}}
 html{view-transition-name:none}
+/* a camada da transição cobre a tela e engolia cliques: com ela transparente
+   ao mouse, um clique em outro filtro no meio da troca chega ao botão (e a
+   transição nova substitui a que estava rodando) */
+::view-transition{pointer-events:none}
 .dash-chart .grid{stroke:var(--chart-grid);stroke-width:var(--hairline)}
 .dash-chart .tick{fill:var(--text-muted);font-family:var(--font-body);font-size:var(--fs-micro);font-variant-numeric:var(--numeric-data)}
 .dash-caption{margin-top:var(--space-5);font-size:var(--fs-small);color:var(--text-muted)}

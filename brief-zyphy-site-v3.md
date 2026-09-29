@@ -241,7 +241,8 @@ inventar um por seção é ruído.
 1. **Projetos:** plaquetas correm na horizontal conforme o scroll vertical
    (CSS scroll-driven). Razão: o conteúdo vaza pela borda e sugere que
    continua, como no `21st`. Sem suporte: pilha vertical.
-2. **Soluções:** conforme a linha sobe pela tela, um traço atravessa o
+2. **Soluções:** conforme a linha sobe pela tela, um traço na cor do
+   texto (ciano fica reservado para ação) atravessa o
    título da dor e a frase da solução ganha contraste (muted → texto).
    CSS `animation-timeline: view()`. Razão: a dor fica "riscada" e a
    solução vira o que se lê. Firefox e reduced-motion: estado final
@@ -275,8 +276,8 @@ da muted (com a muted precisariam de ~80%). Decisão do Weslley,
 escondia o texto durante o vídeo e foi desfeita.
 
 Duração de 4,875s (117 quadros a 24fps), abaixo dos 5s do WCAG 2.2.2,
-então dispensa botão de pausa; o corte tirou os primeiros quadros para o
-último continuar igual ao poster. No desktop o texto fica na área escura
+então dispensa botão de pausa; o corte tirou os primeiros quadros e
+manteve o último, que é a imagem parada final. No desktop o texto fica na área escura
 da esquerda. O **primeiro quadro** é o poster e a imagem parada onde o
 vídeo toca (tablet e desktop), para o vídeo começar de onde a imagem está
 sem "voltar"; se o vídeo não tocar (erro, autoplay bloqueado), a imagem
@@ -316,8 +317,8 @@ Situação em 29/09/2026:
   Medido em 23/09/2026 (Lighthouse 13.5.0, mobile, mediana de 3
   execuções) e publicado nas fichas dos projetos.
 - **Resolvido:** imagem autoral do hero. Virou o vídeo produzido pelo
-  Weslley (ver §7); o último quadro é o poster, a imagem do celular e do
-  reduced-motion, e a og:image.
+  Weslley (ver §7). O primeiro quadro é o poster onde o vídeo toca; o
+  último é a imagem do celular, do reduced-motion e a og:image.
 - **Resolvido:** suporte pós-deploy de 7 dias, confirmado pelo Weslley em
   29/09/2026.
 - **Aberto:** FieldFix na Play Store. O link

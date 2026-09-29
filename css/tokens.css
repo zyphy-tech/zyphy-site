@@ -112,8 +112,8 @@
   --line-control:var(--sage-500);
   --mask-opaque:#000;                  /* máscara: só o alfa conta, a cor não aparece */
 
-  /* acento raro: botão primário, foco de teclado, barra ativa do dashboard,
-     traço das dores nas Soluções */
+  /* acento raro, reservado para ação e estado: botão primário, foco de
+     teclado, barra ativa do dashboard */
   --accent:var(--cyan-500);
   --accent-hover:var(--cyan-400);
   --on-accent:var(--ink-950);
@@ -270,7 +270,7 @@
   /* Soluções: o traço corre enquanto a linha vai de "acabou de entrar" até
      o meio da tela; a espessura e a altura acompanham a letra (em) */
   --fix-range:entry 100% cover 50%;
-  --strike-color:var(--accent);
+  --strike-color:var(--text);   /* ciano fica para ação */
   --strike-w:.09em;
   --strike-y:45%;         /* meio das maiúsculas da Sofia (ascendente 90%, descendente 30%) */
   /* projetos no desktop: seção fixa (sticky) e plaquetas correndo na
