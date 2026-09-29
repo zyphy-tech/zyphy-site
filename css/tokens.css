@@ -1,0 +1,276 @@
+/* ==========================================================================
+   Zyphy v3 — tokens. Fonte de verdade: brief-zyphy-site-v3.md, direção da
+   Fase 3 aprovada. Nenhum valor de cor, fonte, tamanho, espaço, raio ou
+   duração aparece fora deste arquivo, em CSS ou JS (o JS lê daqui por
+   getComputedStyle). Exceções conferidas por varredura, todas técnicas:
+     - breakpoints dentro de @media: CSS não aceita var() em media query
+     - utilitário .sr-only (1px / -1px / clip), técnica padrão de a11y
+     - translateY(-250%) do skip link (esconde fora da tela até o foco)
+     - .001ms do bloco de reduced-motion (desliga transição, não é estilo)
+     - 100vw e 0px na fórmula do sangramento do hero (geometria, não medida)
+     - <meta name="theme-color"> no HTML: meta não lê variável CSS
+     - limiares de disparo ficam no JS, com nome (rootMargin do
+       IntersectionObserver, HEADER_SCROLL_THRESHOLD): são regra de
+       disparo, não valor de estilo
+
+   Conceito: plaqueta de máquina. Uma família de tom (petróleo, derivada do
+   ciano da marca) executada até o fim, acento raro, letra neutra comprimida.
+   A personalidade vem da escala e da composição, não do desenho da letra.
+   ========================================================================== */
+
+/* ---------- Fontes (auto-hospedadas, subset latino, OFL 1.1) ---------- */
+
+/* display: H1, H2, frase do contato e números do processo. Só o peso 800 */
+@font-face{
+  font-family:'Sofia Sans Extra Condensed';
+  font-style:normal;
+  font-weight:800;
+  font-display:swap;
+  src:url("../assets/fonts/sofia-sans-extra-condensed-800-latin.woff2") format("woff2");
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+/* reserva métrica da display, só enquanto a Sofia não chega (preload no <head>).
+   Impact: existe no Windows e no macOS e não está na lista proibida do brief.
+   Recalibrada para o H1 de 4 linhas no celular, medindo o H1 real com a Sofia
+   atrasada, em Chromium e Firefox (valores iguais nos dois):
+     375px, 72px, coluna 335   Sofia   286.0 / 92.0 / 275.4 / 317.5
+                               reserva 279.6 / 88.3 / 275.8 / 317.4
+     1440px, 144px, coluna 857 Sofia   774.2 / 743.9 / 441.9  (3 linhas)
+                               reserva 756.5 / 745.4 / 441.0  (3 linhas)
+   Critério: a linha mais larga do celular (SEU DIA A DIA.) igual à da Sofia,
+   então a reserva nunca quebra numa linha a mais. Topo das linhas e altura do
+   bloco (259px / 389px) idênticos: a troca de fonte não desloca nada.
+   Os overrides são multiplicados pelo size-adjust, por isso valem a métrica
+   da Sofia (90% / 30% / 0) dividida por 0.813.
+   Sem Impact (Android, iOS) cai no sans-serif do sistema, sem calibração. */
+@font-face{
+  font-family:'Sofia Fallback';
+  font-style:normal;
+  font-weight:800;
+  src:local('Impact');
+  size-adjust:81.3%;
+  ascent-override:110.70%;
+  descent-override:36.90%;
+  line-gap-override:0%;
+}
+
+/* corpo: Archivo variável (eixo de peso 100–900, largura normal) */
+@font-face{
+  font-family:'Archivo';
+  font-style:normal;
+  font-weight:100 900;
+  font-display:swap;
+  src:url("../assets/fonts/archivo-var-latin.woff2") format("woff2");
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+:root{
+  color-scheme:dark;
+
+  /* ---------- Cor: primitivos (família petróleo, matiz ~180°) ----------
+     Contraste medido (WCAG):
+       mist-100 sobre 950/900/850/petrol  16.8 / 14.0 / 11.0 / 11.2
+       mist-400 sobre 950/900/850/petrol   8.3 /  6.9 /  5.5 /  5.5
+       accent   sobre 950/900/850/petrol   9.8 /  8.2 /  6.5 /  6.5
+       on-accent sobre accent              9.8
+       error    sobre 950/900/850/petrol   8.7 /  7.2 /  5.7 /  5.8
+       sage-500 sobre 950/petrol (borda do campo, não-texto)  5.0 / 3.3 (mínimo 3:1)
+       bar-idle sobre 950, tela do dashboard (objeto gráfico) 4.1 (mínimo 3:1)
+     Degrau entre bandas vizinhas: 950/900 1.20, 900/850 1.27, 950/850 1.53,
+     petrol/900 1.25, petrol/950 1.51. Afastado na Fase 5: com 1.11 a troca
+     950/900 não aparecia no screenshot. */
+  --ink-950:#050B0B;     /* banda mais funda */
+  --ink-900:#112222;     /* banda base */
+  --ink-850:#1E3535;     /* banda elevada */
+  --petrol-700:#0E3634;  /* a única banda de cor chapada */
+  --mist-100:#E3EFED;    /* texto */
+  --mist-400:#93ADAA;    /* texto secundário, labels */
+  --cyan-500:#00CBCC;    /* ciano da marca */
+  --cyan-400:#00E0E1;    /* ciano no hover */
+  --coral-300:#FF8A80;   /* erro */
+  --sage-500:#5E8884;    /* borda dos campos do formulário */
+  --sage-600:#4F7A76;    /* barra inativa do gráfico */
+
+  /* ---------- Cor: papéis ---------- */
+  /* bandas: vizinhas nunca iguais; petróleo só no contato.
+     Sequência: hero deep, dashboard raised, soluções base, processo raised,
+     projetos deep (depoimentos dentro das plaquetas), contato color, rodapé deep */
+  --band-deep:var(--ink-950);
+  --band-base:var(--ink-900);
+  --band-raised:var(--ink-850);
+  --band-color:var(--petrol-700);
+
+  --text:var(--mist-100);
+  --text-muted:var(--mist-400);
+  --line:rgba(227,239,237,.12);        /* divisória dentro de lista, nunca entre seções */
+  /* contorno de campo: componente de interface, precisa de 3:1 (WCAG 1.4.11)
+     contra o fundo do campo e contra a banda de cor em volta. --line não chega */
+  --line-control:var(--sage-500);
+  --mask-opaque:#000;                  /* máscara: só o alfa conta, a cor não aparece */
+
+  /* acento raro: botão primário, foco de teclado, barra ativa do dashboard */
+  --accent:var(--cyan-500);
+  --accent-hover:var(--cyan-400);
+  --on-accent:var(--ink-950);
+  --focus-ring:var(--cyan-500);
+  --error:var(--coral-300);
+  --error-ring:rgba(255,138,128,.2);
+
+  /* dashboard */
+  --bar-idle:var(--sage-600);
+  --bar-active:var(--accent);
+  --chart-grid:rgba(227,239,237,.1);
+  /* geometria do gráfico (lida pelo js/dashboard.js) */
+  --dash-pad:clamp(var(--space-5),4vw,var(--space-7));
+  --chart-h:clamp(200px,36vh,400px);   /* com os indicadores, a tela ocupa ~70% da altura em 1440 */
+  --chart-pad-top:var(--space-2);
+  --chart-pad-bottom:28px;                   /* faixa dos rótulos do eixo x */
+  --chart-pad-left:var(--space-8);           /* faixa dos rótulos do eixo y */
+  --chart-tick-gap:var(--space-3);           /* rótulo y até a grade */
+  --chart-label-offset:6px;                  /* rótulo x até a base do svg */
+  --chart-label-min:30px;                    /* espaço mínimo entre rótulos x */
+  --chart-bar-min:2px;
+  --chart-bar-fill:.68;                      /* fração do slot ocupada pela barra */
+  --chart-bar-fill-dense:.6;                 /* idem, com mais de 20 barras */
+
+  /* hero em vídeo (desktop): o bloco do vídeo é posicionado para a borda da
+     tampa do notebook cair depois do fim da coluna do H1, com folga. */
+  --hero-ratio:1912/1080;        /* proporção do vídeo e do poster */
+  --hero-screen-at:.445;         /* borda esquerda da tampa, em fração da largura do quadro */
+  --hero-clearance:var(--space-8);  /* folga entre o fim do H1 e a tampa */
+  /* sombra atrás da coluna de texto: só leitura, e só junto com o texto (que
+     entra no último quadro). Segura o tom até o fim da coluna e some na folga,
+     antes da tampa. 80% é o mínimo medido para o sub (mist-400) ficar acima de
+     4.5:1 em qualquer quadro, então também cobre a revelação de emergência. */
+  --hero-shade:color-mix(in srgb,var(--band-deep) 80%,transparent);
+  --hero-shade-hold:1;
+  --hero-scrim-bottom:linear-gradient(0deg,var(--band-deep) 0%,transparent 22%);
+  --hero-focus-mobile:62% 50%;
+
+  /* ---------- Tipografia ---------- */
+  --font-display:'Sofia Sans Extra Condensed','Sofia Fallback',sans-serif;
+  --font-body:'Archivo',system-ui,sans-serif;
+
+  --weight-display:800;
+  --weight-body:400;
+  --weight-medium:500;
+  --weight-strong:600;
+
+  /* escala: display fluido, texto fixo. Quatro níveis de display, todos em
+     Sofia 800; a hierarquia vem de tamanho e tom, nunca de peso.
+     XL  H1 e frase do contato   72px em 375 / 144px (H1) e 200px (contato) em 1440
+     L   números do processo     96px em 375 / 200px em 1440
+     H2                          64px em 375 / 120px em 1440
+     M   dores e indicadores     40px em 375 /  72px em 1440
+     H1: 4 linhas no celular (abaixo de 600px, quebra natural balanceada) e
+         3 linhas fixas acima disso. */
+  --fs-h1-max:9rem;
+  --fs-h1:clamp(4.5rem,10vw,var(--fs-h1-max));
+  /* travas de largura por coluna (cqi): 3 linhas, a mais longa mede 5.38em;
+     4 linhas, a mais longa (SEU DIA A DIA.) mede 4.41em -> 22cqi deixa folga
+     também para barra de rolagem de 15px (coluna de 320px: 70px, 4 linhas) */
+  --fs-h1-fit:18cqi;
+  --fs-h1-fit-narrow:22cqi;
+  /* 600–1099px o hero é uma coluna só: o H1 cresce até a trava da coluna */
+  --fs-statement:clamp(4.5rem,14vw,12.5rem); /* frase do contato */
+  --fs-h2:clamp(4rem,8.5vw,7.5rem);
+  --fs-step-num:clamp(6rem,14vw,12.5rem);  /* números 1–4 do processo */
+  --fs-m:clamp(2.5rem,5vw,4.5rem);         /* dores das soluções e indicadores */
+  --fs-h3:1.5rem;
+  --fs-kpi:var(--fs-m);
+  --fs-quote:1.375rem;                     /* depoimento dentro da plaqueta */
+  --fs-lead:1.1875rem;                   /* sub do hero, 19px */
+  --fs-body:1.0625rem;                   /* 17px */
+  --fs-small:0.9375rem;                  /* 15px: ficha técnica, nota */
+  --fs-micro:0.8125rem;                  /* 13px: eixos do gráfico (piso 12px) */
+
+  --lh-display:0.9;
+  --lh-heading:1.2;
+  --lh-body:1.6;
+
+  --tracking-display:0;
+  --case-display:uppercase;
+
+  /* dado técnico: Archivo tabular, sem terceira família (ver nota na Fase 4) */
+  --numeric-data:tabular-nums;
+
+  --measure:60ch;
+  --measure-lead:44ch;        /* sub do hero */
+  --measure-h2:18ch;
+
+  /* ---------- Espaço (base 8) ---------- */
+  --space-1:4px;
+  --space-2:8px;
+  --space-3:12px;
+  --space-4:16px;
+  --space-5:24px;
+  --space-6:32px;
+  --space-7:48px;
+  --space-8:64px;
+  --space-9:96px;
+
+  --section-pad:clamp(96px,14vw,200px);     /* respiro vertical de cada banda */
+  --title-gap:clamp(48px,6vw,96px);         /* título até o conteúdo */
+
+  /* ---------- Layout ---------- */
+  --container:1320px;
+  --gutter:clamp(20px,5vw,64px);
+  --columns:12;
+  --col-gap:clamp(16px,2vw,24px);
+  --header-h:68px;
+  --tap:44px;                                /* alvo de toque mínimo */
+  --icon:24px;                               /* ícones das redes */
+  --control-h:48px;                          /* botão e campo */
+  --form-max:760px;
+  --ring:3px;                                /* anel de erro do campo */
+  --focus-offset:3px;
+  --underline-offset:4px;
+  --header-blur:12px;
+  --header-opacity:92%;                      /* fundo do header sobre o conteúdo */
+  --hairline:1px;                            /* divisória e borda */
+  --focus-width:2px;                         /* contorno de foco */
+  --textarea-min-h:128px;
+  --status-min-h:1.4em;                      /* reserva a linha da mensagem do form */
+  /* largura mínima de coluna nas grades auto-fit */
+  --col-min-audience:220px;
+
+  /* proporções */
+  --ratio-hero-mobile:4/3;
+  --ratio-project:8/5;                       /* capturas dos projetos */
+
+  /* ---------- Raio (hierarquia, não tudo igual) ---------- */
+  --r-none:0;          /* imagens e bandas */
+  --r-control:4px;     /* botão, input */
+  --r-screen:12px;     /* o dashboard, único objeto com cara de tela */
+
+  /* ---------- Movimento ----------
+     Três comportamentos, e só eles:
+     1. lateral nos projetos (CSS scroll-driven; fallback estático)
+     2. banda que expande no dashboard e no contato (IntersectionObserver)
+     3. dado que muda de valor no dashboard (tween por requestAnimationFrame)
+     prefers-reduced-motion: estado final direto, mesmo caminho do fallback */
+  --ease-out:cubic-bezier(.215,.61,.355,1);
+  --dur-fast:200ms;       /* hover e foco */
+  --dur-data:600ms;       /* tween dos dados */
+  --dur-band:900ms;       /* banda que expande */
+  --dur-reveal:800ms;     /* texto e sombra do hero entram no último quadro do vídeo */
+  --intro-failsafe:7s;    /* se o JS não revelar (falha, vídeo travado), o CSS revela sozinho */
+  --dur-settle:100ms;     /* folga até dar a expansão por terminada, se o transitionend não vier */
+  --band-inset-start:6%;  /* recorte lateral da banda antes de expandir */
+  --band-radius-start:var(--r-screen);
+  /* projetos no desktop: seção fixa (sticky) e plaquetas correndo na
+     horizontal pelo scroll vertical. Distância horizontal = largura da faixa
+     menos a tela; a seção ganha essa mesma altura extra, então 1px de scroll
+     vertical anda 1px na horizontal */
+  --plaque-w:min(80vw,1200px);
+  --plaque-gap:var(--space-8);
+  --plaque-count:4;
+  --proj-range:contain 0% contain 100%;  /* anda enquanto a seção cobre a tela inteira */
+  --proj-distance:calc(var(--plaque-count) * var(--plaque-w) + (var(--plaque-count) - 1) * var(--plaque-gap) + 2 * var(--gutter) - 100vw);
+
+  /* ---------- Camadas ---------- */
+  --z-menu:99;
+  --z-header:100;
+  --z-skip:400;
+}

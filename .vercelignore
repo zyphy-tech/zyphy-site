@@ -1,0 +1,15 @@
+# Lista branca: ignora tudo e libera só o que o site carrega.
+# Conferido contra index.html, fieldfix/privacidade/, css/ e js/ em 29/09/2026.
+# Arquivo novo que o site passe a usar precisa entrar aqui.
+/*
+!/index.html
+!/favicon.ico
+!/vercel.json
+!/css
+!/js
+!/assets
+!/fieldfix
+# dentro de assets/, o que o site não referencia
+/assets/video/hero-original.mp4
+/assets/img/08-*
+/assets/img/09-*

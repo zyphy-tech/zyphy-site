@@ -1,131 +1,24 @@
 /* ==========================================================================
-   Zyphy — comportamento do site (vanilla)
-   Port fiel da lógica original (Claude Design / DCLogic) para JS puro.
+   Zyphy — comportamento do site (vanilla, scroll nativo): header, menu,
+   bandas que expandem e formulário. O dashboard mora em js/dashboard.js.
    ========================================================================== */
 (function () {
   "use strict";
 
   var doc = document;
-  var docEl = doc.documentElement;
-  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  /* rolagem, em px, a partir da qual o header ganha a borda de baixo */
+  var HEADER_SCROLL_THRESHOLD = 8;
 
-  // Props de calibragem da intro (defaults originais do editor).
-  var PROPS = {
-    esperaAntesDoVoo: 1250,
-    duracaoDoVoo: 900,
-    tempoEstatico: 2000,
-    momentoDoTremor: 0.86,
-    pularIntro: false
-  };
-
-  var cleanup = [];
-  var lenis = null; // instância do smooth scroll (Lenis), quando ativo
-
-  /* ---------- smooth scroll (Lenis) ---------- */
-  function initSmoothScroll() {
-    if (reduce || typeof window.Lenis === "undefined") return;
-    lenis = new window.Lenis({
-      duration: 1.1,
-      easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
-      smoothWheel: true
-    });
-    var raf = function (time) {
-      if (!lenis) return;
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    };
-    requestAnimationFrame(raf);
+  /* ---------- header: borda ao rolar ---------- */
+  function initHeader() {
+    var header = doc.getElementById("zyHeader");
+    if (!header) return;
+    var onScroll = function () { header.classList.toggle("is-scrolled", window.scrollY > HEADER_SCROLL_THRESHOLD); };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
   }
 
-  /* ---------- animações de entrada (GSAP + ScrollTrigger, com stagger) ---------- */
-  // Marca o elemento como revelado PERMANENTEMENTE. A visibilidade final (opacity:1,
-  // transform:none) passa a vir da classe .on no CSS — o clearProps remove qualquer
-  // inline residual do GSAP, para o hover nunca conseguir sobrescrever a opacity.
-  function settleReveal(el) {
-    el.classList.add("on");
-    if (window.gsap) window.gsap.set(el, { clearProps: "opacity,transform" });
-    else { el.style.opacity = ""; el.style.transform = ""; }
-  }
-
-  function initReveals() {
-    var els = doc.querySelectorAll(".zy-reveal");
-    if (!els.length) return;
-
-    // prefers-reduced-motion: nada de animação, tudo já visível (CSS cobre isso também).
-    if (reduce) {
-      els.forEach(settleReveal);
-      return;
-    }
-
-    // Caminho preferido: GSAP + ScrollTrigger — fade + leve slide-up escalonado.
-    if (window.gsap && window.ScrollTrigger) {
-      var gsap = window.gsap;
-      var ST = window.ScrollTrigger;
-      gsap.registerPlugin(ST);
-
-      // Mantém ScrollTrigger em sincronia com o smooth scroll do Lenis.
-      if (lenis && lenis.on) {
-        lenis.on("scroll", ST.update);
-        cleanup.push(function () { if (lenis && lenis.off) lenis.off("scroll", ST.update); });
-      }
-
-      // Um trigger por elemento: roda UMA vez (once + play none none none) e nunca
-      // reverte. Stagger sutil vem do data-delay (0,1,2,3) entre irmãos do mesmo bloco.
-      els.forEach(function (el) {
-        var delay = (parseInt(el.getAttribute("data-delay"), 10) || 0) * 0.1;
-        gsap.fromTo(el,
-          { opacity: 0, y: 28 },
-          {
-            opacity: 1, y: 0, duration: 0.7, ease: "power2.out", delay: delay,
-            overwrite: "auto",
-            onComplete: function () { settleReveal(el); },
-            scrollTrigger: {
-              trigger: el,
-              start: "top 88%",
-              toggleActions: "play none none none",
-              once: true
-            }
-          }
-        );
-      });
-
-      // Recalcula posições quando fontes/imagens/layout assentam. As seções de 100svh
-      // e os painéis sticky mudam o cálculo do start/end do ScrollTrigger.
-      var refresh = function () { ST.refresh(); };
-      if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(refresh);
-      window.addEventListener("load", refresh);
-      cleanup.push(function () { window.removeEventListener("load", refresh); });
-
-      // Fallback de segurança: 2s após o load, qualquer .zy-reveal ainda em opacity 0
-      // é forçado a aparecer (garante que nenhum card fique preso invisível).
-      var safety = function () {
-        setTimeout(function () {
-          els.forEach(function (el) {
-            if (parseFloat(getComputedStyle(el).opacity) < 0.05) settleReveal(el);
-          });
-          ST.refresh();
-        }, 2000);
-      };
-      if (doc.readyState === "complete") safety();
-      else window.addEventListener("load", safety, { once: true });
-      return;
-    }
-
-    // Fallback (sem GSAP): IntersectionObserver.
-    if ("IntersectionObserver" in window) {
-      var io = new IntersectionObserver(function (entries, obs) {
-        entries.forEach(function (en) {
-          if (en.isIntersecting) { settleReveal(en.target); obs.unobserve(en.target); }
-        });
-      }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
-      els.forEach(function (el) { io.observe(el); });
-      cleanup.push(function () { io.disconnect(); });
-    } else {
-      els.forEach(settleReveal);
-    }
-  }
-
-  /* ---------- estados reativos: menu móvel ---------- */
+  /* ---------- menu móvel ---------- */
   function initMenu() {
     var burger = doc.getElementById("zyBurger");
     var menu = doc.getElementById("zyMobileMenu");
@@ -146,256 +39,191 @@
     });
   }
 
-  /* ---------- estados reativos: formulário → WhatsApp ---------- */
+  /* ---------- bandas que expandem (movimento 2) ----------
+     Marca as duas mudanças de modo da página: de ler para interagir
+     (dashboard) e de ler para agir (contato). Roda uma vez por banda.
+     Sem a classe .motion (reduced-motion) o CSS já mostra o estado final. */
+  function initBands() {
+    var bands = doc.querySelectorAll(".band--expand");
+    if (!bands.length || !doc.documentElement.classList.contains("motion")) return;
+    if (!("IntersectionObserver" in window)) {
+      bands.forEach(function (b) { b.classList.add("is-in"); b.dataset.expanded = "true"; });
+      return;
+    }
+    // avisa quando a expansão terminou (o dashboard espera isso para ligar as
+    // barras, assim os dois movimentos nunca começam no mesmo instante)
+    var css = getComputedStyle(doc.documentElement);
+    var durBand = parseFloat(css.getPropertyValue("--dur-band")) || 0;
+    var settle = parseFloat(css.getPropertyValue("--dur-settle")) || 0;
+    function done(band) {
+      if (band.dataset.expanded === "true") return;
+      band.dataset.expanded = "true";
+      band.dispatchEvent(new CustomEvent("zy:band-expanded"));
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var band = entry.target;
+        band.addEventListener("transitionend", function (e) {
+          if (e.pseudoElement === "::before") done(band);
+        });
+        setTimeout(function () { done(band); }, durBand + settle); // se o transitionend não vier
+        band.classList.add("is-in");
+        io.unobserve(band);
+      });
+    }, { rootMargin: "0px 0px -25% 0px" });
+    bands.forEach(function (b) { io.observe(b); });
+  }
+
+  /* ---------- projetos no desktop: foco por teclado ----------
+     Com a seção fixa, a plaqueta que recebe o foco pode estar fora da tela na
+     horizontal (a posição dela depende do scroll vertical). Ao focar algo
+     dentro de uma plaqueta, rola a página até o ponto em que ela aparece
+     inteira. Nada de trocar layout ou parar a animação: sem salto. */
+  function initProjectsFocus() {
+    var section = doc.getElementById("projetos");
+    var track = section && section.querySelector(".projects-track");
+    var rail = section && section.querySelector(".projects-rail");
+    if (!track || !rail) return;
+    var pinned = function () { return getComputedStyle(track).animationName !== "none"; };
+    track.addEventListener("focusin", function (e) {
+      if (!pinned()) return;
+      var plaque = e.target.closest(".plaque");
+      if (!plaque) return;
+      var distance = track.offsetWidth - rail.clientWidth;          // quanto a faixa anda
+      var pad = parseFloat(getComputedStyle(track).paddingLeft) || 0;
+      if (distance <= 0) return;
+      // progresso em que a plaqueta encosta na margem esquerda, limitado a 0–1
+      var p = Math.min(1, Math.max(0, (plaque.offsetLeft - pad) / distance));
+      var top = section.getBoundingClientRect().top + window.scrollY;
+      var run = section.offsetHeight - window.innerHeight;          // trecho em que a seção fica fixa
+      window.scrollTo({ top: top + p * run });
+    });
+  }
+
+  /* ---------- formulário → WhatsApp ----------
+     Cada erro aparece logo abaixo do seu campo, ligado ao input por
+     aria-describedby e anunciado pelo role="alert" do próprio parágrafo.
+     O parágrafo de status no fim fica só para o sucesso. */
   function initForm() {
     var form = doc.getElementById("zyForm");
     var status = doc.getElementById("zyStatus");
     if (!form) return;
-    function setStatus(isError, msg) {
-      if (!status) return;
-      status.classList.toggle("form-status--error", isError);
-      status.textContent = msg;
+    var errorOf = function (field) { return doc.getElementById(field.id + "-erro"); };
+    var PHONE_EXAMPLE = "(11) 91234-5678";
+    function setError(field, msg) {
+      var el = errorOf(field);
+      field.classList.toggle("form-input--invalid", !!msg);
+      if (msg) field.setAttribute("aria-invalid", "true");
+      else field.removeAttribute("aria-invalid");
+      if (!el) return;
+      el.textContent = "";
+      if (!msg) return;
+      // o exemplo de telefone vai num span que não quebra: nem a Sofia nem a
+      // Archivo têm o hífen inseparável (U+2011), então o hífen é o comum
+      var parts = msg.split(PHONE_EXAMPLE);
+      parts.forEach(function (txt, i) {
+        el.appendChild(doc.createTextNode(txt));
+        if (i < parts.length - 1) {
+          var span = doc.createElement("span");
+          span.className = "nowrap";
+          span.textContent = PHONE_EXAMPLE;
+          el.appendChild(span);
+        }
+      });
     }
+    // limpa o erro assim que o usuário corrige o campo
+    [form.nome, form.contato].forEach(function (field) {
+      if (field) field.addEventListener("input", function () { setError(field, ""); });
+    });
     form.addEventListener("submit", function (e) {
       e.preventDefault();
+      if (status) status.textContent = "";
       var nome = form.nome.value.trim();
       var contato = form.contato.value.trim();
       var msg = form.mensagem.value.trim();
-      if (!nome || !contato) {
-        setStatus(true, "Preencha seu nome e um e-mail ou WhatsApp para continuar.");
-        (!nome ? form.nome : form.contato).focus();
+      // um campo, dois formatos: e-mail (algo@algo.algo) ou telefone com DDD
+      // (10 a 13 dígitos, aceitando espaço, parênteses, traço e +55)
+      var isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contato);
+      var isPhone = /^\d{10,13}$/.test(contato.replace(/[\s().+-]/g, ""));
+      var nomeErro = nome ? "" : "Preencha seu nome.";
+      var contatoErro = !contato ? "Preencha um e-mail ou WhatsApp."
+        : (!isEmail && !isPhone) ? "Digite um e-mail, como voce@email.com, ou um WhatsApp com DDD, como " + PHONE_EXAMPLE + "."
+        : "";
+      setError(form.nome, nomeErro);
+      setError(form.contato, contatoErro);
+      if (nomeErro || contatoErro) {
+        (nomeErro ? form.nome : form.contato).focus();
         return;
       }
       var texto = encodeURIComponent(
         "Olá! Sou " + nome + " (" + contato + ")." +
         (msg ? "\n\nO que quero resolver: " + msg : "\n\nQuero começar um projeto com a Zyphy.")
       );
-      window.open("https://wa.me/5511977176036?text=" + texto, "_blank", "noopener");
-      setStatus(false, "Abrindo o WhatsApp… A Zyphy responde ainda hoje!");
+      window.open("https://wa.me/5511924507188?text=" + texto, "_blank", "noopener");
+      if (status) status.textContent = "Abrindo o WhatsApp com sua mensagem.";
       form.reset();
     });
   }
 
-  /* ---------- inicialização principal (antigo componentDidMount) ---------- */
-  function init() {
-    var header = doc.getElementById("zyHeader");
-    var heroCard = doc.getElementById("zyHeroCard");
-    var logoEl = doc.getElementById("zyLogo");
-    var zEl = doc.getElementById("zyZ");
-    var zInner = doc.getElementById("zyZInner");
-    var restEl = doc.getElementById("zyRest");
-    var heroContent = doc.getElementById("zyHeroContent");
-    if (!header || !zEl || !restEl) return;
+  /* ---------- vídeo do hero: orquestração de entrada da página ----------
+     Toca uma vez, sem som, e para no último quadro (sem loop); só então o
+     texto entra (.intro-done, ver "abertura" no CSS). Sem vídeo quando o
+     boot.js não pôs .intro (reduced-motion ou economia de dados): ali a imagem
+     parada já é o estado final. O poster é o mesmo último quadro, então
+     autoplay bloqueado também termina no lugar certo. */
+  function initHeroVideo() {
+    var root = doc.documentElement;
+    var media = doc.querySelector(".hero-media");
+    var still = media && media.querySelector(".hero-still");
+    if (!still || !root.classList.contains("intro")) return;
 
-    /* ---------- calibragem (props ajustáveis) ---------- */
-    var WAIT = PROPS.esperaAntesDoVoo;
-    var FLIGHT = PROPS.duracaoDoVoo;
-    var HOLD = PROPS.tempoEstatico;
-    var TREMBLE_AT = PROPS.momentoDoTremor;
-    var skip = PROPS.pularIntro;
-    // WAIT/FLIGHT/HOLD mantidos para paridade com a calibragem original.
-    void WAIT; void FLIGHT; void HOLD;
-
-    /* ---------- intro (auto, sem depender de scroll) ---------- */
-    var progress = 0, hitDone = false, restW = 0, zBig = 0, zFinal = 0;
-
-    var computeSizes = function () {
-      var cw = heroCard ? heroCard.clientWidth : window.innerWidth;
-      zBig = Math.min(Math.max(cw * 0.28, 90), 190);
-      zFinal = Math.min(Math.max(cw * 0.12, 44), 84); // tamanho final = igual ao "yphy"
-      restEl.style.fontSize = zFinal + "px";
-    };
-    var measureRest = function () { restW = restEl.getBoundingClientRect().width; };
-
-    var triggerTremble = function () {
-      zInner.style.animation = "none";
-      void zInner.offsetWidth;
-      zInner.style.animation = "zyTremble .5s ease-out";
-    };
-
-    var revealContent = function () {
-      heroContent.style.opacity = "1";
-      heroContent.style.transform = "translateY(0)";
-      header.style.opacity = "1";
-      header.style.transform = "translateY(0)";
-    };
-
-    var applyProgress = function (p) {
-      p = Math.max(0, Math.min(1, p));
-      progress = p;
-      zEl.style.fontSize = (zBig - (zBig - zFinal) * p) + "px";
-      logoEl.style.transform = "translateX(" + (restW / 2) * (1 - p) + "px)";
-      var flyDist = (heroCard ? heroCard.clientWidth : window.innerWidth) * 0.7;
-      restEl.style.transform = "translateX(" + flyDist * (1 - p) + "px)";
-      if (p >= TREMBLE_AT && !hitDone) { hitDone = true; triggerTremble(); }
-      if (p > 0.6) revealContent();
-    };
-
-    var lockScroll = function () { docEl.classList.add("intro-lock"); if (lenis) lenis.stop(); window.scrollTo(0, 0); };
-    var unlock = function () { docEl.classList.remove("intro-lock"); if (lenis) lenis.start(); };
-    cleanup.push(unlock);
-
-    // Sinaliza o momento em que o hero fica visível de fato (intro fora da
-    // frente). A cena 3D (js/hero3d.js) orquestra a abertura da tampa a
-    // partir deste evento, via GSAP.
-    var markHeroShown = function () {
-      window.__zyHeroShownAt = performance.now();
-      doc.dispatchEvent(new CustomEvent("zy:hero-shown"));
-    };
-
-    var initIntro = function () {
-      computeSizes();
-      measureRest();
-      // o site já nasce formado por baixo da intro do notebook
-      zEl.style.opacity = "1";
-      applyProgress(1);
-      var intro = doc.getElementById("zyIntro");
-      if (reduce || skip) { if (intro) intro.remove(); markHeroShown(); return; }
-      if (!intro) { markHeroShown(); return; }
-      lockScroll();
-      var lid = doc.getElementById("zyLid");
-      var lap = doc.getElementById("zyLap");
-      var boot = doc.getElementById("zyBoot");
-      var bootTxt = doc.getElementById("zyBootTxt");
-      var bootZ = doc.getElementById("zyBootZ");
-      var T = function (fn, ms) { var t = setTimeout(fn, ms); cleanup.push(function () { clearTimeout(t); }); };
-      // 1) tampa abre
-      T(function () { lid.style.transform = "rotateX(0deg)"; }, 500);
-      // 2) tela "boota" digitando
-      var msg = "zyphy.sys // inicializando";
-      T(function () {
-        var i = 0;
-        var tv = setInterval(function () {
-          bootTxt.textContent = msg.slice(0, ++i);
-          if (i >= msg.length) clearInterval(tv);
-        }, 42);
-        cleanup.push(function () { clearInterval(tv); });
-      }, 1450);
-      // 3) o Z acende na tela
-      T(function () { boot.style.opacity = "0"; bootZ.style.opacity = "1"; bootZ.style.transform = "scale(1)"; }, 3050);
-      // 4) mergulho para dentro da tela (zoom mirado no centro da tela do notebook)
-      T(function () {
-        var scr = doc.getElementById("zyScr");
-        var lr = lap.getBoundingClientRect();
-        var sr = scr.getBoundingClientRect();
-        var cx = sr.left + sr.width / 2, cy = sr.top + sr.height / 2;
-        lap.style.transformOrigin = (cx - lr.left) + "px " + (cy - lr.top) + "px";
-        var scale = Math.max(window.innerWidth / sr.width, window.innerHeight / sr.height) * 1.15;
-        var tx = window.innerWidth / 2 - cx, ty = window.innerHeight / 2 - cy;
-        lap.style.transform = "translate(" + tx + "px," + ty + "px) scale(" + scale + ")";
-        intro.style.transition = "opacity .5s ease .95s";
-        intro.style.opacity = "0";
-      }, 3750);
-      T(function () { intro.remove(); unlock(); markHeroShown(); }, 5250);
-    };
-
-    var onResize = function () { computeSizes(); measureRest(); applyProgress(progress); };
-    window.addEventListener("resize", onResize);
-    cleanup.push(function () { window.removeEventListener("resize", onResize); });
-
-    if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(initIntro);
-    else initIntro();
-
-    /* ---------- header: sombra + barra de progresso ---------- */
-    var progressBar = doc.getElementById("zyProgress");
-    var onScroll = function () {
-      var scrolled = window.scrollY > 8;
-      header.classList.toggle("is-scrolled", scrolled);
-      if (progressBar) {
-        var docH = docEl.scrollHeight - window.innerHeight;
-        progressBar.style.width = (docH > 0 ? (window.scrollY / docH) * 100 : 0) + "%";
-      }
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    cleanup.push(function () { window.removeEventListener("scroll", onScroll); });
-
-    /* ---------- navegação por âncora (funciona com painéis sticky) ---------- */
-    doc.querySelectorAll('a[href^="#"]').forEach(function (a) {
-      a.addEventListener("click", function (ev) {
-        var id = a.getAttribute("href").slice(1);
-        var t = doc.getElementById(id);
-        if (!t) return;
-        ev.preventDefault();
-        // posição de fluxo real (imune ao sticky): soma as alturas dos irmãos anteriores no <main>
-        var y = 0;
-        var parent = t.parentElement;
-        if (parent && parent.tagName === "MAIN") {
-          var mm = parent;
-          while (mm) { y += mm.offsetTop; mm = mm.offsetParent; }
-          for (var s = 0; s < parent.children.length; s++) {
-            var sib = parent.children[s];
-            if (sib === t) break;
-            y += sib.offsetHeight;
-          }
-        } else {
-          var n = t;
-          while (n) { y += n.offsetTop; n = n.offsetParent; }
-        }
-        if (lenis) lenis.scrollTo(y);
-        else window.scrollTo({ top: y, behavior: reduce ? "auto" : "smooth" });
-      });
-    });
-
-    /* ---------- scroll reveal ---------- */
-    initReveals();
-
-    /* ---------- palavra rotativa ---------- */
-    var rotator = doc.getElementById("zyRotator");
-    if (rotator && !reduce) {
-      var words = ["seu site", "seu app", "sua ferramenta", "sua operação", "sua ideia", "sua presença"];
-      var wi = 0;
-      var iv = setInterval(function () {
-        if (doc.hidden) return;
-        while (rotator.children.length > 1) rotator.removeChild(rotator.firstElementChild);
-        var cur = rotator.firstElementChild;
-        var next = doc.createElement("span");
-        next.textContent = words[(wi + 1) % words.length];
-        next.className = "rotator-word";
-        next.style.cssText = "opacity:0;transform:translateY(100%)";
-        rotator.appendChild(next);
-        void next.offsetWidth;
-        next.style.transition = "opacity .5s ease,transform .5s ease";
-        next.style.opacity = "1";
-        next.style.transform = "translateY(0)";
-        if (cur) {
-          cur.style.transition = "opacity .5s ease,transform .5s ease";
-          cur.style.opacity = "0";
-          cur.style.transform = "translateY(-100%)";
-          setTimeout(function () { cur.remove(); }, 550);
-        }
-        wi = (wi + 1) % words.length;
-      }, 2500);
-      cleanup.push(function () { clearInterval(iv); });
+    var revealed = false;
+    function reveal() {
+      if (revealed) return;
+      revealed = true;
+      root.classList.add("intro-done");
+      window.removeEventListener("scroll", onScroll);
+      doc.removeEventListener("keydown", reveal);
     }
-  }
+    /* quem já está rolando ou navegando por teclado não espera o vídeo */
+    function onScroll() { if (window.scrollY > HEADER_SCROLL_THRESHOLD) reveal(); }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    doc.addEventListener("keydown", reveal);
 
-  /* ---------- avatares dos depoimentos ---------- */
-  // Por padrao o circulo mostra as iniciais do nome. Se o card tiver
-  // data-avatar com o caminho de uma foto, ela e carregada em segundo plano e
-  // so substitui as iniciais quando terminar de carregar; se a foto faltar,
-  // o fallback continua no lugar.
-  function initAvatars() {
-    doc.querySelectorAll(".testimonial-avatar[data-avatar]").forEach(function (el) {
-      var src = (el.getAttribute("data-avatar") || "").trim();
-      if (!src) return;
-      var img = new Image();
-      img.onload = function () {
-        img.alt = "";
-        el.textContent = "";
-        el.appendChild(img);
-      };
-      img.src = src;
+    /* celular: versão de 960px (0,4–0,6 MB em vez de 1–2,2 MB) */
+    var suffix = window.matchMedia("(max-width:599px)").matches ? "-960" : "";
+
+    var video = doc.createElement("video");
+    video.className = "hero-video";
+    video.muted = true;
+    video.setAttribute("muted", "");
+    video.playsInline = true;
+    video.setAttribute("playsinline", "");
+    video.setAttribute("aria-hidden", "true");
+    video.preload = "auto";
+    video.poster = still.currentSrc || still.src;
+    [["assets/video/hero" + suffix + ".webm", "video/webm"], ["assets/video/hero" + suffix + ".mp4", "video/mp4"]].forEach(function (s) {
+      var source = doc.createElement("source");
+      source.src = s[0];
+      source.type = s[1];
+      video.appendChild(source);
     });
+    /* se nenhuma fonte carregar, o vídeo sai e a imagem parada fica */
+    video.lastElementChild.addEventListener("error", function () { video.remove(); reveal(); });
+    video.addEventListener("ended", reveal);
+    media.appendChild(video);
+    var p = video.play();
+    if (p && p.catch) p.catch(reveal);
   }
 
-  /* ---------- boot ---------- */
   function boot() {
-    initSmoothScroll();
+    initHeroVideo();
+    initHeader();
     initMenu();
+    initBands();
+    initProjectsFocus();
     initForm();
-    initAvatars();
-    init();
   }
 
   if (doc.readyState === "loading") doc.addEventListener("DOMContentLoaded", boot);

@@ -3,490 +3,377 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Zyphy resolve os problemas de tecnologia do seu dia a dia: automatiza processos, moderniza sistemas e cria sites, apps e dashboards sob medida.">
 <title>Zyphy | Tecnologia que destrava o seu dia a dia</title>
+<meta name="description" content="Zyphy resolve os problemas de tecnologia do seu dia a dia: automatiza processos, moderniza sistemas e cria sites, apps e dashboards sob medida.">
+<link rel="canonical" href="https://zyphy.com.br/">
 <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<meta name="theme-color" content="#0C1212">
-<script>
-(function(){
-  try{
-    var stored = localStorage.getItem('zy-theme'); // 'light' | 'dark' | ausente = sistema
-    var theme = (stored === 'light' || stored === 'dark')
-      ? stored
-      : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-    document.documentElement.setAttribute('data-theme', theme);
-    // hex duplicado do --bg do CSS de propósito: o stylesheet ainda não carregou aqui.
-    var meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', theme === 'light' ? '#F4F8F8' : '#0C1212');
-  }catch(e){}
-})();
-</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- mesmo valor de --band-deep (css/tokens.css); meta não lê variável CSS -->
+<meta name="theme-color" content="#050B0B">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Zyphy">
+<meta property="og:url" content="https://zyphy.com.br/">
+<meta property="og:title" content="Zyphy | Tecnologia que destrava o seu dia a dia">
+<meta property="og:description" content="Automação, sistemas e produtos digitais sob medida para empresas e pessoas.">
+<!-- og:image = último quadro do vídeo do hero, recortado em 1200x630 -->
+<meta property="og:image" content="https://zyphy.com.br/assets/img/og-zyphy.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Notebook sobre uma mesa escura, à noite, com um painel de indicadores na tela">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- fonte do H1: chega antes de o texto entrar (no fim do vídeo, ou direto sem ele) -->
+<link rel="preload" href="assets/fonts/sofia-sans-extra-condensed-800-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/styles.css">
-<script type="importmap">
-{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js" } }
-</script>
+<!-- sem defer: as classes .js e .motion precisam existir antes do primeiro paint -->
+<script src="js/boot.js"></script>
 </head>
 <body>
 <a href="#conteudo" class="skip-link">Pular para o conteúdo</a>
-<div>
 
-  <!-- ================= INTRO: NOTEBOOK ABRINDO ================= -->
-  <div id="zyIntro" class="intro" aria-hidden="true">
-    <div id="zyLap" class="intro-laptop">
-      <div id="zyLid" class="intro-lid">
-        <div class="intro-lid-back" aria-hidden="true">
-          <span class="intro-lid-logo">Z</span>
-        </div>
-        <div class="intro-lid-front">
-          <div class="intro-cam"></div>
-          <div id="zyScr" class="intro-screen">
-            <div id="zyBoot" class="intro-boot"><span id="zyBootTxt"></span><span class="intro-cursor"></span></div>
-            <div id="zyBootZ" class="intro-bootz">Z</div>
-          </div>
-        </div>
-      </div>
-      <div class="intro-base">
-        <div class="intro-base-body">
-          <div class="intro-keys"></div>
-          <div class="intro-trackpad"></div>
-        </div>
-      </div>
-      <div class="intro-shadow" aria-hidden="true"></div>
-    </div>
-  </div>
-
-  <!-- ================= HEADER FIXO ================= -->
+  <!-- ================= HEADER ================= -->
   <header id="zyHeader" class="site-header">
     <nav class="nav-main" aria-label="Navegação principal">
       <a href="#topo" class="brand zy-logo" aria-label="Zyphy, início"><span class="zy-logo-z">Z</span>yphy</a>
-      <div class="zy-navlinks">
-        <a href="#dor">Problemas</a>
+      <div class="nav-links">
         <a href="#solucoes">Soluções</a>
-        <a href="#publicos">Para quem é</a>
-        <a href="#portfolio">Portfólio</a>
-        <a href="#processo">Como funciona</a>
+        <a href="#processo">Como construímos</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#contato">Contato</a>
       </div>
-      <a class="nav-cta" href="#contato">Começar projeto →</a>
-      <button class="zy-burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="zyMobileMenu" id="zyBurger">
+      <a class="nav-cta btn btn--ghost" href="#contato">Começar projeto</a>
+      <button class="nav-burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="zyMobileMenu" id="zyBurger">
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
       </button>
     </nav>
-    <div id="zyProgress" class="progress-bar" aria-hidden="true"></div>
   </header>
 
-  <!-- menu móvel -->
-  <div id="zyMobileMenu" class="mobile-menu" hidden>
-    <a href="#dor" class="mobile-menu-link" data-close-menu>Problemas</a>
+  <!-- menu móvel: landmark próprio, nome diferente do nav do desktop -->
+  <nav id="zyMobileMenu" class="mobile-menu" aria-label="Navegação no celular" hidden>
     <a href="#solucoes" class="mobile-menu-link" data-close-menu>Soluções</a>
-    <a href="#publicos" class="mobile-menu-link" data-close-menu>Para quem é</a>
-    <a href="#portfolio" class="mobile-menu-link" data-close-menu>Portfólio</a>
-    <a href="#processo" class="mobile-menu-link" data-close-menu>Como funciona</a>
-    <a href="#contato" class="mobile-menu-cta" data-close-menu>Começar projeto →</a>
-  </div>
+    <a href="#processo" class="mobile-menu-link" data-close-menu>Como construímos</a>
+    <a href="#projetos" class="mobile-menu-link" data-close-menu>Projetos</a>
+    <a href="#contato" class="mobile-menu-link" data-close-menu>Contato</a>
+    <a href="#contato" class="btn btn--primary mobile-menu-cta" data-close-menu>Começar projeto</a>
+  </nav>
 
   <main id="conteudo" tabindex="-1">
-    <!-- ================= HERO + INTRO (painel 1) ================= -->
-    <section class="zy-panel panel panel--surface hero" id="topo" aria-label="Apresentação da Zyphy">
-      <div class="hero-3d" aria-hidden="true">
-        <canvas id="zyHero3D"></canvas>
-      </div>
-      <div class="hero-glow" aria-hidden="true"></div>
 
-      <div id="zyHeroCard" class="hero-card">
-        <!-- logotipo animado -->
-        <div id="zyLogo" class="hero-logo zy-logo" aria-hidden="true">
-          <span id="zyZ" class="hero-z zy-logo-z"><span id="zyZInner" class="hero-z-inner">Z</span></span>
-          <span id="zyRest" class="hero-rest">yphy</span>
-        </div>
-        <!-- conteúdo do hero -->
-        <div id="zyHeroContent" class="hero-content">
-          <div class="badge-pill"><span class="dot dot--pulse"></span>Para empresas e pessoas</div>
-          <h1 class="hero-title">Tecnologia que <span class="text-accent">destrava</span> o seu dia a dia.</h1>
-          <p class="hero-sub">Automatizamos processos manuais, modernizamos sistemas antigos e criamos sites, apps e dashboards sob medida, com clareza, sem complicar o que já funciona.</p>
+    <!-- ================= HERO (banda funda) ================= -->
+    <section class="band band--deep hero" id="topo" aria-labelledby="hero-titulo">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <!-- quebras: 3 linhas pelos .line no desktop; 4 linhas pelos br.br-m no celular -->
+          <h1 id="hero-titulo" class="display-h1"><span class="line">Tecnologia<br class="br-m"> que</span> <span class="line"><br class="br-m">destrava o<br class="br-m"> seu</span> <span class="line">dia a dia.</span></h1>
+          <p class="hero-sub">Automação, sistemas e produtos digitais sob medida para empresas e pessoas — construídos por quem vai colocar a mão no código.</p>
           <div class="hero-ctas">
-            <a href="#contato" class="btn-primary">Começar projeto →</a>
-            <a href="#solucoes" class="btn-ghost">Ver soluções</a>
+            <a href="#contato" class="btn btn--primary">Começar projeto</a>
+            <a href="#projetos" class="btn btn--ghost">Ver projetos</a>
           </div>
-          <div class="hero-note"><span class="dot"></span>Resposta no mesmo dia · sem compromisso</div>
-          <div class="scroll-hint" aria-hidden="true">
-            <span>Role para explorar</span>
-            <span class="scroll-hint-line"></span>
+          <p class="hero-note">Resposta no mesmo dia, sem compromisso.</p>
+        </div>
+        <!-- último quadro do vídeo: é o que o reduced-motion e a economia de dados
+             veem, e o poster do vídeo. O <video> entra por js/main.js (initHeroVideo). -->
+        <div class="hero-media">
+          <picture>
+            <source type="image/webp" srcset="assets/img/hero-final-960.webp 960w, assets/img/hero-final-1912.webp 1912w" sizes="100vw">
+            <img class="hero-still" src="assets/img/hero-final-960.jpg" srcset="assets/img/hero-final-960.jpg 960w, assets/img/hero-final-1912.jpg 1912w" sizes="100vw" width="1912" height="1080" alt="Notebook sobre uma mesa escura, à noite, com um painel de indicadores na tela">
+          </picture>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= DASHBOARD AO VIVO (banda elevada, expande) ================= -->
+    <section class="band band--raised band--expand dash-section" id="dashboard" aria-label="Exemplo de dashboard">
+      <div class="container">
+        <figure class="dash-figure">
+          <div class="dash" id="zyDash">
+            <div class="dash-head">
+              <p class="dash-title">Loja exemplo</p>
+              <div class="dash-filter" role="group" aria-label="Período">
+                <button type="button" class="dash-filter-btn" data-period="d7" aria-pressed="false">7 dias</button>
+                <button type="button" class="dash-filter-btn" data-period="d30" aria-pressed="true">30 dias</button>
+                <button type="button" class="dash-filter-btn" data-period="m12" aria-pressed="false">12 meses</button>
+              </div>
+            </div>
+            <dl class="dash-kpis">
+              <div class="dash-kpi"><dt>Pedidos</dt><dd data-kpi="orders">1.542</dd></div>
+              <div class="dash-kpi"><dt>Faturamento</dt><dd data-kpi="revenue">R$&nbsp;147.757</dd></div>
+              <div class="dash-kpi"><dt>Ticket médio</dt><dd data-kpi="ticket">R$&nbsp;95,82</dd></div>
+            </dl>
+            <p class="dash-chart-label" id="zyDashChartLabel">Faturamento por dia</p>
+            <div class="dash-chart" data-chart aria-hidden="true"></div>
+            <p class="sr-only" aria-live="polite" id="zyDashLive"></p>
+          </div>
+          <figcaption class="dash-caption">Exemplo de dashboard que entregamos — clique nos filtros. Dados fictícios.</figcaption>
+        </figure>
+        <!-- dados de exemplo (fictícios): [pedidos, faturamento em R$] por período.
+             d7 = últimos 7 dias de d30; o último mês de m12 = total de d30 -->
+        <script type="application/json" id="zyDashData">{"d7":[[44,4007.84],[51,4532.78],[57,5329.84],[61,6270.16],[59,5348.28],[44,4071.65],[43,4075.68]],"d30":[[38,3903.82],[42,3837.49],[48,4633.12],[43,4301.41],[63,6091.19],[62,6086.83],[63,5787.94],[43,4271.04],[48,4265.39],[48,4583.34],[51,5146.85],[54,5195.28],[65,6436.04],[61,5931.57],[51,5229.2],[43,4014.75],[50,4665.8],[40,3710.49],[58,5377.64],[65,6299.67],[62,6326.83],[39,3602.66],[46,4422.48],[44,4007.84],[51,4532.78],[57,5329.84],[61,6270.16],[59,5348.28],[44,4071.65],[43,4075.68]],"m12":[[930,86902.22],[1021,91139.8],[1117,103221.65],[1158,109884.73],[1166,108703.16],[1188,113627.37],[1320,120851.42],[1323,118429.26],[1345,122271.57],[1335,122125.86],[1486,146052.71],[1542,147757.06]]}</script>
+      </div>
+    </section>
+
+    <!-- ================= ONDE A GENTE ENTRA (banda base) =================
+         A dor é o título de cada linha. No desktop o H2 fica fixo à esquerda
+         enquanto as três dores passam à direita. -->
+    <section class="band band--base" id="solucoes" aria-labelledby="sol-titulo">
+      <div class="container sol-grid">
+        <h2 id="sol-titulo" class="display-h2 sol-title">Onde a gente entra.</h2>
+        <div class="sol-body">
+          <ul class="fix-list">
+            <li class="fix-item">
+              <h3 class="fix-pain">Planilha, <span class="nowrap">copia-e-cola</span>, retrabalho.</h3>
+              <p class="fix-service">Automação de processos</p>
+              <p class="fix-text">Viram rotina automática integrada ao que você já usa.</p>
+            </li>
+            <li class="fix-item">
+              <h3 class="fix-pain">Aquele sistema antigo que ninguém mexe com medo de quebrar.</h3>
+              <p class="fix-service">Modernização de sistemas</p>
+              <p class="fix-text">Vira uma base nova, migrada por partes, sem parar o que já funciona.</p>
+            </li>
+            <li class="fix-item">
+              <h3 class="fix-pain">A ideia está na cabeça, mas falta por onde começar.</h3>
+              <p class="fix-service">Sites, apps e dashboards</p>
+              <p class="fix-text">Vira site, app ou dashboard sob medida, pronto para usar.</p>
+            </li>
+          </ul>
+          <div class="audience">
+            <div class="audience-col">
+              <h3 class="audience-title">Para empresas</h3>
+              <ul class="audience-list">
+                <li>Sistemas sob medida</li>
+                <li>Modernização de legado</li>
+              </ul>
+            </div>
+            <div class="audience-col">
+              <h3 class="audience-title">Para pessoas</h3>
+              <ul class="audience-list">
+                <li>Site ou app do seu projeto</li>
+                <li>Automação do dia a dia</li>
+                <li>Suporte contínuo</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ================= DOR (painel 2) ================= -->
-    <section class="zy-panel panel panel--a" id="dor" aria-labelledby="dor-titulo">
+    <!-- ================= COMO A GENTE CONSTRÓI (banda elevada) =================
+         Escada: no desktop cada passo começa duas colunas depois do anterior. -->
+    <section class="band band--raised" id="processo" aria-labelledby="proc-titulo">
       <div class="container">
-        <div class="zy-reveal section-head">
-          <div class="kicker">A dor</div>
-          <h2 id="dor-titulo" class="section-title">A tecnologia devia ajudar, não travar o seu dia.</h2>
-          <p class="section-lead">Se algum desses cenários soa familiar, você está no lugar certo. A Zyphy existe para resolver exatamente isso.</p>
-        </div>
-        <div class="grid grid--280">
-          <article class="zy-reveal card zy-card">
-            <span class="icon-chip" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 3"></path><circle cx="12" cy="12" r="9"></circle></svg></span>
-            <h3 class="card-title">Tarefas manuais sem fim</h3>
-            <p class="card-text">Planilhas, copiar e colar, retrabalho. Horas preciosas gastas no que uma automação resolveria em segundos.</p>
-          </article>
-          <article class="zy-reveal card zy-card" data-delay="1">
-            <span class="icon-chip" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"></path><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"></path></svg></span>
-            <h3 class="card-title">Sistemas antigos travando tudo</h3>
-            <p class="card-text">Aquele software que ninguém mexe com medo de quebrar. Lento, frágil e impossível de evoluir.</p>
-          </article>
-          <article class="zy-reveal card zy-card" data-delay="2">
-            <span class="icon-chip" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.5 2-1.4 1.4M8 16a5 5 0 0 1 0-7l4-4a5 5 0 0 1 7 7l-1.5 1.5M16 8a5 5 0 0 1 0 7l-4 4a5 5 0 0 1-7-7L6.5 10.5"></path></svg></span>
-            <h3 class="card-title">Ideias digitais que não saem do papel</h3>
-            <p class="card-text">Um site, um app, uma ferramenta na cabeça, mas complexidade demais e clareza de menos para começar.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= SOLUÇÕES (painel 3) ================= -->
-    <section class="zy-panel panel panel--b" id="solucoes" aria-labelledby="sol-titulo">
-      <div class="container">
-        <div class="zy-reveal section-head">
-          <div class="kicker">A solução</div>
-          <h2 id="sol-titulo" class="section-title">Soluções sob medida, do problema ao resultado.</h2>
-          <p class="section-lead">Nada de produto engessado. Entendemos o seu contexto e construímos exatamente o que faz sentido para você.</p>
-        </div>
-        <div class="grid grid--280">
-          <article class="zy-reveal card zy-card">
-            <div class="card-num">01 /</div>
-            <h3 class="card-title card-title--lg">Automação de processos</h3>
-            <p class="card-text">Transformamos tarefas manuais e repetitivas em fluxos automáticos. Menos erro, mais tempo para o que importa.</p>
-            <div class="tag-row">
-              <span class="tag">Fluxos</span>
-              <span class="tag">Integrações</span>
-              <span class="tag">Rotinas</span>
-            </div>
-          </article>
-          <article class="zy-reveal card zy-card" data-delay="1">
-            <div class="card-num">02 /</div>
-            <h3 class="card-title card-title--lg">Modernização de sistemas</h3>
-            <p class="card-text">Damos nova vida a sistemas antigos sem quebrar o que já funciona. Mais velocidade, segurança e base para crescer.</p>
-            <div class="tag-row">
-              <span class="tag">Migração</span>
-              <span class="tag">Refatoração</span>
-              <span class="tag">Segurança</span>
-            </div>
-          </article>
-          <article class="zy-reveal card zy-card" data-delay="2">
-            <div class="card-num">03 /</div>
-            <h3 class="card-title card-title--lg">Sites, apps e dashboards</h3>
-            <p class="card-text">Criamos produtos digitais sob medida, bonitos, rápidos e fáceis de usar, feitos para o seu objetivo.</p>
-            <div class="tag-row">
-              <span class="tag">Sites</span>
-              <span class="tag">Apps</span>
-              <span class="tag">Dashboards</span>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= PÚBLICOS (painel 4) ================= -->
-    <section class="zy-panel panel panel--c" id="publicos" aria-labelledby="pub-titulo">
-      <div class="container">
-        <div class="zy-reveal section-head">
-          <div class="kicker">Para quem é</div>
-          <h2 id="pub-titulo" class="section-title">Uma parceira de tecnologia para dois mundos.</h2>
-          <p class="section-lead">Seja para destravar a operação de uma empresa ou para organizar a sua vida digital, a Zyphy fala a sua língua, sem jargão.</p>
-        </div>
-        <div class="grid grid--300">
-          <article class="zy-reveal card zy-card card--audience card--audience-dark">
-            <span class="icon-chip icon-chip--lg" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"></path><path d="M5 21V7l7-4 7 4v14"></path><path d="M9 9h.01M9 13h.01M9 17h.01M15 9h.01M15 13h.01M15 17h.01"></path></svg></span>
-            <h3 class="card-title card-title--lg">Para empresas</h3>
-            <p class="card-text card-text--lg">Destrave a operação, elimine tarefas manuais e modernize sistemas antigos sem parar o que já dá certo. Menos gargalos, mais tempo para crescer.</p>
-          </article>
-          <article class="zy-reveal card zy-card card--audience" data-delay="1">
-            <span class="icon-chip icon-chip--lg" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"></path></svg></span>
-            <h3 class="card-title card-title--lg">Para pessoas</h3>
-            <p class="card-text card-text--lg">Organize a sua vida digital com soluções simples e sob medida. Tecnologia que trabalha por você, do jeito claro e prático que você sempre quis.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= PORTFOLIO (sites no ar) ================= -->
-    <section class="zy-panel panel panel--a" id="portfolio" aria-labelledby="port-titulo">
-      <div class="container">
-        <div class="zy-reveal section-head">
-          <div class="kicker">Portfólio</div>
-          <h2 id="port-titulo" class="section-title">Trabalhos que já entregamos.</h2>
-          <p class="section-lead">Cada projeto nasceu de um problema real do cliente e foi construído sob medida, sem template.</p>
-        </div>
-        <div class="grid grid--250">
-          <article class="zy-reveal card zy-card card--project">
-            <div class="project-media"><picture>
-              <source srcset="assets/img/07-site-stahltek-rotuladoras-home-com-linha-de-producao.webp" type="image/webp">
-              <img src="assets/img/07-site-stahltek-rotuladoras-home-com-linha-de-producao.jpg" alt="Site da Stahltek Rotuladoras, home com ilustração de linha de produção" width="800" height="500" loading="lazy">
-            </picture></div>
-            <div class="project-body">
-              <span class="project-tag">Site institucional</span>
-              <h3 class="project-title">Stahltek Rotuladoras</h3>
-              <p class="project-desc">Fabricante de rotuladoras industriais: catálogo de equipamentos, serviço de manutenção e pedido de orçamento que cai direto no WhatsApp da equipe.</p>
-              <a class="project-link" href="https://site-stahltek.vercel.app" target="_blank" rel="noopener noreferrer">
-                Ver site no ar<span class="sr-only"> (abre em nova aba)</span><span class="project-link-arrow" aria-hidden="true">↗</span>
-              </a>
-            </div>
-          </article>
-          <article class="zy-reveal card zy-card card--project" data-delay="1">
-            <div class="project-media">
-              <img src="assets/img/10-vora-jewelry-loja-iced-out-com-visualizador-360.png" alt="Vora Jewelry, loja iced-out com visualizador 360 graus dos produtos" width="800" height="500" loading="lazy">
-            </div>
-            <div class="project-body">
-              <div class="project-tags">
-                <span class="project-tag">Para pessoas</span>
-              </div>
-              <h3 class="project-title">Vora Jewelry</h3>
-              <p class="project-desc">Loja iced-out com visualizador 360° dos produtos e hero em vídeo. Next.js 16 + Tailwind v4 + shadcn/ui.</p>
-              <a class="project-link" href="https://vora-jewelry.vercel.app" target="_blank" rel="noopener noreferrer">
-                Ver site no ar<span class="sr-only"> (abre em nova aba)</span><span class="project-link-arrow" aria-hidden="true">↗</span>
-              </a>
-            </div>
-          </article>
-          <article class="zy-reveal card zy-card card--project" data-delay="2">
-            <div class="project-media">
-              <img src="assets/img/11-site-tecnova-assistencia-tecnica-de-celulares.png" alt="Site da TecNova, home de assistência técnica com celular em destaque antes da desmontagem" width="800" height="500" loading="lazy">
-            </div>
-            <div class="project-body">
-              <div class="project-tags">
-                <span class="project-tag">Site institucional</span>
-              </div>
-              <h3 class="project-title">TecNova</h3>
-              <p class="project-desc">Site para assistência técnica com hero de desmontagem de produto controlado por scroll, usando GSAP ScrollTrigger e Lenis.</p>
-              <a class="project-link" href="https://tecnova-site-chi.vercel.app" target="_blank" rel="noopener noreferrer">
-                Ver site no ar<span class="sr-only"> (abre em nova aba)</span><span class="project-link-arrow" aria-hidden="true">↗</span>
-              </a>
-            </div>
-          </article>
-          <article class="zy-reveal card zy-card card--project" data-delay="3">
-            <div class="project-media">
-              <img src="assets/img/13-fieldfix-app-manutencao-sob-demanda.png" alt="Site do FieldFix, hero com painel de acompanhamento de um chamado de manutenção em tempo real" width="800" height="500" loading="lazy">
-            </div>
-            <div class="project-body">
-              <div class="project-tags">
-                <span class="project-tag">App mobile</span>
-              </div>
-              <h3 class="project-title">FieldFix</h3>
-              <p class="project-desc">Marketplace de manutenção sob demanda: empresas abrem o chamado pelo app, o técnico mais próximo aceita e acompanha tudo em tempo real, do aceite à avaliação. Android e iOS.</p>
-              <div class="project-links">
-                <a class="project-link" href="https://fieldfix-one.vercel.app" target="_blank" rel="noopener noreferrer">
-                  Ver o projeto<span class="sr-only"> (abre em nova aba)</span><span class="project-link-arrow" aria-hidden="true">↗</span>
-                </a>
-                <a class="project-link" href="https://play.google.com/store/apps/details?id=com.fieldfix.app" target="_blank" rel="noopener noreferrer">
-                  Baixar no Google Play<span class="sr-only"> (abre em nova aba)</span><span class="project-link-arrow" aria-hidden="true">↗</span>
-                </a>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= DEPOIMENTOS (painel 7) ================= -->
-    <section class="zy-panel panel panel--c" id="depoimentos" aria-labelledby="depo-titulo">
-      <div class="container">
-        <div class="zy-reveal section-head">
-          <div class="kicker">Depoimentos</div>
-          <h2 id="depo-titulo" class="section-title">Quem já trabalhou com a gente.</h2>
-        </div>
-        <div class="grid grid--fill300">
-          <figure class="zy-reveal card zy-card testimonial">
-            <blockquote class="testimonial-quote">O novo site ficou muito melhor que o anterior. Agora temos uma apresentação mais profissional e conseguimos mostrar nossos serviços e equipamentos de forma muito mais clara. Fiquei bastante satisfeito com o resultado.</blockquote>
-            <figcaption class="testimonial-author">
-              <!-- foto: preencher data-avatar com assets/img/avatars/<nome>.jpg - sem foto, ficam as iniciais -->
-              <span class="testimonial-avatar" data-avatar="" aria-hidden="true">CE</span>
-              <span class="testimonial-id">
-                <span class="testimonial-name">Carlos Eduardo</span>
-                <span class="testimonial-role">Gerente Comercial, Stahltek Rotuladoras</span>
-              </span>
-            </figcaption>
-            <a class="project-tag testimonial-project" href="https://site-stahltek.vercel.app" target="_blank" rel="noopener noreferrer">
-              Stahltek Rotuladoras<span class="sr-only"> (abre em nova aba)</span><span class="project-link-arrow" aria-hidden="true">↗</span>
-            </a>
-          </figure>
-          <figure class="zy-reveal card zy-card testimonial" data-delay="1">
-            <blockquote class="testimonial-quote">Gostei bastante do site! Achei o visual moderno, elegante e combina muito com a proposta da VORA. Os produtos estão bem organizados e a navegação é simples, o que facilita bastante para encontrar as peças. Também gostei muito da parte de personalização, que é um diferencial bem interessante. No geral, fiquei muito satisfeito com o resultado e acho que o site representa muito bem a minha marca.</blockquote>
-            <figcaption class="testimonial-author">
-              <!-- foto: preencher data-avatar com assets/img/avatars/<nome>.jpg - sem foto, ficam as iniciais -->
-              <span class="testimonial-avatar" data-avatar="" aria-hidden="true">SS</span>
-              <span class="testimonial-id">
-                <span class="testimonial-name">Severina Silva</span>
-                <span class="testimonial-role">Fundadora, VORA Jewelry</span>
-              </span>
-            </figcaption>
-            <a class="project-tag testimonial-project" href="https://vora-jewelry.vercel.app" target="_blank" rel="noopener noreferrer">
-              Vora Jewelry<span class="sr-only"> (abre em nova aba)</span><span class="project-link-arrow" aria-hidden="true">↗</span>
-            </a>
-          </figure>
-          <figure class="zy-reveal card zy-card testimonial" data-delay="2">
-            <blockquote class="testimonial-quote">Fiquei muito satisfeito com o novo site. Antes, nossa empresa não tinha uma apresentação tão profissional, e agora conseguimos mostrar nossos serviços de forma muito mais clara. O site ficou moderno, simples de navegar e transmite muito mais confiança para nossos clientes.</blockquote>
-            <figcaption class="testimonial-author">
-              <!-- foto: preencher data-avatar com assets/img/avatars/<nome>.jpg - sem foto, ficam as iniciais -->
-              <span class="testimonial-avatar" data-avatar="" aria-hidden="true">CA</span>
-              <span class="testimonial-id">
-                <span class="testimonial-name">Cleyton Alves</span>
-                <span class="testimonial-role">Proprietário, TecNova</span>
-              </span>
-            </figcaption>
-            <a class="project-tag testimonial-project" href="https://tecnova-site-chi.vercel.app" target="_blank" rel="noopener noreferrer">
-              TecNova<span class="sr-only"> (abre em nova aba)</span><span class="project-link-arrow" aria-hidden="true">↗</span>
-            </a>
-          </figure>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= PROCESSO (painel 5) ================= -->
-    <section class="zy-panel panel panel--b" id="processo" aria-labelledby="proc-titulo">
-      <div class="container">
-        <div class="zy-reveal section-head">
-          <div class="kicker">Como funciona</div>
-          <h2 id="proc-titulo" class="section-title">Do problema à solução em 4 passos.</h2>
-          <p class="section-lead">Um caminho simples e transparente, do primeiro contato até a entrega funcionando.</p>
-        </div>
+        <h2 id="proc-titulo" class="display-h2">Como a gente constrói.</h2>
         <ol class="steps">
-          <li class="zy-reveal step">
-            <span class="step-num" aria-hidden="true">01/</span>
-            <div class="step-head">
+          <li class="step">
+            <span class="step-num" aria-hidden="true">1</span>
+            <div class="step-body">
               <h3 class="step-title">Diagnóstico</h3>
-              <div class="step-code">&gt; diagnostico.run()</div>
+              <p class="step-desc">Você recebe um mapa de 1 página do que está travando e o que vale automatizar.</p>
             </div>
-            <p class="step-desc">Ouvimos o seu problema e mapeamos o que trava o seu dia a dia, sem enrolação.</p>
           </li>
-          <li class="zy-reveal step" data-delay="1">
-            <span class="step-num" aria-hidden="true">02/</span>
-            <div class="step-head">
+          <li class="step">
+            <span class="step-num" aria-hidden="true">2</span>
+            <div class="step-body">
               <h3 class="step-title">Plano</h3>
-              <div class="step-code">&gt; plano.compile()</div>
+              <p class="step-desc">Escopo, prazo e preço fechados por escrito antes de qualquer linha de código.</p>
             </div>
-            <p class="step-desc">Desenhamos o caminho sob medida, claro e do tamanho certo para a sua realidade.</p>
           </li>
-          <li class="zy-reveal step" data-delay="2">
-            <span class="step-num" aria-hidden="true">03/</span>
-            <div class="step-head">
-              <h3 class="step-title">Implementação</h3>
-              <div class="step-code">&gt; build.deploy()</div>
+          <li class="step">
+            <span class="step-num" aria-hidden="true">3</span>
+            <div class="step-body">
+              <h3 class="step-title">Construção</h3>
+              <p class="step-desc">Link de preview a cada entrega. Você acompanha em vez de esperar 3 meses.</p>
             </div>
-            <p class="step-desc">Construímos e testamos com você acompanhando cada etapa da entrega.</p>
           </li>
-          <li class="zy-reveal step" data-delay="3">
-            <span class="step-num" aria-hidden="true">04/</span>
-            <div class="step-head">
-              <h3 class="step-title">Suporte</h3>
-              <div class="step-code">&gt; suporte.watch()</div>
+          <li class="step">
+            <span class="step-num" aria-hidden="true">4</span>
+            <div class="step-body">
+              <h3 class="step-title">No ar e depois</h3>
+              <p class="step-desc">Deploy, monitoramento e ajustes incluídos por 7 dias.</p>
             </div>
-            <p class="step-desc">Sua solução no ar e a Zyphy por perto para ajustar e evoluir com você.</p>
           </li>
         </ol>
+        <p class="stack-line">Construímos com Next.js, Flutter, Supabase e Vercel. Sem template de terceiros.</p>
       </div>
     </section>
 
-    <!-- ================= CTA FINAL + FORM (painel 6) ================= -->
-    <section class="zy-panel panel panel--c" id="contato" aria-labelledby="cta-titulo">
-      <div class="cta-panel">
-        <canvas id="zyPlexusCta" class="canvas-fill" aria-hidden="true"></canvas>
-        <div class="cta-glow" aria-hidden="true"></div>
-        <div class="zy-reveal cta-head">
-          <div class="badge-pill"><span class="dot dot--pulse"></span>Vamos começar</div>
-          <h2 id="cta-titulo" class="cta-title">Vamos construir
-            <span id="zyRotator" class="rotator" aria-hidden="true"><span class="rotator-word">seu site</span></span>
-            <span class="sr-only">seu site, seu app, sua ferramenta, sua operação, sua ideia ou sua presença digital.</span>
-          </h2>
+    <!-- ================= PROJETOS COM FICHA TÉCNICA (banda funda) =================
+         Cada projeto é uma plaqueta: imagem, ficha e, quando confirmado, depoimento do cliente (FieldFix ainda sem).
+         Desktop com suporte a scroll-driven: seção fixa e plaquetas correndo na
+         horizontal (movimento 1). Celular, Firefox e reduced-motion: pilha
+         vertical, com o mesmo HTML e o mesmo CSS base.
+         Lighthouse 13.5.0, mobile, mediana de 3 execuções, 23/09/2026 -->
+    <section class="band band--deep projects-section" id="projetos" aria-labelledby="port-titulo">
+      <div class="projects-pin">
+        <div class="container projects-head">
+          <h2 id="port-titulo" class="display-h2">O que já está no ar.</h2>
+          <p class="section-note">4 projetos no ar.</p>
+          <p class="spec-source">Performance: Lighthouse, mobile, mediana de 3 execuções em 23/09/2026.</p>
         </div>
+        <div class="projects-rail">
+          <div class="projects-track">
+            <article class="plaque" aria-labelledby="proj-stahltek">
+              <div class="plaque-media"><picture>
+              <source srcset="assets/img/07-site-stahltek-rotuladoras-home-com-linha-de-producao.webp" type="image/webp">
+              <img src="assets/img/07-site-stahltek-rotuladoras-home-com-linha-de-producao.jpg" alt="Site da Stahltek Rotuladoras, home com ilustração de linha de produção" width="800" height="500" loading="lazy">
+              </picture></div>
+              <div class="plaque-body">
+                <h3 class="plaque-title" id="proj-stahltek">Stahltek Rotuladoras</h3>
+                <p class="project-desc">Fabricante de rotuladoras industriais: catálogo de equipamentos, serviço de manutenção e pedido de orçamento.</p>
+                <dl class="spec">
+                <dt>Tipo</dt><dd>Site institucional</dd>
+                <dt>Stack</dt><dd>HTML, CSS e JS</dd>
+                <dt>Integração</dt><dd>Orçamento direto no WhatsApp</dd>
+                <dt>Performance</dt><dd>84</dd>
+                </dl>
+                <p class="project-links">
+                <a class="project-link" href="https://site-stahltek.vercel.app" target="_blank" rel="noopener noreferrer" aria-label="site-stahltek.vercel.app, site da Stahltek Rotuladoras (abre em nova aba)">site-stahltek.vercel.app</a>
+                </p>
+                <figure class="plaque-quote">
+                  <blockquote><p>“Conseguimos mostrar nossos serviços e equipamentos de forma muito mais clara.”</p></blockquote>
+                  <figcaption>Carlos Eduardo, Stahltek Rotuladoras<!-- cargo removido até confirmação --></figcaption>
+                </figure>
+              </div>
+            </article>
+            <article class="plaque" aria-labelledby="proj-vora">
+              <div class="plaque-media"><picture>
+              <source srcset="assets/img/10-vora-jewelry-loja-iced-out-com-visualizador-360.webp" type="image/webp">
+              <img src="assets/img/10-vora-jewelry-loja-iced-out-com-visualizador-360.png" alt="Vora Jewelry, loja iced-out com visualizador 360 graus dos produtos" width="800" height="500" loading="lazy">
+              </picture></div>
+              <div class="plaque-body">
+                <h3 class="plaque-title" id="proj-vora">Vora Jewelry</h3>
+                <p class="project-desc">Loja de joias iced-out com hero em vídeo e peças personalizáveis.</p>
+                <dl class="spec">
+                <dt>Tipo</dt><dd>Loja</dd>
+                <dt>Stack</dt><dd>Next.js 16, Tailwind v4, shadcn/ui</dd>
+                <dt>Destaque</dt><dd>Visualizador 360° dos produtos</dd>
+                <dt>Performance</dt><dd>86</dd>
+                </dl>
+                <p class="project-links">
+                <a class="project-link" href="https://vora-jewelry.vercel.app" target="_blank" rel="noopener noreferrer" aria-label="vora-jewelry.vercel.app, loja Vora Jewelry (abre em nova aba)">vora-jewelry.vercel.app</a>
+                </p>
+                <figure class="plaque-quote">
+                  <blockquote><p>“Os produtos estão bem organizados e a parte de personalização é um diferencial bem interessante.”</p></blockquote>
+                  <figcaption>Severina Silva, Vora Jewelry<!-- cargo removido até confirmação --></figcaption>
+                </figure>
+              </div>
+            </article>
+            <article class="plaque" aria-labelledby="proj-tecnova">
+              <div class="plaque-media"><picture>
+              <source srcset="assets/img/11-site-tecnova-assistencia-tecnica-de-celulares.webp" type="image/webp">
+              <img src="assets/img/11-site-tecnova-assistencia-tecnica-de-celulares.png" alt="Site da TecNova, home de assistência técnica com celular em destaque antes da desmontagem" width="800" height="500" loading="lazy">
+              </picture></div>
+              <div class="plaque-body">
+                <h3 class="plaque-title" id="proj-tecnova">TecNova</h3>
+                <p class="project-desc">Assistência técnica de celulares, com o aparelho se desmontando conforme a página rola.</p>
+                <dl class="spec">
+                <dt>Tipo</dt><dd>Site institucional</dd>
+                <dt>Stack</dt><dd>HTML, GSAP ScrollTrigger</dd>
+                <dt>Destaque</dt><dd>Desmontagem do produto controlada por scroll</dd>
+                <dt>Performance</dt><dd>84</dd>
+                </dl>
+                <p class="project-links">
+                <a class="project-link" href="https://tecnova-site-chi.vercel.app" target="_blank" rel="noopener noreferrer" aria-label="tecnova-site-chi.vercel.app, site da TecNova (abre em nova aba)">tecnova-site-chi.vercel.app</a>
+                </p>
+                <figure class="plaque-quote">
+                  <blockquote><p>“O site ficou simples de navegar e transmite muito mais confiança para nossos clientes.”</p></blockquote>
+                  <figcaption>Cleyton Alves, TecNova<!-- cargo removido até confirmação --></figcaption>
+                </figure>
+              </div>
+            </article>
+            <article class="plaque" aria-labelledby="proj-fieldfix">
+              <div class="plaque-media"><picture>
+              <source srcset="assets/img/13-fieldfix-app-manutencao-sob-demanda.webp" type="image/webp">
+              <img src="assets/img/13-fieldfix-app-manutencao-sob-demanda.png" alt="Site do FieldFix, hero com painel de acompanhamento de um chamado de manutenção em tempo real" width="800" height="500" loading="lazy">
+              </picture></div>
+              <div class="plaque-body">
+                <h3 class="plaque-title" id="proj-fieldfix">FieldFix</h3>
+                <p class="project-desc">Marketplace de manutenção sob demanda: a empresa abre o chamado, o técnico mais próximo aceita e tudo é acompanhado em tempo real.</p>
+                <dl class="spec">
+                <dt>Tipo</dt><dd>App Android e iOS</dd>
+                <dt>Stack</dt><dd>Flutter, Supabase (Auth, Postgres, Realtime)</dd>
+                </dl>
+                <!-- PENDENTE: status e link da Google Play voltam quando a publicação for confirmada no Play Console -->
+                <p class="project-links">
+                <a class="project-link" href="https://fieldfix-one.vercel.app" target="_blank" rel="noopener noreferrer" aria-label="fieldfix-one.vercel.app, site do FieldFix (abre em nova aba)">fieldfix-one.vercel.app</a>
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <form class="zy-reveal form-card" data-delay="1" id="zyForm" novalidate="novalidate">
+    <!-- ================= CONTATO (banda de cor, expande) =================
+         A frase ocupa a primeira tela da banda; o formulário vem na segunda. -->
+    <section class="band band--color band--expand" id="contato" aria-labelledby="cta-titulo">
+      <div class="container">
+        <div class="contact-lead">
+          <h2 id="cta-titulo" class="display-statement">Conta pra gente o que está travando.</h2>
+        </div>
+        <form class="contact-form" id="zyForm" novalidate="novalidate">
           <div class="form-field">
             <label for="zy-nome" class="form-label">Seu nome <span class="form-req" aria-hidden="true">*</span></label>
-            <input type="text" id="zy-nome" name="nome" class="form-input" placeholder="Como podemos te chamar?" autocomplete="name" required="required">
+            <input type="text" id="zy-nome" name="nome" class="form-input" placeholder="Como podemos te chamar?" autocomplete="name" aria-describedby="zy-nome-erro" required="required">
+            <!-- erro fica logo abaixo do campo; role=alert anuncia quando o texto aparece -->
+            <p class="form-error" id="zy-nome-erro" role="alert"></p>
           </div>
           <div class="form-field">
             <label for="zy-contato" class="form-label">Seu e-mail ou WhatsApp <span class="form-req" aria-hidden="true">*</span></label>
-            <input type="text" id="zy-contato" name="contato" class="form-input" placeholder="voce@email.com ou (00) 00000-0000" autocomplete="email" inputmode="email" required="required">
+            <!-- aceita e-mail OU telefone: teclado padrão (tem letras, @ e números),
+                 sem inputmode/autocomplete de um tipo só. Formato checado no js/main.js -->
+            <input type="text" id="zy-contato" name="contato" class="form-input" placeholder="voce@email.com ou (00) 00000-0000" autocapitalize="off" autocorrect="off" spellcheck="false" aria-describedby="zy-contato-dica zy-contato-erro" required="required">
+            <p class="form-field-hint" id="zy-contato-dica">E-mail ou WhatsApp com DDD.</p>
+            <p class="form-error" id="zy-contato-erro" role="alert"></p>
           </div>
-          <div class="form-field form-field--msg">
+          <div class="form-field form-field--wide">
             <label for="zy-msg" class="form-label">O que você quer resolver?</label>
             <textarea id="zy-msg" name="mensagem" class="form-input" placeholder="Conte, em poucas palavras, o que está travando o seu dia a dia."></textarea>
           </div>
-          <button type="submit" class="btn-submit">Enviar pelo WhatsApp →</button>
-          <p class="form-hint">Abre a conversa no WhatsApp com sua mensagem pronta · sem compromisso</p>
-          <p role="status" aria-live="polite" class="form-status" id="zyStatus"></p>
+          <div class="form-actions form-field--wide">
+            <button type="submit" class="btn btn--primary">Enviar pelo WhatsApp</button>
+            <p class="form-hint">Abre a conversa com sua mensagem pronta.</p>
+          </div>
+          <p role="status" aria-live="polite" class="form-status form-field--wide" id="zyStatus"></p>
         </form>
+        <div class="contact-direct">
+          <p class="contact-direct-label">Ou fale direto:</p>
+          <!-- glifos oficiais do Instagram e do WhatsApp (simple-icons 16.33.0); e-mail não tem marca: envelope do Material Icons -->
+          <ul class="social">
+            <li><a class="social-link" href="https://www.instagram.com/zyphytech/" target="_blank" rel="noopener noreferrer" aria-label="Instagram da Zyphy"><svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg></a></li>
+            <li><a class="social-link" href="https://wa.me/5511924507188" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp da Zyphy"><svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a></li>
+            <li><a class="social-link" href="mailto:contato.zyphy@gmail.com" aria-label="E-mail da Zyphy"><svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></a></li>
+          </ul>
+        </div>
       </div>
     </section>
   </main>
 
-  <!-- ================= RODAPÉ ================= -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a href="#topo" class="brand brand--lg zy-logo" aria-label="Zyphy, início"><span class="zy-logo-z">Z</span>yphy</a>
-          <p class="footer-text">Tecnologia que resolve o seu dia a dia, com clareza, sob medida e sem complicar o que já funciona.</p>
-          <div class="footer-social">
-            <a href="https://wa.me/5511977176036" target="_blank" rel="noopener" aria-label="Zyphy no WhatsApp" class="icon-btn"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12.04 2A9.9 9.9 0 0 0 2.1 11.9c0 1.75.46 3.46 1.34 4.97L2 22l5.28-1.38a9.9 9.9 0 0 0 4.75 1.21h.01A9.9 9.9 0 0 0 22 11.9 9.9 9.9 0 0 0 12.04 2zm0 18.02h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.13.82.84-3.05-.2-.31a8.2 8.2 0 0 1-1.26-4.38 8.22 8.22 0 0 1 14.03-5.8 8.13 8.13 0 0 1 2.42 5.8 8.22 8.22 0 0 1-8.21 8.2zm4.5-6.15c-.25-.12-1.46-.72-1.68-.8-.23-.09-.39-.13-.56.12-.16.25-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.23-1.46-1.37-1.71-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.16.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43l-.48-.01c-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.57.12.16 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.46-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"></path></svg></a>
-            <a href="mailto:contato.zyphy@gmail.com" aria-label="Enviar e-mail para a Zyphy" class="icon-btn"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m2 6 10 7 10-7"></path></svg></a>
-            <a href="https://www.instagram.com/zyphytech/" target="_blank" rel="noopener noreferrer" aria-label="Instagram da Zyphy" class="icon-btn"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
-          </div>
-          <div id="zyThemeSwitch" class="theme-switch" role="radiogroup" aria-label="Tema">
-            <button type="button" class="theme-switch-btn" data-theme-choice="system" role="radio" aria-checked="true" aria-label="Tema do sistema" tabindex="0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg></button>
-            <button type="button" class="theme-switch-btn" data-theme-choice="light" role="radio" aria-checked="false" aria-label="Tema claro" tabindex="-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><line x1="12" y1="2" x2="12" y2="4"></line><line x1="12" y1="20" x2="12" y2="22"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="2" y1="12" x2="4" y2="12"></line><line x1="20" y1="12" x2="22" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></button>
-            <button type="button" class="theme-switch-btn" data-theme-choice="dark" role="radio" aria-checked="false" aria-label="Tema escuro" tabindex="-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></button>
-          </div>
-        </div>
-        <nav aria-label="Soluções">
-          <h3 class="footer-heading">Soluções</h3>
-          <div class="footer-links">
-            <a href="#solucoes">Automação</a>
-            <a href="#solucoes">Modernização</a>
-            <a href="#solucoes">Sites e apps</a>
-            <a href="#solucoes">Dashboards</a>
-          </div>
-        </nav>
-        <nav aria-label="Para quem">
-          <h3 class="footer-heading">Para quem</h3>
-          <div class="footer-links">
-            <a href="#publicos">Empresas</a>
-            <a href="#publicos">Pessoas</a>
-            <a href="#processo">Como funciona</a>
-          </div>
-        </nav>
-        <nav aria-label="Contato">
-          <h3 class="footer-heading">Contato</h3>
-          <div class="footer-links">
-            <a href="#contato">Começar projeto</a>
-            <a href="https://wa.me/5511977176036" target="_blank" rel="noopener">+55 11 97717-6036</a>
-            <a href="mailto:contato.zyphy@gmail.com">contato.zyphy@gmail.com</a>
-          </div>
-        </nav>
+  <!-- ================= RODAPÉ (banda funda) ================= -->
+  <footer class="band band--deep site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="#topo" class="brand zy-logo" aria-label="Zyphy, início"><span class="zy-logo-z">Z</span>yphy</a>
+        <p class="footer-text">Sites, apps, dashboards e automações sob medida.</p>
       </div>
-      <div class="footer-bottom">
-        <p>© 2026 Zyphy. Todos os direitos reservados.</p>
-        <p><a href="/fieldfix/privacidade/">Privacidade</a></p>
-        <p>Feito com clareza, tecnologia que trabalha por você.</p>
-      </div>
+      <!-- glifos oficiais do Instagram e do WhatsApp (simple-icons 16.33.0); e-mail não tem marca: envelope do Material Icons -->
+      <ul class="social">
+        <li><a class="social-link" href="https://www.instagram.com/zyphytech/" target="_blank" rel="noopener noreferrer" aria-label="Instagram da Zyphy"><svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg></a></li>
+        <li><a class="social-link" href="https://wa.me/5511924507188" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp da Zyphy"><svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a></li>
+        <li><a class="social-link" href="mailto:contato.zyphy@gmail.com" aria-label="E-mail da Zyphy"><svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg></a></li>
+      </ul>
+      <!-- PENDENTE: voltar <ul class="footer-links"><li><a href="/privacidade/">Privacidade</a></li></ul> quando a política sair do rascunho -->
+      <p class="footer-copy">© 2026 Zyphy</p>
     </div>
   </footer>
 
-  <!-- FAB WhatsApp -->
-  <a href="https://wa.me/5511977176036?text=Olá!%20Quero%20falar%20com%20a%20Zyphy." target="_blank" rel="noopener" aria-label="Fale com a Zyphy no WhatsApp" class="fab-whatsapp">
-    <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor" aria-hidden="true"><path d="M12.04 2A9.9 9.9 0 0 0 2.1 11.9c0 1.75.46 3.46 1.34 4.97L2 22l5.28-1.38a9.9 9.9 0 0 0 4.75 1.21h.01A9.9 9.9 0 0 0 22 11.9 9.9 9.9 0 0 0 12.04 2zm0 18.02h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.13.82.84-3.05-.2-.31a8.2 8.2 0 0 1-1.26-4.38 8.22 8.22 0 0 1 14.03-5.8 8.13 8.13 0 0 1 2.42 5.8 8.22 8.22 0 0 1-8.21 8.2zm4.5-6.15c-.25-.12-1.46-.72-1.68-.8-.23-.09-.39-.13-.56.12-.16.25-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.23-1.46-1.37-1.71-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.16.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43l-.48-.01c-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.57.12.16 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.46-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"></path></svg>
-  </a>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-<script src="js/theme.js" defer></script>
+
 <script src="js/main.js" defer></script>
-<script type="module" src="js/hero3d.js"></script>
-<script type="module" src="js/cta-constellation.js"></script>
+<script src="js/dashboard.js" defer></script>
 </body>
 </html>
