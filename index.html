@@ -30,18 +30,8 @@
 <link rel="preload" href="assets/fonts/sofia-sans-extra-condensed-800-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/styles.css">
-<script>
-/* js: habilita os estados "antes" das bandas que expandem.
-   motion: só sem prefers-reduced-motion; sem ela tudo fica no estado final. */
-(function(){
-  var d=document.documentElement; d.classList.add("js");
-  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) d.classList.add("motion");
-  /* o Firefox não carrega a face local de reserva enquanto a Sofia está
-     baixando e desenha com a fonte padrão (H1 estoura a coluna); pedir a
-     face aqui faz ele usar a reserva calibrada desde o primeiro paint */
-  if (document.fonts && document.fonts.load) document.fonts.load("800 1em 'Sofia Fallback'");
-})();
-</script>
+<!-- sem defer: as classes .js e .motion precisam existir antes do primeiro paint -->
+<script src="js/boot.js"></script>
 </head>
 <body>
 <a href="#conteudo" class="skip-link">Pular para o conteúdo</a>
@@ -222,8 +212,8 @@
       <div class="projects-pin">
         <div class="container projects-head">
           <h2 id="port-titulo" class="display-h2">O que já está no ar.</h2>
-          <p class="section-note">4 projetos no ar, entre eles 1 app publicado.</p>
-          <p class="spec-source">Performance e acessibilidade: Lighthouse, mobile, mediana de 3 execuções em 23/09/2026.</p>
+          <p class="section-note">4 projetos no ar.</p>
+          <p class="spec-source">Performance: Lighthouse, mobile, mediana de 3 execuções em 23/09/2026.</p>
         </div>
         <div class="projects-rail">
           <div class="projects-track">
@@ -240,7 +230,6 @@
                 <dt>Stack</dt><dd>HTML, CSS e JS</dd>
                 <dt>Integração</dt><dd>Orçamento direto no WhatsApp</dd>
                 <dt>Performance</dt><dd>84</dd>
-                <dt>Acessibilidade</dt><dd>99</dd>
                 </dl>
                 <p class="project-links">
                 <a class="project-link" href="https://site-stahltek.vercel.app" target="_blank" rel="noopener noreferrer" aria-label="site-stahltek.vercel.app, site da Stahltek Rotuladoras (abre em nova aba)">site-stahltek.vercel.app</a>
@@ -252,9 +241,10 @@
               </div>
             </article>
             <article class="plaque" aria-labelledby="proj-vora">
-              <div class="plaque-media">
+              <div class="plaque-media"><picture>
+              <source srcset="assets/img/10-vora-jewelry-loja-iced-out-com-visualizador-360.webp" type="image/webp">
               <img src="assets/img/10-vora-jewelry-loja-iced-out-com-visualizador-360.png" alt="Vora Jewelry, loja iced-out com visualizador 360 graus dos produtos" width="800" height="500" loading="lazy">
-              </div>
+              </picture></div>
               <div class="plaque-body">
                 <h3 class="plaque-title" id="proj-vora">Vora Jewelry</h3>
                 <p class="project-desc">Loja de joias iced-out com hero em vídeo e peças personalizáveis.</p>
@@ -263,7 +253,6 @@
                 <dt>Stack</dt><dd>Next.js 16, Tailwind v4, shadcn/ui</dd>
                 <dt>Destaque</dt><dd>Visualizador 360° dos produtos</dd>
                 <dt>Performance</dt><dd>86</dd>
-                <dt>Acessibilidade</dt><dd>87</dd>
                 </dl>
                 <p class="project-links">
                 <a class="project-link" href="https://vora-jewelry.vercel.app" target="_blank" rel="noopener noreferrer" aria-label="vora-jewelry.vercel.app, loja Vora Jewelry (abre em nova aba)">vora-jewelry.vercel.app</a>
@@ -275,9 +264,10 @@
               </div>
             </article>
             <article class="plaque" aria-labelledby="proj-tecnova">
-              <div class="plaque-media">
+              <div class="plaque-media"><picture>
+              <source srcset="assets/img/11-site-tecnova-assistencia-tecnica-de-celulares.webp" type="image/webp">
               <img src="assets/img/11-site-tecnova-assistencia-tecnica-de-celulares.png" alt="Site da TecNova, home de assistência técnica com celular em destaque antes da desmontagem" width="800" height="500" loading="lazy">
-              </div>
+              </picture></div>
               <div class="plaque-body">
                 <h3 class="plaque-title" id="proj-tecnova">TecNova</h3>
                 <p class="project-desc">Assistência técnica de celulares, com o aparelho se desmontando conforme a página rola.</p>
@@ -286,7 +276,6 @@
                 <dt>Stack</dt><dd>HTML, GSAP ScrollTrigger</dd>
                 <dt>Destaque</dt><dd>Desmontagem do produto controlada por scroll</dd>
                 <dt>Performance</dt><dd>84</dd>
-                <dt>Acessibilidade</dt><dd>96</dd>
                 </dl>
                 <p class="project-links">
                 <a class="project-link" href="https://tecnova-site-chi.vercel.app" target="_blank" rel="noopener noreferrer" aria-label="tecnova-site-chi.vercel.app, site da TecNova (abre em nova aba)">tecnova-site-chi.vercel.app</a>
@@ -298,20 +287,20 @@
               </div>
             </article>
             <article class="plaque" aria-labelledby="proj-fieldfix">
-              <div class="plaque-media">
+              <div class="plaque-media"><picture>
+              <source srcset="assets/img/13-fieldfix-app-manutencao-sob-demanda.webp" type="image/webp">
               <img src="assets/img/13-fieldfix-app-manutencao-sob-demanda.png" alt="Site do FieldFix, hero com painel de acompanhamento de um chamado de manutenção em tempo real" width="800" height="500" loading="lazy">
-              </div>
+              </picture></div>
               <div class="plaque-body">
                 <h3 class="plaque-title" id="proj-fieldfix">FieldFix</h3>
                 <p class="project-desc">Marketplace de manutenção sob demanda: a empresa abre o chamado, o técnico mais próximo aceita e tudo é acompanhado em tempo real.</p>
                 <dl class="spec">
                 <dt>Tipo</dt><dd>App Android e iOS</dd>
                 <dt>Stack</dt><dd>Flutter, Supabase (Auth, Postgres, Realtime)</dd>
-                <dt>Status</dt><dd>Publicado na Google Play</dd>
                 </dl>
+                <!-- PENDENTE: status e link da Google Play voltam quando a publicação for confirmada no Play Console -->
                 <p class="project-links">
                 <a class="project-link" href="https://fieldfix-one.vercel.app" target="_blank" rel="noopener noreferrer" aria-label="fieldfix-one.vercel.app, site do FieldFix (abre em nova aba)">fieldfix-one.vercel.app</a>
-                <a class="project-link" href="https://play.google.com/store/apps/details?id=com.fieldfix.app" target="_blank" rel="noopener noreferrer" aria-label="FieldFix no Google Play (abre em nova aba)">Google Play</a>
                 </p>
               </div>
             </article>

@@ -93,8 +93,8 @@ referência específica. Espere "ok" antes da Fase 4.
 ## 5. Estrutura da página
 
 Ordem: nav → hero → dashboard ao vivo → o que a Zyphy resolve → como a
-gente constrói → projetos com ficha técnica → depoimentos → contato →
-rodapé.
+gente constrói → projetos com ficha técnica (com os depoimentos dentro,
+ver §5.7) → contato → rodapé.
 
 ### 5.1 Nav
 Itens: Soluções, Como construímos, Projetos, Contato. Sem "→" no botão.
@@ -127,8 +127,9 @@ de entrega. Ex.: "Planilha, copia-e-cola, retrabalho. Viram rotina
 automática integrada ao que você já usa."
 
 Abaixo, duas colunas curtas:
-- **Para empresas:** automação de processos / sistemas sob medida /
-  modernização de legado
+- **Para empresas:** sistemas sob medida / modernização de legado.
+  "Automação de processos" fica fora desta coluna (decisão do Weslley,
+  29/09/2026): já é o primeiro item da lista de cima.
 - **Para pessoas:** site ou app do seu projeto / automação do dia a dia
   / suporte contínuo
 
@@ -143,7 +144,7 @@ sequência. Cada passo mostra o que o cliente recebe:
 3. **Construção** — "Link de preview a cada entrega. Você acompanha em
    vez de esperar 3 meses."
 4. **No ar e depois** — "Deploy, monitoramento e ajustes incluídos por
-   [X] dias." ← **pendente, item 9**
+   7 dias." (prazo confirmado pelo Weslley em 29/09/2026)
 
 Linha final sóbria: "Construímos com Next.js, Flutter, Supabase e
 Vercel. Sem template de terceiros." Texto, não carrossel de logo.
@@ -161,14 +162,20 @@ Cada card ganha ficha em duas colunas label/valor:
   ScrollTrigger · Destaque: desmontagem do produto por scroll ·
   Performance: [medido]
 - **FieldFix** — Tipo: app Android/iOS · Stack: Flutter, Supabase
-  (Auth, Postgres, Realtime) · Status: publicado na Google Play
+  (Auth, Postgres, Realtime). Sem status e sem link da Google Play até a
+  publicação ser confirmada no Play Console (ver §9).
 
-Uma linha acima dos cards: "4 projetos no ar, 1 app publicado." Sem
-counter animado.
+Uma linha acima dos cards: "4 projetos no ar." Sem counter animado.
+
+Métrica da ficha: só Performance, igual em todos os cards que têm
+Lighthouse. Acessibilidade saiu das fichas (decisão do Weslley,
+29/09/2026); o 87 da Vora vira tarefa separada.
 
 ### 5.7 Depoimentos
-H2: "Quem já trabalhou com a gente." Uma a duas frases cada, a parte
-mais específica. Nome + cargo + empresa numa linha, sem avatar de
+**Dentro das plaquetas dos projetos, sem seção própria nem H2** (decisão
+do Weslley, 29/09/2026): cada depoimento fica junto do projeto do mesmo
+cliente. Uma a duas frases cada, a parte mais específica. Nome + empresa
+numa linha (cargo volta quando confirmado, ver §9), sem avatar de
 iniciais.
 
 - Carlos Eduardo (Stahltek): "Conseguimos mostrar nossos serviços e
@@ -186,7 +193,8 @@ WhatsApp, mensagem) abre WhatsApp. Botão "Enviar pelo WhatsApp". Linha:
 
 ### 5.9 Rodapé
 Marca, uma frase que não repita a do hero: "Sites, apps, dashboards e
-automações sob medida." Contatos reais, Privacidade, © 2026.
+automações sob medida." Contatos reais, © 2026. O link de Privacidade
+entra quando a política sair do rascunho (ver §9).
 
 ---
 
@@ -232,7 +240,9 @@ inventar um por seção é ruído.
 **Vídeo do hero (decisão do Weslley, 2026-09-29):** o vídeo do hero é a
 orquestração de entrada da página e fica **fora da conta dos três
 comportamentos de scroll**. Toca uma vez, sem som, e para no último
-quadro (sem loop). O H1 aparece desde o início, na área escura da
+quadro (sem loop). Duração de 4,875s (117 quadros a 24fps), abaixo dos
+5s do WCAG 2.2.2, então dispensa botão de pausa; o corte tirou os
+primeiros quadros para o último continuar igual ao poster. O H1 aparece desde o início, na área escura da
 esquerda. O último quadro é o poster, a imagem do reduced-motion e do
 celular (sem vídeo) e a og:image.
 
@@ -263,11 +273,26 @@ H1, e só se a Fase 3 justificar.
 
 O agente não inventa nenhum destes. Se faltar, para e pede:
 
-- `[X] dias` de suporte pós-deploy — Weslley confirma
-- Lighthouse de site-stahltek, vora-jewelry e tecnova-site:
-  `npx lighthouse <url> --only-categories=performance,accessibility --quiet --chrome-flags="--headless"`
-- Imagem autoral do hero
-- Link do FieldFix na Play Store
+Situação em 29/09/2026:
+
+- **Resolvido:** Lighthouse de site-stahltek, vora-jewelry e tecnova-site.
+  Medido em 23/09/2026 (Lighthouse 13.5.0, mobile, mediana de 3
+  execuções) e publicado nas fichas dos projetos.
+- **Resolvido:** imagem autoral do hero. Virou o vídeo produzido pelo
+  Weslley (ver §7); o último quadro é o poster, a imagem do celular e do
+  reduced-motion, e a og:image.
+- **Resolvido:** suporte pós-deploy de 7 dias, confirmado pelo Weslley em
+  29/09/2026.
+- **Aberto:** FieldFix na Play Store. O link
+  `play.google.com/store/apps/details?id=com.fieldfix.app` devolveu 404
+  em 29/09/2026. Até o Weslley confirmar no Play Console, o site não diz
+  "publicado" nem tem link da loja (§5.6).
+- **Aberto:** cargos dos três depoimentos (removidos do site até
+  confirmação).
+- **Aberto:** política de privacidade. Campos `[PREENCHER]` e revisão
+  jurídica; até lá, fora do rodapé e fora do deploy (`.vercelignore`).
+- **Tarefa separada:** acessibilidade da Vora Jewelry (Lighthouse 87 em
+  23/09/2026). Não bloqueia este site: saiu da ficha (§5.6).
 
 ---
 

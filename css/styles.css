@@ -108,12 +108,12 @@ main:focus{outline:none}
   .hero{--copy-end:calc(max(var(--gutter),(100% - var(--container)) / 2) + (min(var(--container),100% - 2 * var(--gutter)) - var(--col-gap)) / 2);--screen-x:calc(var(--copy-end) + var(--hero-clearance));position:relative;isolation:isolate;overflow:clip;min-height:100svh;box-sizing:border-box;display:flex;align-items:flex-end;padding-bottom:var(--title-gap)}
   .hero-grid{grid-template-columns:repeat(var(--columns),minmax(0,1fr));column-gap:var(--col-gap)}
   .hero-copy{grid-column:1 / span 6}
-  .hero-media{position:absolute;top:0;left:var(--screen-x);z-index:-1;height:100%;width:auto;aspect-ratio:var(--hero-ratio);min-width:calc((100% - var(--screen-x)) / (1 - var(--hero-screen-at)));margin:0;transform:translateX(calc(var(--hero-screen-at) * -100%));-webkit-mask-image:linear-gradient(90deg,transparent,black var(--space-9));mask-image:linear-gradient(90deg,transparent,black var(--space-9))}
+  .hero-media{position:absolute;top:0;left:var(--screen-x);z-index:-1;height:100%;width:auto;aspect-ratio:var(--hero-ratio);min-width:calc((100% - var(--screen-x)) / (1 - var(--hero-screen-at)));margin:0;transform:translateX(calc(var(--hero-screen-at) * -100%));-webkit-mask-image:linear-gradient(90deg,transparent,var(--mask-opaque) var(--space-9));mask-image:linear-gradient(90deg,transparent,var(--mask-opaque) var(--space-9))}
   .hero-media::after{content:"";position:absolute;inset:0;background:var(--hero-scrim-bottom)}
-  /* sombra atrás do texto: só com a imagem parada (poster, fim do vídeo,
-     reduced-motion). Enquanto o vídeo toca, .is-playing tira a sombra. */
-  .hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,var(--hero-shade) 0,var(--hero-shade) calc(var(--copy-end) * var(--hero-shade-hold)),transparent var(--screen-x));transition:opacity var(--dur-shade) ease}
-  .hero.is-playing::after{opacity:0}
+  /* sombra atrás do texto, fixa durante todo o vídeo: medido pelo pixel mais
+     claro atrás de cada linha, sem ela o H1 fica abaixo de 4.5:1 em todos os
+     quadros (luzes da janela) e o sub a partir de ~1,7s (papéis) */
+  .hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,var(--hero-shade) 0,var(--hero-shade) calc(var(--copy-end) * var(--hero-shade-hold)),transparent var(--screen-x))}
 }
 
 /* ---------- Dashboard ao vivo ---------- */
@@ -250,7 +250,7 @@ main:focus{outline:none}
 .form-field-hint{margin:var(--space-2) 0 0;font-size:var(--fs-small);color:var(--text-muted)}
 .form-error{margin:var(--space-2) 0 0;font-size:var(--fs-small);font-weight:var(--weight-medium);color:var(--error)}
 .form-error:empty{display:none}
-.form-input{width:100%;box-sizing:border-box;min-height:var(--control-h);padding:var(--space-3) var(--space-4);font-size:var(--fs-body);color:var(--text);background:var(--band-deep);border:var(--hairline) solid var(--line);border-radius:var(--r-control);transition:border-color var(--dur-fast) ease}
+.form-input{width:100%;box-sizing:border-box;min-height:var(--control-h);padding:var(--space-3) var(--space-4);font-size:var(--fs-body);color:var(--text);background:var(--band-deep);border:var(--hairline) solid var(--line-control);border-radius:var(--r-control);transition:border-color var(--dur-fast) ease}
 .form-input:focus-visible{border-color:var(--focus-ring)}
 textarea.form-input{min-height:var(--textarea-min-h);line-height:var(--lh-body);resize:vertical}
 .form-actions{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-3) var(--space-5)}

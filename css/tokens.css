@@ -9,8 +9,9 @@
      - .001ms do bloco de reduced-motion (desliga transição, não é estilo)
      - 100vw e 0px na fórmula do sangramento do hero (geometria, não medida)
      - <meta name="theme-color"> no HTML: meta não lê variável CSS
-     - limiares do IntersectionObserver (rootMargin, threshold) ficam no JS:
-       são regra de disparo, não valor de estilo
+     - limiares de disparo ficam no JS, com nome (rootMargin do
+       IntersectionObserver, HEADER_SCROLL_THRESHOLD): são regra de
+       disparo, não valor de estilo
 
    Conceito: plaqueta de máquina. Uma família de tom (petróleo, derivada do
    ciano da marca) executada até o fim, acento raro, letra neutra comprimida.
@@ -74,6 +75,7 @@
        accent   sobre 950/900/850/petrol   9.8 /  8.2 /  6.5 /  6.5
        on-accent sobre accent              9.8
        error    sobre 950/900/850/petrol   8.7 /  7.2 /  5.7 /  5.8
+       sage-500 sobre 950/petrol (borda do campo, não-texto)  5.0 / 3.3 (mínimo 3:1)
        bar-idle sobre 950, tela do dashboard (objeto gráfico) 4.1 (mínimo 3:1)
      Degrau entre bandas vizinhas: 950/900 1.20, 900/850 1.27, 950/850 1.53,
      petrol/900 1.25, petrol/950 1.51. Afastado na Fase 5: com 1.11 a troca
@@ -87,12 +89,13 @@
   --cyan-500:#00CBCC;    /* ciano da marca */
   --cyan-400:#00E0E1;    /* ciano no hover */
   --coral-300:#FF8A80;   /* erro */
+  --sage-500:#5E8884;    /* borda dos campos do formulário */
   --sage-600:#4F7A76;    /* barra inativa do gráfico */
 
   /* ---------- Cor: papéis ---------- */
   /* bandas: vizinhas nunca iguais; petróleo só no contato.
      Sequência: hero deep, dashboard raised, soluções base, processo raised,
-     projetos deep, depoimentos base, contato color, rodapé deep */
+     projetos deep (depoimentos dentro das plaquetas), contato color, rodapé deep */
   --band-deep:var(--ink-950);
   --band-base:var(--ink-900);
   --band-raised:var(--ink-850);
@@ -101,6 +104,10 @@
   --text:var(--mist-100);
   --text-muted:var(--mist-400);
   --line:rgba(227,239,237,.12);        /* divisória dentro de lista, nunca entre seções */
+  /* contorno de campo: componente de interface, precisa de 3:1 (WCAG 1.4.11)
+     contra o fundo do campo e contra a banda de cor em volta. --line não chega */
+  --line-control:var(--sage-500);
+  --mask-opaque:#000;                  /* máscara: só o alfa conta, a cor não aparece */
 
   /* acento raro: botão primário, foco de teclado, barra ativa do dashboard */
   --accent:var(--cyan-500);
@@ -132,9 +139,9 @@
   --hero-ratio:1912/1080;        /* proporção do vídeo e do poster */
   --hero-screen-at:.445;         /* borda esquerda da tampa, em fração da largura do quadro */
   --hero-clearance:var(--space-8);  /* folga entre o fim do H1 e a tampa */
-  /* sombra atrás da coluna de texto: só leitura, e só sobre a imagem parada
-     (some enquanto o vídeo toca). Segura o tom até o fim da coluna e some na
-     folga, antes da tampa. */
+  /* sombra atrás da coluna de texto: só leitura. Segura o tom até o fim da
+     coluna e some na folga, antes da tampa. 80% é o mínimo medido para o sub
+     (mist-400) ficar acima de 4.5:1 em todos os quadros (pior: papéis, ~2,6s). */
   --hero-shade:color-mix(in srgb,var(--band-deep) 80%,transparent);
   --hero-shade-hold:1;
   --hero-scrim-bottom:linear-gradient(0deg,var(--band-deep) 0%,transparent 22%);
@@ -246,7 +253,6 @@
   --dur-fast:200ms;       /* hover e foco */
   --dur-data:600ms;       /* tween dos dados */
   --dur-band:900ms;       /* banda que expande */
-  --dur-shade:600ms;      /* sombra do hero some quando o vídeo toca e volta no último quadro */
   --dur-settle:100ms;     /* folga até dar a expansão por terminada, se o transitionend não vier */
   --band-inset-start:6%;  /* recorte lateral da banda antes de expandir */
   --band-radius-start:var(--r-screen);

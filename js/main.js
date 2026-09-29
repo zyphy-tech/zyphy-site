@@ -6,12 +6,14 @@
   "use strict";
 
   var doc = document;
+  /* rolagem, em px, a partir da qual o header ganha a borda de baixo */
+  var HEADER_SCROLL_THRESHOLD = 8;
 
   /* ---------- header: borda ao rolar ---------- */
   function initHeader() {
     var header = doc.getElementById("zyHeader");
     if (!header) return;
-    var onScroll = function () { header.classList.toggle("is-scrolled", window.scrollY > 8); };
+    var onScroll = function () { header.classList.toggle("is-scrolled", window.scrollY > HEADER_SCROLL_THRESHOLD); };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
   }
@@ -173,7 +175,6 @@
     var media = doc.querySelector(".hero-media");
     var still = media && media.querySelector(".hero-still");
     if (!still) return;
-    var hero = media.closest(".hero");
     if (window.matchMedia("(max-width:599px), (prefers-reduced-motion:reduce)").matches) return;
 
     var video = doc.createElement("video");
@@ -192,12 +193,8 @@
       video.appendChild(source);
     });
     /* se nenhuma fonte carregar, o vídeo sai e a imagem parada fica */
-    video.lastElementChild.addEventListener("error", function () { video.remove(); hero.classList.remove("is-playing"); });
+    video.lastElementChild.addEventListener("error", function () { video.remove(); });
     media.appendChild(video);
-    /* a sombra atrás do texto só existe sobre a imagem parada: sai quando o
-       vídeo começa e volta no último quadro */
-    video.addEventListener("playing", function () { hero.classList.add("is-playing"); });
-    video.addEventListener("ended", function () { hero.classList.remove("is-playing"); });
     var p = video.play();
     if (p && p.catch) p.catch(function () {});
   }

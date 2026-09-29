@@ -1,0 +1,8 @@
+# Fora do deploy (o repositório continua com eles)
+# política em rascunho: volta quando sair do [PREENCHER] e da revisão jurídica
+/privacidade
+# material de trabalho, não é site
+/refs
+/brief-*.md
+# original de 8,5 MB do vídeo do hero (o site usa hero.webm e hero.mp4)
+/assets/video/hero-original.mp4
