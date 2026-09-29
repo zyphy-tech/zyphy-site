@@ -94,8 +94,9 @@ main:focus{outline:none}
 .hero{padding-top:calc(var(--header-h) + var(--space-8))}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1fr);row-gap:var(--space-8)}
 .hero-copy{container-type:inline-size}
-/* sub e nota na cor do texto (não muted): sobre o vídeo, é o que deixa a
-   sombra em 62% em vez de 80% (ver --hero-shade) */
+/* sub e nota na cor do texto (não muted) em todas as larguras. O motivo é o
+   desktop, onde ficam sobre o vídeo: é o que deixa a sombra em 62% em vez
+   de 80% (ver --hero-shade). Abaixo de 1100px segue igual, por consistência */
 .hero-sub{margin:var(--space-6) 0 0;font-size:var(--fs-lead);color:var(--text);max-width:var(--measure-lead)}
 .hero-ctas{display:flex;flex-wrap:wrap;gap:var(--space-3);margin-top:var(--space-6)}
 .hero-note{margin:var(--space-4) 0 0;font-size:var(--fs-small);color:var(--text)}
@@ -114,7 +115,7 @@ main:focus{outline:none}
   .hero-media::after{content:"";position:absolute;inset:0;background:var(--hero-scrim-bottom)}
   /* sombra atrás do texto, desde o primeiro quadro: o texto aparece junto
      com o vídeo e passa por cima dos papéis claros (medida em --hero-shade) */
-  .hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,var(--hero-shade) 0,var(--hero-shade) calc(var(--copy-end) * var(--hero-shade-hold)),transparent var(--screen-x))}
+  .hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,var(--hero-shade) 0,var(--hero-shade) var(--copy-end),transparent var(--screen-x))}
 }
 
 /* ---------- Dashboard ao vivo ---------- */

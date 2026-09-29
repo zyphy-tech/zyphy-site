@@ -8,6 +8,10 @@
      - translateY(-250%) do skip link (esconde fora da tela até o foco)
      - .001ms do bloco de reduced-motion (desliga transição, não é estilo)
      - <meta name="theme-color"> no HTML: meta não lê variável CSS
+     - 100svh/100vh: altura da tela no hero e na seção fixa dos projetos
+       (unidade de viewport, não medida de estilo)
+     - z-index:-1 do vídeo e das camadas do hero: empilhamento local dentro
+       do .hero (isolation:isolate), não camada da página como os --z-*
      - limiares de disparo ficam no JS, com nome (rootMargin do
        IntersectionObserver, HEADER_SCROLL_THRESHOLD): são regra de
        disparo, não valor de estilo
@@ -151,7 +155,6 @@
      1100px), "Ver projetos" 57%, nota 56%. Com sub e nota em mist-400 seriam
      79% e 77%; por isso os dois usam --text. 62% cobre todos com folga. */
   --hero-shade:color-mix(in srgb,var(--band-deep) 62%,transparent);
-  --hero-shade-hold:1;
   --hero-scrim-bottom:linear-gradient(0deg,var(--band-deep) 0%,transparent 22%);
   --hero-focus-mobile:62% 50%;
 
@@ -170,8 +173,8 @@
      L   números do processo     96px em 375 / 200px em 1440
      H2                          64px em 375 / 120px em 1440
      M   dores e indicadores     40px em 375 /  72px em 1440
-     H1: 4 linhas no celular (abaixo de 600px, quebra natural balanceada) e
-         3 linhas fixas acima disso. */
+     H1: 4 linhas fixas no celular (abaixo de 600px, pelos br.br-m do HTML)
+         e 3 linhas fixas acima disso (pelos span.line). */
   --fs-h1-max:9rem;
   --fs-h1:clamp(4.5rem,10vw,var(--fs-h1-max));
   /* travas de largura por coluna (cqi): 3 linhas, a mais longa mede 5.38em;

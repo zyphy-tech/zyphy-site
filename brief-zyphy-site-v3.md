@@ -307,6 +307,9 @@ Situação em 29/09/2026:
   confirmação).
 - **Aberto:** política de privacidade. Campos `[PREENCHER]` e revisão
   jurídica; até lá, fora do rodapé e fora do deploy (`.vercelignore`).
+- **Pendência consciente:** a política de privacidade do FieldFix
+  (`/fieldfix/privacidade/`) está no ar sem canonical e sem Open Graph.
+  Decisão do Weslley em 29/09/2026: fica assim por enquanto.
 - **Tarefa separada:** acessibilidade da Vora Jewelry (Lighthouse 87 em
   23/09/2026). Não bloqueia este site: saiu da ficha (§5.6).
 
