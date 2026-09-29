@@ -33,13 +33,6 @@ main:focus{outline:none}
 .band--color{--band-bg:var(--band-color)}
 .band{background:var(--band-bg)}
 
-/* banda que expande (movimento 2): o fundo vive num pseudo-elemento, então o
-   recorte nunca corta conteúdo. Sem .motion (reduced-motion) ou antes do JS,
-   a banda já está no estado final. */
-.band--expand{position:relative;isolation:isolate;background:none}
-.band--expand::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--band-bg)}
-.motion .band--expand::before{clip-path:inset(0 var(--band-inset-start) round var(--band-radius-start));transition:clip-path var(--dur-band) var(--ease-out)}
-.motion .band--expand.is-in::before{clip-path:inset(0 0 round var(--r-none))}
 
 /* ---------- Tipografia de exibição ---------- */
 .display-h1,.display-h2,.display-statement,.step-num,.fix-pain,.dash-kpi dd{font-family:var(--font-display);font-weight:var(--weight-display);letter-spacing:var(--tracking-display);text-transform:var(--case-display);line-height:var(--lh-display)}
@@ -135,10 +128,28 @@ main:focus{outline:none}
    largura. A célula da grade é fixa, então a troca de período não empurra nada */
 .dash-kpi dd{margin:var(--space-2) 0 0;font-size:var(--fs-kpi);text-transform:none;font-variant-numeric:var(--numeric-data);white-space:nowrap}
 .dash-chart-label{margin:var(--space-7) 0 var(--space-3);font-size:var(--fs-small);color:var(--text-muted)}
-.dash-chart{height:var(--chart-h)}
+.dash-chart{position:relative;height:var(--chart-h)}
 .dash-chart svg{display:block;width:100%;height:100%;overflow:visible}
-.dash-chart .bar{fill:var(--bar-idle)}
-.dash-chart .bar--now{fill:var(--bar-active)}
+/* barras em HTML, sobre o SVG de grade e rótulos: só elemento HTML entra
+   na view transition (um <rect> dentro de <svg> não ganha grupo próprio) */
+.dash-bars{position:absolute;inset:0;pointer-events:none}
+.dash-chart .bar{position:absolute;background:var(--bar-idle);view-transition-class:bar}
+.dash-chart .bar--now{background:var(--bar-active)}
+/* movimento 3: na troca de filtro cada barra vai da altura antiga à nova
+   (document.startViewTransition, js/dashboard.js). A imagem da barra estica
+   para a caixa do grupo em vez de manter a proporção. Só as barras têm nome
+   de transição: o resto da página, números inclusive, troca direto. */
+::view-transition-group(*.bar){animation-duration:var(--dur-data);animation-timing-function:var(--ease-out)}
+::view-transition-old(*.bar),::view-transition-new(*.bar){block-size:100%;object-fit:fill}
+::view-transition-old(*.bar){animation:none;opacity:0}
+::view-transition-new(*.bar){animation:none}
+/* barra sem par (o período novo tem mais ou menos barras): entra ou sai
+   aparecendo/sumindo, em vez de surgir pronta embaixo das que se movem */
+::view-transition-old(*.bar):only-child{opacity:1;animation:zyBarOut var(--dur-data) var(--ease-out) both}
+::view-transition-new(*.bar):only-child{animation:zyBarIn var(--dur-data) var(--ease-out) both}
+@keyframes zyBarIn{from{opacity:0}}
+@keyframes zyBarOut{to{opacity:0}}
+html{view-transition-name:none}
 .dash-chart .grid{stroke:var(--chart-grid);stroke-width:var(--hairline)}
 .dash-chart .tick{fill:var(--text-muted);font-family:var(--font-body);font-size:var(--fs-micro);font-variant-numeric:var(--numeric-data)}
 .dash-caption{margin-top:var(--space-5);font-size:var(--fs-small);color:var(--text-muted)}
@@ -160,8 +171,22 @@ main:focus{outline:none}
 .fix-item{padding:var(--space-7) 0;border-top:var(--hairline) solid var(--line)}
 .fix-item:first-child{border-top:none;padding-top:0}
 .fix-pain{margin:0;font-size:var(--fs-m);text-wrap:balance}
+/* movimento 2: o traço que atravessa a dor é um fundo no span inline, então
+   segue as quebras de linha e cresce da esquerda para a direita. Estado final
+   (Firefox, reduced-motion, sem suporte): traço inteiro e solução com
+   contraste cheio */
+.fix-strike{background-image:linear-gradient(var(--strike-color),var(--strike-color));background-repeat:no-repeat;background-position:0 var(--strike-y);background-size:100% var(--strike-w)}
 .fix-service{margin:var(--space-5) 0 0;font-weight:var(--weight-strong)}
-.fix-text{margin:var(--space-1) 0 0;color:var(--text-muted)}
+.fix-text{margin:var(--space-1) 0 0;color:var(--text)}
+@supports (animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference){
+    .fix-item{view-timeline-name:--fix;view-timeline-axis:block}
+    .fix-strike{animation:zyStrike linear both;animation-timeline:--fix;animation-range:var(--fix-range)}
+    .fix-text{animation:zySolve linear both;animation-timeline:--fix;animation-range:var(--fix-range)}
+  }
+}
+@keyframes zyStrike{from{background-size:0% var(--strike-w)}to{background-size:100% var(--strike-w)}}
+@keyframes zySolve{from{color:var(--text-muted)}to{color:var(--text)}}
 .audience{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(var(--col-min-audience),100%),1fr));gap:var(--space-6) var(--space-7);margin-top:var(--space-8)}
 .audience-title{margin:0 0 var(--space-3);font-size:var(--fs-h3);font-weight:var(--weight-strong);line-height:var(--lh-heading)}
 .audience-list{list-style:none;margin:0;padding:0}

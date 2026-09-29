@@ -30,7 +30,7 @@
 <link rel="preload" href="assets/fonts/sofia-sans-extra-condensed-800-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/styles.css">
-<!-- sem defer: a classe .motion precisa existir antes do primeiro paint -->
+<!-- sem defer: pede a fonte de reserva do H1 antes do primeiro paint (ver js/boot.js) -->
 <script src="js/boot.js"></script>
 </head>
 <body>
@@ -94,8 +94,8 @@
       </div>
     </section>
 
-    <!-- ================= DASHBOARD AO VIVO (banda elevada, expande) ================= -->
-    <section class="band band--raised band--expand dash-section" id="dashboard" aria-label="Exemplo de dashboard">
+    <!-- ================= DASHBOARD AO VIVO (banda elevada) ================= -->
+    <section class="band band--raised dash-section" id="dashboard" aria-label="Exemplo de dashboard">
       <div class="container">
         <figure class="dash-figure">
           <div class="dash" id="zyDash">
@@ -126,24 +126,26 @@
 
     <!-- ================= ONDE A GENTE ENTRA (banda base) =================
          A dor é o título de cada linha. No desktop o H2 fica fixo à esquerda
-         enquanto as três dores passam à direita. -->
+         enquanto as três dores passam à direita. Movimento 2: conforme a linha
+         sobe pela tela, um traço atravessa a dor (.fix-strike) e a frase da
+         solução ganha contraste. -->
     <section class="band band--base" id="solucoes" aria-labelledby="sol-titulo">
       <div class="container sol-grid">
         <h2 id="sol-titulo" class="display-h2 sol-title">Onde a gente entra.</h2>
         <div class="sol-body">
           <ul class="fix-list">
             <li class="fix-item">
-              <h3 class="fix-pain">Planilha, <span class="nowrap">copia-e-cola</span>, retrabalho.</h3>
+              <h3 class="fix-pain"><span class="fix-strike">Planilha, <span class="nowrap">copia-e-cola</span>, retrabalho.</span></h3>
               <p class="fix-service">Automação de processos</p>
               <p class="fix-text">Viram rotina automática integrada ao que você já usa.</p>
             </li>
             <li class="fix-item">
-              <h3 class="fix-pain">Aquele sistema antigo que ninguém mexe com medo de quebrar.</h3>
+              <h3 class="fix-pain"><span class="fix-strike">Aquele sistema antigo que ninguém mexe com medo de quebrar.</span></h3>
               <p class="fix-service">Modernização de sistemas</p>
               <p class="fix-text">Vira uma base nova, migrada por partes, sem parar o que já funciona.</p>
             </li>
             <li class="fix-item">
-              <h3 class="fix-pain">A ideia está na cabeça, mas falta por onde começar.</h3>
+              <h3 class="fix-pain"><span class="fix-strike">A ideia está na cabeça, mas falta por onde começar.</span></h3>
               <p class="fix-service">Sites, apps e dashboards</p>
               <p class="fix-text">Vira site, app ou dashboard sob medida, pronto para usar.</p>
             </li>
@@ -315,9 +317,9 @@
       </div>
     </section>
 
-    <!-- ================= CONTATO (banda de cor, expande) =================
+    <!-- ================= CONTATO (banda de cor) =================
          A frase ocupa a primeira tela da banda; o formulário vem na segunda. -->
-    <section class="band band--color band--expand" id="contato" aria-labelledby="cta-titulo">
+    <section class="band band--color" id="contato" aria-labelledby="cta-titulo">
       <div class="container">
         <div class="contact-lead">
           <h2 id="cta-titulo" class="display-statement">Conta pra gente o que está travando.</h2>

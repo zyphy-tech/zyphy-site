@@ -1,7 +1,7 @@
 /* ==========================================================================
    Zyphy — comportamento do site (vanilla, scroll nativo): vídeo do hero,
-   header, menu, bandas que expandem, foco nas plaquetas dos projetos e
-   formulário. O dashboard mora em js/dashboard.js.
+   header, menu, foco nas plaquetas dos projetos e formulário. O dashboard
+   mora em js/dashboard.js; o traço das Soluções é só CSS.
    ========================================================================== */
 (function () {
   "use strict";
@@ -38,42 +38,6 @@
     doc.addEventListener("click", function (e) {
       if (!menu.hidden && !menu.contains(e.target) && !burger.contains(e.target)) setOpen(false);
     });
-  }
-
-  /* ---------- bandas que expandem (movimento 2) ----------
-     Marca as duas mudanças de modo da página: de ler para interagir
-     (dashboard) e de ler para agir (contato). Roda uma vez por banda.
-     Sem a classe .motion (reduced-motion) o CSS já mostra o estado final. */
-  function initBands() {
-    var bands = doc.querySelectorAll(".band--expand");
-    if (!bands.length || !doc.documentElement.classList.contains("motion")) return;
-    if (!("IntersectionObserver" in window)) {
-      bands.forEach(function (b) { b.classList.add("is-in"); b.dataset.expanded = "true"; });
-      return;
-    }
-    // avisa quando a expansão terminou (o dashboard espera isso para ligar as
-    // barras, assim os dois movimentos nunca começam no mesmo instante)
-    var css = getComputedStyle(doc.documentElement);
-    var durBand = parseFloat(css.getPropertyValue("--dur-band")) || 0;
-    var settle = parseFloat(css.getPropertyValue("--dur-settle")) || 0;
-    function done(band) {
-      if (band.dataset.expanded === "true") return;
-      band.dataset.expanded = "true";
-      band.dispatchEvent(new CustomEvent("zy:band-expanded"));
-    }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        var band = entry.target;
-        band.addEventListener("transitionend", function (e) {
-          if (e.pseudoElement === "::before") done(band);
-        });
-        setTimeout(function () { done(band); }, durBand + settle); // se o transitionend não vier
-        band.classList.add("is-in");
-        io.unobserve(band);
-      });
-    }, { rootMargin: "0px 0px -25% 0px" });
-    bands.forEach(function (b) { io.observe(b); });
   }
 
   /* ---------- projetos no desktop: foco por teclado ----------
@@ -215,7 +179,6 @@
     initHeroVideo();
     initHeader();
     initMenu();
-    initBands();
     initProjectsFocus();
     initForm();
   }

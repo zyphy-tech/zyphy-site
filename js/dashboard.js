@@ -3,14 +3,13 @@
    3 indicadores, 1 gráfico de barras e 1 filtro de período que refiltra os
    dados de exemplo do <script id="zyDashData">.
 
-   Movimento 3 (dado que muda de valor): as barras fazem tween da altura
-   antiga para a nova quando o filtro muda, e "ligam" uma vez a partir de zero
-   na primeira vez que o dashboard aparece. Esse "ligar" tem gatilho próprio
-   (gráfico 60% visível) e espera a banda do dashboard terminar de expandir
-   (movimento 2, evento zy:band-expanded do js/main.js): os dois movimentos
-   nunca começam juntos. Os indicadores trocam direto, sem
-   contagem animada (contador animado é proibido pelo brief §3).
-   Com prefers-reduced-motion: estado final direto, sempre.
+   Movimento 3: na troca de filtro, cada barra vai da altura antiga à nova
+   por document.startViewTransition (animação no CSS, ::view-transition-*).
+   Ao entrar na tela o gráfico já aparece pronto, sem animar. As barras são
+   <div> sobre o SVG de grade e rótulos, porque só elemento HTML ganha grupo
+   próprio na transição. Os indicadores trocam direto, sem contagem animada
+   (contador animado é proibido pelo brief §3).
+   Com prefers-reduced-motion ou sem startViewTransition: troca direta.
    ========================================================================== */
 (function () {
   "use strict";
@@ -49,12 +48,7 @@
 
   // valores de geometria e duração vêm de css/tokens.css; nada fixo aqui
   function token(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
-  function tokenMs(name) {
-    var v = token(name), n = parseFloat(v);
-    return /ms$/.test(v) ? n : n * 1000;
-  }
   function tokenNum(name) { return parseFloat(token(name)); }  // px ou número puro
-  var DURATION = tokenMs("--dur-data");
   var G; // geometria do gráfico, lida uma vez (tokens não mudam em runtime)
   function geometry() {
     if (G) return G;
@@ -87,12 +81,7 @@
     return { orders: o, revenue: r, ticket: o ? r / o : 0 };
   }
 
-  var state = {
-    period: "d30",
-    shown: [],   // alturas normalizadas (0–1) desenhadas agora
-    raf: 0,
-    revealed: false
-  };
+  var state = { period: "d30" };
 
   function target(period) {
     var rows = DATA[period];
@@ -106,9 +95,10 @@
     return node;
   }
 
-  // desenha o gráfico inteiro com as alturas dadas (sem animação aqui)
-  function draw(heights) {
+  // desenha o gráfico inteiro do período atual (sem animação aqui)
+  function draw() {
     var t = target(state.period);
+    var heights = t.heights;
     var w = chartEl.clientWidth, h = chartEl.clientHeight;
     if (!w || !h) return;
     var g = geometry();
@@ -122,6 +112,8 @@
     if (state.period === "d30") every = Math.max(every, 5);
 
     var svg = el("svg", { viewBox: "0 0 " + w + " " + h, width: w, height: h, focusable: "false" });
+    var bars = document.createElement("div");
+    bars.className = "dash-bars";
 
     for (var v = 0; v <= t.scale.max + 1e-6; v += t.scale.step) {
       var y = pad.top + ph - (v / t.scale.max) * ph;
@@ -134,10 +126,16 @@
     for (var i = 0; i < n; i++) {
       var bh = Math.max(0, heights[i]) * ph;
       var x = pad.left + i * slot + (slot - barW) / 2;
-      svg.appendChild(el("rect", {
-        class: "bar" + (i === n - 1 ? " bar--now" : ""),
-        x: x, y: pad.top + ph - bh, width: barW, height: bh
-      }));
+      // nome da transição contado do fim: o 7 dias são os últimos 7 do 30
+      // dias, então cada dia continua sendo a mesma barra na troca
+      var bar = document.createElement("div");
+      bar.className = "bar" + (i === n - 1 ? " bar--now" : "");
+      bar.style.left = x + "px";
+      bar.style.top = (pad.top + ph - bh) + "px";
+      bar.style.width = barW + "px";
+      bar.style.height = bh + "px";
+      bar.style.viewTransitionName = "zy-bar-" + (n - 1 - i);
+      bars.appendChild(bar);
       // 30 dias: dia 1 e múltiplos de 5; demais: um rótulo a cada "every"
       var showLabel = state.period === "d30" ? (i === 0 || (i + 1) % every === 0) : i % every === 0;
       if (showLabel) {
@@ -147,7 +145,7 @@
       }
     }
 
-    chartEl.replaceChildren(svg);
+    chartEl.replaceChildren(svg, bars);
   }
 
   function setKpis(period) {
@@ -165,72 +163,26 @@
       fmtInt.format(Math.round(tot.revenue)) + ", ticket médio de R$ " + fmtCents.format(tot.ticket) + ".";
   }
 
-  // tween das alturas: da forma atual para a nova, índice a índice
-  function animateTo(heights) {
-    cancelAnimationFrame(state.raf);
-    if (reduce.matches) { state.shown = heights.slice(); draw(state.shown); return; }
-    var from = heights.map(function (_, i) { return state.shown[i] || 0; });
-    var start = performance.now();
-    var ease = function (p) { return 1 - Math.pow(1 - p, 3); };
-    function frame(now) {
-      var p = Math.min(1, (now - start) / DURATION);
-      var e = ease(p);
-      state.shown = heights.map(function (hgt, i) { return from[i] + (hgt - from[i]) * e; });
-      draw(state.shown);
-      if (p < 1) state.raf = requestAnimationFrame(frame);
-    }
-    state.raf = requestAnimationFrame(frame);
+  function apply(period) {
+    state.period = period;
+    buttons.forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.period === period ? "true" : "false"); });
+    announce(period, setKpis(period));
+    draw();
   }
 
   function select(period) {
-    if (!DATA[period]) return;
-    state.period = period;
-    buttons.forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.period === period ? "true" : "false"); });
-    var tot = setKpis(period);
-    announce(period, tot);
-    var heights = target(period).heights;
-    if (state.revealed) animateTo(heights);
-    else { state.shown = heights.map(function () { return 0; }); draw(state.shown); }
+    if (!DATA[period] || period === state.period) return;
+    if (reduce.matches || !document.startViewTransition) { apply(period); return; }
+    document.startViewTransition(function () { apply(period); });
   }
 
   buttons.forEach(function (b) {
     b.addEventListener("click", function () { select(b.dataset.period); });
   });
 
-  // estado inicial
+  // estado inicial: pronto, sem animar
   setKpis(state.period);
-  var initial = target(state.period).heights;
-  if (reduce.matches || !("IntersectionObserver" in window)) {
-    state.revealed = true;
-    state.shown = initial.slice();
-    draw(state.shown);
-  } else {
-    state.shown = initial.map(function () { return 0; });
-    draw(state.shown);
-    // "liga" uma vez: precisa do gráfico visível (gatilho próprio, 60%) E da
-    // banda já expandida. Se o usuário clicar num filtro antes, liga ali mesmo.
-    var band = root.closest(".band--expand");
-    var seen = false;
-    var bandDone = !band || band.dataset.expanded === "true";
-    var reveal = function () {
-      if (state.revealed || !seen || !bandDone) return;
-      state.revealed = true;
-      animateTo(target(state.period).heights);
-    };
-    if (band && !bandDone) {
-      band.addEventListener("zy:band-expanded", function () { bandDone = true; reveal(); }, { once: true });
-    }
-    var io = new IntersectionObserver(function (entries) {
-      if (!entries[0].isIntersecting) return;
-      io.disconnect();
-      seen = true;
-      reveal();
-    }, { threshold: 0.6 });
-    io.observe(chartEl);
-    buttons.forEach(function (b) {
-      b.addEventListener("click", function () { if (!state.revealed) { seen = bandDone = true; reveal(); } }, { capture: true });
-    });
-  }
+  draw();
 
   // redesenha no tamanho novo, sem animar
   if ("ResizeObserver" in window) {
@@ -238,9 +190,9 @@
     new ResizeObserver(function () {
       if (chartEl.clientWidth === lastW) return;
       lastW = chartEl.clientWidth;
-      draw(state.shown);
+      draw();
     }).observe(chartEl);
   } else {
-    window.addEventListener("resize", function () { draw(state.shown); });
+    window.addEventListener("resize", draw);
   }
 })();

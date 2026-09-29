@@ -112,7 +112,8 @@
   --line-control:var(--sage-500);
   --mask-opaque:#000;                  /* máscara: só o alfa conta, a cor não aparece */
 
-  /* acento raro: botão primário, foco de teclado, barra ativa do dashboard */
+  /* acento raro: botão primário, foco de teclado, barra ativa do dashboard,
+     traço das dores nas Soluções */
   --accent:var(--cyan-500);
   --accent-hover:var(--cyan-400);
   --on-accent:var(--ink-950);
@@ -258,16 +259,20 @@
      Três comportamentos de scroll/interação, e só eles. O vídeo do hero é a
      orquestração de entrada e fica fora desta conta (brief §7):
      1. lateral nos projetos (CSS scroll-driven; fallback estático)
-     2. banda que expande no dashboard e no contato (IntersectionObserver)
-     3. dado que muda de valor no dashboard (tween por requestAnimationFrame)
+     2. Soluções: traço atravessa a dor e a solução ganha contraste conforme o
+        scroll (CSS animation-timeline: view(); Firefox: estado final parado)
+     3. barras do dashboard vão do valor antigo ao novo na troca de filtro
+        (document.startViewTransition; sem suporte: troca direta)
      prefers-reduced-motion: estado final direto, mesmo caminho do fallback */
   --ease-out:cubic-bezier(.215,.61,.355,1);
   --dur-fast:200ms;       /* hover e foco */
-  --dur-data:600ms;       /* tween dos dados */
-  --dur-band:900ms;       /* banda que expande */
-  --dur-settle:100ms;     /* folga até dar a expansão por terminada, se o transitionend não vier */
-  --band-inset-start:6%;  /* recorte lateral da banda antes de expandir */
-  --band-radius-start:var(--r-screen);
+  --dur-data:600ms;       /* barras do dashboard na troca de filtro */
+  /* Soluções: o traço corre enquanto a linha vai de "acabou de entrar" até
+     o meio da tela; a espessura e a altura acompanham a letra (em) */
+  --fix-range:entry 100% cover 50%;
+  --strike-color:var(--accent);
+  --strike-w:.09em;
+  --strike-y:45%;         /* meio das maiúsculas da Sofia (ascendente 90%, descendente 30%) */
   /* projetos no desktop: seção fixa (sticky) e plaquetas correndo na
      horizontal pelo scroll vertical. Distância horizontal = largura da faixa
      menos a tela; a seção ganha essa mesma altura extra, então 1px de scroll

@@ -237,6 +237,24 @@ inventar um por seção é ruído.
 
 `prefers-reduced-motion: reduce` → estado final direto, sempre.
 
+**Os três comportamentos (revisão do Weslley, 29/09/2026):**
+1. **Projetos:** plaquetas correm na horizontal conforme o scroll vertical
+   (CSS scroll-driven). Razão: o conteúdo vaza pela borda e sugere que
+   continua, como no `21st`. Sem suporte: pilha vertical.
+2. **Soluções:** conforme a linha sobe pela tela, um traço atravessa o
+   título da dor e a frase da solução ganha contraste (muted → texto).
+   CSS `animation-timeline: view()`. Razão: a dor fica "riscada" e a
+   solução vira o que se lê. Firefox e reduced-motion: estado final
+   parado (traço inteiro, solução em contraste cheio).
+3. **Dashboard:** na troca de filtro, cada barra vai do valor antigo ao
+   novo (`document.startViewTransition`); barras sem par aparecem ou
+   somem. Ao entrar na tela o gráfico já está pronto, sem animar. Os
+   números trocam direto, sem contagem. Razão: mostra que o filtro de
+   fato refiltra os dados.
+
+Saiu nesta revisão a faixa de cor que expandia no dashboard e no
+contato.
+
 **Vídeo do hero (decisão do Weslley, 2026-09-29):** o vídeo do hero é a
 orquestração de entrada da página e fica **fora da conta dos três
 comportamentos de scroll**. Toca uma vez, sem som, e para no último
