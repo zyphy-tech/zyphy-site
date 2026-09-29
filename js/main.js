@@ -133,9 +133,10 @@
 
   /* ---------- vídeo do hero: orquestração de entrada da página ----------
      Toca uma vez, sem som, e para no último quadro (sem loop). O texto fica
-     visível desde o início (a sombra do CSS garante o contraste). Fica fora
-     do celular e do reduced-motion (ali o <picture> já mostra o último
-     quadro) e da economia de dados.
+     visível desde o início (a sombra do CSS garante o contraste). Toca em
+     todas as telas; fica fora só do reduced-motion (ali o <picture> já
+     mostra o último quadro) e da economia de dados. A versão sai do
+     <source media>: recorte 4:5 no celular, quadro inteiro nas demais.
      Onde toca, o <picture> mostra o PRIMEIRO quadro, que também é o poster:
      o vídeo começa de onde a imagem está, sem "voltar". Se ele não for tocar
      (economia de dados, erro, autoplay bloqueado), finalFrame() tira as
@@ -144,7 +145,7 @@
     var media = doc.querySelector(".hero-media");
     var still = media && media.querySelector(".hero-still");
     if (!still) return;
-    if (window.matchMedia("(max-width:599px), (prefers-reduced-motion:reduce)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion:reduce)").matches) return;
     function finalFrame() {
       media.querySelectorAll("source[data-first-frame]").forEach(function (s) { s.remove(); });
     }
@@ -158,12 +159,21 @@
     video.playsInline = true;
     video.setAttribute("playsinline", "");
     video.setAttribute("aria-hidden", "true");
+    video.autoplay = true;
+    video.setAttribute("autoplay", "");
     video.preload = "auto";
     video.poster = still.currentSrc || still.src;
-    [["assets/video/hero.webm", "video/webm"], ["assets/video/hero.mp4", "video/mp4"]].forEach(function (s) {
+    /* o navegador escolhe pela largura (media), na ordem: celular primeiro */
+    [
+      ["assets/video/hero-m.webm", "video/webm", "(max-width:599px)"],
+      ["assets/video/hero-m.mp4", "video/mp4", "(max-width:599px)"],
+      ["assets/video/hero.webm", "video/webm"],
+      ["assets/video/hero.mp4", "video/mp4"]
+    ].forEach(function (s) {
       var source = doc.createElement("source");
       source.src = s[0];
       source.type = s[1];
+      if (s[2]) source.media = s[2];
       video.appendChild(source);
     });
     /* sem vídeo (nenhuma fonte carregou ou autoplay bloqueado): ele sai e a

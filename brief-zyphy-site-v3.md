@@ -262,10 +262,14 @@ comportamentos de scroll**. Toca uma vez, sem som, e para no último
 quadro (sem loop). **O H1 aparece desde o primeiro quadro, em qualquer
 tela;** subtítulo e botões também, porque com a sombra abaixo o contraste
 passa em todos os quadros (atraso máximo permitido: 1s, só se o contraste
-não passasse sem ele). **Celular sem vídeo:** só a imagem parada, tudo
-visível no carregamento. Tablet e desktop tocam o vídeo; no tablet ele
-fica abaixo do texto. Sem vídeo também com reduced-motion ou economia de
-dados.
+não passasse sem ele). **Vídeo em todas as telas** (decisão do Weslley,
+29/09/2026, substitui "celular só imagem parada"). No celular (<600px) é
+um recorte em pé 4:5 em volta do notebook (hero-m, 720×900, webm 0,4 MB
+e mp4 0,6 MB), atrás do texto, com sombra de 52%; a versão é escolhida
+por `<source media>`. No tablet o vídeo 16:9 fica abaixo do texto; no
+desktop, atrás, à direita. muted, playsinline, autoplay, toca uma vez e
+para no último quadro. Sem vídeo só com reduced-motion ou economia de
+dados: imagem parada do último quadro.
 
 Sombra atrás do texto no desktop: 62%, desde o início. Medida quadro a
 quadro (pixel mais claro atrás de cada linha): H1 precisa 49% (3:1, texto
@@ -275,14 +279,20 @@ da muted (com a muted precisariam de ~80%). Decisão do Weslley,
 29/09/2026, depois de uma versão "vídeo primeiro, texto depois" que
 escondia o texto durante o vídeo e foi desfeita.
 
+Sombra no celular: 52% sobre o hero inteiro. Medida quadro a quadro em
+360/375/414px: H1 precisa 49% (3:1, pior aos 0,8s nos papéis), subtítulo
+43% só em 414px; botões e linha de resposta ficam abaixo do vídeo.
+Contraste real com 52%: H1 3,38:1, subtítulo ≥ 10,4:1, demais 16,8:1.
+
 Duração de 4,875s (117 quadros a 24fps), abaixo dos 5s do WCAG 2.2.2,
 então dispensa botão de pausa; o corte tirou os primeiros quadros e
 manteve o último, que é a imagem parada final. No desktop o texto fica na área escura
 da esquerda. O **primeiro quadro** é o poster e a imagem parada onde o
-vídeo toca (tablet e desktop), para o vídeo começar de onde a imagem está
-sem "voltar"; se o vídeo não tocar (erro, autoplay bloqueado), a imagem
-volta ao último quadro. O **último quadro** é a imagem do celular, do
-reduced-motion e da economia de dados (sem vídeo) e a og:image.
+vídeo toca (todas as telas; no celular, o do recorte 4:5), para o vídeo
+começar de onde a imagem está sem "voltar"; se o vídeo não tocar (erro,
+autoplay bloqueado), a imagem volta ao último quadro. O **último quadro**
+é a imagem do reduced-motion e da economia de dados (sem vídeo; no
+celular, o do recorte) e a og:image.
 
 GSAP permitido. Lenis fica de fora — scroll nativo basta e reduz JS.
 
@@ -318,7 +328,7 @@ Situação em 29/09/2026:
   execuções) e publicado nas fichas dos projetos.
 - **Resolvido:** imagem autoral do hero. Virou o vídeo produzido pelo
   Weslley (ver §7). O primeiro quadro é o poster onde o vídeo toca; o
-  último é a imagem do celular, do reduced-motion e a og:image.
+  último é a imagem do reduced-motion, da economia de dados e a og:image.
 - **Resolvido:** suporte pós-deploy de 7 dias, confirmado pelo Weslley em
   29/09/2026.
 - **Aberto:** FieldFix na Play Store. O link

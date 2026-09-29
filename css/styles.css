@@ -96,6 +96,17 @@ main:focus{outline:none}
 /* celular e tablet: imagem/vídeo abaixo do texto, sangrando até as duas bordas */
 .hero-media{position:relative;aspect-ratio:var(--ratio-hero-mobile);background:var(--band-deep);margin-inline:calc(-1 * var(--gutter));overflow:hidden}
 .hero-still,.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--hero-focus-mobile);display:block}
+/* celular: o vídeo em pé (4:5) vira o fundo do topo do hero, na largura toda,
+   e o texto passa por cima com a sombra --hero-shade-phone (medida quadro a
+   quadro). Embaixo ele se funde na banda. O recorte já vem enquadrado no
+   notebook, então a imagem fica centrada. */
+@media (max-width:599px){
+  .hero{position:relative;isolation:isolate;overflow:clip}
+  .hero-media{position:absolute;top:0;left:0;right:0;z-index:-1;margin:0;aspect-ratio:var(--ratio-hero-phone)}
+  .hero-still,.hero-video{object-position:50% 50%}
+  .hero-media::after{content:"";position:absolute;inset:0;background:var(--hero-scrim-phone)}
+  .hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:var(--hero-shade-phone)}
+}
 /* desktop: o vídeo fica atrás do hero e o texto sobre a área escura da esquerda.
    --copy-end é onde termina a coluna do texto (6 de 12 colunas do .container);
    o bloco do vídeo, na proporção do quadro, é ancorado para a tampa do

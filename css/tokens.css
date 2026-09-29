@@ -157,7 +157,13 @@
      79% e 77%; por isso os dois usam --text. 62% cobre todos com folga. */
   --hero-shade:color-mix(in srgb,var(--band-deep) 62%,transparent);
   --hero-scrim-bottom:linear-gradient(0deg,var(--band-deep) 0%,transparent 22%);
-  --hero-focus-mobile:62% 50%;
+  --hero-focus-mobile:62% 50%;        /* tablet: quadro inteiro em 4:3 */
+  /* celular: vídeo em pé atrás do texto, com sombra no hero inteiro. Medido
+     quadro a quadro em 360/375/414px (pixel mais claro atrás de cada linha):
+     H1 precisa 49% (3:1, pior aos 0,8s nos papéis), sub 43% só em 414px
+     (4.5:1); botões e nota ficam abaixo do vídeo. 52% cobre com folga */
+  --hero-shade-phone:color-mix(in srgb,var(--band-deep) 52%,transparent);
+  --hero-scrim-phone:linear-gradient(0deg,var(--band-deep) 0%,transparent 35%);
 
   /* ---------- Tipografia ---------- */
   --font-display:'Sofia Sans Extra Condensed','Sofia Fallback',sans-serif;
@@ -247,7 +253,8 @@
   --col-min-audience:220px;
 
   /* proporções */
-  --ratio-hero-mobile:4/3;
+  --ratio-hero-mobile:4/3;                   /* tablet */
+  --ratio-hero-phone:4/5;                    /* celular: recorte em pé do vídeo */
   --ratio-project:8/5;                       /* capturas dos projetos */
 
   /* ---------- Raio (hierarquia, não tudo igual) ---------- */

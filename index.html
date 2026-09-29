@@ -77,14 +77,20 @@
           </div>
           <p class="hero-note">Resposta no mesmo dia, sem compromisso.</p>
         </div>
-        <!-- onde o vídeo toca (600px+ sem reduced-motion), a imagem é o PRIMEIRO
-             quadro e vira o poster: o vídeo começa de onde a imagem está, sem
-             "voltar". No celular e no reduced-motion é o ÚLTIMO quadro, o estado
+        <!-- sem reduced-motion o vídeo toca em todas as telas, e a imagem é o
+             PRIMEIRO quadro, que vira o poster: o vídeo começa de onde a imagem
+             está, sem "voltar". Com reduced-motion é o ÚLTIMO quadro, o estado
              final. Se o vídeo não tocar (economia de dados, erro, autoplay
              bloqueado), o js/main.js tira as fontes data-first-frame e o último
-             quadro aparece. O <video> entra por js/main.js (initHeroVideo). -->
+             quadro aparece. Celular (<600px): recorte em pé 4:5 em volta do
+             notebook (-m); tablet e desktop: quadro inteiro 16:9.
+             O <video> entra por js/main.js (initHeroVideo). -->
         <div class="hero-media">
           <picture>
+            <source data-first-frame type="image/webp" media="(max-width:599px) and (prefers-reduced-motion:no-preference)" srcset="assets/img/hero-first-m.webp 720w" sizes="100vw">
+            <source data-first-frame media="(max-width:599px) and (prefers-reduced-motion:no-preference)" srcset="assets/img/hero-first-m.jpg 720w" sizes="100vw">
+            <source type="image/webp" media="(max-width:599px)" srcset="assets/img/hero-final-m.webp 720w" sizes="100vw">
+            <source media="(max-width:599px)" srcset="assets/img/hero-final-m.jpg 720w" sizes="100vw">
             <source data-first-frame type="image/webp" media="(min-width:600px) and (prefers-reduced-motion:no-preference)" srcset="assets/img/hero-first-960.webp 960w, assets/img/hero-first-1912.webp 1912w" sizes="100vw">
             <source data-first-frame media="(min-width:600px) and (prefers-reduced-motion:no-preference)" srcset="assets/img/hero-first-960.jpg 960w, assets/img/hero-first-1912.jpg 1912w" sizes="100vw">
             <source type="image/webp" srcset="assets/img/hero-final-960.webp 960w, assets/img/hero-final-1912.webp 1912w" sizes="100vw">
