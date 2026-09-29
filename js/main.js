@@ -164,7 +164,46 @@
     });
   }
 
+  /* ---------- vídeo do hero: orquestração de entrada da página ----------
+     Toca uma vez, sem som, e para no último quadro (sem loop). Fica fora do
+     celular e do reduced-motion: ali a imagem parada já é o estado final.
+     O poster é o mesmo último quadro, então autoplay bloqueado também termina
+     no lugar certo. */
+  function initHeroVideo() {
+    var media = doc.querySelector(".hero-media");
+    var still = media && media.querySelector(".hero-still");
+    if (!still) return;
+    var hero = media.closest(".hero");
+    if (window.matchMedia("(max-width:599px), (prefers-reduced-motion:reduce)").matches) return;
+
+    var video = doc.createElement("video");
+    video.className = "hero-video";
+    video.muted = true;
+    video.setAttribute("muted", "");
+    video.playsInline = true;
+    video.setAttribute("playsinline", "");
+    video.setAttribute("aria-hidden", "true");
+    video.preload = "auto";
+    video.poster = still.currentSrc || still.src;
+    [["assets/video/hero.webm", "video/webm"], ["assets/video/hero.mp4", "video/mp4"]].forEach(function (s) {
+      var source = doc.createElement("source");
+      source.src = s[0];
+      source.type = s[1];
+      video.appendChild(source);
+    });
+    /* se nenhuma fonte carregar, o vídeo sai e a imagem parada fica */
+    video.lastElementChild.addEventListener("error", function () { video.remove(); hero.classList.remove("is-playing"); });
+    media.appendChild(video);
+    /* a sombra atrás do texto só existe sobre a imagem parada: sai quando o
+       vídeo começa e volta no último quadro */
+    video.addEventListener("playing", function () { hero.classList.add("is-playing"); });
+    video.addEventListener("ended", function () { hero.classList.remove("is-playing"); });
+    var p = video.play();
+    if (p && p.catch) p.catch(function () {});
+  }
+
   function boot() {
+    initHeroVideo();
     initHeader();
     initMenu();
     initBands();

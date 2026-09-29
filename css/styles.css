@@ -97,13 +97,23 @@ main:focus{outline:none}
 .hero-sub{margin:var(--space-6) 0 0;font-size:var(--fs-lead);color:var(--text-muted);max-width:var(--measure-lead)}
 .hero-ctas{display:flex;flex-wrap:wrap;gap:var(--space-3);margin-top:var(--space-6)}
 .hero-note{margin:var(--space-4) 0 0;font-size:var(--fs-small);color:var(--text-muted)}
-/* placeholder sólido na proporção final; no mobile sangra até as duas bordas */
-.hero-media{aspect-ratio:var(--ratio-hero-mobile);background:var(--placeholder);margin-inline:calc(-1 * var(--gutter))}
+/* celular e tablet: imagem/vídeo abaixo do texto, sangrando até as duas bordas */
+.hero-media{position:relative;aspect-ratio:var(--ratio-hero-mobile);background:var(--band-deep);margin-inline:calc(-1 * var(--gutter));overflow:hidden}
+.hero-still,.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--hero-focus-mobile);display:block}
+/* desktop: o vídeo fica atrás do hero e o texto sobre a área escura da esquerda.
+   --copy-end é onde termina a coluna do texto (6 de 12 colunas do .container);
+   o bloco do vídeo, na proporção do quadro, é ancorado para a tampa do
+   notebook (--hero-screen-at) cair em --screen-x e estica até a borda direita. */
 @media (min-width:1100px){
-  .hero-grid{grid-template-columns:repeat(var(--columns),minmax(0,1fr));column-gap:var(--col-gap);align-items:end}
-  .hero-copy{grid-column:1 / span 8}
-  /* imagem nas colunas 9–12, vazando pela borda direita da tela */
-  .hero-media{grid-column:9 / span 4;aspect-ratio:var(--ratio-hero);margin-inline:0 calc(-1 * var(--gutter) - max(0px,(100vw - var(--container) - 2 * var(--gutter)) / 2))}
+  .hero{--copy-end:calc(max(var(--gutter),(100% - var(--container)) / 2) + (min(var(--container),100% - 2 * var(--gutter)) - var(--col-gap)) / 2);--screen-x:calc(var(--copy-end) + var(--hero-clearance));position:relative;isolation:isolate;overflow:clip;min-height:100svh;box-sizing:border-box;display:flex;align-items:flex-end;padding-bottom:var(--title-gap)}
+  .hero-grid{grid-template-columns:repeat(var(--columns),minmax(0,1fr));column-gap:var(--col-gap)}
+  .hero-copy{grid-column:1 / span 6}
+  .hero-media{position:absolute;top:0;left:var(--screen-x);z-index:-1;height:100%;width:auto;aspect-ratio:var(--hero-ratio);min-width:calc((100% - var(--screen-x)) / (1 - var(--hero-screen-at)));margin:0;transform:translateX(calc(var(--hero-screen-at) * -100%));-webkit-mask-image:linear-gradient(90deg,transparent,black var(--space-9));mask-image:linear-gradient(90deg,transparent,black var(--space-9))}
+  .hero-media::after{content:"";position:absolute;inset:0;background:var(--hero-scrim-bottom)}
+  /* sombra atrás do texto: só com a imagem parada (poster, fim do vídeo,
+     reduced-motion). Enquanto o vídeo toca, .is-playing tira a sombra. */
+  .hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,var(--hero-shade) 0,var(--hero-shade) calc(var(--copy-end) * var(--hero-shade-hold)),transparent var(--screen-x));transition:opacity var(--dur-shade) ease}
+  .hero.is-playing::after{opacity:0}
 }
 
 /* ---------- Dashboard ao vivo ---------- */

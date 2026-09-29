@@ -229,6 +229,13 @@ inventar um por seção é ruído.
 
 `prefers-reduced-motion: reduce` → estado final direto, sempre.
 
+**Vídeo do hero (decisão do Weslley, 2026-09-29):** o vídeo do hero é a
+orquestração de entrada da página e fica **fora da conta dos três
+comportamentos de scroll**. Toca uma vez, sem som, e para no último
+quadro (sem loop). O H1 aparece desde o início, na área escura da
+esquerda. O último quadro é o poster, a imagem do reduced-motion e do
+celular (sem vídeo) e a og:image.
+
 GSAP permitido. Lenis fica de fora — scroll nativo basta e reduz JS.
 
 ---

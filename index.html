@@ -19,15 +19,12 @@
 <meta property="og:url" content="https://zyphy.com.br/">
 <meta property="og:title" content="Zyphy | Tecnologia que destrava o seu dia a dia">
 <meta property="og:description" content="Automação, sistemas e produtos digitais sob medida para empresas e pessoas.">
-<!-- PENDENTE: og:image = recorte 1200x630 da imagem autoral do hero (brief §6).
-     Descomentar quando o arquivo existir em assets/img/og-zyphy.jpg.
+<!-- og:image = último quadro do vídeo do hero, recortado em 1200x630 -->
 <meta property="og:image" content="https://zyphy.com.br/assets/img/og-zyphy.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="">
+<meta property="og:image:alt" content="Notebook sobre uma mesa escura, à noite, com um painel de indicadores na tela">
 <meta name="twitter:card" content="summary_large_image">
--->
-<meta name="twitter:card" content="summary">
 
 <!-- H1 é o LCP: a fonte display chega antes do primeiro paint possível -->
 <link rel="preload" href="assets/fonts/sofia-sans-extra-condensed-800-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -90,10 +87,14 @@
           </div>
           <p class="hero-note">Resposta no mesmo dia, sem compromisso.</p>
         </div>
-        <!-- PENDENTE: imagem autoral do Weslley (brief §6, conceito 1: pilha de
-             planilhas impressas). Até lá, bloco sólido na proporção final.
-             Trocar por <picture> com width/height e alt descritivo. -->
-        <div class="hero-media" aria-hidden="true"></div>
+        <!-- último quadro do vídeo: é o que o celular e o reduced-motion veem, e o
+             poster do vídeo. O <video> entra por js/main.js (initHeroVideo). -->
+        <div class="hero-media">
+          <picture>
+            <source type="image/webp" srcset="assets/img/hero-final-960.webp 960w, assets/img/hero-final-1912.webp 1912w" sizes="100vw">
+            <img class="hero-still" src="assets/img/hero-final-960.jpg" srcset="assets/img/hero-final-960.jpg 960w, assets/img/hero-final-1912.jpg 1912w" sizes="100vw" width="1912" height="1080" alt="Notebook sobre uma mesa escura, à noite, com um painel de indicadores na tela">
+          </picture>
+        </div>
       </div>
     </section>
 

@@ -1,3 +1,4 @@
 .claude/settings.local.json
 __pycache__/
 tools/node_modules/
+assets/video/hero-original.mp4
