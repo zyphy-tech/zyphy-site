@@ -191,6 +191,11 @@ corrige o bug "seu site seu site". Formulário (nome, e-mail ou
 WhatsApp, mensagem) abre WhatsApp. Botão "Enviar pelo WhatsApp". Linha:
 "Abre a conversa com sua mensagem pronta."
 
+**Atalho fixo do WhatsApp** (decisão do Weslley, 29/09/2026): botão
+redondo em ciano no canto inferior direito, em todas as telas, com o
+glifo oficial do WhatsApp. Abre wa.me com "Olá! Vim pelo site da Zyphy e
+quero conversar sobre um projeto." Fica abaixo do menu e do header.
+
 ### 5.9 Rodapé
 Marca, uma frase que não repita a do hero: "Sites, apps, dashboards e
 automações sob medida." Contatos reais, © 2026. O link de Privacidade

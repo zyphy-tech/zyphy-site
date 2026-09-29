@@ -334,6 +334,15 @@ textarea.form-input{min-height:var(--textarea-min-h);line-height:var(--lh-body);
 .footer-copy{margin:0;width:100%;max-width:none;color:var(--text-muted);font-size:var(--fs-small)}
 
 
+/* ---------- Atalho do WhatsApp (fixo, canto inferior direito) ----------
+   Ação, então usa o acento. Fica abaixo do menu móvel e do header, e
+   respeita a área segura do iPhone. Sem sombra: o ciano já se destaca no
+   fundo escuro de todas as bandas. */
+.wa-fab{position:fixed;right:max(var(--fab-offset),env(safe-area-inset-right));bottom:max(var(--fab-offset),env(safe-area-inset-bottom));z-index:var(--z-fab);display:inline-flex;align-items:center;justify-content:center;width:var(--fab-size);height:var(--fab-size);border-radius:var(--r-round);background:var(--accent);color:var(--on-accent);transition:background-color var(--dur-fast) ease}
+.wa-fab:hover{background:var(--accent-hover)}
+.wa-fab:focus-visible{outline-color:var(--text)}
+.wa-fab-icon{width:var(--fab-icon);height:var(--fab-icon);fill:currentColor}
+
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
