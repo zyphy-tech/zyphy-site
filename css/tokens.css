@@ -12,9 +12,8 @@
        (unidade de viewport, não medida de estilo)
      - z-index:-1 do vídeo e das camadas do hero: empilhamento local dentro
        do .hero (isolation:isolate), não camada da página como os --z-*
-     - limiares de disparo ficam no JS, com nome (rootMargin do
-       IntersectionObserver, HEADER_SCROLL_THRESHOLD): são regra de
-       disparo, não valor de estilo
+     - limiar de disparo fica no JS, com nome (HEADER_SCROLL_THRESHOLD):
+       é regra de disparo, não valor de estilo
 
    Conceito: plaqueta de máquina. Uma família de tom (petróleo, derivada do
    ciano da marca) executada até o fim, acento raro, letra neutra comprimida.
@@ -158,7 +157,7 @@
      79% e 77%; por isso os dois usam --text. 62% cobre todos com folga. */
   --hero-shade:color-mix(in srgb,var(--band-deep) 62%,transparent);
   --hero-scrim-bottom:linear-gradient(0deg,var(--band-deep) 0%,transparent 22%);
-  --hero-focus-mobile:62% 50%;        /* tablet: quadro inteiro em 4:3 */
+  --hero-focus-tablet:62% 50%;        /* tablet: quadro inteiro em 4:3 */
   --hero-focus-phone:50% 50%;         /* celular: o recorte 4:5 já vem centrado no notebook */
   /* celular: vídeo em pé atrás do texto, com sombra no hero inteiro. Medido
      quadro a quadro em 360/375/414px (pixel mais claro atrás de cada linha):

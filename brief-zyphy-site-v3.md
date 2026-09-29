@@ -276,11 +276,14 @@ passa em todos os quadros (atraso máximo permitido: 1s, só se o contraste
 não passasse sem ele). **Vídeo em todas as telas** (decisão do Weslley,
 29/09/2026, substitui "celular só imagem parada"). No celular (<600px) é
 um recorte em pé 4:5 em volta do notebook (hero-m, 720×900, webm 0,4 MB
-e mp4 0,6 MB), atrás do texto, com sombra de 52%; a versão é escolhida
-por `<source media>`. No tablet o vídeo 16:9 fica abaixo do texto; no
+e mp4 0,6 MB), atrás do texto, com sombra de 52%. A versão é escolhida
+pelo JS, que põe no `<video>` só as fontes da largura atual (cada uma
+ainda com `media`, como segunda trava); girar o aparelho troca a versão
+no mesmo ponto. No tablet o vídeo 16:9 fica abaixo do texto; no
 desktop, atrás, à direita. muted, playsinline, autoplay, toca uma vez e
-para no último quadro. Sem vídeo só com reduced-motion ou economia de
-dados: imagem parada do último quadro.
+para no último quadro. Sem vídeo (reduced-motion, economia de dados,
+erro ao carregar ou autoplay bloqueado): imagem parada do último
+quadro.
 
 Sombra atrás do texto no desktop: 62%, desde o início. Medida quadro a
 quadro (pixel mais claro atrás de cada linha): H1 precisa 49% (3:1, texto
@@ -300,10 +303,9 @@ então dispensa botão de pausa; o corte tirou os primeiros quadros e
 manteve o último, que é a imagem parada final. No desktop o texto fica na área escura
 da esquerda. O **primeiro quadro** é o poster e a imagem parada onde o
 vídeo toca (todas as telas; no celular, o do recorte 4:5), para o vídeo
-começar de onde a imagem está sem "voltar"; se o vídeo não tocar (erro,
-autoplay bloqueado), a imagem volta ao último quadro. O **último quadro**
-é a imagem do reduced-motion e da economia de dados (sem vídeo; no
-celular, o do recorte) e a og:image.
+começar de onde a imagem está sem "voltar". O **último quadro** é a
+imagem parada de todos os casos sem vídeo listados acima (no celular, o
+do recorte) e a og:image.
 
 GSAP permitido. Lenis fica de fora — scroll nativo basta e reduz JS.
 

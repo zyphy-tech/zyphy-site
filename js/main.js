@@ -154,6 +154,29 @@
     function finalFrame() {
       media.querySelectorAll("source[data-first-frame]").forEach(function (s) { s.remove(); });
     }
+    /* URL do primeiro ou do último quadro da largura atual, lida direto das
+       fontes do <picture> (o currentSrc da <img> pode ainda não ter sido
+       escolhido, ou ser da orientação anterior logo depois de girar) */
+    function frame(first) {
+      var list = media.querySelectorAll("picture source");
+      for (var i = 0; i < list.length; i++) {
+        var s = list[i];
+        if (s.hasAttribute("data-first-frame") !== first) continue;
+        if (s.media && !window.matchMedia(s.media.replace(/ and \(prefers-reduced-motion:no-preference\)/, "")).matches) continue;
+        // candidatos do srcset: [url, largura]; reaproveita o que a <img> já
+        // baixou, senão o menor que cobre a tela, senão o maior
+        var cand = s.getAttribute("srcset").split(",").map(function (c) {
+          var p = c.trim().split(/\s+/);
+          return [new URL(p[0], doc.baseURI).href, parseInt(p[1], 10) || 0];
+        });
+        var same = cand.filter(function (c) { return c[0] === still.currentSrc; })[0];
+        if (same) return same[0];
+        var need = window.innerWidth * (window.devicePixelRatio || 1);
+        var fit = cand.filter(function (c) { return c[1] >= need; }).sort(function (a, b) { return a[1] - b[1]; })[0];
+        return (fit || cand[cand.length - 1])[0];
+      }
+      return still.src;
+    }
     var conn = navigator.connection;
     if (conn && conn.saveData) { finalFrame(); return; }
 
@@ -167,7 +190,7 @@
     video.autoplay = true;
     video.setAttribute("autoplay", "");
     video.preload = "auto";
-    video.poster = still.currentSrc || still.src;
+    video.poster = frame(true);
     var phone = window.matchMedia("(max-width:599px)");
     var SOURCES = {
       phone: [["assets/video/hero-m.webm", "video/webm"], ["assets/video/hero-m.mp4", "video/mp4"]],
@@ -199,7 +222,7 @@
     phone.addEventListener("change", function () {
       if (gone) return;
       var t = video.currentTime, ended = video.ended;
-      video.poster = still.currentSrc || still.src;
+      video.poster = frame(!ended);
       setSources();
       video.load();
       video.addEventListener("loadedmetadata", function () {

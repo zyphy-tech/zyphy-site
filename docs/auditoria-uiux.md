@@ -125,7 +125,7 @@ Padrão **"Bento Grid Showcase"** com estilo **"Modern Dark (Cinema)"**:
 | `#00CBCC` acento sobre os 8 fundos | 7,7–9,4:1 | AAA ✅ |
 | `#0E1515` sobre `#00CBCC` / hover / press | 9,2 / 11,2 / 7,3:1 | AAA ✅ |
 | Erro `#c0392b` sobre form `#1B2626` | **2,86:1** | **FALHA** ❌ (C2) |
-| FAB hover `#FFFFFF` sobre `#00CBCC` | **2,02:1** | **FALHA** ❌ (A5) |
+| FAB hover `#FFFFFF` sobre `#00CBCC` | **2,02:1** | **FALHA** ❌ (A5) — *FAB removido depois (ver A5)* |
 | `.strike` `#5F7A7A` sobre `#141D1D` | 3,72:1 | AA-large (ok p/ display) |
 
 **A11y/UX já corretos:** focus-visible global · reduced-motion completo · touch targets principais ≥44px · `100svh` · labels visíveis · navs com aria-label distinto · rotator com fallback sr-only.
@@ -147,7 +147,7 @@ Padrão **"Bento Grid Showcase"** com estilo **"Modern Dark (Cinema)"**:
 | A2 | Sem skip-link | `index.html` topo | *Já planejado — Etapa 2* |
 | A3 | Burger sem `aria-expanded`/`aria-controls`; menu não fecha com Esc nem clique fora | `index.html:52`, `js/main.js:133` | ✅ Etapa 1.5: `aria-expanded` sincronizado + `aria-controls` + Esc (devolve foco) + clique fora fecha |
 | A4 | Imagens sem `width/height` nem `loading="lazy"`; `.shot` sem altura fixa → CLS real | `index.html:207-252` | *Já planejado — Etapa 3* (atenção às `.shot`) |
-| A5 | FAB WhatsApp no hover: ícone `#FFFFFF` sobre ciano = 2,02:1 — some no hover | `css/styles.css:636` | ✅ Etapa 1.5: `--on-accent` no hover (9,2:1) |
+| A5 | FAB WhatsApp no hover: ícone `#FFFFFF` sobre ciano = 2,02:1 — some no hover | `css/styles.css:636` | ✅ Etapa 1.5: `--on-accent` no hover (9,2:1). **Depois:** o FAB foi removido em 25/09/2026 por cobrir conteúdo; voltou em 29/09 e saiu de novo (brief §8). Não há mais botão flutuante |
 
 ### 🟡 Médio
 
