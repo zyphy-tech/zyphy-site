@@ -229,6 +229,16 @@ html{view-transition-name:none}
   .step:nth-child(3){grid-column:5 / span 6}
   .step:nth-child(4){grid-column:7 / span 6}
 }
+/* ---------- Como a gente constrói: carimbo ---------- */
+@supports (animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference){
+    .step{view-timeline-name:--step;view-timeline-axis:block}
+    .step-num{animation:zyStamp linear both;animation-timeline:--step;animation-range:entry 10% entry 55%}
+    .step-body{animation:zyRise linear both;animation-timeline:--step;animation-range:entry 25% entry 75%}
+  }
+}
+@keyframes zyStamp{from{opacity:0;transform:scale(1.15)}70%{transform:scale(.99)}to{opacity:1;transform:scale(1)}}
+@keyframes zyRise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 
 /* ---------- Projetos: plaquetas ---------- */
 /* base = pilha vertical. Vale para celular, Firefox (sem scroll-driven) e
