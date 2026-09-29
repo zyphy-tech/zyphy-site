@@ -135,8 +135,13 @@
      Toca uma vez, sem som, e para no último quadro (sem loop). O texto fica
      visível desde o início (a sombra do CSS garante o contraste). Toca em
      todas as telas; fica fora só do reduced-motion (ali o <picture> já
-     mostra o último quadro) e da economia de dados. A versão sai do
-     <source media>: recorte 4:5 no celular, quadro inteiro nas demais.
+     mostra o último quadro) e da economia de dados. Versão: recorte 4:5 no
+     celular, quadro inteiro nas demais. Cada <source> leva o media, e o JS
+     só põe no <video> as da largura atual: assim navegador que ignora
+     media em <video> (antes do Chrome/Firefox 120) não toca a versão
+     errada, e se as duas da largura falharem não cai na outra proporção.
+     Girar o celular para o outro lado do corte troca a versão no mesmo
+     ponto do vídeo.
      Onde toca, o <picture> mostra o PRIMEIRO quadro, que também é o poster:
      o vídeo começa de onde a imagem está, sem "voltar". Se ele não for tocar
      (economia de dados, erro, autoplay bloqueado), finalFrame() tira as
@@ -163,26 +168,45 @@
     video.setAttribute("autoplay", "");
     video.preload = "auto";
     video.poster = still.currentSrc || still.src;
-    /* o navegador escolhe pela largura (media), na ordem: celular primeiro */
-    [
-      ["assets/video/hero-m.webm", "video/webm", "(max-width:599px)"],
-      ["assets/video/hero-m.mp4", "video/mp4", "(max-width:599px)"],
-      ["assets/video/hero.webm", "video/webm"],
-      ["assets/video/hero.mp4", "video/mp4"]
-    ].forEach(function (s) {
-      var source = doc.createElement("source");
-      source.src = s[0];
-      source.type = s[1];
-      if (s[2]) source.media = s[2];
-      video.appendChild(source);
-    });
-    /* sem vídeo (nenhuma fonte carregou ou autoplay bloqueado): ele sai e a
-       imagem parada fica, já no último quadro */
-    function giveUp() { video.remove(); finalFrame(); }
-    video.lastElementChild.addEventListener("error", giveUp);
+    var phone = window.matchMedia("(max-width:599px)");
+    var SOURCES = {
+      phone: [["assets/video/hero-m.webm", "video/webm"], ["assets/video/hero-m.mp4", "video/mp4"]],
+      wide: [["assets/video/hero.webm", "video/webm"], ["assets/video/hero.mp4", "video/mp4"]]
+    };
+    /* sem vídeo (as fontes da largura falharam ou autoplay bloqueado): ele
+       sai e a imagem parada fica, já no último quadro */
+    var gone = false;
+    function giveUp() { if (gone) return; gone = true; video.remove(); finalFrame(); }
+    function setSources() {
+      var q = phone.matches ? "(max-width:599px)" : "(min-width:600px)";
+      video.replaceChildren();
+      SOURCES[phone.matches ? "phone" : "wide"].forEach(function (s) {
+        var source = doc.createElement("source");
+        source.src = s[0];
+        source.type = s[1];
+        source.media = q;
+        video.appendChild(source);
+      });
+      video.lastElementChild.addEventListener("error", giveUp);
+    }
+    setSources();
     media.appendChild(video);
     var p = video.play();
     if (p && p.catch) p.catch(giveUp);
+
+    /* girou o celular: troca a versão e continua do mesmo ponto (ou fica no
+       último quadro, se já tinha terminado) */
+    phone.addEventListener("change", function () {
+      if (gone) return;
+      var t = video.currentTime, ended = video.ended;
+      video.poster = still.currentSrc || still.src;
+      setSources();
+      video.load();
+      video.addEventListener("loadedmetadata", function () {
+        video.currentTime = ended ? video.duration : Math.min(t, video.duration);
+        if (!ended) { var q = video.play(); if (q && q.catch) q.catch(function () {}); }
+      }, { once: true });
+    });
   }
 
   function boot() {

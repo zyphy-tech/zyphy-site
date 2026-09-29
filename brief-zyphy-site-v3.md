@@ -191,10 +191,10 @@ corrige o bug "seu site seu site". Formulário (nome, e-mail ou
 WhatsApp, mensagem) abre WhatsApp. Botão "Enviar pelo WhatsApp". Linha:
 "Abre a conversa com sua mensagem pronta."
 
-**Atalho fixo do WhatsApp** (decisão do Weslley, 29/09/2026): botão
-redondo em ciano no canto inferior direito, em todas as telas, com o
-glifo oficial do WhatsApp. Abre wa.me com "Olá! Vim pelo site da Zyphy e
-quero conversar sobre um projeto." Fica abaixo do menu e do header.
+**Atalho do WhatsApp no celular:** ícone do WhatsApp no header fixo, ao
+lado do menu, até 900px (mesmo glifo, link e aria-label do rodapé).
+Acompanha a rolagem sem cobrir conteúdo. **Não há botão flutuante** (ver
+§8).
 
 ### 5.9 Rodapé
 Marca, uma frase que não repita a do hero: "Sites, apps, dashboards e
@@ -261,6 +261,12 @@ inventar um por seção é ruído.
 Saiu nesta revisão a faixa de cor que expandia no dashboard e no
 contato.
 
+**Removido: "carimbo" nos passos do Processo** (29/09/2026). O número
+entrava em escala e o texto subia com opacidade conforme o scroll. Saiu
+porque o texto subindo é o fade-up proibido (§8) e porque o movimento não
+carrega informação: seria um quarto comportamento sem razão, e o limite
+são três.
+
 **Vídeo do hero (decisão do Weslley, 2026-09-29):** o vídeo do hero é a
 orquestração de entrada da página e fica **fora da conta dos três
 comportamentos de scroll**. Toca uma vez, sem som, e para no último
@@ -309,7 +315,15 @@ GSAP permitido. Lenis fica de fora — scroll nativo basta e reduz JS.
 - Numeração em qualquer coisa que não seja o processo
 - "→" e "↗" dentro de texto de link ou botão; "·" separando meta
 - Trecho de código fictício
-- `fade-up` por seção; hover com transform em card
+- `fade-up` por seção ou por item; hover com transform em card
+- **Botão flutuante fixo na tela** (WhatsApp ou qualquer outro). Removido
+  em 25/09/2026 por cobrir conteúdo e reintroduzido em 29/09 porque o
+  motivo não tinha sido registrado. Medido na volta: em 375px cobria 43
+  itens durante a rolagem (passos do processo, imagens, fichas e
+  depoimentos dos projetos, os três campos do formulário) e, em 375×667,
+  o "Ver projetos" já na primeira tela; em 1440px passava sobre a
+  captura da Vora e o e-mail do rodapé. No celular o atalho fica no
+  header (§5.8).
 - Sombra cinza; raio igual em todos os elementos
 - Grid de 3 ou 4 cards como estrutura principal repetida
 - Qualquer número que não foi medido

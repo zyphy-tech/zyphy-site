@@ -112,8 +112,9 @@
   --line-control:var(--sage-500);
   --mask-opaque:#000;                  /* máscara: só o alfa conta, a cor não aparece */
 
-  /* acento raro, reservado para ação e estado: botão primário, foco de
-     teclado, barra ativa do dashboard */
+  /* acento raro, reservado para ação e estado: botão primário (hero, menu,
+     formulário), foco de teclado, barra ativa do dashboard, skip link e o
+     Z do logo */
   --accent:var(--cyan-500);
   --accent-hover:var(--cyan-400);
   --on-accent:var(--ink-950);
@@ -158,6 +159,7 @@
   --hero-shade:color-mix(in srgb,var(--band-deep) 62%,transparent);
   --hero-scrim-bottom:linear-gradient(0deg,var(--band-deep) 0%,transparent 22%);
   --hero-focus-mobile:62% 50%;        /* tablet: quadro inteiro em 4:3 */
+  --hero-focus-phone:50% 50%;         /* celular: o recorte 4:5 já vem centrado no notebook */
   /* celular: vídeo em pé atrás do texto, com sombra no hero inteiro. Medido
      quadro a quadro em 360/375/414px (pixel mais claro atrás de cada linha):
      H1 precisa 49% (3:1, pior aos 0,8s nos papéis), sub 43% só em 414px
@@ -238,9 +240,6 @@
   --header-h:68px;
   --tap:44px;                                /* alvo de toque mínimo */
   --icon:24px;                               /* ícones das redes */
-  --fab-size:56px;                           /* atalho fixo do WhatsApp */
-  --fab-icon:28px;
-  --fab-offset:var(--space-5);               /* distância das bordas da tela */
   --control-h:48px;                          /* botão e campo */
   --form-max:760px;
   --ring:3px;                                /* anel de erro do campo */
@@ -264,7 +263,6 @@
   --r-none:0;          /* imagens e bandas */
   --r-control:4px;     /* botão, input */
   --r-screen:12px;     /* o dashboard, único objeto com cara de tela */
-  --r-round:50%;       /* círculo: atalho do WhatsApp */
 
   /* ---------- Movimento ----------
      Três comportamentos de scroll/interação, e só eles. O vídeo do hero é a
@@ -295,7 +293,6 @@
   --proj-distance:calc(var(--plaque-count) * var(--plaque-w) + (var(--plaque-count) - 1) * var(--plaque-gap) + 2 * var(--gutter) - 100vw);
 
   /* ---------- Camadas ---------- */
-  --z-fab:90;          /* atalho do WhatsApp: abaixo do menu e do header */
   --z-menu:99;
   --z-header:100;
   --z-skip:400;

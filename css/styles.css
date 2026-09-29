@@ -33,7 +33,6 @@ main:focus{outline:none}
 .band--color{--band-bg:var(--band-color)}
 .band{background:var(--band-bg)}
 
-
 /* ---------- Tipografia de exibição ---------- */
 .display-h1,.display-h2,.display-statement,.step-num,.fix-pain,.dash-kpi dd{font-family:var(--font-display);font-weight:var(--weight-display);letter-spacing:var(--tracking-display);text-transform:var(--case-display);line-height:var(--lh-display)}
 .display-h1{margin:0;font-size:min(var(--fs-h1),var(--fs-h1-fit))}
@@ -65,10 +64,13 @@ main:focus{outline:none}
 .nav-links a{display:inline-flex;align-items:center;min-height:var(--tap);transition:color var(--dur-fast) ease}
 .nav-links a:hover{color:var(--text)}
 .nav-main .nav-cta{min-height:var(--tap);padding:var(--space-2) var(--space-4);font-size:var(--fs-small)}
+/* atalho do WhatsApp no header: só no celular/tablet, colado ao menu */
+.nav-main .nav-wa{display:none}   /* .nav-main: vence o display do .social-link, que vem depois */
 .nav-burger{display:none;align-items:center;justify-content:center;width:var(--tap);height:var(--tap);background:transparent;border:var(--hairline) solid var(--line);border-radius:var(--r-control);color:var(--text);cursor:pointer}
 @media (max-width:900px){
   .nav-links,.nav-main .nav-cta{display:none}
   .nav-burger{display:inline-flex}
+  .nav-main .nav-wa{display:inline-flex;margin-left:auto;margin-right:calc(var(--space-2) - var(--space-5))}
 }
 
 /* ---------- Menu móvel ---------- */
@@ -103,7 +105,7 @@ main:focus{outline:none}
 @media (max-width:599px){
   .hero{position:relative;isolation:isolate;overflow:clip}
   .hero-media{position:absolute;top:0;left:0;right:0;z-index:-1;margin:0;aspect-ratio:var(--ratio-hero-phone)}
-  .hero-still,.hero-video{object-position:50% 50%}
+  .hero-still,.hero-video{object-position:var(--hero-focus-phone)}
   .hero-media::after{content:"";position:absolute;inset:0;background:var(--hero-scrim-phone)}
   .hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:var(--hero-shade-phone)}
 }
@@ -229,16 +231,6 @@ html{view-transition-name:none}
   .step:nth-child(3){grid-column:5 / span 6}
   .step:nth-child(4){grid-column:7 / span 6}
 }
-/* ---------- Como a gente constrói: carimbo ---------- */
-@supports (animation-timeline:view()){
-  @media (prefers-reduced-motion:no-preference){
-    .step{view-timeline-name:--step;view-timeline-axis:block}
-    .step-num{animation:zyStamp linear both;animation-timeline:--step;animation-range:entry 10% entry 55%}
-    .step-body{animation:zyRise linear both;animation-timeline:--step;animation-range:entry 25% entry 75%}
-  }
-}
-@keyframes zyStamp{from{opacity:0;transform:scale(1.15)}70%{transform:scale(.99)}to{opacity:1;transform:scale(1)}}
-@keyframes zyRise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 
 /* ---------- Projetos: plaquetas ---------- */
 /* base = pilha vertical. Vale para celular, Firefox (sem scroll-driven) e
@@ -332,16 +324,6 @@ textarea.form-input{min-height:var(--textarea-min-h);line-height:var(--lh-body);
 @media (min-width:600px){ .site-footer .social{margin-left:auto} }
 /* max-width:none: sem isso o p{max-width} global segura o copyright na mesma linha dos ícones */
 .footer-copy{margin:0;width:100%;max-width:none;color:var(--text-muted);font-size:var(--fs-small)}
-
-
-/* ---------- Atalho do WhatsApp (fixo, canto inferior direito) ----------
-   Ação, então usa o acento. Fica abaixo do menu móvel e do header, e
-   respeita a área segura do iPhone. Sem sombra: o ciano já se destaca no
-   fundo escuro de todas as bandas. */
-.wa-fab{position:fixed;right:max(var(--fab-offset),env(safe-area-inset-right));bottom:max(var(--fab-offset),env(safe-area-inset-bottom));z-index:var(--z-fab);display:inline-flex;align-items:center;justify-content:center;width:var(--fab-size);height:var(--fab-size);border-radius:var(--r-round);background:var(--accent);color:var(--on-accent);transition:background-color var(--dur-fast) ease}
-.wa-fab:hover{background:var(--accent-hover)}
-.wa-fab:focus-visible{outline-color:var(--text)}
-.wa-fab-icon{width:var(--fab-icon);height:var(--fab-icon);fill:currentColor}
 
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion:reduce){
