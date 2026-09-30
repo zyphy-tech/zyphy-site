@@ -35,3 +35,13 @@ as entradas já gravadas: elas registram o que foi medido em cada commit.
 - **Bloqueios:** QA-02 (novo: +209px em 1440x900), QA-14, anti-brief-headline-generica, conteudo-sem-fonte, conteudo-metrica, conteudo-depoimento
 - **Correções aplicadas:** 1/7 — QA-02 (.hero-media no desktop, exposto pela retirada do overflow:clip na volta 1)
 - **Precisa de humano:** QA-14 (política × brief §5/§9); headline genérica (trocar H1 ou exceção REVIEW); fatos-cliente.md (fontes); "4 projetos no ar" e Performance 84/86/84; verificação dos 3 depoimentos
+
+## Volta 3 — 2026-09-30
+
+- **Commit medido:** eecb558
+- **Modo:** rapido
+- **URL medida:** http://127.0.0.1:50121/ (branch servida localmente)
+- **Nota:** 89,4/100 (medido 57,85/60, julgado 31,5/40) · aprovado não
+- **Bloqueios:** QA-14, anti-brief-headline-generica, conteudo-sem-fonte, conteudo-metrica, conteudo-depoimento
+- **Correções aplicadas:** 0/0 — ciclo parado por platô antes de corrigir (nota −0,1 sobre a volta 2)
+- **Precisa de humano:** os 5 bloqueios acima; copy.md (C5) depende do fatos-cliente.md
