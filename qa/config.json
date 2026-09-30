@@ -1,5 +1,6 @@
 {
   "nota_minima": 80,
+  "dominio": "https://www.zyphy.com.br",
   "paginas_ignoradas": [
     { "url": "/fieldfix/privacidade/", "motivo": "página legal do app FieldFix exigida pela Play Store; outra marca" }
   ],

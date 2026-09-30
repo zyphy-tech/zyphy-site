@@ -78,6 +78,13 @@ Não reabra estas:
 - **H1 do hero:** 'Quem fala com você programa o seu projeto.' (F13),
   escolhido pelo Weslley entre três opções do zyphy-copy. Substitui o
   slogan do §5.2, que passa a ser usado só no meta title.
+- **Rótulo do WhatsApp no header** igual ao do rodapé (§5.8). Vale sobre
+  o rótulo "Falar com a Zyphy no WhatsApp" do `copy.md`.
+- **Trilho de projetos:** a ficha técnica e o depoimento ficam parados;
+  só a miniatura desliza (regra 3).
+- **Campo de mensagem do formulário: opcional.** O formulário não mostra
+  erro de mensagem vazia; o erro "Conte em uma frase o que está
+  travando." do `copy.md` não se aplica.
 
 ### Correção de 30/09/2026 (zyphy-ciclo, volta 1: COPY e review)
 
