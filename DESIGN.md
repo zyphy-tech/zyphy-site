@@ -368,7 +368,7 @@ terceira família" (:231).
 | `--gutter` | `clamp(20px,5vw,64px)` | `padding-inline` de `.container`, `.nav-main`, `.projects-track`, `.mobile-menu`; sangria do `.hero-media` |
 | `--columns` | `12` | `.hero-grid`, `.sol-grid`, `.steps` a partir de 1100px |
 | `--col-gap` | `clamp(16px,2vw,24px)` | as mesmas grades |
-| `--header-h` | `68px` | `.site-header`, `scroll-margin-top` da `.band`, topo do `.hero`, `.mobile-menu`, `.sol-title` sticky, `.projects-pin`, `.contact-lead` |
+| `--header-h` | `68px` | `.site-header`, `scroll-margin-top` da `.band`, topo do `.hero`, `.mobile-menu`, `.sol-title` sticky, `--plaque-row-h`, `.plaque-media` sticky, `.contact-lead`, `scroll-margin-top` da `.contact-sub` |
 | `--tap` | `44px` | `.brand`, `.nav-links a`, `.nav-cta`, `.nav-burger`, `.dash-filter-btn`, `.project-link`, `.footer-links a`, `.social-link` (comentário: "alvo de toque mínimo") |
 | `--icon` | `24px` | `.social-icon` |
 | `--control-h` | `48px` | `.btn`, `.form-input`, `.mobile-menu-link` |
@@ -390,7 +390,7 @@ Espaço base: `--space-1` a `--space-9` = 4, 8, 12, 16, 24, 32, 48, 64,
 | `min-width:760px` | `.contact-lead` com altura mínima de uma tela (styles:307) |
 | `max-width:900px` | nav vira `.nav-burger` com `.nav-wa` ao lado; `.dash-kpis` em 2 colunas (styles:70, 195) |
 | `min-width:1100px` | grade de 12 colunas no hero, soluções e processo; `.plaque` em `3fr 2fr` (styles:119, 233, 247, 282) |
-| `min-width:1100px and min-height:760px` | trilho horizontal dos projetos, com `prefers-reduced-motion:no-preference` (styles:290) |
+| `min-width:1100px and min-height:760px` | projetos com ficha parada e miniatura correndo (movimento 1), com `prefers-reduced-motion:no-preference` e suporte a `timeline-scope` |
 
 O comentário de `css/tokens.css:6` registra que breakpoints ficam
 literais porque "CSS não aceita var() em media query".
@@ -405,9 +405,11 @@ literais porque "CSS não aceita var() em media query".
   `.step` ocupa 6 colunas, começando nas colunas 1, 3, 5 e 7
   (styles:241–255).
 - `.projects-track`: grade com `grid-auto-rows:1fr` e
-  `gap: var(--space-9)`; no trilho horizontal vira `flex` com
-  `gap: var(--plaque-gap)` e `.plaque` com `width: var(--plaque-w)`
-  (styles:265, 294–295).
+  `gap: var(--space-9)`; com o movimento 1 vira grade de `--columns`
+  colunas e `--plaque-count` linhas, `.plaque` em `display:contents`,
+  `.plaque-body` em `1 / span 4` (uma linha por projeto, altura mínima
+  `--plaque-row-h`) e as quatro `.plaque-media` em `6 / span 6`, na
+  altura da faixa inteira, sticky.
 - `.contact-form`: 1 coluna, 2 a partir de 700px; `.form-field--wide` em
   `1 / -1` (styles:310–312).
 - `.audience`: `repeat(auto-fit,minmax(min(var(--col-min-audience),100%),1fr))`
@@ -577,7 +579,7 @@ Fixo em `--space-2` do canto, fundo `--accent`, texto `--on-accent`,
 `--fs-step-num`, `--text-muted`, tabular; `.step-desc` em `--text-muted`;
 `.stack-line` com `margin-top: var(--space-9)`.
 
-### Projetos: `.projects-section`, `.projects-pin`, `.projects-head`, `.section-note`, `.spec-source`, `.projects-rail`, `.projects-track`, `.plaque`, `.plaque-media`, `.plaque-body`, `.plaque-title`, `.project-desc`, `.spec`, `.project-links`, `.project-link`, `.plaque-quote`
+### Projetos: `.projects-section`, `.projects-head`, `.section-note`, `.spec-source`, `.projects-track`, `.plaque`, `.plaque-media`, `.plaque-body`, `.plaque-title`, `.project-desc`, `.spec`, `.project-links`, `.project-link`, `.plaque-quote`
 
 - `.plaque`: 1 coluna; a partir de 1100px, `minmax(0,3fr) minmax(0,2fr)`.
 - `.plaque-media`: `--ratio-project`, fundo `--band-raised`, borda
@@ -626,7 +628,9 @@ ciano aparece só no foco de teclado" (styles:338–339).
 `privacidade/index.html` usa `.draft-banner`, `.legal`, `.legal-lead`,
 `.legal-meta`, `.legal-section`, `.legal-h2`, `.legal-h3`, `.legal-list`,
 `.legal-list--numbered`, `.legal-table` e `.fill`, que não têm regra em
-nenhum dos dois CSS. A página está fora do deploy (brief:377–378).
+nenhum dos dois CSS. A página entrou no deploy em 30/09/2026, com a
+política concluída (brief §3, decisões de 2026-09-30; `.vercelignore`
+com `!/privacidade`), e o link "Privacidade" voltou ao rodapé.
 
 ## Movimento
 
@@ -641,21 +645,29 @@ Tokens (:293–313):
 | `--strike-color` | `var(--text)` | traço da dor (comentário: "ciano fica para ação") |
 | `--strike-w` | `.09em` | espessura do traço |
 | `--strike-y` | `54%` | altura do traço (comentário :301–303) |
-| `--plaque-w` | `min(80vw,1200px)` | `.plaque` no trilho |
-| `--plaque-gap` | `var(--space-8)` | `.projects-track` no trilho |
-| `--plaque-count` | `4` | cálculo de `--proj-distance` |
-| `--proj-range` | `contain 0% contain 100%` | `.projects-track` |
-| `--proj-distance` | `calc(var(--plaque-count) * var(--plaque-w) + (var(--plaque-count) - 1) * var(--plaque-gap) + 2 * var(--gutter) - 100vw)` | altura extra da `.projects-section` |
+| `--plaque-gap` | `var(--space-8)` | respiro entre a miniatura na moldura e a que espia pela borda (dentro de `--shot-step`) |
+| `--plaque-count` | `4` | linhas da `.projects-track` no movimento 1 |
+| `--plaque-row-h` | `calc(100svh - var(--header-h))` | altura mínima da `.plaque-body` no movimento 1 (uma tela por projeto) |
+| `--plaque-top` | `max(var(--space-9),16svh)` | topo da moldura (sticky) e da ficha no movimento 1 |
+| `--shot-step` | `calc(100% + var(--plaque-gap))` | um passo da miniatura: da borda até a moldura |
+| `--shot-range` | `entry 30% entry 70%` | trecho da entrada da ficha em que a miniatura dela corre |
 
 Os três comportamentos no código, com o motivo que o brief declara
 (brief:261–275; limite de três em brief:255–257):
 
-1. Projetos — `@keyframes zyTrack` (`translateX(0)` a
-   `translateX(calc(100cqw - 100%))`), `animation-timeline:--proj`, com
-   `.projects-pin` sticky. Só com suporte a `view-timeline-name` e
-   `animation-timeline`, `prefers-reduced-motion:no-preference`,
-   `min-width:1100px` e `min-height:760px` (styles:286–302). Motivo: "o
-   conteúdo vaza pela borda e sugere que continua" (brief:263–264).
+1. Projetos — só a miniatura corre; a ficha e o depoimento ficam
+   parados na coluna da esquerda, em fluxo normal (brief §3, decisão de
+   2026-09-30). As `.plaque-media` ficam numa moldura sticky; a próxima
+   espia pela borda direita da tela. `@keyframes zyShotArrive`
+   (`transform`, da borda até a moldura) e `zyShotPeek` (`translate`, de
+   fora da tela até a borda), cada miniatura na `view-timeline` da ficha
+   do próprio projeto (`--plaque-2` a `--plaque-4`, com `timeline-scope`
+   na `.projects-track`), no trecho `--shot-range`. Só com suporte a
+   `view-timeline-name`, `animation-timeline` e `timeline-scope`,
+   `prefers-reduced-motion:no-preference`, `min-width:1100px` e
+   `min-height:760px`. Motivo: "o conteúdo vaza pela borda e sugere que
+   continua" (brief §7); a moldura mostra o projeto da ficha que está
+   sendo lida.
 2. Soluções — `@keyframes zyStrike` (`background-size` de 0% a 100%) e
    `zySolve` (cor de `--text-muted` a `--text`), `animation-timeline:--fix`
    (`view-timeline` do `.fix-item`), dentro de

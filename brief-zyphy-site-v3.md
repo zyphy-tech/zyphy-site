@@ -130,6 +130,31 @@ Nenhum layout mudou, só texto, com duas exceções pedidas pelo review
   projeto com a Zyphy." da mensagem vazia.
 - **SEO.** Meta description, og:title e og:description do `copy.md`.
 
+### Correção de 30/09/2026 (zyphy-ciclo: trilho, privacidade e contato)
+
+Aplica as duas decisões de 2026-09-30 acima que o site ainda não seguia
+e o C3 do review.
+
+- **Trilho de projetos.** Saiu: a faixa inteira (`.projects-track`, com
+  ficha e depoimento dentro) correndo na horizontal com a seção fixa, que
+  cortava a ficha e a citação na borda da tela (regra 3). Ficou: no
+  desktop com scroll-driven, a ficha e o depoimento numa coluna à
+  esquerda, em fluxo normal (sobem com a página, nunca andam na lateral);
+  as quatro miniaturas numa moldura fixa à direita, a próxima espiando
+  pela borda da tela. Quando a ficha de um projeto entra, a miniatura
+  dele corre da borda para a moldura e cobre a anterior. Continua sendo o
+  movimento 1 (§7), não um quarto. Saiu junto o ajuste de rolagem por
+  foco de teclado do `js/main.js`: com a ficha em fluxo normal, o foco
+  rola a página sozinho e a miniatura acompanha. Celular, Firefox e
+  reduced-motion: pilha vertical, como antes.
+- **Privacidade.** O link "Privacidade" (`/privacidade/`) voltou ao
+  rodapé e o `.vercelignore` libera `/privacidade` (QA-14).
+- **"Começar projeto"** (header, hero e menu do celular) aponta para
+  `#comecar`, o subtítulo do contato. Antes ia para o topo da banda, e a
+  frase grande ocupa a primeira tela: quem clicava não via nenhum campo.
+  Agora a tela abre no subtítulo, no diagnóstico grátis e no formulário.
+  O link "Contato" do menu continua no topo da banda, na frase.
+
 ---
 
 ## 4. Aberto — sai da Fase 3
@@ -324,7 +349,9 @@ inventar um por seção é ruído.
 **Os três comportamentos (revisão do Weslley, 29/09/2026):**
 1. **Projetos:** plaquetas correm na horizontal conforme o scroll vertical
    (CSS scroll-driven). Razão: o conteúdo vaza pela borda e sugere que
-   continua, como no `21st`. Sem suporte: pilha vertical.
+   continua, como no `21st`. Sem suporte: pilha vertical. **Desde
+   30/09/2026 só a miniatura corre** (decisão do §3): ficha e depoimento
+   ficam parados, e a próxima miniatura é o que vaza pela borda.
 2. **Soluções:** conforme a linha sobe pela tela, um traço na cor do
    texto (ciano fica reservado para ação) atravessa o
    título da dor e a frase da solução ganha contraste (muted → texto).

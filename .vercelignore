@@ -11,6 +11,8 @@
 !/js
 !/assets
 !/fieldfix
+# política da Zyphy concluída em 30/09/2026 (brief §3, QA-14)
+!/privacidade
 # dentro de assets/, o que o site não referencia
 /assets/video/hero-original.mp4
 /assets/img/08-*

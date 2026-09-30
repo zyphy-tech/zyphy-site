@@ -8,7 +8,7 @@
      - translateY(-250%) do skip link (esconde fora da tela até o foco)
      - .001ms do bloco de reduced-motion (desliga transição, não é estilo)
      - <meta name="theme-color"> no HTML: meta não lê variável CSS
-     - 100svh/100vh: altura da tela no hero e na seção fixa dos projetos
+     - 100svh/100vh: altura da tela no hero e na linha de cada projeto
        (unidade de viewport, não medida de estilo)
      - z-index:-1 do vídeo e das camadas do hero: empilhamento local dentro
        do .hero (isolation:isolate), não camada da página como os --z-*
@@ -284,7 +284,8 @@
   /* ---------- Movimento ----------
      Três comportamentos de scroll/interação, e só eles. O vídeo do hero é a
      orquestração de entrada e fica fora desta conta (brief §7):
-     1. lateral nos projetos (CSS scroll-driven; fallback estático)
+     1. projetos: só a miniatura corre na lateral; ficha e depoimento parados
+        (CSS scroll-driven; fallback estático)
      2. Soluções: traço atravessa a dor e a solução ganha contraste conforme o
         scroll (CSS animation-timeline: view(); Firefox: estado final parado)
      3. barras do dashboard vão do valor antigo ao novo na troca de filtro
@@ -302,15 +303,17 @@
      Área do span = 1.2em (ascendente 900 + descendente 300); com o traço de
      .09em, 54% põe o centro dele a .26em da linha de base */
   --strike-y:54%;
-  /* projetos no desktop: seção fixa (sticky) e plaquetas correndo na
-     horizontal pelo scroll vertical. Distância horizontal = largura da faixa
-     menos a tela; a seção ganha essa mesma altura extra, então 1px de scroll
-     vertical anda 1px na horizontal */
-  --plaque-w:min(80vw,1200px);
+  /* projetos no desktop: ficha em fluxo normal, uma tela por projeto abaixo
+     do header; miniaturas numa moldura fixa. Um passo = a largura da
+     miniatura mais o respiro até a próxima (a que espia pela borda). A
+     miniatura corre enquanto a ficha dela entra, entre 30% e 70% da entrada
+     (a ficha anterior já saiu de cena, a nova chega à metade de baixo) */
   --plaque-gap:var(--space-8);
   --plaque-count:4;
-  --proj-range:contain 0% contain 100%;  /* anda enquanto a seção cobre a tela inteira */
-  --proj-distance:calc(var(--plaque-count) * var(--plaque-w) + (var(--plaque-count) - 1) * var(--plaque-gap) + 2 * var(--gutter) - 100vw);
+  --plaque-row-h:calc(100svh - var(--header-h));
+  --plaque-top:max(var(--space-9),16svh);  /* topo da moldura e da ficha: centro óptico da tela */
+  --shot-step:calc(100% + var(--plaque-gap));
+  --shot-range:entry 30% entry 70%;
 
   /* ---------- Camadas ---------- */
   --z-menu:99;

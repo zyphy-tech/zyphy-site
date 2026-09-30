@@ -77,3 +77,15 @@ as entradas já gravadas: elas registram o que foi medido em cada commit.
 - **Bloqueios:** QA-14
 - **Correções aplicadas:** 0/0 — ciclo parado por platô antes de corrigir (nota −1,0 sobre a volta 2); a única correção de prioridade 1 (QA-14) é humana
 - **Precisa de humano:** QA-14 (política em rascunho, brief:270-271 e :430-431); QA-01 possível falso positivo do medidor; A5: aria-label do WhatsApp × brief §5.8 e erro "Conte em uma frase…" × mensagem opcional; U4: ficha e depoimento correm no trilho de projetos × regra 3; `"dominio"` ausente no qa/config.json
+
+<!-- 3º ciclo de 2026-09-30: política de privacidade concluída (brief §3). A contagem de voltas recomeça. -->
+
+## Volta 1 — 2026-09-30 (3º ciclo)
+
+- **Commit medido:** 1099b33
+- **Modo:** rapido
+- **URL medida:** http://127.0.0.1:58052/ (branch servida localmente)
+- **Nota:** 92,4/100 (medido 57,85/60, julgado 34,55/40) · aprovado não
+- **Bloqueios:** QA-14, decisao-desfeita ×2 (trilho de projetos move ficha e depoimento; link de privacidade fora do rodapé e fora do .vercelignore)
+- **Correções aplicadas:** 4/4 — QA-14, decisao-desfeita (trilho), decisao-desfeita (privacidade), C3
+- **Precisa de humano:** nada

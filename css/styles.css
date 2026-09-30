@@ -289,22 +289,47 @@ html{view-transition-name:none}
   .plaque{grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:var(--space-6);align-items:start}
 }
 
-/* movimento 1 (desktop): seção fixa e plaquetas correndo na horizontal pelo
-   scroll vertical. Precisa de scroll-driven com timeline nomeada, tela larga
-   e alta o bastante para a plaqueta caber, e sem reduced-motion. */
-@supports (view-timeline-name:--a) and (animation-timeline:--a){
+/* movimento 1 (desktop): só a miniatura desliza (brief §3, 2026-09-30; regra 3).
+   A ficha e o depoimento ficam na coluna da esquerda, em fluxo normal: sobem
+   com a rolagem da página, como qualquer texto, e nunca andam na lateral.
+   As miniaturas moram numa moldura fixa (sticky) à direita; a próxima espia
+   pela borda da tela (vaza como no 21st) e, quando a ficha dela entra, corre
+   para a moldura e cobre a anterior. A moldura sempre mostra o projeto que
+   está sendo lido. Precisa de scroll-driven com timeline nomeada e
+   timeline-scope, tela larga e alta o bastante, e sem reduced-motion. Sem
+   isso: pilha vertical da base. O .plaque vira display:contents só aqui,
+   para a miniatura ocupar a altura da faixa inteira; o <article> continua
+   no HTML com o nome dele. */
+@supports (view-timeline-name:--a) and (animation-timeline:--a) and (timeline-scope:--a){
   @media (prefers-reduced-motion:no-preference) and (min-width:1100px) and (min-height:760px){
-    .projects-section{view-timeline-name:--proj;view-timeline-axis:block;height:calc(100vh + var(--proj-distance));padding-block:0}
-    .projects-pin{position:sticky;top:0;box-sizing:border-box;height:100vh;padding-top:var(--header-h);display:flex;flex-direction:column;justify-content:center}
-    .projects-rail{container-type:inline-size;overflow-x:clip}
-    .projects-track{display:flex;align-items:stretch;gap:var(--plaque-gap);width:max-content;max-width:none;margin:var(--space-7) 0 0;animation:zyTrack linear both;animation-timeline:--proj;animation-range:var(--proj-range)}
-    .plaque{flex:none;width:var(--plaque-w)}
+    /* as miniaturas que esperam fora da tela não abrem rolagem lateral; clip
+       (não hidden) para não virar contêiner de rolagem e manter o sticky */
+    .projects-section{overflow-x:clip}
+    .projects-track{grid-template-columns:repeat(var(--columns),minmax(0,1fr));grid-template-rows:repeat(var(--plaque-count),auto);grid-auto-rows:auto;gap:0 var(--col-gap);timeline-scope:--plaque-2,--plaque-3,--plaque-4}
+    .plaque{display:contents}
+    /* cada ficha ocupa uma tela abaixo do header; o texto começa na altura
+       do topo da moldura */
+    .plaque-body{grid-column:1 / span 4;box-sizing:border-box;min-height:var(--plaque-row-h);padding-top:var(--plaque-top)}
+    .plaque:nth-child(1) .plaque-body{grid-row:1}
+    .plaque:nth-child(2) .plaque-body{grid-row:2;view-timeline-name:--plaque-2}
+    .plaque:nth-child(3) .plaque-body{grid-row:3;view-timeline-name:--plaque-3}
+    .plaque:nth-child(4) .plaque-body{grid-row:4;view-timeline-name:--plaque-4}
+    /* as quatro miniaturas na mesma moldura, fixa enquanto a faixa passa */
+    .plaque-media{grid-column:6 / span 6;grid-row:1 / -1;align-self:start;position:sticky;top:calc(var(--header-h) + var(--plaque-top));margin-top:var(--plaque-top)}
+    /* posição inicial: 2ª espiando (1 passo), 3ª e 4ª fora da tela (2 passos).
+       transform = chegada à moldura; translate = chegada à borda */
+    .plaque:nth-child(2) .plaque-media{animation:zyShotArrive linear both;animation-timeline:--plaque-2;animation-range:var(--shot-range)}
+    .plaque:nth-child(3) .plaque-media{animation:zyShotPeek linear both,zyShotArrive linear both;animation-timeline:--plaque-2,--plaque-3;animation-range:var(--shot-range)}
+    .plaque:nth-child(4) .plaque-media{animation:zyShotPeek linear both,zyShotArrive linear both;animation-timeline:--plaque-3,--plaque-4;animation-range:var(--shot-range)}
   }
 }
-/* da 1ª plaqueta alinhada à esquerda até a última encostada na borda direita */
-@keyframes zyTrack{
-  from{transform:translateX(0)}
-  to{transform:translateX(calc(100cqw - 100%))}
+@keyframes zyShotArrive{
+  from{transform:translateX(var(--shot-step))}
+  to{transform:translateX(0)}
+}
+@keyframes zyShotPeek{
+  from{translate:var(--shot-step) 0}
+  to{translate:0 0}
 }
 
 /* ---------- Contato ---------- */
@@ -316,7 +341,9 @@ html{view-transition-name:none}
 /* sub na mesma voz do sub do hero; o diagnóstico em peso médio, como a linha
    de resposta do hero. Os dois na cor do texto: a muted não é redefinida na
    banda de cor */
-.contact-sub{margin:var(--space-6) 0 0;font-size:var(--fs-lead);line-height:var(--lh-lead);max-width:var(--measure-lead);text-wrap:pretty}
+/* alvo de "Começar projeto" (#comecar): para abaixo do header com folga,
+   e o formulário entra na mesma tela */
+.contact-sub{scroll-margin-top:calc(var(--header-h) + var(--space-6));margin:var(--space-6) 0 0;font-size:var(--fs-lead);line-height:var(--lh-lead);max-width:var(--measure-lead);text-wrap:pretty}
 .contact-note{margin:var(--space-4) 0 0;font-weight:var(--weight-medium)}
 .contact-form{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--space-5);max-width:var(--form-max)}
 @media (min-width:700px){ .contact-form{grid-template-columns:repeat(2,minmax(0,1fr))} }
