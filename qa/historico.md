@@ -67,3 +67,13 @@ as entradas já gravadas: elas registram o que foi medido em cada commit.
 - **Bloqueios:** QA-02 (+42px em 360x800, filtros do dashboard), QA-14
 - **Correções aplicadas:** 2/4 — QA-02, IMP line-length
 - **Precisa de humano:** QA-14 (política de privacidade em rascunho); QA-01 possível falso positivo do medidor (`font-family` dentro de `@font-face`); COPY: aria-label do WhatsApp × brief §5.8; COPY: erro "Conte em uma frase…" × mensagem opcional
+
+## Volta 3 — 2026-09-30 (2º ciclo)
+
+- **Commit medido:** 39dd62c
+- **Modo:** rapido
+- **URL medida:** http://127.0.0.1:59728/ (branch servida localmente)
+- **Nota:** 92,7/100 (medido 55,71/60, julgado 36,99/40) · aprovado não
+- **Bloqueios:** QA-14
+- **Correções aplicadas:** 0/0 — ciclo parado por platô antes de corrigir (nota −1,0 sobre a volta 2); a única correção de prioridade 1 (QA-14) é humana
+- **Precisa de humano:** QA-14 (política em rascunho, brief:270-271 e :430-431); QA-01 possível falso positivo do medidor; A5: aria-label do WhatsApp × brief §5.8 e erro "Conte em uma frase…" × mensagem opcional; U4: ficha e depoimento correm no trilho de projetos × regra 3; `"dominio"` ausente no qa/config.json
