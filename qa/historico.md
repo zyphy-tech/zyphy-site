@@ -57,3 +57,13 @@ as entradas já gravadas: elas registram o que foi medido em cada commit.
 - **Bloqueios:** QA-14, decisao-desfeita ×2 (H1, ficha FieldFix), anti-brief-headline-generica, conteudo-metrica ×2 (Vora, TecNova), conteudo-sem-fonte ×5
 - **Correções aplicadas:** 8/11 — decisao-desfeita (H1), anti-brief-headline-generica, decisao-desfeita (FieldFix 81), conteudo-metrica, conteudo-sem-fonte (FieldFix), conteudo-sem-fonte (passos), conteudo-sem-fonte (soluções), C5; COPY aplicada em parte (não conta: 2 itens dependem de humano)
 - **Precisa de humano:** COPY: aria-label do WhatsApp no header e rótulos do rodapé × brief §5.8; COPY: erro "Conte em uma frase…" exige mensagem obrigatória; QA-14 (política de privacidade em rascunho); QA-01 possível falso positivo do medidor (`font-family` dentro de `@font-face`); `"dominio"` ausente no qa/config.json
+
+## Volta 2 — 2026-09-30 (2º ciclo)
+
+- **Commit medido:** 7ba4487
+- **Modo:** rapido
+- **URL medida:** http://127.0.0.1:59728/ (branch servida localmente)
+- **Nota:** 93,7/100 (medido 53,71/60, julgado 39,99/40) · aprovado não
+- **Bloqueios:** QA-02 (+42px em 360x800, filtros do dashboard), QA-14
+- **Correções aplicadas:** 2/4 — QA-02, IMP line-length
+- **Precisa de humano:** QA-14 (política de privacidade em rascunho); QA-01 possível falso positivo do medidor (`font-family` dentro de `@font-face`); COPY: aria-label do WhatsApp × brief §5.8; COPY: erro "Conte em uma frase…" × mensagem opcional

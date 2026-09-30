@@ -189,17 +189,23 @@ html{view-transition-name:none}
 ::view-transition{pointer-events:none}
 .dash-chart .grid{stroke:var(--chart-grid);stroke-width:var(--hairline)}
 .dash-chart .tick{fill:var(--text-muted);font-family:var(--font-body);font-size:var(--fs-micro);font-variant-numeric:var(--numeric-data)}
-.dash-caption{margin-top:var(--space-5);font-size:var(--fs-small);color:var(--text-muted)}
+/* legenda na medida de leitura: solta na largura do card dava ~150 caracteres
+   por linha no desktop (impeccable line-length, 30/09/2026) */
+.dash-caption{max-width:var(--measure);margin-top:var(--space-5);font-size:var(--fs-small);color:var(--text-muted)}
 /* 3 colunas só quando R$ 1.390.967 (o maior valor, 4.66em) cabe na célula com
    folga; abaixo de 900px o faturamento ganha a linha inteira */
 @media (max-width:900px){
   .dash-kpis{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
   .dash-kpi:nth-child(2){grid-column:1 / -1;order:-1}
 }
-/* celular: o filtro cai para a linha de baixo e ocupa a largura do card */
+/* celular: o filtro cai para a linha de baixo e ocupa a largura do card.
+   Os três rótulos numa linha pedem ~314px de filtro; abaixo disso (celular
+   de 360 a ~390px) os botões encolhem na proporção do próprio rótulo e os
+   três quebram juntos em duas linhas ("Última / semana"), sem vazar do card
+   (QA-02, 30/09/2026). Rótulos do copy.md mantidos (brief §3) */
 @media (max-width:599px){
   .dash-filter{display:flex;width:100%}
-  .dash-filter-btn{flex:1}
+  .dash-filter-btn{flex:1 1 auto;padding:var(--space-1) var(--space-2);white-space:normal;line-height:var(--lh-heading);text-wrap:balance}
 }
 
 /* ---------- Onde a gente entra: a dor é o título ---------- */
