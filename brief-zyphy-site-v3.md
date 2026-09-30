@@ -79,6 +79,47 @@ Não reabra estas:
   escolhido pelo Weslley entre três opções do zyphy-copy. Substitui o
   slogan do §5.2, que passa a ser usado só no meta title.
 
+### Correção de 30/09/2026 (zyphy-ciclo, volta 1: COPY e review)
+
+Os textos do site passam a ser os do `copy.md` aprovado. Onde o §5 abaixo
+diverge, vale o `copy.md`; o motivo de cada troca está nas notas dele.
+Nenhum layout mudou, só texto, com duas exceções pedidas pelo review
+(ficha do FieldFix e o bloco do contato).
+
+- **Hero.** Saiu: o slogan do H1 (ficou só no `<title>`); "construídos por
+  quem vai colocar a mão no código." do sub, porque o H1 novo já diz isso
+  (o `span.hero-sub-key` ficou vazio e a regra de peso 600 do §5.2 ficou
+  sem texto; tirar o markup e o CSS é limpeza, vai em commit separado,
+  regra 8); "sem compromisso", que não tem fato próprio. Ficou: o H1
+  escolhido, o sub do `copy.md` e "Resposta no mesmo dia, inclusive no
+  fim de semana." (F1).
+- **Soluções.** Saíram "integrada ao que você já usa" e "migrada por
+  partes, sem parar o que já funciona", promessas de método sem fato (F8,
+  F9). As colunas trocaram os rótulos curtos pelas frases do `copy.md`;
+  "Automação de processos" continua fora de "Para empresas" (decisão de
+  29/09/2026).
+- **Processo.** Saíram "a cada entrega" e "3 meses" (o F16 diz que o
+  preview vem no fim da construção; o prazo não tem fonte) e
+  "monitoramento" (fora dos fatos). Ficaram os passos do `copy.md` (F14,
+  F15, F16, F17, F2, F11). Os 7 dias do passo 4 continuam.
+- **Projetos.** Notas corrigidas para os fatos: Vora 85 (F22) e TecNova 86
+  (F23). Saiu a data 23/09/2026 da legenda (os números são os F21-F24). Os
+  links mostram "Abrir o site", "Abrir a loja" e "Abrir a página de
+  apresentação" em vez do domínio; o domínio continua no `href`. FieldFix:
+  saíram "Android e iOS", "Auth, Postgres, Realtime", "Marketplace" e "em
+  tempo real" (F4, F28); ficaram "App Android (beta)", "Flutter e Supabase"
+  e a linha "Página de apresentação: 81" (decisão acima).
+- **Dashboard.** Filtros "Última semana", "Último mês" e "Último ano"
+  (sem número no rótulo), rótulo fixo "Faturamento no período". Saiu o
+  aviso de leitor de tela com os números do período; ficou o aviso do
+  `copy.md`.
+- **Contato.** Entraram, antes do formulário, o subtítulo ("Quem responde
+  é quem vai programar o seu projeto...", F13 e F1) e o diagnóstico grátis
+  (F14). Rótulos, placeholders, erros, a mensagem do WhatsApp e os avisos
+  de envio seguem o `copy.md`; saiu o texto automático "Quero começar um
+  projeto com a Zyphy." da mensagem vazia.
+- **SEO.** Meta description, og:title e og:description do `copy.md`.
+
 ---
 
 ## 4. Aberto — sai da Fase 3

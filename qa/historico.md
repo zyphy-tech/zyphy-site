@@ -45,3 +45,15 @@ as entradas já gravadas: elas registram o que foi medido em cada commit.
 - **Bloqueios:** QA-14, anti-brief-headline-generica, conteudo-sem-fonte, conteudo-metrica, conteudo-depoimento
 - **Correções aplicadas:** 0/0 — ciclo parado por platô antes de corrigir (nota −0,1 sobre a volta 2)
 - **Precisa de humano:** os 5 bloqueios acima; copy.md (C5) depende do fatos-cliente.md
+
+<!-- 2º ciclo de 2026-09-30: copy.md aprovado (H1-A) aplicado ao site. A contagem de voltas recomeça. -->
+
+## Volta 1 — 2026-09-30 (2º ciclo)
+
+- **Commit medido:** b1a0a96
+- **Modo:** rapido
+- **URL medida:** http://127.0.0.1:59728/ (branch servida localmente)
+- **Nota:** 84,7/100 (medido 55,71/60, julgado 28,99/40) · aprovado não
+- **Bloqueios:** QA-14, decisao-desfeita ×2 (H1, ficha FieldFix), anti-brief-headline-generica, conteudo-metrica ×2 (Vora, TecNova), conteudo-sem-fonte ×5
+- **Correções aplicadas:** 8/11 — decisao-desfeita (H1), anti-brief-headline-generica, decisao-desfeita (FieldFix 81), conteudo-metrica, conteudo-sem-fonte (FieldFix), conteudo-sem-fonte (passos), conteudo-sem-fonte (soluções), C5; COPY aplicada em parte (não conta: 2 itens dependem de humano)
+- **Precisa de humano:** COPY: aria-label do WhatsApp no header e rótulos do rodapé × brief §5.8; COPY: erro "Conte em uma frase…" exige mensagem obrigatória; QA-14 (política de privacidade em rascunho); QA-01 possível falso positivo do medidor (`font-family` dentro de `@font-face`); `"dominio"` ausente no qa/config.json

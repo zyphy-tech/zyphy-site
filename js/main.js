@@ -27,6 +27,7 @@
     function setOpen(open) {
       menu.hidden = !open;
       burger.setAttribute("aria-expanded", open ? "true" : "false");
+      burger.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
     }
     burger.addEventListener("click", function () { setOpen(menu.hidden); });
     menu.querySelectorAll("[data-close-menu]").forEach(function (a) {
@@ -111,8 +112,8 @@
       // (10 a 13 dígitos, aceitando espaço, parênteses, traço e +55)
       var isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contato);
       var isPhone = /^\d{10,13}$/.test(contato.replace(/[\s().+-]/g, ""));
-      var nomeErro = nome ? "" : "Preencha seu nome.";
-      var contatoErro = !contato ? "Preencha um e-mail ou WhatsApp."
+      var nomeErro = nome ? "" : "Escreva seu nome.";
+      var contatoErro = !contato ? "Deixe um e-mail ou WhatsApp para a resposta."
         : (!isEmail && !isPhone) ? "Digite um e-mail, como voce@email.com, ou um WhatsApp com DDD, como " + PHONE_EXAMPLE + "."
         : "";
       setError(form.nome, nomeErro);
@@ -122,12 +123,20 @@
         return;
       }
       var texto = encodeURIComponent(
-        "Olá! Sou " + nome + " (" + contato + ")." +
-        (msg ? "\n\nO que quero resolver: " + msg : "\n\nQuero começar um projeto com a Zyphy.")
+        ("Olá, Zyphy. Sou " + nome + ". Contato: " + contato + ". " + msg).trim()
       );
-      window.open("https://wa.me/5511924507188?text=" + texto, "_blank", "noopener");
-      if (status) status.textContent = "Abrindo o WhatsApp com sua mensagem.";
-      form.reset();
+      /* sem "noopener" nos recursos: com ele o window.open devolve sempre null
+         e não dá para saber se a aba abriu. O opener é cortado logo em seguida,
+         antes de a página do WhatsApp carregar */
+      var win = window.open("https://wa.me/5511924507188?text=" + texto, "_blank");
+      if (win) {
+        win.opener = null;
+        if (status) status.textContent = "O WhatsApp abriu com a sua mensagem. Falta só tocar em enviar.";
+        form.reset();
+      } else if (status) {
+        // aba bloqueada: o texto digitado fica no formulário
+        status.textContent = "O WhatsApp não abriu? Escreva para o e-mail do rodapé.";
+      }
     });
   }
 

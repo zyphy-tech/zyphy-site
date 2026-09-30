@@ -307,6 +307,11 @@ html{view-transition-name:none}
 @media (min-width:760px){
   .contact-lead{display:flex;align-items:center;min-height:calc(100svh - var(--header-h) - 2 * var(--section-pad));margin-bottom:var(--section-pad)}
 }
+/* sub na mesma voz do sub do hero; o diagnóstico em peso médio, como a linha
+   de resposta do hero. Os dois na cor do texto: a muted não é redefinida na
+   banda de cor */
+.contact-sub{margin:var(--space-6) 0 0;font-size:var(--fs-lead);line-height:var(--lh-lead);max-width:var(--measure-lead);text-wrap:pretty}
+.contact-note{margin:var(--space-4) 0 0;font-weight:var(--weight-medium)}
 .contact-form{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--space-5);max-width:var(--form-max)}
 @media (min-width:700px){ .contact-form{grid-template-columns:repeat(2,minmax(0,1fr))} }
 .form-field--wide{grid-column:1 / -1}

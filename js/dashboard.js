@@ -24,7 +24,6 @@
   var SVG_NS = "http://www.w3.org/2000/svg";
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
   var chartEl = root.querySelector("[data-chart]");
-  var chartLabel = document.getElementById("zyDashChartLabel");
   var live = document.getElementById("zyDashLive");
   var buttons = root.querySelectorAll(".dash-filter-btn");
   var kpi = {
@@ -37,9 +36,9 @@
   var WEEK = ["qua", "qui", "sex", "sáb", "dom", "seg", "ter"];
   var MONTHS = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
   var PERIOD = {
-    d7: { name: "Últimos 7 dias", chart: "Faturamento por dia", label: function (i) { return WEEK[i]; } },
-    d30: { name: "Últimos 30 dias", chart: "Faturamento por dia", label: function (i) { return String(i + 1); } },
-    m12: { name: "Últimos 12 meses", chart: "Faturamento por mês", label: function (i) { return MONTHS[i]; } }
+    d7: { label: function (i) { return WEEK[i]; } },
+    d30: { label: function (i) { return String(i + 1); } },
+    m12: { label: function (i) { return MONTHS[i]; } }
   };
 
   var fmtInt = new Intl.NumberFormat("pt-BR", { maximumFractionDigits: 0 });
@@ -153,20 +152,23 @@
     kpi.orders.textContent = fmtInt.format(tot.orders);
     kpi.revenue.textContent = "R$" + NBSP + fmtInt.format(Math.round(tot.revenue));
     kpi.ticket.textContent = "R$" + NBSP + fmtCents.format(tot.ticket);
-    chartLabel.textContent = PERIOD[period].chart;
-    return tot;
   }
 
-  function announce(period, tot) {
+  /* aviso do copy.md, o mesmo em toda troca: esvazia e reescreve no quadro
+     seguinte, senão o leitor de tela não repete um texto que não mudou.
+     O rótulo do gráfico ("Faturamento no período") é fixo no HTML */
+  var LIVE_TEXT = "Mostrando dados de exemplo do período selecionado.";
+  function announce() {
     if (!live) return;
-    live.textContent = PERIOD[period].name + ": " + fmtInt.format(tot.orders) + " pedidos, faturamento de R$ " +
-      fmtInt.format(Math.round(tot.revenue)) + ", ticket médio de R$ " + fmtCents.format(tot.ticket) + ".";
+    live.textContent = "";
+    requestAnimationFrame(function () { live.textContent = LIVE_TEXT; });
   }
 
   function apply(period) {
     state.period = period;
     buttons.forEach(function (b) { b.setAttribute("aria-pressed", b.dataset.period === period ? "true" : "false"); });
-    announce(period, setKpis(period));
+    setKpis(period);
+    announce();
     draw();
   }
 
