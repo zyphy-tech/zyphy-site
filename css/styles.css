@@ -120,7 +120,24 @@ main:focus{outline:none}
   .hero{--copy-end:calc(max(var(--gutter),(100% - var(--container)) / 2) + (min(var(--container),100% - 2 * var(--gutter)) - var(--col-gap)) / 2);--screen-x:calc(var(--copy-end) + var(--hero-clearance));position:relative;isolation:isolate;min-height:100svh;box-sizing:border-box;display:flex;align-items:center;padding-top:var(--hero-pad-top);padding-bottom:var(--hero-pad-bottom)}
   .hero-grid{grid-template-columns:repeat(var(--columns),minmax(0,1fr));column-gap:var(--col-gap)}
   .hero-copy{grid-column:1 / span 6}
-  .hero-media{position:absolute;top:0;left:var(--screen-x);z-index:-1;height:100%;width:auto;aspect-ratio:var(--hero-ratio);min-width:calc((100% - var(--screen-x)) / (1 - var(--hero-screen-at)));margin:0;transform:translateX(calc(var(--hero-screen-at) * -100%));-webkit-mask-image:linear-gradient(90deg,transparent,var(--mask-opaque) var(--space-9));mask-image:linear-gradient(90deg,transparent,var(--mask-opaque) var(--space-9))}
+  /* o bloco do vídeo ocupa o hero inteiro e vira contêiner de tamanho, para a
+     imagem saber a altura (cqh). O quadro tem a proporção do vídeo e a tampa
+     em --screen-x, como antes, mas a caixa da imagem termina na borda direita:
+     a sobra do quadro à direita é cortada pelo object-fit, dentro da própria
+     imagem, em vez de passar da tela. Antes a caixa passava da borda e, sem o
+     overflow:clip no .hero (volta 1, IMP clipped-overflow-container), abria
+     rolagem horizontal: +209px em 1440x900 (QA-02, volta 2, 30/09/2026). */
+  .hero-media{position:absolute;top:0;left:0;right:0;z-index:-1;height:100%;aspect-ratio:auto;margin:0;container-type:size;overflow:visible}
+  .hero-still,.hero-video{
+    /* largura do quadro inteiro: pela altura, ou o mínimo para a tampa cair
+       em --screen-x e o quadro ainda chegar à borda direita */
+    --frame-w:max(100cqh * var(--hero-ratio),(100cqw - var(--screen-x)) / (1 - var(--hero-screen-at)));
+    --frame-left:calc(var(--screen-x) - var(--hero-screen-at) * var(--frame-w));
+    /* imagem é elemento substituído: left+right não esticam a caixa, por
+       isso a largura vai explícita até a borda direita */
+    left:var(--frame-left);right:auto;width:calc(100cqw - var(--frame-left));max-width:none;
+    object-position:left center;
+    -webkit-mask-image:linear-gradient(90deg,transparent,var(--mask-opaque) var(--space-9));mask-image:linear-gradient(90deg,transparent,var(--mask-opaque) var(--space-9))}
   .hero-media::after{content:"";position:absolute;inset:0;background:var(--hero-scrim-bottom)}
   /* sombra atrás do texto, desde o primeiro quadro: o texto aparece junto
      com o vídeo e passa por cima dos papéis claros (medida em --hero-shade) */
