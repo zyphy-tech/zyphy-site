@@ -67,6 +67,15 @@ Não reabra estas:
 - **Não entra:** número de pessoas no time, hardware / IoT / embarcado,
   contador animado, marquee, HUD, label tipo "SEC.00 //".
 
+### Decisões de 2026-09-30
+
+- **Card do FieldFix** mostra "Página de apresentação: 81", porque o card
+  apresenta um app e o Lighthouse mede a página de apresentação (regra 7:
+  métrica só do que o card apresenta).
+- **Cor ciano mantida** por identidade (exceção IMP `ai-color-palette` no
+  `qa/config.json`).
+- **Título do hero liberado para revisão** (tamanho e texto).
+
 ---
 
 ## 4. Aberto — sai da Fase 3
