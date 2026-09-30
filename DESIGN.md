@@ -1,360 +1,734 @@
 ---
 name: Zyphy
-description: Site da Zyphy — agência de software sob medida para PMEs e pessoas. Escuro, monocromia petróleo, acento ciano raro.
+description: "Extraído do código em 30/09/2026 (commit ca749b7). Documenta o que existe em css/tokens.css e no CSS de componentes. Aguarda aprovação."
+# Chaves = nomes exatamente como estão no CSS (token ou seletor).
 colors:
-  ink-950: "#050B0B"
-  ink-900: "#112222"
-  ink-850: "#1E3535"
-  petrol-700: "#0E3634"
-  mist-50: "#E8F7F4"
-  mist-100: "#E3EFED"
-  mist-400: "#93ADAA"
-  cyan-500: "#00CBCC"
-  cyan-400: "#00E0E1"
-  coral-300: "#FF8A80"
-  sage-500: "#5E8884"
-  sage-600: "#4F7A76"
+  "--ink-950": "#050B0B"
+  "--ink-900": "#112222"
+  "--ink-850": "#1E3535"
+  "--petrol-700": "#0E3634"
+  "--mist-50": "#E8F7F4"
+  "--mist-100": "#E3EFED"
+  "--mist-400": "#93ADAA"
+  "--cyan-500": "#00CBCC"
+  "--cyan-400": "#00E0E1"
+  "--coral-300": "#FF8A80"
+  "--sage-500": "#5E8884"
+  "--sage-600": "#4F7A76"
+  "--line": "rgba(227,239,237,.12)"
+  "--chart-grid": "rgba(227,239,237,.1)"
+  "--error-ring": "rgba(255,138,128,.2)"
+  "--mask-opaque": "#000"
 typography:
-  display:
-    fontFamily: "Sofia Sans Extra Condensed, Sofia Fallback, sans-serif"
-    fontSize: "min(clamp(4.5rem, 10vw, 9rem), 18cqi, 9.5svh)"
+  ".display-h1":
+    fontFamily: "'Sofia Sans Extra Condensed','Sofia Fallback',sans-serif"
+    fontSize: "min(var(--fs-h1),var(--fs-h1-fit),var(--fs-h1-vh))"
     fontWeight: 800
     lineHeight: 0.9
     letterSpacing: "0"
-  statement:
-    fontFamily: "Sofia Sans Extra Condensed, Sofia Fallback, sans-serif"
-    fontSize: "clamp(4.5rem, 14vw, 12.5rem)"
+  ".display-h2":
+    fontFamily: "'Sofia Sans Extra Condensed','Sofia Fallback',sans-serif"
+    fontSize: "clamp(4rem,8.5vw,7.5rem)"
     fontWeight: 800
     lineHeight: 0.9
-  headline:
-    fontFamily: "Sofia Sans Extra Condensed, Sofia Fallback, sans-serif"
-    fontSize: "clamp(4rem, 8.5vw, 7.5rem)"
+    letterSpacing: "0"
+  ".display-statement":
+    fontFamily: "'Sofia Sans Extra Condensed','Sofia Fallback',sans-serif"
+    fontSize: "clamp(4.5rem,14vw,12.5rem)"
     fontWeight: 800
     lineHeight: 0.9
-  display-number:
-    fontFamily: "Sofia Sans Extra Condensed, Sofia Fallback, sans-serif"
-    fontSize: "clamp(6rem, 14vw, 12.5rem)"
+    letterSpacing: "0"
+  ".step-num":
+    fontFamily: "'Sofia Sans Extra Condensed','Sofia Fallback',sans-serif"
+    fontSize: "clamp(6rem,14vw,12.5rem)"
     fontWeight: 800
     lineHeight: 0.9
-    fontFeature: "tnum"
-  statement-mixed:
-    fontFamily: "Sofia Sans Extra Condensed, Sofia Fallback, sans-serif"
-    fontSize: "clamp(2.5rem, 5vw, 4.5rem)"
+    letterSpacing: "0"
+  ".fix-pain":
+    fontFamily: "'Sofia Sans Extra Condensed','Sofia Fallback',sans-serif"
+    fontSize: "clamp(2.5rem,5vw,4.5rem)"
     fontWeight: 800
     lineHeight: 1.35
-  title:
-    fontFamily: "Archivo, system-ui, sans-serif"
+    letterSpacing: "0"
+  ".dash-kpi dd":
+    fontFamily: "'Sofia Sans Extra Condensed','Sofia Fallback',sans-serif"
+    fontSize: "clamp(2.5rem,5vw,4.5rem)"
+    fontWeight: 800
+    lineHeight: 0.9
+    letterSpacing: "0"
+  "--fs-lead":
+    fontFamily: "'Archivo',system-ui,sans-serif"
+    fontSize: "clamp(1.25rem,0.9rem + 1vw,1.5rem)"
+  "--fs-h3":
+    fontFamily: "'Archivo',system-ui,sans-serif"
     fontSize: "1.5rem"
     fontWeight: 600
     lineHeight: 1.35
-  quote:
-    fontFamily: "Archivo, system-ui, sans-serif"
+  "--fs-quote":
+    fontFamily: "'Archivo',system-ui,sans-serif"
     fontSize: "1.375rem"
     fontWeight: 500
     lineHeight: 1.35
-  lead:
-    fontFamily: "Archivo, system-ui, sans-serif"
-    fontSize: "clamp(1.25rem, 0.9rem + 1vw, 1.5rem)"
-    fontWeight: 400
-    lineHeight: 1.4
-  body:
-    fontFamily: "Archivo, system-ui, sans-serif"
+  "--fs-body":
+    fontFamily: "'Archivo',system-ui,sans-serif"
     fontSize: "1.0625rem"
-    fontWeight: 400
     lineHeight: 1.6
-  label:
-    fontFamily: "Archivo, system-ui, sans-serif"
+  "--fs-small":
+    fontFamily: "'Archivo',system-ui,sans-serif"
     fontSize: "0.9375rem"
-    fontWeight: 500
-    lineHeight: 1.6
-  micro:
-    fontFamily: "Archivo, system-ui, sans-serif"
+  "--fs-micro":
+    fontFamily: "'Archivo',system-ui,sans-serif"
     fontSize: "0.8125rem"
-    fontWeight: 400
-    fontFeature: "tnum"
 rounded:
-  none: "0"
-  control: "4px"
-  screen: "12px"
+  "--r-none": "0"
+  "--r-control": "4px"
+  "--r-screen": "12px"
 spacing:
-  "1": "4px"
-  "2": "8px"
-  "3": "12px"
-  "4": "16px"
-  "5": "24px"
-  "6": "32px"
-  "7": "48px"
-  "8": "64px"
-  "9": "96px"
-  section: "clamp(96px, 14vw, 200px)"
-  title-gap: "clamp(48px, 6vw, 96px)"
-  gutter: "clamp(20px, 5vw, 64px)"
+  "--space-1": "4px"
+  "--space-2": "8px"
+  "--space-3": "12px"
+  "--space-4": "16px"
+  "--space-5": "24px"
+  "--space-6": "32px"
+  "--space-7": "48px"
+  "--space-8": "64px"
+  "--space-9": "96px"
+  "--section-pad": "clamp(96px,14vw,200px)"
+  "--title-gap": "clamp(48px,6vw,96px)"
+  "--gutter": "clamp(20px,5vw,64px)"
+  "--col-gap": "clamp(16px,2vw,24px)"
 components:
-  button-primary:
-    backgroundColor: "{colors.cyan-500}"
-    textColor: "{colors.ink-950}"
-    typography: "{typography.body}"
-    rounded: "{rounded.control}"
+  ".btn--primary":
+    backgroundColor: "{colors.--cyan-500}"
+    textColor: "{colors.--ink-950}"
+    typography: "{typography.--fs-body}"
+    rounded: "{rounded.--r-control}"
     padding: "12px 24px"
     height: "48px"
-  button-primary-hover:
-    backgroundColor: "{colors.cyan-400}"
-    textColor: "{colors.ink-950}"
-  button-ghost:
+  ".btn--primary:hover":
+    backgroundColor: "{colors.--cyan-400}"
+  ".btn--ghost":
     backgroundColor: "transparent"
-    textColor: "{colors.mist-100}"
-    rounded: "{rounded.control}"
+    textColor: "{colors.--mist-100}"
+    typography: "{typography.--fs-body}"
+    rounded: "{rounded.--r-control}"
     padding: "12px 24px"
     height: "48px"
-  input:
-    backgroundColor: "{colors.ink-950}"
-    textColor: "{colors.mist-100}"
-    rounded: "{rounded.control}"
+  ".form-input":
+    backgroundColor: "{colors.--ink-950}"
+    textColor: "{colors.--mist-100}"
+    typography: "{typography.--fs-body}"
+    rounded: "{rounded.--r-control}"
     padding: "12px 16px"
     height: "48px"
-  dashboard-screen:
-    backgroundColor: "{colors.ink-950}"
-    textColor: "{colors.mist-100}"
-    rounded: "{rounded.screen}"
-    padding: "clamp(24px, 4vw, 48px)"
-  filter-segment-active:
-    backgroundColor: "{colors.ink-850}"
-    textColor: "{colors.mist-100}"
-    rounded: "{rounded.control}"
+  ".dash":
+    backgroundColor: "{colors.--ink-950}"
+    rounded: "{rounded.--r-screen}"
+    padding: "clamp(24px,4vw,48px)"
+  ".dash-filter":
+    backgroundColor: "{colors.--ink-900}"
+    rounded: "{rounded.--r-control}"
+    padding: "4px"
+  ".dash-filter-btn":
+    backgroundColor: "transparent"
+    textColor: "{colors.--mist-400}"
+    typography: "{typography.--fs-small}"
+    rounded: "{rounded.--r-control}"
+    padding: "0 16px"
     height: "44px"
-  plaque-media:
-    backgroundColor: "{colors.ink-850}"
-    rounded: "{rounded.none}"
+  ".dash-filter-btn[aria-pressed=\"true\"]":
+    backgroundColor: "{colors.--ink-850}"
+    textColor: "{colors.--mist-100}"
+  ".plaque-media":
+    backgroundColor: "{colors.--ink-850}"
+    rounded: "{rounded.--r-none}"
+  ".skip-link":
+    backgroundColor: "{colors.--cyan-500}"
+    textColor: "{colors.--ink-950}"
+    typography: "{typography.--fs-small}"
+    rounded: "{rounded.--r-control}"
+    padding: "12px 24px"
 ---
 
-<!-- EXTRAÍDO do código em 30/09/2026 (css/tokens.css e css/styles.css,
-     commit 1c3c25e), na volta de correção do zyphy-ciclo. Aguarda aprovação
-     do Weslley. A partir da aprovação este arquivo é a única fonte de tokens:
-     css/tokens.css materializa o que está aqui, nunca o contrário.
-     Ajustes da mesma volta, já refletidos abaixo (ver "Ajustes de 30/09/2026"
-     no fim): mist-50 e text-on-color, fs-h1-vh, fs-lead fluido, lh-heading
-     1.35, lh-lead, strike-y 54%, dores em caixa mista. -->
+<!-- EXTRAÍDO do código em 30/09/2026, commit ca749b7, sem alterar o site.
+     Substitui por inteiro a extração anterior. Aguarda aprovação do Weslley.
+     Este arquivo só documenta o que está no código: nomes de token e de
+     classe como estão no CSS, valores como estão, e motivo apenas quando o
+     brief ou um comentário do CSS o declara (com a linha citada). Não
+     registra conceito nem direção: isso é do modo DIRECAO, com aprovação. -->
 
 # Design System: Zyphy
 
 ## Overview
 
-**Creative North Star: "A plaqueta de máquina"**
+Documento extraído do código, não uma direção. Fontes lidas:
 
-O site é uma placa de identificação de equipamento industrial vista no
-escuro: uma família de tom só (petróleo, derivada do ciano da marca)
-executada até o fim, letra neutra comprimida em caixa alta fazendo a
-estrutura, e o ciano aparecendo só onde há ação. A personalidade vem da
-escala e da composição, não do desenho da letra nem de enfeite. É a
-leitura das duas referências escuras do brief: a monocromia disciplinada e
-a condensada em caixa alta do `Fasion`, o fundo escuro com profundidade e o
-conteúdo que vaza pela borda do `21`. `apple 1` e `abacate` entram como
-disciplina de espaço; `nubank` como coragem de tamanho numa frase só (o
-contato).
+- `css/tokens.css` — o arquivo de tokens (`@font-face` e `:root`).
+- O CSS de componentes, `css/styles` (extensão .css) — citado como
+  `styles:NN`.
+- O script do gráfico, `js/dashboard` (extensão .js), que lê tokens por
+  `getComputedStyle` (linhas 50–64).
+- `index.html` e `privacidade/index.html` (as duas carregam os dois CSS).
+- `brief-zyphy-site-v3.md` — citado como `brief:NN`.
 
-O ritmo da página vem da troca de fundo entre bandas de largura total,
-nunca de borda, sombra ou card flutuante (`site 2`, `apple 1`). Como o site
-é escuro por decisão travada, o respiro que nas referências claras vinha
-do branco é conquistado com espaçamento grande (`--section-pad` até 200px)
-e com quatro níveis de tom.
+Os dois arquivos de fora do de tokens aparecem sem a extensão de
+propósito: o medidor do QA-01 toma como arquivo de tokens todo nome de
+arquivo `.css`/`.js`/`.json` citado neste documento, e deixaria de varrer
+esses dois.
 
-A imagem é real e autoral: o vídeo do hero (papel dando lugar ao painel) e
-as capturas dos projetos. Nada de ícone genérico, ilustração abstrata,
-rede, nó ou partícula.
+Fora deste documento: `fieldfix/privacidade/` tem folha de estilo própria,
+com tokens próprios; o comentário da linha 3 dela diz "Identidade própria
+do FieldFix (não são os tokens do site da Zyphy)".
 
-**Key Characteristics:**
-- Fundo escuro em quatro tons da mesma família; uma única banda chapada de cor (petróleo), só no contato.
-- Ciano raro: botão primário, foco de teclado, barra ativa do gráfico, skip link e o Z do logo. Nada mais.
-- Sofia Sans Extra Condensed 800 em caixa alta para estrutura; Archivo para leitura.
-- Hierarquia por tamanho e tom, nunca por peso de display.
-- Três comportamentos de movimento na página inteira, cada um carregando informação.
+O cabeçalho de `css/tokens.css` (linhas 18–20) traz um parágrafo de
+conceito. Ele não é registrado aqui: a extração não adota conceito nem
+direção.
 
 ## Colors
 
-Monocromia petróleo (matiz ~180°) com um acento ciano e um vermelho-coral
-só para erro.
+### Primitivos (`css/tokens.css:85–96`)
 
-### Primary
-- **Ciano da marca** (cyan-500): acento de ação e estado. Botão primário (hero, menu, formulário), anel de foco, barra ativa do dashboard, skip link, Z do logo. 9.8:1 sobre ink-950.
-- **Ciano aceso** (cyan-400): hover do botão primário, e só isso.
+| Token | Valor | Comentário no CSS | Papel que aponta para ele |
+|---|---|---|---|
+| `--ink-950` | `#050B0B` | "banda mais funda" (:85) | `--band-deep`, `--on-accent` |
+| `--ink-900` | `#112222` | "banda base" (:86) | `--band-base` |
+| `--ink-850` | `#1E3535` | "banda elevada" (:87) | `--band-raised` |
+| `--petrol-700` | `#0E3634` | "a única banda de cor chapada" (:88) | `--band-color` |
+| `--mist-50` | `#E8F7F4` | "texto sobre a banda de cor: 11.9 sobre petrol" (:89) | `--text-on-color` |
+| `--mist-100` | `#E3EFED` | "texto" (:90) | `--text` |
+| `--mist-400` | `#93ADAA` | "texto secundário, labels" (:91) | `--text-muted` |
+| `--cyan-500` | `#00CBCC` | "ciano da marca" (:92) | `--accent`, `--focus-ring` |
+| `--cyan-400` | `#00E0E1` | "ciano no hover" (:93) | `--accent-hover` |
+| `--coral-300` | `#FF8A80` | "erro" (:94) | `--error` |
+| `--sage-500` | `#5E8884` | "borda dos campos do formulário" (:95) | `--line-control` |
+| `--sage-600` | `#4F7A76` | "barra inativa do gráfico" (:96) | `--bar-idle` |
 
-### Tertiary
-- **Coral de erro** (coral-300): mensagem e contorno de campo inválido. 5.7:1 ou mais em todas as bandas.
+Comentário do bloco (:73): "família petróleo, matiz ~180°".
 
-### Neutral
-- **Fundo de poço** (ink-950): banda funda — hero, projetos, rodapé — e a tela do dashboard. Também é a cor do texto sobre o ciano.
-- **Chão de oficina** (ink-900): banda base — Soluções.
-- **Chapa elevada** (ink-850): banda elevada — dashboard, processo — e o fundo das capturas e do menu móvel.
-- **Petróleo** (petrol-700): a única banda de cor chapada, só no contato.
-- **Névoa** (mist-100): texto em toda banda escura. 16.8:1 sobre ink-950, 11.2:1 sobre petróleo.
-- **Névoa clara** (mist-50): texto sobre a banda de petróleo. Puxa para o matiz da banda; o cinza-névoa ali lia apagado. 11.9:1.
-- **Névoa baixa** (mist-400): texto secundário, labels, ficha técnica, legenda. 5.5:1 no pior fundo.
-- **Sálvia** (sage-500): contorno de campo de formulário (3.3:1 no petróleo, acima do 3:1 de componente).
-- **Sálvia escura** (sage-600): barra inativa do gráfico (4.1:1 sobre a tela).
-- Linhas: divisória interna de lista em névoa a 12% (`rgba(227,239,237,.12)`), grade do gráfico a 10%.
+### Papéis (`css/tokens.css:98–131`)
 
-### Named Rules
-**The Rare Cyan Rule.** O ciano marca só ação e estado. Traço, título, ícone ou destaque decorativo em ciano estão proibidos; o traço das Soluções usa a cor do texto por isso.
+| Token | Valor no CSS | Onde é usado |
+|---|---|---|
+| `--band-deep` | `var(--ink-950)` | `body` (styles:10), `.band--deep`, fundo do header em `color-mix` (styles:57), `.hero-media` (styles:102), `.dash` (styles:149), `.form-input` (styles:321), `--hero-shade`, `--hero-shade-phone`, `--hero-scrim-bottom`, `--hero-scrim-phone` |
+| `--band-base` | `var(--ink-900)` | `.band--base`, `.dash-filter` (styles:152) |
+| `--band-raised` | `var(--ink-850)` | `.band--raised`, `.mobile-menu` (styles:78), `.dash-filter-btn[aria-pressed="true"]` (styles:155), `.plaque-media` (styles:267) |
+| `--band-color` | `var(--petrol-700)` | `.band--color` (styles:33) |
+| `--text` | `var(--mist-100)` | cor do `body` e da maior parte do texto; dentro de `.band--color` é redefinido para `var(--text-on-color)` (styles:33) |
+| `--text-muted` | `var(--mist-400)` | `::placeholder`, `.nav-links`, `.dash-filter-btn`, `dt`, legendas, `.step-num`, `.step-desc`, `.audience-list li`, `.project-desc`, notas de formulário, rodapé; contorno do `.btn--ghost` (styles:86); sublinhado do `.project-link` (styles:276) |
+| `--text-on-color` | `var(--mist-50)` | texto na `.band--color` |
+| `--line` | `rgba(227,239,237,.12)` | borda do header rolado (styles:58), `.nav-burger`, `.nav-wa` (≤900px), `.mobile-menu-link`, `.fix-item`, `.audience-list li`, `.plaque-media`, `.plaque-quote` |
+| `--line-control` | `var(--sage-500)` | contorno do `.form-input` (styles:321) |
+| `--mask-opaque` | `#000` | `mask-image` do vídeo do hero no desktop (styles:140) |
+| `--accent` | `var(--cyan-500)` | `.btn--primary`, `.skip-link`, `.zy-logo-z`, `.social-link:focus-visible`; `--bar-active` aponta para ele |
+| `--accent-hover` | `var(--cyan-400)` | `.btn--primary:hover` |
+| `--on-accent` | `var(--ink-950)` | texto do `.btn--primary` e do `.skip-link` |
+| `--focus-ring` | `var(--cyan-500)` | `:focus-visible` (styles:13), borda do `.form-input:focus-visible` (styles:322) |
+| `--error` | `var(--coral-300)` | `.form-error`, borda do `.form-input--invalid` |
+| `--error-ring` | `rgba(255,138,128,.2)` | `box-shadow` do `.form-input--invalid` (styles:326) |
+| `--bar-idle` | `var(--sage-600)` | `.dash-chart .bar` |
+| `--bar-active` | `var(--accent)` | `.dash-chart .bar--now` |
+| `--chart-grid` | `rgba(227,239,237,.1)` | `stroke` de `.dash-chart .grid` |
 
-**The Neighbour Rule.** Bandas vizinhas nunca têm o mesmo fundo. Sequência: hero funda, dashboard elevada, soluções base, processo elevada, projetos funda, contato petróleo, rodapé funda. Menor degrau entre vizinhas: 1.20:1.
+`--line`, `--chart-grid` e `--error-ring` são literais `rgba()` com os
+mesmos canais de `--mist-100` e `--coral-300`; não apontam para eles por
+`var()`.
+
+Motivos declarados em comentário:
+
+- `--band-*`: "vizinhas nunca iguais; petróleo só no contato", com a
+  sequência hero deep, dashboard raised, soluções base, processo raised,
+  projetos deep, contato color, rodapé deep (:99–101).
+- `--text-on-color`: "o cinza-névoa sobre o petróleo lia apagado
+  (impeccable gray-on-color, volta de 30/09/2026)" (:109–110).
+- `--line`: "divisória dentro de lista, nunca entre seções" (:112).
+- `--line-control`: "componente de interface, precisa de 3:1 (WCAG 1.4.11)
+  contra o fundo do campo e contra a banda de cor em volta. --line não
+  chega" (:113–114).
+- `--accent`: "acento raro, reservado para ação e estado: botão primário
+  (hero, menu, formulário), foco de teclado, barra ativa do dashboard, skip
+  link e o Z do logo" (:118–120). O brief diz, sobre o traço das Soluções,
+  "ciano fica reservado para ação" (brief:266).
+
+Contraste registrado no comentário de `css/tokens.css:74–84` (valores do
+comentário, não remedidos nesta extração):
+
+| | 950 | 900 | 850 | petrol |
+|---|---|---|---|---|
+| `--mist-100` | 16.8 | 14.0 | 11.0 | 11.2 |
+| `--mist-400` | 8.3 | 6.9 | 5.5 | 5.5 |
+| `--accent` | 9.8 | 8.2 | 6.5 | 6.5 |
+| `--error` | 8.7 | 7.2 | 5.7 | 5.8 |
+
+`--on-accent` sobre `--accent`: 9.8. `--sage-500` sobre 950 / petrol: 5.0 /
+3.3. `--bar-idle` sobre 950: 4.1. Degrau entre bandas: 950/900 1.20,
+900/850 1.27, 950/850 1.53, petrol/900 1.25, petrol/950 1.51.
 
 ## Typography
 
-**Display Font:** Sofia Sans Extra Condensed 800 (reserva métrica calibrada sobre Impact, depois sans-serif do sistema)
-**Body Font:** Archivo variável 100–900 (com system-ui)
+### Famílias (`css/tokens.css:23–68`, 174–175)
 
-**Character:** Uma condensada neutra e pesada que vira estrutura quando empilhada em caixa alta, contra uma grotesca larga e calma para ler. Sem terceira família: dado técnico é Archivo com algarismos tabulares.
+| Token | Valor |
+|---|---|
+| `--font-display` | `'Sofia Sans Extra Condensed','Sofia Fallback',sans-serif` |
+| `--font-body` | `'Archivo',system-ui,sans-serif` |
 
-### Hierarchy
-- **Display XL** (800, H1 até 144px, travado por coluna e por 9.5svh; frase do contato até 200px; 0.9, caixa alta): H1 do hero e a frase do contato. No celular o H1 tem 4 linhas fixas, acima de 600px 3 linhas.
-- **Display L** (800, até 200px, 0.9, tabular): números 1–4 do processo, em névoa baixa.
-- **Headline** (800, até 120px, 0.9, caixa alta, máximo 18ch): H2 das seções.
-- **Display M** (800, até 72px): dores das Soluções em caixa mista com entrelinha 1.35; indicadores do dashboard com algarismos tabulares.
-- **Title** (Archivo 600, 24px, 1.35): títulos de bloco — plaqueta, passo, público, dashboard.
-- **Quote** (Archivo 500, 22px, 1.35): depoimento dentro da plaqueta.
-- **Lead** (Archivo 400, 20→24px, 1.4, máximo 44ch): subtítulo do hero; a frase do diferencial em 600.
-- **Body** (Archivo 400, 17px, 1.6, máximo 60ch): texto corrido.
-- **Label** (Archivo 500, 15px): nav, labels de formulário, ficha técnica, notas.
-- **Micro** (Archivo 400, 13px, tabular): eixos do gráfico. Piso de 12px.
+- `Sofia Sans Extra Condensed`: só peso 800, arquivo
+  `assets/fonts/sofia-sans-extra-condensed-800-latin.woff2`,
+  `font-display:swap`, subset latino (:26–33). Comentário: "display: H1, H2,
+  frase do contato e números do processo. Só o peso 800" (:25). Tem
+  `preload` no `<head>` (index.html:33, privacidade/index.html:16).
+- `Sofia Fallback`: `src:local('Impact')`, `size-adjust:81.3%`,
+  `ascent-override:110.70%`, `descent-override:36.90%`,
+  `line-gap-override:0%` (:49–58). As medições da calibração estão no
+  comentário das linhas 35–48. `js/boot` pede essa face antes do primeiro
+  paint.
+- `Archivo`: variável, `font-weight:100 900`, arquivo
+  `assets/fonts/archivo-var-latin.woff2`, `font-display:swap` (:61–68).
+  Comentário: "corpo: Archivo variável (eixo de peso 100–900, largura
+  normal)" (:60).
 
-### Named Rules
-**The Two Leadings Rule.** Entrelinha 0.9 só em caixa alta (sem descendentes). Todo título em caixa mista que quebra linha usa 1.35.
+### Pesos (:177–180)
 
-**The Caps Are Structure Rule.** Caixa alta é para frase curta de estrutura (H1, H2, frase do contato). Frase de leitura, mesmo em display, vai em caixa mista.
+| Token | Valor | Onde |
+|---|---|---|
+| `--weight-display` | 800 | seletores de display (styles:37) e `.brand` (styles:60, em `--font-body`) |
+| `--weight-body` | 400 | `body` |
+| `--weight-medium` | 500 | `.nav-links`, `.mobile-menu-link`, `.hero-note`, `.dash-filter-btn`, `.plaque-quote p`, `.form-label`, `.form-error`, `.form-status` |
+| `--weight-strong` | 600 | `.skip-link`, `.btn`, `.hero-sub-key`, `.dash-title`, `.fix-service`, `.audience-title`, `.step-title`, `.plaque-title` |
 
-**The Size Not Weight Rule.** Os níveis de display são todos 800; a hierarquia vem de tamanho e tom.
+### Tamanhos (:192–218)
+
+| Token | Valor | Seletores |
+|---|---|---|
+| `--fs-h1-max` | `9rem` | limite de `--fs-h1`; teto do H1 de 600 a 1099px (styles:51) |
+| `--fs-h1` | `clamp(4.5rem,10vw,var(--fs-h1-max))` | `.display-h1` |
+| `--fs-h1-fit` | `18cqi` | `.display-h1` a partir de 600px |
+| `--fs-h1-fit-narrow` | `22cqi` | `.display-h1` abaixo de 600px |
+| `--fs-h1-vh` | `9.5svh` | `.display-h1` a partir de 600px |
+| `--fs-statement` | `clamp(4.5rem,14vw,12.5rem)` | `.display-statement` |
+| `--fs-h2` | `clamp(4rem,8.5vw,7.5rem)` | `.display-h2` |
+| `--fs-step-num` | `clamp(6rem,14vw,12.5rem)` | `.step-num` |
+| `--fs-m` | `clamp(2.5rem,5vw,4.5rem)` | `.fix-pain`; via `--fs-kpi` |
+| `--fs-kpi` | `var(--fs-m)` | `.dash-kpi dd` |
+| `--fs-h3` | `1.5rem` | `.dash-title`, `.audience-title`, `.step-title`, `.plaque-title` |
+| `--fs-quote` | `1.375rem` | `.plaque-quote p` |
+| `--fs-lead` | `clamp(1.25rem,0.9rem + 1vw,1.5rem)` | `.hero-sub`, `.brand` |
+| `--fs-body` | `1.0625rem` | `body`, `.btn`, `.hero-note`, `.form-input` |
+| `--fs-small` | `0.9375rem` | `.skip-link`, `.nav-links`, `.nav-cta`, `.dash-filter-btn`, `.dash-kpi dt`, `.dash-chart-label`, `.dash-caption`, `.spec-source`, `.project-desc`, `.spec`, `.project-link`, `.plaque-quote figcaption`, `.contact-direct-label`, `.form-label`, `.form-field-hint`, `.form-error`, `.form-hint`, `.form-status`, `.footer-text`, `.footer-links`, `.footer-copy` |
+| `--fs-micro` | `0.8125rem` | `.dash-chart .tick` |
+
+Tamanho do `.display-h1` por faixa (styles:38–52):
+
+- base: `min(var(--fs-h1),var(--fs-h1-fit),var(--fs-h1-vh))`
+- até 599px: `min(var(--fs-h1),var(--fs-h1-fit-narrow))`
+- 600–1099px: `min(var(--fs-h1-max),var(--fs-h1-fit),var(--fs-h1-vh))`
+
+Quebra do H1: `span.line` em bloco (3 linhas) e `br.br-m` ocultos; até
+599px os `span.line` ficam inline e os `br.br-m` aparecem (4 linhas)
+(styles:39–47, index.html:78). O `.hero-copy` é contêiner
+(`container-type:inline-size`, styles:92), que dá base ao `cqi`.
+
+Motivos declarados em comentário: `--fs-h1-fit` e `--fs-h1-fit-narrow`
+(:194–198); `--fs-h1-vh`, "Com 100px em 1280x800 ele ocupava 34% da tela
+e o subtítulo e a linha de resposta sumiam ao lado dele (impeccable
+oversized-h1, volta de 30/09/2026)" (:199–205; também brief:113–120);
+`--fs-lead`, "Leva o diferencial [...] então é o segundo texto da primeira
+tela" (:213–215). O comentário das linhas 182–191 registra a escala por
+largura (375 e 1440px) e a regra "Quatro níveis de display, todos em
+Sofia 800; a hierarquia vem de tamanho e tom, nunca de peso".
+
+### Entrelinha, caixa e medida (:220–236)
+
+| Token | Valor | Onde |
+|---|---|---|
+| `--lh-display` | `0.9` | seletores de display (styles:37) |
+| `--lh-heading` | `1.35` | `.fix-pain`, `.dash-title`, `.audience-title`, `.step-title`, `.plaque-title`, `.plaque-quote p` |
+| `--lh-body` | `1.6` | `body`, `textarea.form-input` |
+| `--lh-lead` | `1.4` | `.hero-sub` |
+| `--tracking-display` | `0` | seletores de display |
+| `--case-display` | `uppercase` | seletores de display; `.fix-pain` e `.dash-kpi dd` sobrescrevem com `text-transform:none` (styles:162, 212) |
+| `--numeric-data` | `tabular-nums` | `.dash-kpi dd`, `.dash-chart .tick`, `.step-num`, `.spec dd` |
+| `--measure` | `60ch` | `p` (styles:16); `.footer-copy` usa `max-width:none` (styles:348) |
+| `--measure-lead` | `44ch` | `.hero-sub` |
+| `--measure-h2` | `18ch` | `.display-h2` |
+
+Seletores de display (styles:37): `.display-h1`, `.display-h2`,
+`.display-statement`, `.step-num`, `.fix-pain`, `.dash-kpi dd` — todos com
+`--font-display`, `--weight-display`, `--tracking-display`,
+`--case-display` e `--lh-display`.
+
+Motivos declarados: as duas entrelinhas de título, "0.9 só para caixa alta
+[...] que não tem descendente; a outra para todo título em caixa mista que
+quebra linha" (:220–222). Dores em caixa mista: "frase inteira em caixa
+alta cansava a leitura (review U5, 30/09/2026)" (styles:210–211;
+brief:138–143). `--numeric-data`: "dado técnico: Archivo tabular, sem
+terceira família" (:231).
 
 ## Layout
 
-Grade de 12 colunas a partir de 1100px, container de 1320px com gutter
-fluido (20→64px) e espaço entre colunas de 16→24px. Abaixo de 1100px, uma
-coluna. Espaçamento em base 8 (4 a 96px); cada banda respira
-`clamp(96px,14vw,200px)` em cima e embaixo; título até conteúdo
-`clamp(48px,6vw,96px)`. Header fixo de 68px, alvos de toque de 44px,
-controles de 48px.
+### Tokens (:252–277)
 
-Cada seção tem forma própria ligada ao conteúdo (regra 2 do playbook):
-hero com vídeo atrás do texto (desktop) ou abaixo (tablet) ou atrás em
-recorte 4:5 (celular); dashboard em tela própria ocupando ~70% da altura;
-Soluções com H2 fixo à esquerda (4 colunas) e dores passando à direita
-(8 colunas); processo em escada, cada passo duas colunas depois do
-anterior; projetos em trilho horizontal de plaquetas (80vw, até 1200px)
-com a seção fixa; contato com a frase ocupando a primeira tela da banda.
+| Token | Valor | Onde |
+|---|---|---|
+| `--container` | `1320px` | `.container`, `.nav-main`, `.projects-track` (`max-width: calc(var(--container) + 2 * var(--gutter))`); cálculo de `--copy-end` no hero |
+| `--gutter` | `clamp(20px,5vw,64px)` | `padding-inline` de `.container`, `.nav-main`, `.projects-track`, `.mobile-menu`; sangria do `.hero-media` |
+| `--columns` | `12` | `.hero-grid`, `.sol-grid`, `.steps` a partir de 1100px |
+| `--col-gap` | `clamp(16px,2vw,24px)` | as mesmas grades |
+| `--header-h` | `68px` | `.site-header`, `scroll-margin-top` da `.band`, topo do `.hero`, `.mobile-menu`, `.sol-title` sticky, `.projects-pin`, `.contact-lead` |
+| `--tap` | `44px` | `.brand`, `.nav-links a`, `.nav-cta`, `.nav-burger`, `.dash-filter-btn`, `.project-link`, `.footer-links a`, `.social-link` (comentário: "alvo de toque mínimo") |
+| `--icon` | `24px` | `.social-icon` |
+| `--control-h` | `48px` | `.btn`, `.form-input`, `.mobile-menu-link` |
+| `--form-max` | `760px` | `.contact-form` |
+| `--col-min-audience` | `220px` | `.audience` (`auto-fit`) |
+| `--section-pad` | `clamp(96px,14vw,200px)` | `padding-block` da `.band`; `.contact-lead` (comentário: "respiro vertical de cada banda") |
+| `--title-gap` | `clamp(48px,6vw,96px)` | `margin-bottom` do `.display-h2` (comentário: "título até o conteúdo") |
 
-Pontos de quebra: 600px (celular), 700/760px (formulário e contato),
-900px (nav vira menu), 1100px (grade de 12), altura mínima de 760px para o
-trilho horizontal.
+Espaço base: `--space-1` a `--space-9` = 4, 8, 12, 16, 24, 32, 48, 64,
+96px (:239–247; comentário do bloco: "Espaço (base 8)").
+
+### Pontos de quebra (literais nas `@media`)
+
+| Consulta | O que muda |
+|---|---|
+| `max-width:599px` | H1 em 4 linhas; vídeo do hero em 4:5 atrás do texto; `.dash-filter` em largura total; `.footer-links` em coluna (styles:43, 108, 200, 337) |
+| `min-width:600px` / `600–1099px` | H1 pela trava de coluna e de altura; `.social` do rodapé à direita (styles:50, 346) |
+| `min-width:700px` | `.contact-form` em 2 colunas (styles:311) |
+| `min-width:760px` | `.contact-lead` com altura mínima de uma tela (styles:307) |
+| `max-width:900px` | nav vira `.nav-burger` com `.nav-wa` ao lado; `.dash-kpis` em 2 colunas (styles:70, 195) |
+| `min-width:1100px` | grade de 12 colunas no hero, soluções e processo; `.plaque` em `3fr 2fr` (styles:119, 233, 247, 282) |
+| `min-width:1100px and min-height:760px` | trilho horizontal dos projetos, com `prefers-reduced-motion:no-preference` (styles:290) |
+
+O comentário de `css/tokens.css:6` registra que breakpoints ficam
+literais porque "CSS não aceita var() em media query".
+
+### Grades por seção (como estão no CSS)
+
+- `.hero-grid`: 1 coluna; a partir de 1100px, `.hero-copy` em
+  `1 / span 6` de 12 (styles:91, 121–122).
+- `.sol-grid`: 1 coluna; a partir de 1100px, `.sol-title` em `1 / span 4`
+  com `position:sticky` e `.sol-body` em `5 / span 8` (styles:233–238).
+- `.steps`: grade com `gap: var(--space-8)`; a partir de 1100px cada
+  `.step` ocupa 6 colunas, começando nas colunas 1, 3, 5 e 7
+  (styles:241–255).
+- `.projects-track`: grade com `grid-auto-rows:1fr` e
+  `gap: var(--space-9)`; no trilho horizontal vira `flex` com
+  `gap: var(--plaque-gap)` e `.plaque` com `width: var(--plaque-w)`
+  (styles:265, 294–295).
+- `.contact-form`: 1 coluna, 2 a partir de 700px; `.form-field--wide` em
+  `1 / -1` (styles:310–312).
+- `.audience`: `repeat(auto-fit,minmax(min(var(--col-min-audience),100%),1fr))`
+  (styles:229).
 
 ## Elevation & Depth
 
-Plano. Não há sombra em nenhum elemento. Profundidade vem de tom: bandas
-em quatro níveis, a tela do dashboard um tom abaixo da banda em volta, o
-segmento ativo do filtro um tom acima. As únicas camadas translúcidas são
-funcionais: o header (fundo a 92% com desfoque de 12px), a sombra de
-leitura atrás do texto do hero (62% no desktop, 52% no celular, medidas
-quadro a quadro contra o vídeo) e o degradê que funde o vídeo na banda.
+`box-shadow` aparece uma vez no CSS: `.form-input--invalid`,
+`0 0 0 var(--ring) var(--error-ring)` (styles:326). Nenhum outro
+elemento tem sombra. O brief lista "Sombra cinza" entre o que sai da
+página (brief:345).
 
-### Named Rules
-**The No Shadow Rule.** Sombra cinza é proibida (brief §8). Separar conteúdo é trabalho da troca de fundo.
+Camadas translúcidas no código:
+
+| Onde | Valor | Comentário |
+|---|---|---|
+| `.site-header` | `color-mix(in srgb,var(--band-deep) var(--header-opacity),transparent)` + `backdrop-filter:blur(var(--header-blur))` | `--header-opacity:92%` "fundo do header sobre o conteúdo" (:266); `--header-blur:12px` |
+| `.hero::after`, ≥1100px | gradiente com `--hero-shade` | `color-mix(in srgb,var(--band-deep) 62%,transparent)`; medição no comentário (:156–161) e em brief:304–310 |
+| `.hero-media::after`, ≥1100px | `--hero-scrim-bottom` | `linear-gradient(0deg,var(--band-deep) 0%,transparent 22%)` |
+| `.hero::after`, ≤599px | `--hero-shade-phone` | `color-mix(in srgb,var(--band-deep) 52%,transparent)`; medição no comentário (:166–169) e em brief:312–315 |
+| `.hero-media::after`, ≤599px | `--hero-scrim-phone` | `linear-gradient(0deg,var(--band-deep) 0%,transparent 35%)` |
+| `.hero-still, .hero-video`, ≥1100px | `mask-image` de `transparent` a `--mask-opaque` em `--space-9` | styles:140 |
+
+### Camadas (`z-index`, :316–318)
+
+| Token | Valor | Onde |
+|---|---|---|
+| `--z-menu` | `99` | `.mobile-menu` |
+| `--z-header` | `100` | `.site-header` |
+| `--z-skip` | `400` | `.skip-link` |
+
+`z-index:-1` literal no vídeo e nas camadas do hero; o comentário de
+`css/tokens.css:13–14` diz que é "empilhamento local dentro do .hero
+(isolation:isolate), não camada da página como os --z-*".
 
 ## Shapes
 
-Raio em hierarquia, nunca igual em tudo: 0 em imagens e bandas, 4px em
-botão, campo e segmento de filtro, 12px só na tela do dashboard — o único
-objeto com cara de tela. Bordas de 1px: névoa a 12% como divisória dentro
-de lista e contorno das capturas; sálvia no campo de formulário.
+### Raio (:280–282)
+
+| Token | Valor | Comentário no CSS | Onde |
+|---|---|---|---|
+| `--r-none` | `0` | "imagens e bandas" | `.plaque-media` |
+| `--r-control` | `4px` | "botão, input" | `.btn`, `.form-input`, `.skip-link`, `.nav-burger`, `.dash-filter`, `.dash-filter-btn`, `.social-link` |
+| `--r-screen` | `12px` | "o dashboard, único objeto com cara de tela" | `.dash` |
+
+Comentário do bloco: "Raio (hierarquia, não tudo igual)" (:279). O brief
+lista "raio igual em todos os elementos" entre o que sai (brief:345).
+
+### Bordas, foco e detalhes (:262–270)
+
+| Token | Valor | Onde |
+|---|---|---|
+| `--hairline` | `1px` | todas as bordas e a grade do gráfico |
+| `--focus-width` | `2px` | contorno do `:focus-visible` |
+| `--focus-offset` | `3px` | afastamento do contorno de foco |
+| `--ring` | `3px` | anel do `.form-input--invalid` |
+| `--underline-offset` | `4px` | `.project-link` |
+| `--textarea-min-h` | `128px` | `textarea.form-input` |
+| `--status-min-h` | `1.4em` | `.form-status` ("reserva a linha da mensagem do form") |
+
+### Proporções (:275–277, 147)
+
+| Token | Valor | Onde |
+|---|---|---|
+| `--ratio-hero-mobile` | `4/3` | `.hero-media` de 600 a 1099px (comentário: "tablet") |
+| `--ratio-hero-phone` | `4/5` | `.hero-media` até 599px (comentário: "celular: recorte em pé do vídeo") |
+| `--ratio-project` | `8/5` | `.plaque-media` (comentário: "capturas dos projetos") |
+| `--hero-ratio` | `1912/1080` | largura do quadro do vídeo no desktop (comentário: "proporção do vídeo e do poster") |
 
 ## Components
 
-### Buttons
-- **Shape:** cantos quase retos (4px), altura 48px, Archivo 600 a 17px.
-- **Primary:** ciano chapado com texto ink-950; hover no ciano aceso. Um por contexto: hero, menu móvel, formulário.
-- **Ghost:** transparente, texto névoa, contorno de 1px em névoa baixa que vira névoa no hover. "Ver projetos" e o "Começar projeto" do header.
-- **Focus:** contorno de 2px em ciano, afastado 3px, em todo elemento interativo.
-- Sem "→" ou "↗" no texto do botão.
+Nome = classe como está no CSS e no markup.
 
-### Inputs / Fields
-- **Style:** fundo ink-950, contorno de 1px em sálvia, 4px de raio, 48px de altura; textarea com 128px mínimos.
-- **Focus:** contorno vira ciano.
-- **Error:** contorno coral com anel de 3px em coral a 20%, mensagem em coral logo abaixo do campo.
+### `.site-header`, `.nav-main`, `.nav-links`, `.nav-burger`, `.nav-wa`, `.brand`
 
-### Navigation
-- Links em Archivo 500 a 15px, névoa baixa que acende para névoa no hover. Abaixo de 900px vira botão de menu (44px, contorno de 1px) com o atalho do WhatsApp ao lado, na mesma borda. Nenhum botão flutua sobre o conteúdo.
+- `.site-header` fixo, altura `--header-h`, fundo translúcido com desfoque
+  (ver Elevation); a borda de baixo vai de `transparent` a `--line` com a
+  classe `.is-scrolled` (styles:57–58), que o JS liga acima de
+  `HEADER_SCROLL_THRESHOLD = 8` px de rolagem.
+- `.nav-links`: `--fs-small`, `--weight-medium`, cor `--text-muted`, hover
+  `--text`.
+- `.nav-cta`: `.btn .btn--ghost` com `min-height: var(--tap)` e
+  `--fs-small`.
+- Até 900px: `.nav-links` e `.nav-cta` somem; aparecem `.nav-burger`
+  (`--tap` × `--tap`, borda `--hairline` `--line`, `--r-control`) e
+  `.nav-wa` com a mesma borda (styles:70–75). Comentário: "atalho do
+  WhatsApp no header: só no celular/tablet, colado ao menu" (styles:67).
+  Brief: "Não há botão flutuante" (brief:212–213, 337–344).
+- `.brand .zy-logo`: `--font-body`, `--weight-display`, `--fs-lead`; o
+  `.zy-logo-z` em `--accent`.
 
-### Dashboard ao vivo (assinatura)
-Tela ink-950 com raio de 12px dentro da banda elevada. Três indicadores em
-Sofia tabular, filtro segmentado de três períodos, gráfico de barras em
-HTML sobre grade SVG. Barra inativa em sálvia escura, a do período atual em
-ciano. Na troca de filtro cada barra vai do valor antigo ao novo em 600ms.
+### `.mobile-menu`, `.mobile-menu-link`, `.mobile-menu-cta`
 
-### Plaqueta de projeto (assinatura)
-Captura 8:5 sem raio, com contorno de 1px, e ao lado (desktop, 3:2) título,
-descrição, ficha técnica em duas colunas label/valor com algarismos
-tabulares, link sublinhado e, quando confirmado, o depoimento separado por
-uma linha fina. Todas com a altura da mais alta.
+Fixo abaixo do header, fundo `--band-raised`, `z-index: var(--z-menu)`.
+Links com `min-height: var(--control-h)`, `--weight-medium` e borda de
+baixo `--line`; `.mobile-menu-cta` é `.btn .btn--primary`.
 
-### Dor riscada (assinatura)
-Dor em Sofia 800 caixa mista, atravessada por um traço na cor do texto
-(9% da letra) no meio da altura-x, seguida do serviço em Archivo 600 e da
-entrega, que ganha contraste conforme a linha sobe pela tela.
+### `.btn`, `.btn--primary`, `.btn--ghost`
 
-## Do's and Don'ts
+- `.btn`: `min-height: var(--control-h)`, `padding: var(--space-3)
+  var(--space-5)`, `--r-control`, `--weight-strong`, `--fs-body`;
+  transição de `background-color` e `border-color` em `--dur-fast ease`
+  (styles:83).
+- `.btn--primary`: fundo `--accent`, texto `--on-accent`, sem borda; hover
+  `--accent-hover`.
+- `.btn--ghost`: fundo transparente, texto `--text`, borda `--hairline`
+  `--text-muted`; hover com borda `--text`.
+- Foco: regra global `:focus-visible` (styles:13).
 
-### Do:
-- **Do** tirar todo valor de cor, fonte, tamanho, espaço, raio e duração de `css/tokens.css`, que materializa este arquivo.
-- **Do** separar seções pela troca de banda, respeitando a sequência da The Neighbour Rule.
-- **Do** manter título e botão principal visíveis desde o primeiro quadro; o texto do hero fica sobre a sombra de leitura medida.
-- **Do** usar entrelinha 1.35 em todo título em caixa mista que quebra linha.
-- **Do** manter os três comportamentos de movimento e `prefers-reduced-motion` indo direto ao estado final.
+### `.skip-link`
 
-### Don't:
-- **Don't** usar ciano fora de ação e estado.
-- **Don't** usar sombra, card flutuante ou borda entre seções.
-- **Don't** pôr frase de leitura inteira em caixa alta.
-- **Don't** usar Inter, Roboto, Arial, Helvetica ou Space Grotesk.
-- **Don't** usar eyebrow, numeração fora do processo, fade-up, hover com transform em card, marquee, contador animado ou botão flutuante (brief §3, §7, §8).
+Fixo em `--space-2` do canto, fundo `--accent`, texto `--on-accent`,
+`--weight-strong`, `--fs-small`, `--r-control`; fora da tela com
+`translateY(-250%)` até o foco.
+
+### Hero: `.hero`, `.hero-grid`, `.hero-copy`, `.hero-sub`, `.hero-sub-key`, `.hero-ctas`, `.hero-note`, `.hero-media`, `.hero-still`, `.hero-video`
+
+- `.hero-sub`: `--fs-lead`, `--lh-lead`, cor `--text`, `--measure-lead`,
+  `text-wrap:pretty`; `.hero-sub-key` em `--weight-strong`.
+- `.hero-note`: `--fs-body`, `--weight-medium`, cor `--text`.
+- Motivo declarado para sub e nota em `--text`: "é o que deixa a sombra em
+  62% em vez de 80% (ver --hero-shade)" (styles:93–95; brief:306–308).
+- `.hero-media` por faixa: até 599px, absoluto no topo em 4:5, atrás do
+  texto; 600–1099px, abaixo do texto em 4:3 sangrando pelo `--gutter`;
+  a partir de 1100px, ocupa o hero inteiro atrás do texto, com o quadro
+  ancorado por `--hero-screen-at` (`.445`) e `--hero-clearance`
+  (`var(--space-8)`) (styles:101–145).
+- Tokens de enquadramento: `--hero-focus-tablet` `62% 50%`,
+  `--hero-focus-phone` `50% 50%`, `--hero-pad-top`
+  `calc(var(--header-h) + var(--space-6))`, `--hero-pad-bottom`
+  `max(var(--space-8),15svh)` (:145–171).
+
+### Dashboard: `.dash-figure`, `.dash`, `.dash-head`, `.dash-title`, `.dash-filter`, `.dash-filter-btn`, `.dash-kpis`, `.dash-kpi`, `.dash-chart-label`, `.dash-chart`, `.dash-bars`, `.bar`, `.bar--now`, `.dash-caption`
+
+- `.dash`: fundo `--band-deep` dentro da `.band--raised`, `--r-screen`,
+  `padding: var(--dash-pad)`.
+- `.dash-filter`: fundo `--band-base`, `--r-control`, `padding:
+  var(--space-1)`; `.dash-filter-btn` com `min-height: var(--tap)`, texto
+  `--text-muted`, pressionado (`aria-pressed="true"`) com fundo
+  `--band-raised` e texto `--text`.
+- `.dash-kpis`: 3 colunas; até 900px, 2 colunas com o 2º indicador na
+  linha inteira, primeiro (styles:193–198).
+- Gráfico: SVG de grade e rótulos (`.grid`, `.tick`) e barras em HTML
+  (`.bar`, `.bar--now`). Geometria em tokens lidos por `js/dashboard`
+  (:132–143): `--dash-pad` `clamp(var(--space-5),4vw,var(--space-7))`,
+  `--chart-h` `clamp(200px,36vh,400px)`, `--chart-pad-top`
+  `var(--space-2)`, `--chart-pad-bottom` `28px`, `--chart-pad-left`
+  `var(--space-8)`, `--chart-tick-gap` `var(--space-3)`,
+  `--chart-label-offset` `6px`, `--chart-label-min` `30px`,
+  `--chart-bar-min` `2px`, `--chart-bar-fill` `.68`,
+  `--chart-bar-fill-dense` `.6`.
+
+### Soluções: `.sol-grid`, `.sol-title`, `.sol-body`, `.fix-list`, `.fix-item`, `.fix-pain`, `.fix-strike`, `.fix-service`, `.fix-text`, `.audience`, `.audience-title`, `.audience-list`
+
+- `.fix-item`: `padding: var(--space-7) 0`, borda de cima `--line` (menos
+  no primeiro).
+- `.fix-pain`: display em caixa mista, `--lh-heading`,
+  `text-wrap:balance`.
+- `.fix-strike`: traço como `background-image` de `--strike-color`,
+  espessura `--strike-w`, altura `--strike-y` (styles:217).
+- `.fix-service`: `--weight-strong`. `.fix-text`: cor `--text`.
+- `.audience-list li`: borda de cima `--line`, cor `--text-muted`.
+
+### Processo: `.steps`, `.step`, `.step-num`, `.step-title`, `.step-desc`, `.stack-line`
+
+`.step` em grade `auto minmax(0,1fr)` alinhada pela base; `.step-num` em
+`--fs-step-num`, `--text-muted`, tabular; `.step-desc` em `--text-muted`;
+`.stack-line` com `margin-top: var(--space-9)`.
+
+### Projetos: `.projects-section`, `.projects-pin`, `.projects-head`, `.section-note`, `.spec-source`, `.projects-rail`, `.projects-track`, `.plaque`, `.plaque-media`, `.plaque-body`, `.plaque-title`, `.project-desc`, `.spec`, `.project-links`, `.project-link`, `.plaque-quote`
+
+- `.plaque`: 1 coluna; a partir de 1100px, `minmax(0,3fr) minmax(0,2fr)`.
+- `.plaque-media`: `--ratio-project`, fundo `--band-raised`, borda
+  `--hairline` `--line`, `--r-none`; imagem `object-fit:cover`,
+  `object-position:center top`.
+- `.spec`: grade `max-content minmax(0,1fr)`, `--fs-small`, `dt` em
+  `--text-muted`, `dd` tabular.
+- `.project-link`: sublinhado em `--text-muted` que vira `--text` no
+  hover, `text-underline-offset: var(--underline-offset)`.
+- `.plaque-quote`: separado por borda de cima `--line`; `p` em
+  `--fs-quote`, `--weight-medium`, `--lh-heading`; `figcaption` em
+  `--fs-small`, `--text-muted`.
+- Comentário: "toda plaqueta tem a altura da mais alta, mesmo sem
+  depoimento ou métrica (FieldFix)" (styles:263–264).
+
+### Contato: `.contact-lead`, `.display-statement`, `.contact-form`, `.form-field`, `.form-field--wide`, `.form-label`, `.form-req`, `.form-input`, `.form-input--invalid`, `.form-field-hint`, `.form-error`, `.form-actions`, `.form-hint`, `.form-status`, `.contact-direct`, `.contact-direct-label`
+
+- `.form-input`: `min-height: var(--control-h)`, `padding: var(--space-3)
+  var(--space-4)`, `--fs-body`, texto `--text`, fundo `--band-deep`, borda
+  `--hairline` `--line-control`, `--r-control`; foco com borda
+  `--focus-ring`; `textarea` com `--textarea-min-h` e `resize:vertical`.
+- `.form-input--invalid`: borda `--error` com `!important` e anel
+  `--ring` `--error-ring`.
+- `.form-error`: `--fs-small`, `--weight-medium`, `--error`; some quando
+  vazio. `.form-status`: `--status-min-h`, `--weight-medium`,
+  `--fs-small`; some quando vazio.
+- `.form-label`, `.form-field-hint`, `.form-hint`, `.form-req`,
+  `.contact-direct-label`: `--fs-small`; os três últimos em `--text-muted`.
+
+### `.social`, `.social-link`, `.social-icon`
+
+`.social-link` em `--tap` × `--tap`, cor `--text`, `--r-control`;
+`:focus-visible` com cor `--accent`. `.social-icon` em `--icon`,
+`fill:currentColor`. Comentário: "ícone na cor do texto, alvo de 44px; o
+ciano aparece só no foco de teclado" (styles:338–339).
+
+### Rodapé: `.site-footer`, `.footer-inner`, `.footer-brand`, `.footer-text`, `.footer-links`, `.footer-copy`
+
+`padding-block: var(--space-8) var(--space-9)`; texto em `--fs-small` e
+`--text-muted`; `.footer-links a` com `min-height: var(--tap)` e hover
+`--text`. Em `index.html` o rodapé usa `band band--deep`; em
+`privacidade/index.html:137`, `band band--base`.
+
+### Classes sem regra no CSS
+
+`privacidade/index.html` usa `.draft-banner`, `.legal`, `.legal-lead`,
+`.legal-meta`, `.legal-section`, `.legal-h2`, `.legal-h3`, `.legal-list`,
+`.legal-list--numbered`, `.legal-table` e `.fill`, que não têm regra em
+nenhum dos dois CSS. A página está fora do deploy (brief:377–378).
 
 ## Movimento
 
-Três comportamentos, e só eles (brief §7). Curva `cubic-bezier(.215,.61,.355,1)`,
-200ms em hover e foco, 600ms nas barras do dashboard.
-1. Projetos: trilho horizontal pelo scroll vertical (CSS scroll-driven, `contain 0% contain 100%`). Informa que há mais projetos além da borda.
-2. Soluções: traço atravessa a dor e a entrega sai do tom baixo para o texto (`animation-timeline: view()`, `entry 100% cover 50%`). Informa que a dor vira solução.
-3. Dashboard: barras do valor antigo ao novo na troca de filtro (`startViewTransition`). Informa que o filtro de fato refiltra.
-O vídeo do hero (4,875s, toca uma vez) fica fora da conta.
+Tokens (:293–313):
 
-## Mapa de tokens (css/tokens.css)
-
-Todo custom property de `css/tokens.css`, com o papel. Primitivos de cor e
-escala estão no frontmatter; aqui está o resto, agrupado.
-
-| Grupo | Tokens | Papel |
+| Token | Valor | Onde |
 |---|---|---|
-| Cor, primitivos | `--ink-950` `--ink-900` `--ink-850` `--petrol-700` `--mist-50` `--mist-100` `--mist-400` `--cyan-500` `--cyan-400` `--coral-300` `--sage-500` `--sage-600` | ver Colors |
-| Cor, bandas | `--band-deep` `--band-base` `--band-raised` `--band-color` | fundo de cada banda |
-| Cor, texto e linha | `--text` `--text-muted` `--text-on-color` `--line` `--line-control` `--mask-opaque` | texto, texto secundário, texto na banda de cor, divisória, contorno de campo, máscara de alfa do vídeo |
-| Cor, acento e estado | `--accent` `--accent-hover` `--on-accent` `--focus-ring` `--error` `--error-ring` | ação, foco, erro |
-| Dashboard | `--bar-idle` `--bar-active` `--chart-grid` `--dash-pad` `--chart-h` `--chart-pad-top` `--chart-pad-bottom` `--chart-pad-left` `--chart-tick-gap` `--chart-label-offset` `--chart-label-min` `--chart-bar-min` `--chart-bar-fill` `--chart-bar-fill-dense` | cores e geometria do gráfico (lidas pelo js/dashboard.js) |
-| Hero | `--hero-ratio` `--hero-screen-at` `--hero-clearance` `--hero-pad-top` `--hero-pad-bottom` `--hero-shade` `--hero-scrim-bottom` `--hero-focus-tablet` `--hero-focus-phone` `--hero-shade-phone` `--hero-scrim-phone` | enquadramento do vídeo, centro ótico do texto, sombras de leitura medidas |
-| Fontes e pesos | `--font-display` `--font-body` `--weight-display` `--weight-body` `--weight-medium` `--weight-strong` | ver Typography |
-| Tamanhos | `--fs-h1-max` `--fs-h1` `--fs-h1-fit` `--fs-h1-fit-narrow` `--fs-h1-vh` `--fs-statement` `--fs-h2` `--fs-step-num` `--fs-m` `--fs-h3` `--fs-kpi` `--fs-quote` `--fs-lead` `--fs-body` `--fs-small` `--fs-micro` | escala; o H1 é o menor entre o fluido, a trava da coluna e a trava da altura |
-| Entrelinha e forma do texto | `--lh-display` `--lh-heading` `--lh-body` `--lh-lead` `--tracking-display` `--case-display` `--numeric-data` `--measure` `--measure-lead` `--measure-h2` | ver The Two Leadings Rule |
-| Espaço | `--space-1` `--space-2` `--space-3` `--space-4` `--space-5` `--space-6` `--space-7` `--space-8` `--space-9` `--section-pad` `--title-gap` | base 8 |
-| Layout | `--container` `--gutter` `--columns` `--col-gap` `--header-h` `--tap` `--icon` `--control-h` `--form-max` `--ring` `--focus-offset` `--underline-offset` `--header-blur` `--header-opacity` `--hairline` `--focus-width` `--textarea-min-h` `--status-min-h` `--col-min-audience` | grade, alvos, controles, detalhes de borda e foco |
-| Proporções | `--ratio-hero-mobile` `--ratio-hero-phone` `--ratio-project` | 4:3 tablet, 4:5 celular, 8:5 capturas |
-| Raio | `--r-none` `--r-control` `--r-screen` | ver Shapes |
-| Movimento | `--ease-out` `--dur-fast` `--dur-data` `--fix-range` `--strike-color` `--strike-w` `--strike-y` `--plaque-w` `--plaque-gap` `--plaque-count` `--proj-range` `--proj-distance` | ver Movimento |
-| Camadas | `--z-menu` `--z-header` `--z-skip` | menu, header, skip link |
+| `--ease-out` | `cubic-bezier(.215,.61,.355,1)` | só nas barras do dashboard (styles:175, 181, 182) |
+| `--dur-fast` | `200ms` | transições de hover e foco, todas com a curva `ease` literal (styles:24, 57, 64, 83, 153, 276, 321, 335) |
+| `--dur-data` | `600ms` | barras do dashboard |
+| `--fix-range` | `entry 100% cover 50%` | `.fix-strike`, `.fix-text` |
+| `--strike-color` | `var(--text)` | traço da dor (comentário: "ciano fica para ação") |
+| `--strike-w` | `.09em` | espessura do traço |
+| `--strike-y` | `54%` | altura do traço (comentário :301–303) |
+| `--plaque-w` | `min(80vw,1200px)` | `.plaque` no trilho |
+| `--plaque-gap` | `var(--space-8)` | `.projects-track` no trilho |
+| `--plaque-count` | `4` | cálculo de `--proj-distance` |
+| `--proj-range` | `contain 0% contain 100%` | `.projects-track` |
+| `--proj-distance` | `calc(var(--plaque-count) * var(--plaque-w) + (var(--plaque-count) - 1) * var(--plaque-gap) + 2 * var(--gutter) - 100vw)` | altura extra da `.projects-section` |
 
-## Ajustes de 30/09/2026
+Os três comportamentos no código, com o motivo que o brief declara
+(brief:261–275; limite de três em brief:255–257):
 
-Feitos na volta de correção do `zyphy-ciclo`, a partir do `qa/review.json`:
+1. Projetos — `@keyframes zyTrack` (`translateX(0)` a
+   `translateX(calc(100cqw - 100%))`), `animation-timeline:--proj`, com
+   `.projects-pin` sticky. Só com suporte a `view-timeline-name` e
+   `animation-timeline`, `prefers-reduced-motion:no-preference`,
+   `min-width:1100px` e `min-height:760px` (styles:286–302). Motivo: "o
+   conteúdo vaza pela borda e sugere que continua" (brief:263–264).
+2. Soluções — `@keyframes zyStrike` (`background-size` de 0% a 100%) e
+   `zySolve` (cor de `--text-muted` a `--text`), `animation-timeline:--fix`
+   (`view-timeline` do `.fix-item`), dentro de
+   `@supports (animation-timeline:view())` e
+   `prefers-reduced-motion:no-preference` (styles:220–228). Motivo: "a
+   dor fica 'riscada' e a solução vira o que se lê" (brief:268–269).
+3. Dashboard — `::view-transition-group(*.bar)` em `--dur-data` e
+   `--ease-out`; barras sem par com `@keyframes zyBarIn` / `zyBarOut`
+   (opacidade); `::view-transition{pointer-events:none}`
+   (styles:171–189). Motivo: "mostra que o filtro de fato refiltra os
+   dados" (brief:274–275).
 
-| Token | Antes | Depois | Por quê |
-|---|---|---|---|
-| `--mist-50`, `--text-on-color` | — | `#E8F7F4` no texto da banda de petróleo | névoa cinza sobre o petróleo lia apagado (gray-on-color) |
-| `--fs-h1-vh` | — | `9.5svh`, terceira trava do H1 a partir de 600px | H1 ocupava 34% da tela em 1280x800 (oversized-h1); agora ~26% |
-| `--fs-lead` | 19px fixo | 20→24px | o sub leva o diferencial e virou o segundo texto da primeira tela (U1) |
-| `--lh-heading` | 1.2 | 1.35 | títulos em caixa mista que quebram linha (tight-leading) |
-| `--lh-lead` | — | 1.4 | entrelinha do sub no tamanho novo |
-| `--strike-y` | 45% | 54% | a dor saiu da caixa alta; o traço passa no meio da altura-x |
+Vídeo do hero: fora da conta dos três (brief:286–288), inserido por JS.
+
+`prefers-reduced-motion:reduce`: `scroll-behavior:auto` e
+`transition-duration:.001ms !important` em tudo (styles:350–354); as
+animações 1 e 2 só existem dentro de `no-preference`. Brief:
+"`prefers-reduced-motion: reduce` → estado final direto, sempre"
+(brief:259).
+
+## Valores literais fora do arquivo de tokens
+
+O comentário de `css/tokens.css:1–16` lista os literais que o código
+mantém fora dos tokens e o motivo de cada: breakpoints em `@media`;
+utilitário `.sr-only`; `translateY(-250%)` do skip link; `.001ms` do
+reduced-motion; `<meta name="theme-color">`; `100svh`/`100vh`; o
+`z-index:-1` do hero; o limiar de rolagem no JS.
+
+Encontrados na leitura e não listados nesse comentário:
+
+- Curva `ease` literal nas transições de `--dur-fast` (lista em
+  Movimento).
+- `index.html:57`: ícone do `.nav-burger` com `width="22"`,
+  `height="22"`, `stroke-width="2"` no SVG.
+- `theme-color` `#050B0B` em `index.html:13` e
+  `privacidade/index.html:15` (mesmo valor de `--ink-950`; comentário no
+  HTML: "mesmo valor de --band-deep").
+- Posição e tamanho das barras em px, calculados em `js/dashboard` a partir
+  dos tokens de geometria (linhas 133–136).
+
+## Do's and Don'ts
+
+Só o que o brief ou um comentário do CSS declara, com a linha.
+
+### Do:
+
+- **Do** tirar cor, fonte, tamanho, espaço, raio e duração de
+  `css/tokens.css` (comentário do CSS de componentes, styles:2–4; do
+  arquivo de tokens, :2–5).
+- **Do** separar seções pela troca de fundo da `.band` (styles:28;
+  brief:30–32), com bandas vizinhas diferentes e petróleo só no contato
+  (:99–101).
+- **Do** manter H1, subtítulo e botões visíveis desde o primeiro quadro
+  (brief:289–291).
+- **Do** usar `--lh-heading` em título de caixa mista que quebra linha e
+  `--lh-display` só em caixa alta (:220–222).
+- **Do** manter os três comportamentos de movimento e o estado final
+  direto com reduced-motion (brief:255–259).
+
+### Don't:
+
+- **Don't** usar `--accent` fora de ação e estado (:118–120; brief:266).
+- **Don't** usar sombra cinza nem raio igual em todos os elementos
+  (brief:345).
+- **Don't** usar eyebrow, numeração fora do processo, "→"/"↗" em link ou
+  botão, fade-up, hover com transform em card (brief:332–336).
+- **Don't** pôr botão flutuante fixo na tela (brief:337–344).
+- **Don't** usar as famílias da lista proibida do brief (brief:82).
+- **Don't** usar contador animado, marquee, HUD ou label tipo "SEC.00 //"
+  (brief:67–68).
