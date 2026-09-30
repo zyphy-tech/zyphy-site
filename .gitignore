@@ -7,3 +7,9 @@ assets/video/hero-original.mp4
 .env
 .env.*
 !.env.example
+
+# Artefatos do QA gerados a cada medição (zyphy-ciclo)
+qa/medicao.json
+qa/pontuacao.json
+qa/review.json
+qa/prints/
