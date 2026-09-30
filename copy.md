@@ -49,12 +49,17 @@ Onde o texto sai do brief, e por quê
 - Dashboard: filtros sem número no rótulo ("Última semana" em vez de
   "7 dias"), para não parecer métrica. Os dados continuam marcados como
   fictícios.
+- Ajustes de 2026-09-30, com o status mantido: rótulo do WhatsApp no
+  header igual ao do rodapé e campo de mensagem opcional, sem erro de
+  vazio (decisões do brief de 2026-09-30); pular para o conteúdo,
+  rótulos acessíveis dos links de projeto, dica e erro de formato do
+  contato e "Ou fale direto:" adotados do site, onde já estavam.
 -->
 
 ## 1. Nav
 
 - **Itens:** Soluções, Como construímos, Projetos, Contato
-- **Microcopy:** logo com rótulo acessível "Zyphy, página inicial"; botão do menu no celular "Abrir menu" / "Fechar menu"; ícone do WhatsApp no header do celular com rótulo acessível "Falar com a Zyphy no WhatsApp".
+- **Microcopy:** link de pular, no topo da página, "Pular para o conteúdo"; logo com rótulo acessível "Zyphy, página inicial"; botão do menu no celular "Abrir menu" / "Fechar menu"; ícone do WhatsApp no header do celular com rótulo acessível "WhatsApp da Zyphy", o mesmo do rodapé.
 
 ## 2. Hero
 
@@ -104,6 +109,7 @@ Onde o texto sai do brief, e por quê
   - **Depoimento:** "Conseguimos mostrar nossos serviços e equipamentos de forma muito mais clara." Carlos Eduardo, Stahltek Rotuladoras [F5].
   - **Alt da imagem:** Página inicial do site da Stahltek Rotuladoras.
   - **Link:** Abrir o site
+  - **Rótulo acessível do link:** Abrir o site da Stahltek Rotuladoras (abre em nova aba)
 - **Card Vora Jewelry:**
   - **Descrição:** Loja de joias iced-out, com hero em vídeo e peças personalizáveis [F26].
   - **Tipo:** loja [F26]
@@ -113,6 +119,7 @@ Onde o texto sai do brief, e por quê
   - **Depoimento:** "Os produtos estão bem organizados e a parte de personalização é um diferencial bem interessante." Severina Silva, Vora Jewelry [F6].
   - **Alt da imagem:** Página inicial da loja Vora Jewelry.
   - **Link:** Abrir a loja
+  - **Rótulo acessível do link:** Abrir a loja Vora Jewelry (abre em nova aba)
 - **Card TecNova:**
   - **Descrição:** Assistência técnica de celulares [F27].
   - **Tipo:** site institucional [F27]
@@ -122,6 +129,7 @@ Onde o texto sai do brief, e por quê
   - **Depoimento:** "O site ficou simples de navegar e transmite muito mais confiança para nossos clientes." Cleyton Alves, TecNova [F7].
   - **Alt da imagem:** Página inicial do site da TecNova.
   - **Link:** Abrir o site
+  - **Rótulo acessível do link:** Abrir o site da TecNova (abre em nova aba)
 - **Card FieldFix:**
   - **Descrição:** Manutenção sob demanda: a empresa abre o chamado, o técnico mais próximo aceita e tudo é acompanhado [F28].
   - **Tipo:** app Android (beta) [F28] [F4]
@@ -129,6 +137,7 @@ Onde o texto sai do brief, e por quê
   - **Página de apresentação:** 81 [F24]
   - **Alt da imagem:** Página de apresentação do app FieldFix.
   - **Link:** Abrir a página de apresentação
+  - **Rótulo acessível do link:** Abrir a página de apresentação do FieldFix (abre em nova aba)
 
 ## 7. Contato
 
@@ -139,19 +148,20 @@ Onde o texto sai do brief, e por quê
 - **Microcopy:**
   - Linha abaixo do botão: "Abre a conversa com sua mensagem pronta."
   - Campo "Nome", placeholder "Como podemos te chamar".
-  - Campo "E-mail ou WhatsApp", placeholder "Seu e-mail ou número com DDD".
-  - Campo "O que está travando?", placeholder "Ex.: passo os pedidos do site para a planilha à mão, todo dia."
+  - Campo "E-mail ou WhatsApp", placeholder "Seu e-mail ou número com DDD"; dica abaixo do campo: "E-mail ou WhatsApp com DDD."
+  - Campo "O que está travando?", opcional, placeholder "Ex.: passo os pedidos do site para a planilha à mão, todo dia."
   - Erro sem nome: "Escreva seu nome."
   - Erro sem contato: "Deixe um e-mail ou WhatsApp para a resposta."
-  - Erro sem mensagem: "Conte em uma frase o que está travando."
+  - Erro de contato em formato inválido: "Digite um e-mail, como voce@email.com, ou um WhatsApp com DDD, como (11) 91234-5678."
   - Mensagem que abre no WhatsApp: "Olá, Zyphy. Sou {nome}. Contato: {contato}. {mensagem}"
   - Depois do envio: "O WhatsApp abriu com a sua mensagem. Falta só tocar em enviar."
   - Se o WhatsApp não abrir: "O WhatsApp não abriu? Escreva para o e-mail do rodapé."
+  - Rótulo acima dos ícones de contato direto: "Ou fale direto:"; ícones com os mesmos rótulos acessíveis do rodapé.
 
 ## 8. Rodapé
 
 - **Corpo:** Sites, apps, dashboards e automações sob medida [F10] [F8] [F19].
-- **Microcopy:** contatos com rótulos "E-mail", "WhatsApp" e "Instagram", os mesmos já publicados [F20]; linha de direitos com o símbolo ©, o ano corrente e "Zyphy".
+- **Microcopy:** contatos com rótulos acessíveis "Instagram da Zyphy", "WhatsApp da Zyphy" e "E-mail da Zyphy", os mesmos já publicados [F20]; linha de direitos com o símbolo ©, o ano corrente e "Zyphy".
 
 ## SEO
 
