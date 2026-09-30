@@ -75,6 +75,9 @@ Não reabra estas:
 - **Cor ciano mantida** por identidade (exceção IMP `ai-color-palette` no
   `qa/config.json`).
 - **Título do hero liberado para revisão** (tamanho e texto).
+- **H1 do hero:** 'Quem fala com você programa o seu projeto.' (F13),
+  escolhido pelo Weslley entre três opções do zyphy-copy. Substitui o
+  slogan do §5.2, que passa a ser usado só no meta title.
 
 ---
 
