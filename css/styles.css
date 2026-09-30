@@ -30,12 +30,12 @@ main:focus{outline:none}
 .band--deep{--band-bg:var(--band-deep)}
 .band--base{--band-bg:var(--band-base)}
 .band--raised{--band-bg:var(--band-raised)}
-.band--color{--band-bg:var(--band-color)}
+.band--color{--band-bg:var(--band-color);--text:var(--text-on-color);color:var(--text)}
 .band{background:var(--band-bg)}
 
 /* ---------- Tipografia de exibição ---------- */
 .display-h1,.display-h2,.display-statement,.step-num,.fix-pain,.dash-kpi dd{font-family:var(--font-display);font-weight:var(--weight-display);letter-spacing:var(--tracking-display);text-transform:var(--case-display);line-height:var(--lh-display)}
-.display-h1{margin:0;font-size:min(var(--fs-h1),var(--fs-h1-fit))}
+.display-h1{margin:0;font-size:min(var(--fs-h1),var(--fs-h1-fit),var(--fs-h1-vh))}
 .display-h1 .line{display:block}
 .display-h1 .br-m{display:none}
 /* celular: 4 linhas fixas (TECNOLOGIA / QUE / DESTRAVA O / SEU DIA A DIA.).
@@ -48,7 +48,7 @@ main:focus{outline:none}
 /* tablet: hero em coluna única, então o H1 ocupa a largura da coluna em vez
    de ficar preso aos 10vw pensados para as 8 colunas do desktop */
 @media (min-width:600px) and (max-width:1099px){
-  .display-h1{font-size:min(var(--fs-h1-max),var(--fs-h1-fit))}
+  .display-h1{font-size:min(var(--fs-h1-max),var(--fs-h1-fit),var(--fs-h1-vh))}
 }
 .display-h2{margin:0 0 var(--title-gap);font-size:var(--fs-h2);max-width:var(--measure-h2);text-wrap:balance}
 .display-statement{margin:0;font-size:var(--fs-statement);text-wrap:balance}
@@ -93,9 +93,11 @@ main:focus{outline:none}
 /* sub e nota na cor do texto (não muted) em todas as larguras. O motivo é o
    desktop, onde ficam sobre o vídeo: é o que deixa a sombra em 62% em vez
    de 80% (ver --hero-shade). Abaixo de 1100px segue igual, por consistência */
-.hero-sub{margin:var(--space-6) 0 0;font-size:var(--fs-lead);color:var(--text);max-width:var(--measure-lead)}
+.hero-sub{margin:var(--space-6) 0 0;font-size:var(--fs-lead);line-height:var(--lh-lead);color:var(--text);max-width:var(--measure-lead);text-wrap:pretty}
+/* o diferencial dentro do sub ganha peso, sem mudar uma palavra do brief §5.2 */
+.hero-sub-key{font-weight:var(--weight-strong)}
 .hero-ctas{display:flex;flex-wrap:wrap;gap:var(--space-3);margin-top:var(--space-6)}
-.hero-note{margin:var(--space-4) 0 0;font-size:var(--fs-small);color:var(--text)}
+.hero-note{margin:var(--space-4) 0 0;font-size:var(--fs-body);font-weight:var(--weight-medium);color:var(--text)}
 /* celular e tablet: imagem/vídeo abaixo do texto, sangrando até as duas bordas */
 .hero-media{position:relative;aspect-ratio:var(--ratio-hero-mobile);background:var(--band-deep);margin-inline:calc(-1 * var(--gutter));overflow:hidden}
 .hero-still,.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--hero-focus-tablet);display:block}
@@ -104,7 +106,7 @@ main:focus{outline:none}
    quadro). Embaixo ele se funde na banda. O recorte já vem enquadrado no
    notebook, então a imagem fica centrada. */
 @media (max-width:599px){
-  .hero{position:relative;isolation:isolate;overflow:clip}
+  .hero{position:relative;isolation:isolate}
   .hero-media{position:absolute;top:0;left:0;right:0;z-index:-1;margin:0;aspect-ratio:var(--ratio-hero-phone)}
   .hero-still,.hero-video{object-position:var(--hero-focus-phone)}
   .hero-media::after{content:"";position:absolute;inset:0;background:var(--hero-scrim-phone)}
@@ -115,7 +117,7 @@ main:focus{outline:none}
    o bloco do vídeo, na proporção do quadro, é ancorado para a tampa do
    notebook (--hero-screen-at) cair em --screen-x e estica até a borda direita. */
 @media (min-width:1100px){
-  .hero{--copy-end:calc(max(var(--gutter),(100% - var(--container)) / 2) + (min(var(--container),100% - 2 * var(--gutter)) - var(--col-gap)) / 2);--screen-x:calc(var(--copy-end) + var(--hero-clearance));position:relative;isolation:isolate;overflow:clip;min-height:100svh;box-sizing:border-box;display:flex;align-items:center;padding-top:var(--hero-pad-top);padding-bottom:var(--hero-pad-bottom)}
+  .hero{--copy-end:calc(max(var(--gutter),(100% - var(--container)) / 2) + (min(var(--container),100% - 2 * var(--gutter)) - var(--col-gap)) / 2);--screen-x:calc(var(--copy-end) + var(--hero-clearance));position:relative;isolation:isolate;min-height:100svh;box-sizing:border-box;display:flex;align-items:center;padding-top:var(--hero-pad-top);padding-bottom:var(--hero-pad-bottom)}
   .hero-grid{grid-template-columns:repeat(var(--columns),minmax(0,1fr));column-gap:var(--col-gap)}
   .hero-copy{grid-column:1 / span 6}
   .hero-media{position:absolute;top:0;left:var(--screen-x);z-index:-1;height:100%;width:auto;aspect-ratio:var(--hero-ratio);min-width:calc((100% - var(--screen-x)) / (1 - var(--hero-screen-at)));margin:0;transform:translateX(calc(var(--hero-screen-at) * -100%));-webkit-mask-image:linear-gradient(90deg,transparent,var(--mask-opaque) var(--space-9));mask-image:linear-gradient(90deg,transparent,var(--mask-opaque) var(--space-9))}
@@ -188,7 +190,9 @@ html{view-transition-name:none}
 .fix-list{list-style:none;margin:0;padding:0}
 .fix-item{padding:var(--space-7) 0;border-top:var(--hairline) solid var(--line)}
 .fix-item:first-child{border-top:none;padding-top:0}
-.fix-pain{margin:0;font-size:var(--fs-m);text-wrap:balance}
+/* dor em caixa mista e entrelinha de título: frase inteira em caixa alta
+   cansava a leitura (review U5, 30/09/2026). Segue na Sofia 800 */
+.fix-pain{margin:0;font-size:var(--fs-m);text-transform:none;line-height:var(--lh-heading);text-wrap:balance}
 /* movimento 2: o traço que atravessa a dor é um fundo no span inline, então
    segue as quebras de linha e cresce da esquerda para a direita. Estado final
    (Firefox, reduced-motion, sem suporte): traço inteiro e solução com

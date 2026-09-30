@@ -26,6 +26,9 @@
 <meta property="og:image:alt" content="Notebook sobre uma mesa escura, à noite, com um painel de indicadores na tela">
 <meta name="twitter:card" content="summary_large_image">
 
+<!-- dados estruturados: só o que o site já publica (nome, endereço, contatos do rodapé) -->
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Zyphy","url":"https://www.zyphy.com.br/","logo":"https://www.zyphy.com.br/assets/apple-touch-icon.png","description":"Sites, apps, dashboards e automações sob medida.","email":"contato.zyphy@gmail.com","telephone":"+55 11 92450-7188","sameAs":["https://www.instagram.com/zyphytech/"]}</script>
+
 <!-- H1 é o maior texto da primeira tela: a fonte display chega antes do primeiro paint possível -->
 <link rel="preload" href="assets/fonts/sofia-sans-extra-condensed-800-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/tokens.css">
@@ -73,12 +76,13 @@
         <div class="hero-copy">
           <!-- quebras: 3 linhas pelos .line no desktop; 4 linhas pelos br.br-m no celular -->
           <h1 id="hero-titulo" class="display-h1"><span class="line">Tecnologia<br class="br-m"> que</span> <span class="line"><br class="br-m">destrava o<br class="br-m"> seu</span> <span class="line">dia a dia.</span></h1>
-          <p class="hero-sub">Automação, sistemas e produtos digitais sob medida para empresas e pessoas — construídos por quem vai colocar a mão no código.</p>
+          <p class="hero-sub">Automação, sistemas e produtos digitais sob medida para empresas e pessoas — <span class="hero-sub-key">construídos por quem vai colocar a mão no código.</span></p>
           <div class="hero-ctas">
             <a href="#contato" class="btn btn--primary">Começar projeto</a>
             <a href="#projetos" class="btn btn--ghost">Ver projetos</a>
           </div>
-          <p class="hero-note">Resposta no mesmo dia, sem compromisso.</p>
+          <!-- no celular quebra depois da vírgula, nunca no meio de "sem compromisso" -->
+          <p class="hero-note">Resposta no mesmo dia, <span class="nowrap">sem compromisso.</span></p>
         </div>
         <!-- sem reduced-motion o vídeo toca em todas as telas, e a imagem é o
              PRIMEIRO quadro, que vira o poster: o vídeo começa de onde a imagem

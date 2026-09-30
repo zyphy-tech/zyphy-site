@@ -110,6 +110,15 @@ Imagem autoral como protagonista (item 6). Remover "Role para
 explorar", a marca-d'água "Z yphy" e o eyebrow "Para empresas e
 pessoas".
 
+**Correção de 30/09/2026 (zyphy-ciclo, review U1 e impeccable
+oversized-h1):** o H1 ganhou uma trava pela altura da tela a partir de
+600px (`--fs-h1-vh`, ~26% da altura; em 1280x800 caiu de 100px para 76px).
+Saiu: o H1 de até 144px no desktop, que ocupava 34% da tela e abafava o
+resto. Ficou: o mesmo H1 de 3 linhas, menor, e o sub maior (20→24px) com
+"construídos por quem vai colocar a mão no código." em peso 600, mais a
+linha de resposta a 17px em peso 500. Nenhuma palavra mudou. O celular (4
+linhas, 72px) ficou igual.
+
 ### 5.3 Dashboard ao vivo — a prova
 Mini-dashboard funcionando, SVG/Canvas próprio, sem lib pesada: 3
 indicadores, 1 gráfico de barras, 1 filtro por período que de fato
@@ -125,6 +134,13 @@ Três itens em lista, não card: Automação de processos / Modernização de
 sistemas / Sites, apps e dashboards. Cada um: 1 frase de dor + 1 frase
 de entrega. Ex.: "Planilha, copia-e-cola, retrabalho. Viram rotina
 automática integrada ao que você já usa."
+
+**Correção de 30/09/2026 (zyphy-ciclo, review U5 e impeccable
+all-caps-body/tight-leading):** as dores saíram da caixa alta. Motivo:
+frase inteira de leitura em caixa alta condensada cansava. Ficou: Sofia 800
+no mesmo tamanho, em caixa mista, entrelinha 1.35, e o traço do movimento 2
+passando no meio da altura-x. Caixa alta fica para H1, H2 e a frase do
+contato.
 
 Abaixo, duas colunas curtas:
 - **Para empresas:** sistemas sob medida / modernização de legado.
@@ -363,6 +379,9 @@ Situação em 29/09/2026:
 - **Pendência consciente:** a política de privacidade do FieldFix
   (`/fieldfix/privacidade/`) está no ar sem canonical e sem Open Graph.
   Decisão do Weslley em 29/09/2026: fica assim por enquanto.
+- **Resolvido em 30/09/2026:** `robots.txt`, `sitemap.xml` e JSON-LD
+  (Organization, só com nome, endereço e contatos que o rodapé já publica),
+  liberados no `.vercelignore` (QA-13).
 - **Tarefa separada:** acessibilidade da Vora Jewelry (Lighthouse 87 em
   23/09/2026). Não bloqueia este site: saiu da ficha (§5.6).
 
