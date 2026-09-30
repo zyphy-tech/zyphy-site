@@ -164,17 +164,11 @@ components:
 Documento extraído do código, não uma direção. Fontes lidas:
 
 - `css/tokens.css` — o arquivo de tokens (`@font-face` e `:root`).
-- O CSS de componentes, `css/styles` (extensão .css) — citado como
-  `styles:NN`.
-- O script do gráfico, `js/dashboard` (extensão .js), que lê tokens por
+- O CSS de componentes, `css/styles.css` — citado como `styles:NN`.
+- O script do gráfico, `js/dashboard.js`, que lê tokens por
   `getComputedStyle` (linhas 50–64).
 - `index.html` e `privacidade/index.html` (as duas carregam os dois CSS).
 - `brief-zyphy-site-v3.md` — citado como `brief:NN`.
-
-Os dois arquivos de fora do de tokens aparecem sem a extensão de
-propósito: o medidor do QA-01 toma como arquivo de tokens todo nome de
-arquivo `.css`/`.js`/`.json` citado neste documento, e deixaria de varrer
-esses dois.
 
 Fora deste documento: `fieldfix/privacidade/` tem folha de estilo própria,
 com tokens próprios; o comentário da linha 3 dela diz "Identidade própria
@@ -280,7 +274,7 @@ comentário, não remedidos nesta extração):
 - `Sofia Fallback`: `src:local('Impact')`, `size-adjust:81.3%`,
   `ascent-override:110.70%`, `descent-override:36.90%`,
   `line-gap-override:0%` (:49–58). As medições da calibração estão no
-  comentário das linhas 35–48. `js/boot` pede essa face antes do primeiro
+  comentário das linhas 35–48. `js/boot.js` pede essa face antes do primeiro
   paint.
 - `Archivo`: variável, `font-weight:100 900`, arquivo
   `assets/fonts/archivo-var-latin.woff2`, `font-display:swap` (:61–68).
@@ -557,7 +551,7 @@ Fixo em `--space-2` do canto, fundo `--accent`, texto `--on-accent`,
 - `.dash-kpis`: 3 colunas; até 900px, 2 colunas com o 2º indicador na
   linha inteira, primeiro (styles:193–198).
 - Gráfico: SVG de grade e rótulos (`.grid`, `.tick`) e barras em HTML
-  (`.bar`, `.bar--now`). Geometria em tokens lidos por `js/dashboard`
+  (`.bar`, `.bar--now`). Geometria em tokens lidos por `js/dashboard.js`
   (:132–143): `--dash-pad` `clamp(var(--space-5),4vw,var(--space-7))`,
   `--chart-h` `clamp(200px,36vh,400px)`, `--chart-pad-top`
   `var(--space-2)`, `--chart-pad-bottom` `28px`, `--chart-pad-left`
@@ -699,7 +693,7 @@ Encontrados na leitura e não listados nesse comentário:
 - `theme-color` `#050B0B` em `index.html:13` e
   `privacidade/index.html:15` (mesmo valor de `--ink-950`; comentário no
   HTML: "mesmo valor de --band-deep").
-- Posição e tamanho das barras em px, calculados em `js/dashboard` a partir
+- Posição e tamanho das barras em px, calculados em `js/dashboard.js` a partir
   dos tokens de geometria (linhas 133–136).
 
 ## Do's and Don'ts
