@@ -11,11 +11,14 @@ Regras: ID nunca reaproveitado · fonte concreta (quem disse e onde) · número 
 | F5 | Depoimento de Carlos Eduardo (Stahltek Rotuladoras), com autorização para publicar nome e empresa | WhatsApp do cliente; print em Drive/Zyphy/depoimentos | 2026-09-30 |
 | F6 | Depoimento de Severina Silva (Vora Jewelry), com autorização para publicar nome e empresa | WhatsApp da cliente; print em Drive/Zyphy/depoimentos | 2026-09-30 |
 | F7 | Depoimento de Cleyton Alves (TecNova), com autorização para publicar nome e empresa | WhatsApp do cliente; print em Drive/Zyphy/depoimentos | 2026-09-30 |
+| F21 | Stahltek Rotuladoras: performance mobile 84 | zyphy-medidor, Lighthouse 13.5.0, mobile, mediana de 3 rodadas, home | 2026-09-30 |
+| F22 | Vora Jewelry: performance mobile 85 | zyphy-medidor, Lighthouse 13.5.0, mobile, mediana de 3 rodadas, home | 2026-09-30 |
+| F23 | TecNova: performance mobile 86 | zyphy-medidor, Lighthouse 13.5.0, mobile, mediana de 3 rodadas, home | 2026-09-30 |
+| F24 | FieldFix (site): performance mobile 81 | zyphy-medidor, Lighthouse 13.5.0, mobile, mediana de 3 rodadas, home | 2026-09-30 |
 
 ## A confirmar
 
 - F1 vale para fim de semana e para mensagem que chega à noite? (se não, vira "no mesmo dia útil")
 - Os 3 depoimentos publicados são idênticos ao texto que cada cliente mandou? Se foram editados, a pessoa viu a versão final?
 - Descrição e stack de cada card de projeto (Weslley confere o texto de cada um)
-- Notas de performance dos projetos (84/86/84): gerar de novo com o zyphy-medidor e registrar com data
 - "3 meses" e "fonte de terceiros", citados pelo review no site: o que são e de onde vêm
