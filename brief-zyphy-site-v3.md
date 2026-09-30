@@ -85,6 +85,9 @@ Não reabra estas:
 - **Campo de mensagem do formulário: opcional.** O formulário não mostra
   erro de mensagem vazia; o erro "Conte em uma frase o que está
   travando." do `copy.md` não se aplica.
+- **Política de privacidade concluída:** controlador e encarregado Weslley
+  Rocha (rocheweslley@gmail.com); sai do rascunho. O link volta ao rodapé
+  e a página entra no `.vercelignore` (QA-14).
 
 ### Correção de 30/09/2026 (zyphy-ciclo, volta 1: COPY e review)
 
