@@ -309,7 +309,7 @@
      miniatura corre enquanto a ficha dela entra, entre 30% e 70% da entrada
      (a ficha anterior já saiu de cena, a nova chega à metade de baixo) */
   --plaque-gap:var(--space-8);
-  --plaque-count:4;
+  --plaque-count:3;
   --plaque-row-h:calc(100svh - var(--header-h));
   --plaque-top:max(var(--space-9),16svh);  /* topo da moldura e da ficha: centro óptico da tela */
   --shot-step:calc(100% + var(--plaque-gap));
