@@ -127,7 +127,7 @@ as entradas já gravadas: elas registram o que foi medido em cada commit.
 - **Commit medido:** 6c8dd97
 - **Modo:** rapido
 - **URL medida:** http://127.0.0.1:61128/ (branch servida localmente)
-- **Nota:** 97,9/100 (medido 57,85/60, julgado 40,05/40) · aprovado não
+- **Nota:** 97,9/100 (medido 57,85/60, julgado 40/40) · aprovado não
 - **Bloqueios:** R6, conteudo-sem-fonte
 - **Correções aplicadas:** 0/0 — ciclo parado por platô (+1,5 sobre a volta 1) e só bloqueios humanos: as duas correções de prioridade 1 já foram para humano na volta 1
 - **Precisa de humano:** R6: o checks/comportamento.mjs do medidor (sobrepoe/anotar) cruza caixas sem testar ordem de pintura, e o header fixo pinta por cima da moldura; conteudo-sem-fonte na política ("São Paulo (SP)" e verificação em duas etapas)
