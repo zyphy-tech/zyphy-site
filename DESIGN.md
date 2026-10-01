@@ -498,6 +498,10 @@ Nome = classe como está no CSS e no markup.
   `.nav-wa` com a mesma borda (styles:70–75). Comentário: "atalho do
   WhatsApp no header: só no celular/tablet, colado ao menu" (styles:67).
   Brief: "Não há botão flutuante" (brief:212–213, 337–344).
+- `.nav-main--inner` (só em `privacidade/index.html`, que não tem menu nem
+  `.nav-wa`): até 900px o `.nav-cta` continua visível. Comentário: "página
+  interna (/privacidade/): sem menu nem âncoras da home, o 'Começar
+  projeto' (/#comecar) fica no header em todas as larguras".
 - `.brand .zy-logo`: `--font-body`, `--weight-display`, `--fs-lead`; o
   `.zy-logo-z` em `--accent`.
 
@@ -623,14 +627,33 @@ ciano aparece só no foco de teclado" (styles:338–339).
 `--text`. Em `index.html` o rodapé usa `band band--deep`; em
 `privacidade/index.html:137`, `band band--base`.
 
-### Classes sem regra no CSS
+### Política de privacidade: `.legal`, `.legal-lead`, `.legal-meta`, `.legal-section`, `.legal-h2`, `.legal-h3`, `.legal-list`, `.legal-list--numbered`, `.legal-table`
 
-`privacidade/index.html` usa `.draft-banner`, `.legal`, `.legal-lead`,
-`.legal-meta`, `.legal-section`, `.legal-h2`, `.legal-h3`, `.legal-list`,
-`.legal-list--numbered`, `.legal-table` e `.fill`, que não têm regra em
-nenhum dos dois CSS. A página entrou no deploy em 30/09/2026, com a
-política concluída (brief §3, decisões de 2026-09-30; `.vercelignore`
-com `!/privacidade`), e o link "Privacidade" voltou ao rodapé.
+Só em `privacidade/index.html` (`article.band.band--deep.legal`). Regras
+desde 30/09/2026 (zyphy-ciclo, correção U5 do review). Comentário: "texto
+de leitura numa coluna só, na medida do corpo (--measure na fonte do
+corpo): lead, parágrafos, listas e a tabela de bases legais param na
+mesma largura de linha; só o H1 usa a largura da página".
+
+- `.legal .container`: grade `minmax(0,var(--measure)) minmax(0,1fr)`;
+  todo filho na primeira coluna, o `.display-h2` nas duas.
+- `.legal-lead`: `--fs-lead`, `--lh-lead`, `text-wrap:pretty`.
+  `.legal-meta`: `--fs-small`, `--text-muted`, `--space-4` acima.
+- `.legal-section`: `--space-8` acima; parágrafos com `--space-4` acima.
+- `.legal-h2`: `--fs-h3`, `--weight-strong`, `--lh-heading`.
+  `.legal-h3`: `--fs-body`, `--weight-strong`, `--space-6` acima e
+  `--space-2` até o parágrafo seguinte.
+- `.legal-list`: recuo `--space-5`, `--space-2` entre itens, marcador em
+  `--text-muted`; `.legal-list--numbered` com `--numeric-data`.
+- `.legal-table` (`dl`): `dt` em `--weight-medium`; `dd` sem recuo, em
+  `--text-muted`; entre um par e o seguinte, `--space-4` e borda
+  `--hairline` `--line`.
+- Links dentro de `.legal-section`: sublinhados em `--text-muted`,
+  `--underline-offset`, hover `--text` (como `.project-link`).
+
+A página entrou no deploy em 30/09/2026, com a política concluída (brief
+§3, decisões de 2026-09-30; `.vercelignore` com `!/privacidade`), e o link
+"Privacidade" voltou ao rodapé.
 
 ## Movimento
 

@@ -157,6 +157,20 @@ e o C3 do review.
   Agora a tela abre no subtítulo, no diagnóstico grátis e no formulário.
   O link "Contato" do menu continua no topo da banda, na frase.
 
+### Correção de 30/09/2026 (zyphy-ciclo: prioridade 3 do review)
+
+Nada saiu do site nesta volta; só entrou.
+
+- **/privacidade/ com estilo próprio.** As classes `.legal-*` ganharam
+  regra: lead, parágrafos, listas e a tabela de bases legais na mesma
+  largura de linha (`--measure`), `dd` sem o recuo do navegador, links do
+  texto sublinhados. Só o H1 usa a largura da página. Nada se move.
+- **Header da /privacidade/ no celular.** A página não tem menu nem as
+  âncoras da home; o "Começar projeto" (`/#comecar`) fica visível no
+  header em todas as larguras (`.nav-main--inner`). Antes, abaixo de
+  900px, só o logo levava de volta.
+- **sitemap.xml** lista `/privacidade/`.
+
 ---
 
 ## 4. Aberto — sai da Fase 3
