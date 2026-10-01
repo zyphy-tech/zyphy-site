@@ -109,3 +109,15 @@ as entradas já gravadas: elas registram o que foi medido em cada commit.
 - **Bloqueios:** R6
 - **Correções aplicadas:** 0/0 — volta só de medição: a única correção de prioridade 1 (R6) é humana
 - **Precisa de humano:** R6 (moldura sticky do brief §3 × regra do medidor sem exceção possível); brief §5.9/§9 e copy.md:47 ainda dizem "sem link de Privacidade"; localização "São Paulo (SP)" da política sem fato no fatos-cliente.md; /privacidade/ sem estilo próprio (classes .legal*, .draft-banner e .fill sem regra) e fora do sitemap.xml
+
+<!-- 4º ciclo de 2026-09-30: o R6 do medidor passou a testar se o flutuante cobre conteúdo. A contagem de voltas recomeça. -->
+
+## Volta 1 — 2026-09-30 (4º ciclo)
+
+- **Commit medido:** 582c3d8
+- **Modo:** rapido
+- **URL medida:** http://127.0.0.1:61128/ (branch servida localmente)
+- **Nota:** 96,4/100 (medido 57,85/60, julgado 38,55/40) · aprovado não
+- **Bloqueios:** R6 (moldura sticky de #projetos sob o nav do header, 1440x900 y=9000), decisao-desfeita ("Começar projeto" da /privacidade/ para /#contato), conteudo-sem-fonte (política: "São Paulo (SP)" e verificação em duas etapas)
+- **Correções aplicadas:** 1/3 — decisao-desfeita (href /#comecar na /privacidade/)
+- **Precisa de humano:** R6: o header fixo (z-index 100) pinta por cima da moldura (elementFromPoint devolve o header); o R6 cruza caixas sem testar a ordem de pintura, e o qa/config.json não aceita exceção de R6; conteudo-sem-fonte: registrar no fatos-cliente.md a cidade e a verificação em duas etapas, ou tirar as duas frases da política
