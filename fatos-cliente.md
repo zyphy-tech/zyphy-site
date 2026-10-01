@@ -32,6 +32,8 @@ Regras: ID nunca reaproveitado · fonte concreta (quem disse e onde) · número 
 | F26 | Vora Jewelry: loja em Next.js 16, Tailwind v4 e shadcn/ui, com visualizador 360° dos produtos; joias iced-out, hero em vídeo e peças personalizáveis | Weslley — conferido com o card do site | 2026-09-30 |
 | F27 | TecNova: site institucional em HTML e GSAP ScrollTrigger, com desmontagem do produto controlada por scroll; assistência técnica de celulares | Weslley — conferido com o card do site | 2026-09-30 |
 | F28 | FieldFix: app Android (beta) em Flutter e Supabase; marketplace de manutenção sob demanda em que a empresa abre o chamado, o técnico mais próximo aceita e tudo é acompanhado | Weslley — conferido com o card do site | 2026-09-30 |
+| F29 | A Zyphy atua online a partir de São Paulo (SP), sem endereço físico | Weslley — 30/09/2026 | 2026-09-30 |
+| F30 | E-mail, WhatsApp e Instagram da Zyphy usam verificação em duas etapas | Weslley — 30/09/2026 | 2026-09-30 |
 
 ## A confirmar
 

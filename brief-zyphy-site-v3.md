@@ -302,8 +302,9 @@ Acompanha a rolagem sem cobrir conteúdo. **Não há botão flutuante** (ver
 
 ### 5.9 Rodapé
 Marca, uma frase que não repita a do hero: "Sites, apps, dashboards e
-automações sob medida." Contatos reais, © 2026. O link de Privacidade
-entra quando a política sair do rascunho (ver §9).
+automações sob medida." Contatos reais, © 2026. Link "Privacidade"
+(`/privacidade/`): a política foi publicada e o link está no rodapé
+(decisão de 2026-09-30, §3).
 
 ---
 
@@ -464,8 +465,9 @@ Situação em 29/09/2026:
   "publicado" nem tem link da loja (§5.6).
 - **Aberto:** cargos dos três depoimentos (removidos do site até
   confirmação).
-- **Aberto:** política de privacidade. Campos `[PREENCHER]` e revisão
-  jurídica; até lá, fora do rodapé e fora do deploy (`.vercelignore`).
+- **Resolvido em 30/09/2026:** política de privacidade publicada em
+  `/privacidade/`, com o link "Privacidade" no rodapé (decisão de
+  2026-09-30, §3).
 - **Pendência consciente:** a política de privacidade do FieldFix
   (`/fieldfix/privacidade/`) está no ar sem canonical e sem Open Graph.
   Decisão do Weslley em 29/09/2026: fica assim por enquanto.

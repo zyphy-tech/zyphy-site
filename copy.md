@@ -44,8 +44,6 @@ Onde o texto sai do brief, e por quê
 - Depoimentos: trechos do brief §5.7, sem cargo (pendência aberta no
   brief §9). Conferir que o trecho bate letra por letra com o print
   (F5 a F7 exigem texto idêntico ao enviado).
-- Rodapé: sem link de Privacidade até a política sair do rascunho
-  (brief §9).
 - Dashboard: filtros sem número no rótulo ("Última semana" em vez de
   "7 dias"), para não parecer métrica. Os dados continuam marcados como
   fictícios.
@@ -53,7 +51,10 @@ Onde o texto sai do brief, e por quê
   header igual ao do rodapé e campo de mensagem opcional, sem erro de
   vazio (decisões do brief de 2026-09-30); pular para o conteúdo,
   rótulos acessíveis dos links de projeto, dica e erro de formato do
-  contato e "Ou fale direto:" adotados do site, onde já estavam.
+  contato e "Ou fale direto:" adotados do site, onde já estavam. Link
+  "Privacidade" do rodapé, para /privacidade/, adotado do site: a política
+  foi publicada em 2026-09-30 (brief §5.9 e §9; decisão de 2026-09-30,
+  brief §3).
 -->
 
 ## 1. Nav
@@ -161,7 +162,7 @@ Onde o texto sai do brief, e por quê
 ## 8. Rodapé
 
 - **Corpo:** Sites, apps, dashboards e automações sob medida [F10] [F8] [F19].
-- **Microcopy:** contatos com rótulos acessíveis "Instagram da Zyphy", "WhatsApp da Zyphy" e "E-mail da Zyphy", os mesmos já publicados [F20]; linha de direitos com o símbolo ©, o ano corrente e "Zyphy".
+- **Microcopy:** contatos com rótulos acessíveis "Instagram da Zyphy", "WhatsApp da Zyphy" e "E-mail da Zyphy", os mesmos já publicados [F20]; link "Privacidade", que leva à política de privacidade; linha de direitos com o símbolo ©, o ano corrente e "Zyphy".
 
 ## SEO
 
