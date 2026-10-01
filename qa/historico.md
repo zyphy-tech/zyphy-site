@@ -121,3 +121,13 @@ as entradas já gravadas: elas registram o que foi medido em cada commit.
 - **Bloqueios:** R6 (moldura sticky de #projetos sob o nav do header, 1440x900 y=9000), decisao-desfeita ("Começar projeto" da /privacidade/ para /#contato), conteudo-sem-fonte (política: "São Paulo (SP)" e verificação em duas etapas)
 - **Correções aplicadas:** 1/3 — decisao-desfeita (href /#comecar na /privacidade/)
 - **Precisa de humano:** R6: o header fixo (z-index 100) pinta por cima da moldura (elementFromPoint devolve o header); o R6 cruza caixas sem testar a ordem de pintura, e o qa/config.json não aceita exceção de R6; conteudo-sem-fonte: registrar no fatos-cliente.md a cidade e a verificação em duas etapas, ou tirar as duas frases da política
+
+## Volta 2 — 2026-09-30 (4º ciclo)
+
+- **Commit medido:** 6c8dd97
+- **Modo:** rapido
+- **URL medida:** http://127.0.0.1:61128/ (branch servida localmente)
+- **Nota:** 97,9/100 (medido 57,85/60, julgado 40,05/40) · aprovado não
+- **Bloqueios:** R6, conteudo-sem-fonte
+- **Correções aplicadas:** 0/0 — ciclo parado por platô (+1,5 sobre a volta 1) e só bloqueios humanos: as duas correções de prioridade 1 já foram para humano na volta 1
+- **Precisa de humano:** R6: o checks/comportamento.mjs do medidor (sobrepoe/anotar) cruza caixas sem testar ordem de pintura, e o header fixo pinta por cima da moldura; conteudo-sem-fonte na política ("São Paulo (SP)" e verificação em duas etapas)
