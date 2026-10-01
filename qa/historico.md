@@ -145,3 +145,26 @@ as entradas já gravadas: elas registram o que foi medido em cada commit.
 - **Precisa de humano:** nada nesta volta
 
 > Etapa final parada em 2026-09-30: o preview da Vercel (https://zyphy-site-60bpaq8va-zyphy.vercel.app) está protegido (302 para o SSO da Vercel), e a VERCEL_AUTOMATION_BYPASS_SECRET não está definida no ambiente. A medição completa e o PR ficam para a próxima rodada.
+
+<!-- 6º ciclo de 2026-09-30, modo sem-preview (escolhido pelo humano): mede os commits fora do ciclo (3fd1dfa..ceb5720). A contagem de voltas recomeça. -->
+
+## Volta 1 — 2026-09-30 (6º ciclo)
+
+- **Commit medido:** ceb5720
+- **Modo:** rapido
+- **URL medida:** http://127.0.0.1:64302/ (branch servida localmente)
+- **Nota:** 97,9/100 (medido 57,85/60, julgado 40/40) · aprovado sim
+- **Bloqueios:** nenhum
+- **Correções aplicadas:** 0/0 — aprovado na volta 1 sem COPY pendente (copy.md aprovado sem mudança desde a última comparação; texto do site igual); segue para a etapa final sem-preview
+- **Precisa de humano:** nada nesta volta (prioridade 3 pendente: base legal do prazo de 5 anos na /privacidade/ sem fato)
+
+## Volta 2 — 2026-09-30 (6º ciclo)
+
+- **Commit medido:** ceb5720
+- **Modo:** completo
+- **URL medida:** http://127.0.0.1:64302/ (branch servida localmente)
+- **Nota:** 95,9/100 (medido 55,85/60, julgado 40/40) · aprovado sim
+- **Bloqueios:** nenhum
+- **Correções aplicadas:** 0/0 — aprovado; a única correção (prioridade 2, IMP cramped-padding) não entra num ciclo já aprovado
+- **Precisa de humano:** medir a produção logo após o merge (R9 e cabeçalhos HTTP do QA-11 ficam de fora na medição local); base legal do prazo de 5 anos na /privacidade/ sem fato
+- **Preview:** não medido (sem-preview)
