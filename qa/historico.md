@@ -89,3 +89,13 @@ as entradas já gravadas: elas registram o que foi medido em cada commit.
 - **Bloqueios:** QA-14, decisao-desfeita ×2 (trilho de projetos move ficha e depoimento; link de privacidade fora do rodapé e fora do .vercelignore)
 - **Correções aplicadas:** 4/4 — QA-14, decisao-desfeita (trilho), decisao-desfeita (privacidade), C3
 - **Precisa de humano:** nada
+
+## Volta 2 — 2026-09-30 (3º ciclo)
+
+- **Commit medido:** da5bfbc
+- **Modo:** rapido
+- **URL medida:** http://127.0.0.1:58052/ (branch servida localmente)
+- **Nota:** 95,7/100 (medido 55,71/60, julgado 39,99/40) · aprovado não
+- **Bloqueios:** R6 (moldura sticky das miniaturas em #projetos, 1440x900)
+- **Correções aplicadas:** 1/2 — QA-06 (Open Graph em /privacidade/)
+- **Precisa de humano:** R6: a moldura sticky é decisão do brief §3 (2026-09-30); o R6 marca qualquer sticky no meio da página, sem testar se cobre conteúdo, e o qa/config.json não aceita exceção de R6
