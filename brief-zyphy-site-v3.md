@@ -157,7 +157,7 @@ e o C3 do review.
   Agora a tela abre no subtítulo, no diagnóstico grátis e no formulário.
   O link "Contato" do menu continua no topo da banda, na frase.
 
-### Correção de 30/09/2026 (zyphy-ciclo: prioridade 3 do review)
+### Correção de 30/09/2026 (aplicadas a pedido do Weslley, fora do ciclo; medidas na rodada seguinte)
 
 Nada saiu do site nesta volta; só entrou.
 
