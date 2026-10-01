@@ -99,3 +99,13 @@ as entradas já gravadas: elas registram o que foi medido em cada commit.
 - **Bloqueios:** R6 (moldura sticky das miniaturas em #projetos, 1440x900)
 - **Correções aplicadas:** 1/2 — QA-06 (Open Graph em /privacidade/)
 - **Precisa de humano:** R6: a moldura sticky é decisão do brief §3 (2026-09-30); o R6 marca qualquer sticky no meio da página, sem testar se cobre conteúdo, e o qa/config.json não aceita exceção de R6
+
+## Volta 3 — 2026-09-30 (3º ciclo)
+
+- **Commit medido:** 94c10b1
+- **Modo:** rapido
+- **URL medida:** http://127.0.0.1:58052/ (branch servida localmente)
+- **Nota:** 97,9/100 (medido 57,85/60, julgado 40/40) · aprovado não
+- **Bloqueios:** R6
+- **Correções aplicadas:** 0/0 — volta só de medição: a única correção de prioridade 1 (R6) é humana
+- **Precisa de humano:** R6 (moldura sticky do brief §3 × regra do medidor sem exceção possível); brief §5.9/§9 e copy.md:47 ainda dizem "sem link de Privacidade"; localização "São Paulo (SP)" da política sem fato no fatos-cliente.md; /privacidade/ sem estilo próprio (classes .legal*, .draft-banner e .fill sem regra) e fora do sitemap.xml
