@@ -1,0 +1,10 @@
+{
+  "nota_minima": 80,
+  "dominio": "https://www.zyphy.com.br",
+  "paginas_ignoradas": [
+    { "url": "/fieldfix/privacidade/", "motivo": "página legal do app FieldFix exigida pela Play Store; outra marca" }
+  ],
+  "excecoes": [
+    { "check": "IMP", "regra": "ai-color-palette", "motivo": "paleta petróleo com acento ciano é identidade da Zyphy, escolha do Weslley no brief v3 (set/2026)" }
+  ]
+}

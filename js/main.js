@@ -1,7 +1,7 @@
 /* ==========================================================================
    Zyphy — comportamento do site (vanilla, scroll nativo): vídeo do hero,
-   header, menu, foco nas plaquetas dos projetos e formulário. O dashboard
-   mora em js/dashboard.js; o traço das Soluções é só CSS.
+   header, menu e formulário. O dashboard mora em js/dashboard.js; o traço
+   das Soluções e a miniatura dos projetos são só CSS.
    ========================================================================== */
 (function () {
   "use strict";
@@ -27,6 +27,7 @@
     function setOpen(open) {
       menu.hidden = !open;
       burger.setAttribute("aria-expanded", open ? "true" : "false");
+      burger.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
     }
     burger.addEventListener("click", function () { setOpen(menu.hidden); });
     menu.querySelectorAll("[data-close-menu]").forEach(function (a) {
@@ -37,32 +38,6 @@
     });
     doc.addEventListener("click", function (e) {
       if (!menu.hidden && !menu.contains(e.target) && !burger.contains(e.target)) setOpen(false);
-    });
-  }
-
-  /* ---------- projetos no desktop: foco por teclado ----------
-     Com a seção fixa, a plaqueta que recebe o foco pode estar fora da tela na
-     horizontal (a posição dela depende do scroll vertical). Ao focar algo
-     dentro de uma plaqueta, rola a página até o ponto em que ela aparece
-     inteira. Nada de trocar layout ou parar a animação: sem salto. */
-  function initProjectsFocus() {
-    var section = doc.getElementById("projetos");
-    var track = section && section.querySelector(".projects-track");
-    var rail = section && section.querySelector(".projects-rail");
-    if (!track || !rail) return;
-    var pinned = function () { return getComputedStyle(track).animationName !== "none"; };
-    track.addEventListener("focusin", function (e) {
-      if (!pinned()) return;
-      var plaque = e.target.closest(".plaque");
-      if (!plaque) return;
-      var distance = track.offsetWidth - rail.clientWidth;          // quanto a faixa anda
-      var pad = parseFloat(getComputedStyle(track).paddingLeft) || 0;
-      if (distance <= 0) return;
-      // progresso em que a plaqueta encosta na margem esquerda, limitado a 0–1
-      var p = Math.min(1, Math.max(0, (plaque.offsetLeft - pad) / distance));
-      var top = section.getBoundingClientRect().top + window.scrollY;
-      var run = section.offsetHeight - window.innerHeight;          // trecho em que a seção fica fixa
-      window.scrollTo({ top: top + p * run });
     });
   }
 
@@ -111,8 +86,8 @@
       // (10 a 13 dígitos, aceitando espaço, parênteses, traço e +55)
       var isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contato);
       var isPhone = /^\d{10,13}$/.test(contato.replace(/[\s().+-]/g, ""));
-      var nomeErro = nome ? "" : "Preencha seu nome.";
-      var contatoErro = !contato ? "Preencha um e-mail ou WhatsApp."
+      var nomeErro = nome ? "" : "Escreva seu nome.";
+      var contatoErro = !contato ? "Deixe um e-mail ou WhatsApp para a resposta."
         : (!isEmail && !isPhone) ? "Digite um e-mail, como voce@email.com, ou um WhatsApp com DDD, como " + PHONE_EXAMPLE + "."
         : "";
       setError(form.nome, nomeErro);
@@ -122,12 +97,20 @@
         return;
       }
       var texto = encodeURIComponent(
-        "Olá! Sou " + nome + " (" + contato + ")." +
-        (msg ? "\n\nO que quero resolver: " + msg : "\n\nQuero começar um projeto com a Zyphy.")
+        ("Olá, Zyphy. Sou " + nome + ". Contato: " + contato + ". " + msg).trim()
       );
-      window.open("https://wa.me/5511924507188?text=" + texto, "_blank", "noopener");
-      if (status) status.textContent = "Abrindo o WhatsApp com sua mensagem.";
-      form.reset();
+      /* sem "noopener" nos recursos: com ele o window.open devolve sempre null
+         e não dá para saber se a aba abriu. O opener é cortado logo em seguida,
+         antes de a página do WhatsApp carregar */
+      var win = window.open("https://wa.me/5511924507188?text=" + texto, "_blank");
+      if (win) {
+        win.opener = null;
+        if (status) status.textContent = "O WhatsApp abriu com a sua mensagem. Falta só tocar em enviar.";
+        form.reset();
+      } else if (status) {
+        // aba bloqueada: o texto digitado fica no formulário
+        status.textContent = "O WhatsApp não abriu? Escreva para o e-mail do rodapé.";
+      }
     });
   }
 
@@ -236,7 +219,6 @@
     initHeroVideo();
     initHeader();
     initMenu();
-    initProjectsFocus();
     initForm();
   }
 

@@ -67,6 +67,110 @@ Não reabra estas:
 - **Não entra:** número de pessoas no time, hardware / IoT / embarcado,
   contador animado, marquee, HUD, label tipo "SEC.00 //".
 
+### Decisões de 2026-09-30
+
+- **Card do FieldFix** mostra "Página de apresentação: 81", porque o card
+  apresenta um app e o Lighthouse mede a página de apresentação (regra 7:
+  métrica só do que o card apresenta).
+- **Cor ciano mantida** por identidade (exceção IMP `ai-color-palette` no
+  `qa/config.json`).
+- **Título do hero liberado para revisão** (tamanho e texto).
+- **H1 do hero:** 'Quem fala com você programa o seu projeto.' (F13),
+  escolhido pelo Weslley entre três opções do zyphy-copy. Substitui o
+  slogan do §5.2, que passa a ser usado só no meta title.
+- **Rótulo do WhatsApp no header** igual ao do rodapé (§5.8). Vale sobre
+  o rótulo "Falar com a Zyphy no WhatsApp" do `copy.md`.
+- **Trilho de projetos:** a ficha técnica e o depoimento ficam parados;
+  só a miniatura desliza (regra 3).
+- **Campo de mensagem do formulário: opcional.** O formulário não mostra
+  erro de mensagem vazia; o erro "Conte em uma frase o que está
+  travando." do `copy.md` não se aplica.
+- **Política de privacidade concluída:** controlador e encarregado Weslley
+  Rocha (rocheweslley@gmail.com); sai do rascunho. O link volta ao rodapé
+  e a página entra no `.vercelignore` (QA-14).
+
+### Correção de 30/09/2026 (zyphy-ciclo, volta 1: COPY e review)
+
+Os textos do site passam a ser os do `copy.md` aprovado. Onde o §5 abaixo
+diverge, vale o `copy.md`; o motivo de cada troca está nas notas dele.
+Nenhum layout mudou, só texto, com duas exceções pedidas pelo review
+(ficha do FieldFix e o bloco do contato).
+
+- **Hero.** Saiu: o slogan do H1 (ficou só no `<title>`); "construídos por
+  quem vai colocar a mão no código." do sub, porque o H1 novo já diz isso
+  (o `span.hero-sub-key` ficou vazio e a regra de peso 600 do §5.2 ficou
+  sem texto; tirar o markup e o CSS é limpeza, vai em commit separado,
+  regra 8; feita em 30/09/2026: saíram o span vazio do `index.html` e a
+  regra `.hero-sub-key` do `css/styles.css`, print do hero igual antes e
+  depois em 1440, 375 e 360); "sem compromisso", que não tem fato próprio. Ficou: o H1
+  escolhido, o sub do `copy.md` e "Resposta no mesmo dia, inclusive no
+  fim de semana." (F1).
+- **Soluções.** Saíram "integrada ao que você já usa" e "migrada por
+  partes, sem parar o que já funciona", promessas de método sem fato (F8,
+  F9). As colunas trocaram os rótulos curtos pelas frases do `copy.md`;
+  "Automação de processos" continua fora de "Para empresas" (decisão de
+  29/09/2026).
+- **Processo.** Saíram "a cada entrega" e "3 meses" (o F16 diz que o
+  preview vem no fim da construção; o prazo não tem fonte) e
+  "monitoramento" (fora dos fatos). Ficaram os passos do `copy.md` (F14,
+  F15, F16, F17, F2, F11). Os 7 dias do passo 4 continuam.
+- **Projetos.** Notas corrigidas para os fatos: Vora 85 (F22) e TecNova 86
+  (F23). Saiu a data 23/09/2026 da legenda (os números são os F21-F24). Os
+  links mostram "Abrir o site", "Abrir a loja" e "Abrir a página de
+  apresentação" em vez do domínio; o domínio continua no `href`. FieldFix:
+  saíram "Android e iOS", "Auth, Postgres, Realtime", "Marketplace" e "em
+  tempo real" (F4, F28); ficaram "App Android (beta)", "Flutter e Supabase"
+  e a linha "Página de apresentação: 81" (decisão acima).
+- **Dashboard.** Filtros "Última semana", "Último mês" e "Último ano"
+  (sem número no rótulo), rótulo fixo "Faturamento no período". Saiu o
+  aviso de leitor de tela com os números do período; ficou o aviso do
+  `copy.md`.
+- **Contato.** Entraram, antes do formulário, o subtítulo ("Quem responde
+  é quem vai programar o seu projeto...", F13 e F1) e o diagnóstico grátis
+  (F14). Rótulos, placeholders, erros, a mensagem do WhatsApp e os avisos
+  de envio seguem o `copy.md`; saiu o texto automático "Quero começar um
+  projeto com a Zyphy." da mensagem vazia.
+- **SEO.** Meta description, og:title e og:description do `copy.md`.
+
+### Correção de 30/09/2026 (zyphy-ciclo: trilho, privacidade e contato)
+
+Aplica as duas decisões de 2026-09-30 acima que o site ainda não seguia
+e o C3 do review.
+
+- **Trilho de projetos.** Saiu: a faixa inteira (`.projects-track`, com
+  ficha e depoimento dentro) correndo na horizontal com a seção fixa, que
+  cortava a ficha e a citação na borda da tela (regra 3). Ficou: no
+  desktop com scroll-driven, a ficha e o depoimento numa coluna à
+  esquerda, em fluxo normal (sobem com a página, nunca andam na lateral);
+  as quatro miniaturas numa moldura fixa à direita, a próxima espiando
+  pela borda da tela. Quando a ficha de um projeto entra, a miniatura
+  dele corre da borda para a moldura e cobre a anterior. Continua sendo o
+  movimento 1 (§7), não um quarto. Saiu junto o ajuste de rolagem por
+  foco de teclado do `js/main.js`: com a ficha em fluxo normal, o foco
+  rola a página sozinho e a miniatura acompanha. Celular, Firefox e
+  reduced-motion: pilha vertical, como antes.
+- **Privacidade.** O link "Privacidade" (`/privacidade/`) voltou ao
+  rodapé e o `.vercelignore` libera `/privacidade` (QA-14).
+- **"Começar projeto"** (header, hero e menu do celular) aponta para
+  `#comecar`, o subtítulo do contato. Antes ia para o topo da banda, e a
+  frase grande ocupa a primeira tela: quem clicava não via nenhum campo.
+  Agora a tela abre no subtítulo, no diagnóstico grátis e no formulário.
+  O link "Contato" do menu continua no topo da banda, na frase.
+
+### Correção de 30/09/2026 (aplicadas a pedido do Weslley, fora do ciclo; medidas na rodada seguinte)
+
+Nada saiu do site nesta volta; só entrou.
+
+- **/privacidade/ com estilo próprio.** As classes `.legal-*` ganharam
+  regra: lead, parágrafos, listas e a tabela de bases legais na mesma
+  largura de linha (`--measure`), `dd` sem o recuo do navegador, links do
+  texto sublinhados. Só o H1 usa a largura da página. Nada se move.
+- **Header da /privacidade/ no celular.** A página não tem menu nem as
+  âncoras da home; o "Começar projeto" (`/#comecar`) fica visível no
+  header em todas as larguras (`.nav-main--inner`). Antes, abaixo de
+  900px, só o logo levava de volta.
+- **sitemap.xml** lista `/privacidade/`.
+
 ---
 
 ## 4. Aberto — sai da Fase 3
@@ -110,6 +214,15 @@ Imagem autoral como protagonista (item 6). Remover "Role para
 explorar", a marca-d'água "Z yphy" e o eyebrow "Para empresas e
 pessoas".
 
+**Correção de 30/09/2026 (zyphy-ciclo, review U1 e impeccable
+oversized-h1):** o H1 ganhou uma trava pela altura da tela a partir de
+600px (`--fs-h1-vh`, ~26% da altura; em 1280x800 caiu de 100px para 76px).
+Saiu: o H1 de até 144px no desktop, que ocupava 34% da tela e abafava o
+resto. Ficou: o mesmo H1 de 3 linhas, menor, e o sub maior (20→24px) com
+"construídos por quem vai colocar a mão no código." em peso 600, mais a
+linha de resposta a 17px em peso 500. Nenhuma palavra mudou. O celular (4
+linhas, 72px) ficou igual.
+
 ### 5.3 Dashboard ao vivo — a prova
 Mini-dashboard funcionando, SVG/Canvas próprio, sem lib pesada: 3
 indicadores, 1 gráfico de barras, 1 filtro por período que de fato
@@ -125,6 +238,13 @@ Três itens em lista, não card: Automação de processos / Modernização de
 sistemas / Sites, apps e dashboards. Cada um: 1 frase de dor + 1 frase
 de entrega. Ex.: "Planilha, copia-e-cola, retrabalho. Viram rotina
 automática integrada ao que você já usa."
+
+**Correção de 30/09/2026 (zyphy-ciclo, review U5 e impeccable
+all-caps-body/tight-leading):** as dores saíram da caixa alta. Motivo:
+frase inteira de leitura em caixa alta condensada cansava. Ficou: Sofia 800
+no mesmo tamanho, em caixa mista, entrelinha 1.35, e o traço do movimento 2
+passando no meio da altura-x. Caixa alta fica para H1, H2 e a frase do
+contato.
 
 Abaixo, duas colunas curtas:
 - **Para empresas:** sistemas sob medida / modernização de legado.
@@ -198,8 +318,9 @@ Acompanha a rolagem sem cobrir conteúdo. **Não há botão flutuante** (ver
 
 ### 5.9 Rodapé
 Marca, uma frase que não repita a do hero: "Sites, apps, dashboards e
-automações sob medida." Contatos reais, © 2026. O link de Privacidade
-entra quando a política sair do rascunho (ver §9).
+automações sob medida." Contatos reais, © 2026. Link "Privacidade"
+(`/privacidade/`): a política foi publicada e o link está no rodapé
+(decisão de 2026-09-30, §3).
 
 ---
 
@@ -245,7 +366,9 @@ inventar um por seção é ruído.
 **Os três comportamentos (revisão do Weslley, 29/09/2026):**
 1. **Projetos:** plaquetas correm na horizontal conforme o scroll vertical
    (CSS scroll-driven). Razão: o conteúdo vaza pela borda e sugere que
-   continua, como no `21st`. Sem suporte: pilha vertical.
+   continua, como no `21st`. Sem suporte: pilha vertical. **Desde
+   30/09/2026 só a miniatura corre** (decisão do §3): ficha e depoimento
+   ficam parados, e a próxima miniatura é o que vaza pela borda.
 2. **Soluções:** conforme a linha sobe pela tela, um traço na cor do
    texto (ciano fica reservado para ação) atravessa o
    título da dor e a frase da solução ganha contraste (muted → texto).
@@ -358,11 +481,15 @@ Situação em 29/09/2026:
   "publicado" nem tem link da loja (§5.6).
 - **Aberto:** cargos dos três depoimentos (removidos do site até
   confirmação).
-- **Aberto:** política de privacidade. Campos `[PREENCHER]` e revisão
-  jurídica; até lá, fora do rodapé e fora do deploy (`.vercelignore`).
+- **Resolvido em 30/09/2026:** política de privacidade publicada em
+  `/privacidade/`, com o link "Privacidade" no rodapé (decisão de
+  2026-09-30, §3).
 - **Pendência consciente:** a política de privacidade do FieldFix
   (`/fieldfix/privacidade/`) está no ar sem canonical e sem Open Graph.
   Decisão do Weslley em 29/09/2026: fica assim por enquanto.
+- **Resolvido em 30/09/2026:** `robots.txt`, `sitemap.xml` e JSON-LD
+  (Organization, só com nome, endereço e contatos que o rodapé já publica),
+  liberados no `.vercelignore` (QA-13).
 - **Tarefa separada:** acessibilidade da Vora Jewelry (Lighthouse 87 em
   23/09/2026). Não bloqueia este site: saiu da ficha (§5.6).
 

@@ -8,7 +8,7 @@
      - translateY(-250%) do skip link (esconde fora da tela até o foco)
      - .001ms do bloco de reduced-motion (desliga transição, não é estilo)
      - <meta name="theme-color"> no HTML: meta não lê variável CSS
-     - 100svh/100vh: altura da tela no hero e na seção fixa dos projetos
+     - 100svh/100vh: altura da tela no hero e na linha de cada projeto
        (unidade de viewport, não medida de estilo)
      - z-index:-1 do vídeo e das camadas do hero: empilhamento local dentro
        do .hero (isolation:isolate), não camada da página como os --z-*
@@ -86,6 +86,7 @@
   --ink-900:#112222;     /* banda base */
   --ink-850:#1E3535;     /* banda elevada */
   --petrol-700:#0E3634;  /* a única banda de cor chapada */
+  --mist-50:#E8F7F4;     /* texto sobre a banda de cor: 11.9 sobre petrol */
   --mist-100:#E3EFED;    /* texto */
   --mist-400:#93ADAA;    /* texto secundário, labels */
   --cyan-500:#00CBCC;    /* ciano da marca */
@@ -105,6 +106,9 @@
 
   --text:var(--mist-100);
   --text-muted:var(--mist-400);
+  /* na banda de cor o texto puxa para o matiz dela: o cinza-névoa sobre o
+     petróleo lia apagado (impeccable gray-on-color, volta de 30/09/2026) */
+  --text-on-color:var(--mist-50);
   --line:rgba(227,239,237,.12);        /* divisória dentro de lista, nunca entre seções */
   /* contorno de campo: componente de interface, precisa de 3:1 (WCAG 1.4.11)
      contra o fundo do campo e contra a banda de cor em volta. --line não chega */
@@ -177,10 +181,12 @@
 
   /* escala: display fluido, texto fixo. Quatro níveis de display, todos em
      Sofia 800; a hierarquia vem de tamanho e tom, nunca de peso.
-     XL  H1 e frase do contato   72px em 375 / 144px (H1) e 200px (contato) em 1440
+     XL  H1 e frase do contato   72px em 375 / 86px (H1, trava --fs-h1-vh) e 200px (contato) em 1440
      L   números do processo     96px em 375 / 200px em 1440
      H2                          64px em 375 / 120px em 1440
-     M   dores e indicadores     40px em 375 /  72px em 1440
+     M   dores e indicadores     40px em 375 /  72px em 1440 (dores em caixa
+                                 mista desde 30/09/2026: frase inteira em caixa
+                                 alta cansava a leitura)
      H1: 4 linhas fixas no celular (abaixo de 600px, pelos br.br-m do HTML)
          e 3 linhas fixas acima disso (pelos span.line). */
   --fs-h1-max:9rem;
@@ -188,9 +194,15 @@
   /* travas de largura por coluna (cqi): 3 linhas, a mais longa mede 5.38em;
      4 linhas, a mais longa (SEU DIA A DIA.) mede 4.41em -> 22cqi deixa folga
      também para barra de rolagem de 15px (coluna de 320px: 70px, 4 linhas) */
-  --fs-h1-fit:18cqi;
+  --fs-h1-fit:18cqi;          /* 600–1099px o hero é uma coluna só: o H1 cresce até a trava da coluna */
   --fs-h1-fit-narrow:22cqi;
-  /* 600–1099px o hero é uma coluna só: o H1 cresce até a trava da coluna */
+  /* trava pela altura da tela (600px para cima): o bloco de 3 linhas mede
+     2.7em, então 9.5svh deixa o H1 em ~26% da altura em qualquer tela
+     (1280x800: 76px; 1440x900: 86px; 1920x1080: 103px). Com 100px em 1280x800
+     ele ocupava 34% da tela e o subtítulo e a linha de resposta sumiam ao
+     lado dele (impeccable oversized-h1, volta de 30/09/2026). O celular (4
+     linhas, 72px) fica como estava */
+  --fs-h1-vh:9.5svh;
   --fs-statement:clamp(4.5rem,14vw,12.5rem); /* frase do contato */
   --fs-h2:clamp(4rem,8.5vw,7.5rem);
   --fs-step-num:clamp(6rem,14vw,12.5rem);  /* números 1–4 do processo */
@@ -198,14 +210,20 @@
   --fs-h3:1.5rem;
   --fs-kpi:var(--fs-m);
   --fs-quote:1.375rem;                     /* depoimento dentro da plaqueta */
-  --fs-lead:1.1875rem;                   /* sub do hero, 19px */
+  /* sub do hero: 20px no celular, 24px no desktop. Leva o diferencial ("quem
+     vai colocar a mão no código"), então é o segundo texto da primeira tela */
+  --fs-lead:clamp(1.25rem,0.9rem + 1vw,1.5rem);
   --fs-body:1.0625rem;                   /* 17px */
   --fs-small:0.9375rem;                  /* 15px: ficha técnica, nota */
   --fs-micro:0.8125rem;                  /* 13px: eixos do gráfico (piso 12px) */
 
+  /* duas entrelinhas de título: 0.9 só para caixa alta (H1, H2, frase do
+     contato, números), que não tem descendente; a outra para todo título em caixa
+     mista que quebra linha (dores, depoimentos, títulos de bloco): 1.35 */
   --lh-display:0.9;
-  --lh-heading:1.2;
+  --lh-heading:1.35;        /* 1.3 exato arredondava para 1.2999 em 72px */
   --lh-body:1.6;
+  --lh-lead:1.4;          /* sub do hero: 1.6 abria demais a 24px */
 
   --tracking-display:0;
   --case-display:uppercase;
@@ -266,7 +284,8 @@
   /* ---------- Movimento ----------
      Três comportamentos de scroll/interação, e só eles. O vídeo do hero é a
      orquestração de entrada e fica fora desta conta (brief §7):
-     1. lateral nos projetos (CSS scroll-driven; fallback estático)
+     1. projetos: só a miniatura corre na lateral; ficha e depoimento parados
+        (CSS scroll-driven; fallback estático)
      2. Soluções: traço atravessa a dor e a solução ganha contraste conforme o
         scroll (CSS animation-timeline: view(); Firefox: estado final parado)
      3. barras do dashboard vão do valor antigo ao novo na troca de filtro
@@ -280,16 +299,21 @@
   --fix-range:entry 100% cover 50%;
   --strike-color:var(--text);   /* ciano fica para ação */
   --strike-w:.09em;
-  --strike-y:45%;         /* meio das maiúsculas da Sofia (ascendente 90%, descendente 30%) */
-  /* projetos no desktop: seção fixa (sticky) e plaquetas correndo na
-     horizontal pelo scroll vertical. Distância horizontal = largura da faixa
-     menos a tela; a seção ganha essa mesma altura extra, então 1px de scroll
-     vertical anda 1px na horizontal */
-  --plaque-w:min(80vw,1200px);
+  /* dor em caixa mista: o traço corta o meio da altura-x da Sofia (486/1000).
+     Área do span = 1.2em (ascendente 900 + descendente 300); com o traço de
+     .09em, 54% põe o centro dele a .26em da linha de base */
+  --strike-y:54%;
+  /* projetos no desktop: ficha em fluxo normal, uma tela por projeto abaixo
+     do header; miniaturas numa moldura fixa. Um passo = a largura da
+     miniatura mais o respiro até a próxima (a que espia pela borda). A
+     miniatura corre enquanto a ficha dela entra, entre 30% e 70% da entrada
+     (a ficha anterior já saiu de cena, a nova chega à metade de baixo) */
   --plaque-gap:var(--space-8);
   --plaque-count:4;
-  --proj-range:contain 0% contain 100%;  /* anda enquanto a seção cobre a tela inteira */
-  --proj-distance:calc(var(--plaque-count) * var(--plaque-w) + (var(--plaque-count) - 1) * var(--plaque-gap) + 2 * var(--gutter) - 100vw);
+  --plaque-row-h:calc(100svh - var(--header-h));
+  --plaque-top:max(var(--space-9),16svh);  /* topo da moldura e da ficha: centro óptico da tela */
+  --shot-step:calc(100% + var(--plaque-gap));
+  --shot-range:entry 30% entry 70%;
 
   /* ---------- Camadas ---------- */
   --z-menu:99;

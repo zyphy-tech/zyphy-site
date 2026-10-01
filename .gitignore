@@ -2,3 +2,15 @@
 __pycache__/
 tools/node_modules/
 assets/video/hero-original.mp4
+
+# Variáveis de ambiente: nunca versionar (QA-11)
+.env
+.env.*
+!.env.example
+
+# Artefatos do QA gerados a cada medição (zyphy-ciclo)
+qa/medicao.json
+qa/pontuacao.json
+qa/review.json
+qa/julgamento.json
+qa/prints/
