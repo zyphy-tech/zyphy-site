@@ -34,6 +34,9 @@ Regras: ID nunca reaproveitado · fonte concreta (quem disse e onde) · número 
 | F28 | FieldFix: app Android (beta) em Flutter e Supabase; marketplace de manutenção sob demanda em que a empresa abre o chamado, o técnico mais próximo aceita e tudo é acompanhado | Weslley — conferido com o card do site | 2026-09-30 |
 | F29 | A Zyphy atua online a partir de São Paulo (SP), sem endereço físico | Weslley — 30/09/2026 | 2026-09-30 |
 | F30 | E-mail, WhatsApp e Instagram da Zyphy usam verificação em duas etapas | Weslley — 30/09/2026 | 2026-09-30 |
+| F31 | Dados de quem virou cliente são guardados por 5 anos após o fim do projeto | Weslley — política de privacidade da Zyphy | 2026-09-30 |
+| F32 | Dados de quem não fechou projeto são guardados por 12 meses após o último contato e depois apagados | Weslley — política de privacidade da Zyphy | 2026-09-30 |
+| F33 | Pedidos sobre dados pessoais são respondidos em até 15 dias | Weslley — política de privacidade da Zyphy | 2026-09-30 |
 
 ## A confirmar
 
