@@ -81,7 +81,7 @@ Também: a calculadora interativa ("simule e veja quanto você recebe") é
 a mesma lógica do nosso dashboard ao vivo — prova funcionando em vez de
 texto dizendo que somos bons.
 
-### `Fasion.jfif` — conceito de moda
+### `Fasion.jpg` — conceito de moda
 Quero: o estilo inteiro faz sentido com o que está sendo vendido. E
 três coisas concretas:
 - Monocromia disciplinada — o site inteiro numa faixa estreita de cor,
