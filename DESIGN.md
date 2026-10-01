@@ -288,7 +288,7 @@ comentário, não remedidos nesta extração):
 | `--weight-display` | 800 | seletores de display (styles:37) e `.brand` (styles:60, em `--font-body`) |
 | `--weight-body` | 400 | `body` |
 | `--weight-medium` | 500 | `.nav-links`, `.mobile-menu-link`, `.hero-note`, `.dash-filter-btn`, `.plaque-quote p`, `.form-label`, `.form-error`, `.form-status` |
-| `--weight-strong` | 600 | `.skip-link`, `.btn`, `.hero-sub-key`, `.dash-title`, `.fix-service`, `.audience-title`, `.step-title`, `.plaque-title` |
+| `--weight-strong` | 600 | `.skip-link`, `.btn`, `.dash-title`, `.fix-service`, `.audience-title`, `.step-title`, `.plaque-title` |
 
 ### Tamanhos (:192–218)
 
@@ -525,10 +525,10 @@ Fixo em `--space-2` do canto, fundo `--accent`, texto `--on-accent`,
 `--weight-strong`, `--fs-small`, `--r-control`; fora da tela com
 `translateY(-250%)` até o foco.
 
-### Hero: `.hero`, `.hero-grid`, `.hero-copy`, `.hero-sub`, `.hero-sub-key`, `.hero-ctas`, `.hero-note`, `.hero-media`, `.hero-still`, `.hero-video`
+### Hero: `.hero`, `.hero-grid`, `.hero-copy`, `.hero-sub`, `.hero-ctas`, `.hero-note`, `.hero-media`, `.hero-still`, `.hero-video`
 
 - `.hero-sub`: `--fs-lead`, `--lh-lead`, cor `--text`, `--measure-lead`,
-  `text-wrap:pretty`; `.hero-sub-key` em `--weight-strong`.
+  `text-wrap:pretty`.
 - `.hero-note`: `--fs-body`, `--weight-medium`, cor `--text`.
 - Motivo declarado para sub e nota em `--text`: "é o que deixa a sombra em
   62% em vez de 80% (ver --hero-shade)" (styles:93–95; brief:306–308).

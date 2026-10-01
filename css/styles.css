@@ -94,8 +94,6 @@ main:focus{outline:none}
    desktop, onde ficam sobre o vídeo: é o que deixa a sombra em 62% em vez
    de 80% (ver --hero-shade). Abaixo de 1100px segue igual, por consistência */
 .hero-sub{margin:var(--space-6) 0 0;font-size:var(--fs-lead);line-height:var(--lh-lead);color:var(--text);max-width:var(--measure-lead);text-wrap:pretty}
-/* o diferencial dentro do sub ganha peso, sem mudar uma palavra do brief §5.2 */
-.hero-sub-key{font-weight:var(--weight-strong)}
 .hero-ctas{display:flex;flex-wrap:wrap;gap:var(--space-3);margin-top:var(--space-6)}
 .hero-note{margin:var(--space-4) 0 0;font-size:var(--fs-body);font-weight:var(--weight-medium);color:var(--text)}
 /* celular e tablet: imagem/vídeo abaixo do texto, sangrando até as duas bordas */

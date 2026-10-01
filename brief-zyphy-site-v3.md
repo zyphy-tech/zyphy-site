@@ -100,7 +100,9 @@ Nenhum layout mudou, só texto, com duas exceções pedidas pelo review
   quem vai colocar a mão no código." do sub, porque o H1 novo já diz isso
   (o `span.hero-sub-key` ficou vazio e a regra de peso 600 do §5.2 ficou
   sem texto; tirar o markup e o CSS é limpeza, vai em commit separado,
-  regra 8); "sem compromisso", que não tem fato próprio. Ficou: o H1
+  regra 8; feita em 30/09/2026: saíram o span vazio do `index.html` e a
+  regra `.hero-sub-key` do `css/styles.css`, print do hero igual antes e
+  depois em 1440, 375 e 360); "sem compromisso", que não tem fato próprio. Ficou: o H1
   escolhido, o sub do `copy.md` e "Resposta no mesmo dia, inclusive no
   fim de semana." (F1).
 - **Soluções.** Saíram "integrada ao que você já usa" e "migrada por
