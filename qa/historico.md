@@ -143,3 +143,5 @@ as entradas já gravadas: elas registram o que foi medido em cada commit.
 - **Bloqueios:** nenhum
 - **Correções aplicadas:** 0/0 — aprovado na volta 1 sem COPY pendente (copy.md aprovado confere com o site); segue para a etapa final
 - **Precisa de humano:** nada nesta volta
+
+> Etapa final parada em 2026-09-30: o preview da Vercel (https://zyphy-site-60bpaq8va-zyphy.vercel.app) está protegido (302 para o SSO da Vercel), e a VERCEL_AUTOMATION_BYPASS_SECRET não está definida no ambiente. A medição completa e o PR ficam para a próxima rodada.
