@@ -1,7 +1,13 @@
 {
+  "redirects": [
+    { "source": "/questionario", "destination": "/questionario/", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/questionario/:path*", "destination": "https://zyphy-questionario.vercel.app/questionario/:path*" }
+  ],
   "headers": [
     {
-      "source": "/(.*)",
+      "source": "/((?!questionario(?:/|$)).*)",
       "headers": [
         {
           "key": "Content-Security-Policy",
