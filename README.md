@@ -7,7 +7,8 @@ Branch de trabalho do Instagram do @zyphytech. **Não é o site** e não faz dep
 | `posts/NN-slug/01..07.jpg` | slides de cada carrossel; o Metricool copia daqui pelo link raw |
 | `specs/NN-slug.json` | texto e estrutura de cada carrossel (formato em `specs/README.md`) |
 | `review/NN-slug.png` | folha com os 7 slides, para aprovar |
-| `posts.json` | histórico: número, tema, pilar, data, id no Metricool, status |
+| `posts.json` | histórico: número, tema, pilar, data, id no Metricool, status e métricas |
+| `temas.json` | banco de ideias pesquisadas, com fonte, notas (intenção, prova, salvável, ponte, novidade) e status |
 | `tools/build_post.py` | gera os JPEGs a partir do spec e confere o layout |
 | `tools/next_slots.py` | próximas datas pela regra D-012 (a cada 2 dias, 12h útil, 20h domingo, sem sábado) |
 | `tools/zyphy_slides.py` | componentes visuais da marca (cores, fontes, dispositivos) |

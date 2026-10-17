@@ -1,0 +1,176 @@
+{
+ "criterios": "intencao, prova, salvavel, ponte, novidade: 1 a 3 cada; entra com total >= 11 e nenhuma nota 1 (exceto novidade, que só adia)",
+ "status": "ideia | aprovado | usado (n do post) | descartado (motivo)",
+ "temas": [
+  {
+   "slug": "contas-no-seu-nome",
+   "tema": "Suas contas do Google estão no seu nome?",
+   "pilar": "sites",
+   "angulo": "Analytics, Search Console e domínio criados pela agência ficam com a agência. Checklist do que precisa estar no nome da empresa.",
+   "fonte": "Método Zyphy: contas no nome do cliente (skill zyphy-marketing)",
+   "notas": {
+    "intencao": 3,
+    "prova": 3,
+    "salvavel": 3,
+    "ponte": 3,
+    "novidade": 3
+   },
+   "total": 15,
+   "status": "ideia",
+   "data": "2026-10-17"
+  },
+  {
+   "slug": "formulario-whatsapp-sem-medicao",
+   "tema": "O formulário que abre o WhatsApp e ninguém mede",
+   "pilar": "sites",
+   "angulo": "Botão de WhatsApp sem medição: você não sabe quantos contatos o site gera.",
+   "fonte": "Armadilha real de medição (zyphy-marketing, apoio B)",
+   "notas": {
+    "intencao": 3,
+    "prova": 3,
+    "salvavel": 2,
+    "ponte": 3,
+    "novidade": 3
+   },
+   "total": 14,
+   "status": "ideia",
+   "data": "2026-10-17"
+  },
+  {
+   "slug": "cookies-apagam-metricas",
+   "tema": "O aviso de cookies pode estar apagando suas métricas",
+   "pilar": "sites",
+   "angulo": "Aviso sem as categorias certas faz o 'aceitar' valer como recusa. O site recebe visita e o Analytics não vê.",
+   "fonte": "Armadilha real de medição (skill zyphy-marketing, apoio B), sem citar cliente",
+   "notas": {
+    "intencao": 2,
+    "prova": 3,
+    "salvavel": 3,
+    "ponte": 2,
+    "novidade": 3
+   },
+   "total": 13,
+   "status": "ideia",
+   "data": "2026-10-17"
+  },
+  {
+   "slug": "search-console",
+   "tema": "O painel grátis que mostra se o Google vê seu site",
+   "pilar": "sites",
+   "angulo": "Search Console: páginas fora do Google, páginas estranhas, erros. 3 telas pra olhar por mês.",
+   "fonte": "Trabalho real (tasks de Search Console no monday)",
+   "notas": {
+    "intencao": 2,
+    "prova": 3,
+    "salvavel": 3,
+    "ponte": 2,
+    "novidade": 3
+   },
+   "total": 13,
+   "status": "ideia",
+   "data": "2026-10-17"
+  },
+  {
+   "slug": "email-no-gmail-pessoal",
+   "tema": "E-mail da empresa no Gmail pessoal",
+   "pilar": "bastidores",
+   "angulo": "A própria Zyphy saiu do Gmail pessoal: o que mudou e o que fica no nome da empresa.",
+   "fonte": "Decisões D-003, D-006 a D-010",
+   "notas": {
+    "intencao": 2,
+    "prova": 3,
+    "salvavel": 2,
+    "ponte": 2,
+    "novidade": 3
+   },
+   "total": 12,
+   "status": "ideia",
+   "data": "2026-10-17"
+  },
+  {
+   "slug": "prazo-orcamento-claro",
+   "tema": "Prazo de orçamento: horas corridas ou úteis?",
+   "pilar": "atendimento",
+   "angulo": "Cliente que pede orçamento na sexta 17h espera resposta quando? Deixe escrito.",
+   "fonte": "Pergunta 6 do diagnóstico (zyphy-marketing)",
+   "notas": {
+    "intencao": 2,
+    "prova": 2,
+    "salvavel": 3,
+    "ponte": 2,
+    "novidade": 3
+   },
+   "total": 12,
+   "status": "ideia",
+   "data": "2026-10-17"
+  },
+  {
+   "slug": "dominio-com-e-com-br",
+   "tema": ".com e .com.br: os dois levam pro lugar certo?",
+   "pilar": "sites",
+   "angulo": "Domínio irmão esquecido apontando pra servidor velho. Como conferir em 1 minuto.",
+   "fonte": "Decisão D-004 (sem citar cliente)",
+   "notas": {
+    "intencao": 2,
+    "prova": 3,
+    "salvavel": 2,
+    "ponte": 2,
+    "novidade": 2
+   },
+   "total": 11,
+   "status": "ideia",
+   "data": "2026-10-17"
+  },
+  {
+   "slug": "hospedagem-plano-gratis",
+   "tema": "Plano grátis de hospedagem pode não valer pra empresa",
+   "pilar": "sites",
+   "angulo": "Alguns planos grátis proíbem uso comercial. O site cai ou a conta é suspensa.",
+   "fonte": "Armadilha B (plano Hobby da Vercel) — conferir termos atuais antes de postar",
+   "notas": {
+    "intencao": 2,
+    "prova": 2,
+    "salvavel": 2,
+    "ponte": 2,
+    "novidade": 3
+   },
+   "total": 11,
+   "status": "ideia",
+   "data": "2026-10-17"
+  },
+  {
+   "slug": "deploy-concluido",
+   "tema": "'Deploy concluído' não prova que o site mudou",
+   "pilar": "bastidores",
+   "angulo": "Como a gente confere que a versão nova está no ar de verdade.",
+   "fonte": "Armadilha B (cabeçalho Age/Etag)",
+   "notas": {
+    "intencao": 1,
+    "prova": 3,
+    "salvavel": 2,
+    "ponte": 2,
+    "novidade": 3
+   },
+   "total": 11,
+   "status": "ideia",
+   "data": "2026-10-17"
+  },
+  {
+   "slug": "motivo-de-perda",
+   "tema": "Anote por que você perdeu o orçamento",
+   "pilar": "atendimento",
+   "angulo": "Preço, prazo ou sumiu: o motivo de perda mostra o que mudar.",
+   "fonte": "Diagnóstico e CRM (zyphy-marketing). Perto do post 15: usar depois de 3 semanas",
+   "notas": {
+    "intencao": 3,
+    "prova": 2,
+    "salvavel": 3,
+    "ponte": 2,
+    "novidade": 1
+   },
+   "total": 11,
+   "status": "ideia",
+   "data": "2026-10-17"
+  }
+ ]
+}
