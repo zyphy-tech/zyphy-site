@@ -1,0 +1,30 @@
+{
+  "title": "Planilha não é sistema",
+  "date": "2026-10-19T12:00",
+  "caption": "A planilha não quebra num dia. Ela quebra no dia em que três pessoas abrem o mesmo arquivo.\n\nA maioria das empresas só percebe quando um número some. Aí ninguém sabe quem mexeu, nem qual versão vale.\n\nVersão. Arquivo copiado vira verdade dividida. Um lugar só resolve.\n\nAcesso. Na planilha, todo mundo pode tudo. No sistema, cada um vê e muda só o que precisa.\n\nHistórico. Sem registro de quem mudou o quê, todo erro vira discussão.\n\nA parte que ninguém conta: não precisa trocar tudo de uma vez. Dá pra começar pela aba que mais trava e deixar o resto na planilha.\n\nPlanilha é ótima pra pensar. Pra rodar a empresa, ela cobra caro.\n\nConta pra gente qual planilha trava a sua empresa. Diagnóstico grátis em 1 dia: WhatsApp (11) 92450-7188 ou link na bio.\n\n#gestaoempresarial #pme #sistemasobmedida",
+  "slides": [
+    {"type": "capa", "label": "Planilha × sistema", "h1": "Planilha<br>não é<br>sistema.", "size": 236,
+     "p": "Funciona com uma pessoa. <span style=\"font-weight: 600\">Com três, vira loteria.</span>",
+     "foot": "3 pessoas · 1 arquivo · nenhuma versão certa"},
+    {"type": "content", "parts": [
+      {"head": ["O problema", "Todo mundo mexe. Ninguém sabe qual é a certa.", 120]},
+      {"muted": "Planilha é ótima pra pensar. Pra rodar a empresa, ela cobra caro."},
+      {"mapgrid": [["Versão", "Acesso", "Histórico"], 3]},
+      {"fecho": "O problema aparece no dia que dá errado."}]},
+    {"type": "content", "parts": [
+      {"head": ["01 · Versão", "Qual é a final?", 150]},
+      {"pair": ["Planilha", "pedidos_final_<wbr>v3_AGORA.xlsx", "Sistema", "Um lugar só, sempre atualizado"]},
+      {"fecho": "Arquivo copiado é verdade dividida."}]},
+    {"type": "content", "parts": [
+      {"head": ["02 · Acesso", "Todo mundo pode tudo", 150]},
+      {"pair": ["Planilha", "Qualquer um apaga uma coluna", "Sistema", "Cada um vê e muda só o que precisa"]},
+      {"fecho": "Permissão é proteção, não burocracia."}]},
+    {"type": "content", "parts": [
+      {"head": ["03 · Histórico", "Quem mudou esse número?", 150]},
+      {"pair": ["Planilha", "Ninguém sabe", "Sistema", "Registro de quem, quando e o quê"]},
+      {"fecho": "Sem histórico, todo erro vira discussão."}]},
+    {"type": "virada", "m": "Você não precisa abandonar a planilha.", "big": "Precisa saber quando ela virou o sistema.", "size": 176},
+    {"type": "cta", "h2": "Conta qual planilha trava sua empresa.", "size": 180,
+     "p": "A gente devolve 1 página: o que vira sistema e o que pode ficar na planilha."}
+  ]
+}

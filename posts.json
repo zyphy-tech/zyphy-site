@@ -1,0 +1,146 @@
+{
+ "metricool": {
+  "blogId": "7488838",
+  "timezone": "America/Sao_Paulo",
+  "network": "instagram",
+  "account": "@zyphytech"
+ },
+ "image_base": "https://raw.githubusercontent.com/zyphy-tech/zyphy-site/instagram/posts/",
+ "posts": [
+  {
+   "n": 1,
+   "folder": "01-planilha-nao-e-sistema",
+   "title": "Planilha não é sistema",
+   "pilar": "sistemas",
+   "date": "2026-10-19T12:00",
+   "metricool_id": 398781157,
+   "status": "agendado"
+  },
+  {
+   "n": 2,
+   "folder": "02-dominio",
+   "title": "O domínio tem que ser seu",
+   "pilar": "sites",
+   "date": "2026-10-21T12:00",
+   "metricool_id": 398781295,
+   "status": "agendado"
+  },
+  {
+   "n": 3,
+   "folder": "03-whatsapp-virou-a-empresa",
+   "title": "O WhatsApp virou a empresa",
+   "pilar": "atendimento",
+   "date": "2026-10-23T12:00",
+   "metricool_id": 398781343,
+   "status": "agendado"
+  },
+  {
+   "n": 4,
+   "folder": "04-quem-fala-programa",
+   "title": "Quem fala com você programa",
+   "pilar": "processo Zyphy",
+   "date": "2026-10-25T20:00",
+   "metricool_id": 398781399,
+   "status": "agendado"
+  },
+  {
+   "n": 5,
+   "folder": "05-sistema-que-ninguem-mexe",
+   "title": "O sistema que ninguém mexe",
+   "pilar": "sistemas",
+   "date": "2026-10-27T12:00",
+   "metricool_id": 398781450,
+   "status": "agendado"
+  },
+  {
+   "n": 6,
+   "folder": "06-checklist-site",
+   "title": "Peça isso antes de fechar (checklist de site)",
+   "pilar": "sites",
+   "date": "2026-10-29T12:00",
+   "metricool_id": 398781484,
+   "status": "agendado"
+  },
+  {
+   "n": 7,
+   "folder": "07-dashboard-5-segundos",
+   "title": "Dashboard em 5 segundos",
+   "pilar": "dashboards",
+   "date": "2026-11-01T20:00",
+   "metricool_id": 398781537,
+   "status": "agendado"
+  },
+  {
+   "n": 8,
+   "folder": "08-preco-prazo-escopo",
+   "title": "Preço, prazo e escopo fixos",
+   "pilar": "processo Zyphy",
+   "date": "2026-11-03T12:00",
+   "metricool_id": 398781585,
+   "status": "agendado"
+  },
+  {
+   "n": 9,
+   "folder": "09-site-invadido",
+   "title": "Seu site pode estar invadido",
+   "pilar": "sites",
+   "date": "2026-11-05T12:00",
+   "metricool_id": 398781621,
+   "status": "agendado"
+  },
+  {
+   "n": 10,
+   "folder": "10-preview",
+   "title": "Use antes de ir ao ar (preview)",
+   "pilar": "processo Zyphy",
+   "date": "2026-11-08T20:00",
+   "metricool_id": 398781671,
+   "status": "agendado"
+  },
+  {
+   "n": 11,
+   "folder": "11-bastidores-decisoes",
+   "title": "Bastidores: decisão anotada",
+   "pilar": "bastidores",
+   "date": "2026-11-10T12:00",
+   "metricool_id": 398781745,
+   "status": "agendado"
+  },
+  {
+   "n": 12,
+   "folder": "12-50-buscas",
+   "title": "50 buscas valem mais que 5.000",
+   "pilar": "google ads",
+   "date": "2026-11-12T12:00",
+   "metricool_id": 398781825,
+   "status": "agendado"
+  },
+  {
+   "n": 13,
+   "folder": "13-cpc-barato",
+   "title": "CPC barato é armadilha",
+   "pilar": "google ads",
+   "date": "2026-11-15T20:00",
+   "metricool_id": 398781858,
+   "status": "agendado"
+  },
+  {
+   "n": 14,
+   "folder": "14-whatsapp-parado",
+   "title": "WhatsApp parado mata o anúncio",
+   "pilar": "google ads",
+   "date": "2026-11-17T12:00",
+   "metricool_id": 398781883,
+   "status": "agendado"
+  },
+  {
+   "n": 15,
+   "folder": "15-planilha-de-contatos",
+   "title": "Primeiro, a planilha de contatos",
+   "pilar": "google ads",
+   "date": "2026-11-19T12:00",
+   "metricool_id": 398781919,
+   "status": "agendado"
+  }
+ ]
+}
