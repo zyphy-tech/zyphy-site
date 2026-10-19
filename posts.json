@@ -32,7 +32,7 @@
    "title": "O WhatsApp virou a empresa",
    "pilar": "atendimento",
    "date": "2026-11-21T12:00",
-   "metricool_id": 398781343,
+   "metricool_id": 400379988,
    "status": "agendado",
    "nota": "movido de 23/10 pra 21/11 (sábado) a pedido do Erik, pra dar lugar ao case TECSI"
   },
@@ -150,8 +150,8 @@
    "title": "Case TECSI: 4 coisas que o seu site não faz",
    "pilar": "case",
    "date": "2026-10-23T12:00",
-   "metricool_id": null,
-   "status": "a agendar",
+   "metricool_id": 400378078,
+   "status": "agendado",
    "nota": "TECSI autorizou o case em 19/10"
   }
  ]
