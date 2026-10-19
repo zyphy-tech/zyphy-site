@@ -258,3 +258,17 @@ def formula(text, bg):
     return (f'    <div style="background: {cb}; border-top: 8px solid {{{{accent}}}}; padding: 40px 40px 44px">'
             f'<div style="{SOFIA}; font-size: 120px">{text}</div></div>')
 
+
+
+def phone(src, notes, bg, width=330):
+    """Print real de tela dentro de uma moldura de celular, com notas numeradas ao lado."""
+    cb = card_bg(bg)
+    items = ''.join(
+        f'<div style="display: flex; flex-direction: column; gap: 8px">'
+        f'<div style="font-size: 30px; font-weight: 600; color: {{{{accent}}}}">{i+1:02d}</div>'
+        f'<div style="font-size: 38px; line-height: 1.25; font-weight: 600">{t}</div></div>'
+        for i, t in enumerate(notes))
+    return (f'    <div style="display: flex; gap: 44px; align-items: center">'
+            f'<div style="width: {width}px; flex: none; border: 12px solid {cb}; border-radius: 44px; overflow: hidden; background: #000">'
+            f'<img src="{src}" alt="" style="width: 100%; display: block"></div>'
+            f'<div style="display: flex; flex-direction: column; gap: 30px">{items}</div></div>')

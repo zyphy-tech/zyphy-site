@@ -41,6 +41,7 @@ Cada item é `{"nome": argumentos}`. Use 2 a 4 por slide; quase sempre `head` pr
 | `verdicts` | `[["rótulo","veredito",true], ...]` | linhas com ✓/✗ |
 | `formula` | `"Texto<br>da conta"` | conta em destaque |
 | `caption` | `"texto"` | legenda pequena em cinza |
+| `phone` | `{"src": "assets/print.png", "notes": ["nota 1", "nota 2", "nota 3"], "width": 330}` | print real de tela num celular, com 2 ou 3 notas ao lado. Imagem em `assets/` (print de 390 px de largura, escala 3) |
 
 Texto aceita HTML simples: `<br>`, `<wbr>`, `<span style="font-weight: 600">…</span>`, `&nbsp;` para evitar palavra sozinha na linha.
 

@@ -22,6 +22,13 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 FONTS = ROOT / 'fonts'
 BGS = Z.BGS
 
+def _img(src):
+    p = pathlib.Path(src)
+    p = p if p.is_absolute() else ROOT / p
+    if not p.exists(): raise SystemExit(f'imagem não encontrada: {p}')
+    return 'file://' + str(p)
+
+
 DEVICES = {
     'head':      lambda bg, a: Z.head(*a),                    # [label, titulo, tamanho]
     'muted':     lambda bg, a: Z.muted(a) if isinstance(a, str) else Z.muted(*a),
@@ -37,6 +44,7 @@ DEVICES = {
     'verdicts':  lambda bg, a: Z.verdicts([tuple(x) for x in a], bg),  # [[rotulo, veredito, true/false],...]
     'formula':   lambda bg, a: Z.formula(a, bg),
     'caption':   lambda bg, a: f'    <div style="font-size: 32px; color: #93ADAA">{a}</div>',
+    'phone':     lambda bg, a: Z.phone(_img(a['src']), a['notes'], bg, a.get('width', 330)),  # print real (caminho relativo à branch)
 }
 
 
