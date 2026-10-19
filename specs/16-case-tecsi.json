@@ -1,0 +1,131 @@
+{
+ "title": "Case TECSI",
+ "date": "2026-10-23T12:00",
+ "caption": "O site novo da TECSI faz 4 coisas que a maioria dos sites de empresa não faz.\n\n1. Entra pelo problema. Quem tem máquina parada busca o defeito, não o nome da empresa. Por isso são 13 páginas de equipamento e 42 de marca, cada uma uma porta de entrada no Google.\n\n2. Mostra prova antes da conversa. 7 cases com cliente, equipamento e solução, 7 depoimentos de quem teve a linha parada e as indústrias atendidas.\n\n3. Responde a objeção sozinho. \"Vale mais reparar ou comprar novo?\" A comparação de custo, prazo e garantia já está na página, com orçamento e WhatsApp fixos no rodapé do celular.\n\n4. Está pronto pra crescer. Português, espanhol e inglês, 3,8 s pra carregar no celular, cookies dentro da LGPD, e o WhatsApp já chega dizendo de qual página o cliente veio.\n\nSite bonito todo mundo tem. Esse foi feito pra vender.\n\nAbre no celular e confere: tecsiautomacao.com.br\n\nQuer um assim pra sua empresa? Diagnóstico grátis em 1 dia: WhatsApp (11) 92450-7188 ou link na bio. Conheça a Zyphy em zyphy.com.br.\n\n#criacaodesites #automacaoindustrial #b2b",
+ "slides": [
+  {
+   "type": "capa",
+   "label": "Case · TECSI",
+   "h1": "4 coisas que<br>o seu site<br>não faz.",
+   "size": 184,
+   "p": "O site novo da TECSI faz. <span style=\"font-weight: 600\">E todas dá pra ter na sua&nbsp;empresa.</span>",
+   "foot": "Site no ar: tecsiautomacao.com.br"
+  },
+  {
+   "type": "content",
+   "parts": [
+    {
+     "head": [
+      "01 · Entra pelo problema",
+      "Qual equipamento parou?",
+      120
+     ]
+    },
+    {
+     "phone": {
+      "src": "assets/tecsi/s-equip.png",
+      "notes": [
+       "Quem tem máquina parada busca o defeito, não o nome da empresa",
+       "13 equipamentos e 42 marcas, cada um com página&nbsp;própria",
+       "Cada página é mais uma porta no&nbsp;Google"
+      ],
+      "width": 320
+     }
+    },
+    {
+     "fecho": "A busca específica cai na página&nbsp;certa."
+    }
+   ]
+  },
+  {
+   "type": "content",
+   "parts": [
+    {
+     "head": [
+      "02 · Prova antes da conversa",
+      "Cases reais",
+      130
+     ]
+    },
+    {
+     "phone": {
+      "src": "assets/tecsi/s-cases.png",
+      "notes": [
+       "7 cases com cliente, equipamento e&nbsp;solução",
+       "7 depoimentos de quem teve a linha&nbsp;parada",
+       "As indústrias atendidas, com&nbsp;logo"
+      ],
+      "width": 320
+     }
+    },
+    {
+     "fecho": "Quem chama já chega&nbsp;confiando."
+    }
+   ]
+  },
+  {
+   "type": "content",
+   "parts": [
+    {
+     "head": [
+      "03 · Responde a objeção",
+      "Reparar ou trocar?",
+      130
+     ]
+    },
+    {
+     "phone": {
+      "src": "assets/tecsi/s-contas.png",
+      "notes": [
+       "Custo, prazo e garantia lado a&nbsp;lado",
+       "A dúvida respondida antes da&nbsp;ligação",
+       "Orçamento e WhatsApp fixos no&nbsp;rodapé"
+      ],
+      "width": 320
+     }
+    },
+    {
+     "fecho": "A conta que o cliente faria, já&nbsp;feita."
+    }
+   ]
+  },
+  {
+   "type": "content",
+   "parts": [
+    {
+     "head": [
+      "04 · Pronto pra crescer",
+      "Em 3 idiomas",
+      130
+     ]
+    },
+    {
+     "phone": {
+      "src": "assets/tecsi/s-en.png",
+      "notes": [
+       "Português, espanhol e&nbsp;inglês",
+       "3,8 s no celular e cookies dentro da&nbsp;LGPD",
+       "O WhatsApp já chega dizendo de qual página o cliente&nbsp;veio"
+      ],
+      "width": 320
+     }
+    },
+    {
+     "fecho": "249 páginas no mapa enviado ao&nbsp;Google."
+    }
+   ]
+  },
+  {
+   "type": "virada",
+   "m": "Site bonito todo mundo tem.",
+   "big": "Esse foi feito pra vender.",
+   "size": 200
+  },
+  {
+   "type": "cta",
+   "h2": "Quer um site assim pra sua empresa?",
+   "size": 160,
+   "p": "Confere o da TECSI no ar: <span style=\"font-weight: 600\">tecsiautomacao.com.br</span>. O diagnóstico do seu sai em 1&nbsp;dia."
+  }
+ ]
+}
