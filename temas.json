@@ -37,6 +37,23 @@
    "data": "2026-10-17"
   },
   {
+   "slug": "tarefa-toda-segunda",
+   "tema": "A tarefa que alguém faz à mão toda segunda",
+   "pilar": "automação",
+   "angulo": "Relatório copiado, planilha consolidada, e-mail de cobrança: o trabalho repetido que dá pra automatizar.",
+   "fonte": "Serviço de automações do site; busca de PMEs por organizar pedidos/estoque",
+   "notas": {
+    "intencao": 3,
+    "prova": 2,
+    "salvavel": 3,
+    "ponte": 3,
+    "novidade": 3
+   },
+   "total": 14,
+   "status": "ideia",
+   "data": "2026-10-19"
+  },
+  {
    "slug": "cookies-apagam-metricas",
    "tema": "O aviso de cookies pode estar apagando suas métricas",
    "pilar": "sites",
@@ -69,6 +86,57 @@
    "total": 13,
    "status": "ideia",
    "data": "2026-10-17"
+  },
+  {
+   "slug": "instagram-basta-site",
+   "tema": "Instagram basta ou a empresa precisa de site?",
+   "pilar": "sites",
+   "angulo": "Instagram é vitrine alugada; site é endereço próprio. Quando cada um faz sentido.",
+   "fonte": "WebSearch: 'quanto custa um site', 'preciso de site' entre as dúvidas mais buscadas por PME",
+   "notas": {
+    "intencao": 3,
+    "prova": 2,
+    "salvavel": 2,
+    "ponte": 3,
+    "novidade": 3
+   },
+   "total": 13,
+   "status": "ideia",
+   "data": "2026-10-19"
+  },
+  {
+   "slug": "orcamento-automatico",
+   "tema": "Orçamento que demora dois dias perde o cliente",
+   "pilar": "automação",
+   "angulo": "Proposta montada à mão em Word. Como gerar orçamento padronizado em minutos.",
+   "fonte": "Dor do diagnóstico (prazo de orçamento) + serviço de automações",
+   "notas": {
+    "intencao": 3,
+    "prova": 2,
+    "salvavel": 2,
+    "ponte": 3,
+    "novidade": 3
+   },
+   "total": 13,
+   "status": "ideia",
+   "data": "2026-10-19"
+  },
+  {
+   "slug": "diagnostico-1-pagina",
+   "tema": "O que vem no diagnóstico de 1 página",
+   "pilar": "processo Zyphy",
+   "angulo": "Mostra por dentro o diagnóstico grátis: problema, opções, preço e prazo. Prova da promessa do site.",
+   "fonte": "Promessa do site: diagnóstico grátis em 1 dia",
+   "notas": {
+    "intencao": 3,
+    "prova": 3,
+    "salvavel": 2,
+    "ponte": 3,
+    "novidade": 2
+   },
+   "total": 13,
+   "status": "ideia",
+   "data": "2026-10-19"
   },
   {
    "slug": "email-no-gmail-pessoal",
@@ -152,8 +220,9 @@
     "novidade": 3
    },
    "total": 11,
-   "status": "ideia",
-   "data": "2026-10-17"
+   "status": "descartado",
+   "data": "2026-10-17",
+   "obs": "intenção 1: interessa mais a dev que a dono de PME"
   },
   {
    "slug": "motivo-de-perda",
