@@ -272,3 +272,16 @@ def phone(src, notes, bg, width=330):
             f'<div style="width: {width}px; flex: none; border: 12px solid {cb}; border-radius: 44px; overflow: hidden; background: #000">'
             f'<img src="{src}" alt="" style="width: 100%; display: block"></div>'
             f'<div style="display: flex; flex-direction: column; gap: 30px">{items}</div></div>')
+
+
+def sites(items, bg, width=270):
+    """Dois prints reais de site lado a lado, cada um com nome e endereço embaixo, pra pessoa visitar."""
+    cb = card_bg(bg)
+    cols = ''.join(
+        f'<div style="display: flex; flex-direction: column; align-items: center; gap: 18px; width: 420px">'
+        f'<div style="width: {width}px; border: 12px solid {cb}; border-radius: 40px; overflow: hidden; background: #000">'
+        f'<img src="{it["src"]}" alt="" style="width: 100%; display: block"></div>'
+        f'<div style="font-size: 26px; font-weight: 600; color: #93ADAA; text-transform: uppercase; letter-spacing: 0.06em">{it["name"]}</div>'
+        f'<div style="font-size: 34px; font-weight: 700; color: {{{{accent}}}}">{it["url"]}</div></div>'
+        for it in items)
+    return f'    <div style="display: flex; gap: 40px; justify-content: center">{cols}</div>'

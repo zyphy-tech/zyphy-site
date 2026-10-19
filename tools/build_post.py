@@ -45,6 +45,7 @@ DEVICES = {
     'formula':   lambda bg, a: Z.formula(a, bg),
     'caption':   lambda bg, a: f'    <div style="font-size: 32px; color: #93ADAA">{a}</div>',
     'phone':     lambda bg, a: Z.phone(_img(a['src']), a['notes'], bg, a.get('width', 330)),  # print real (caminho relativo à branch)
+    'sites':     lambda bg, a: Z.sites([dict(x, src=_img(x['src'])) for x in a['items']], bg, a.get('width', 270)),  # prints lado a lado com endereço
 }
 
 
