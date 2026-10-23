@@ -152,8 +152,9 @@
    "pilar": "case",
    "date": "2026-10-23T12:00",
    "metricool_id": 400378078,
-   "status": "agendado",
-   "nota": "TECSI autorizou o case em 19/10"
+   "status": "publicado",
+   "nota": "TECSI autorizou o case em 19/10",
+   "url": "https://www.instagram.com/p/De11sDcCkzM/"
   }
  ]
 }
