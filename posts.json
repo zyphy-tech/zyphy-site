@@ -51,9 +51,10 @@
    "folder": "05-sistema-que-ninguem-mexe",
    "title": "O sistema que ninguém mexe",
    "pilar": "sistemas",
-   "date": "2026-10-27T12:00",
-   "metricool_id": 398781450,
-   "status": "agendado"
+   "date": "2026-11-22T20:00",
+   "metricool_id": 404485992,
+   "status": "agendado",
+   "nota": "movido de 27/10 pra 22/11 para o Reel 03 ocupar a vaga (Erik, 23/10)"
   },
   {
    "n": 6,
@@ -78,9 +79,10 @@
    "folder": "08-preco-prazo-escopo",
    "title": "Preço, prazo e escopo fixos",
    "pilar": "processo Zyphy",
-   "date": "2026-11-03T12:00",
-   "metricool_id": 398781585,
-   "status": "agendado"
+   "date": "2026-11-24T12:00",
+   "metricool_id": 404486080,
+   "status": "agendado",
+   "nota": "movido de 03/11 pra 24/11 para o Reel 02 ocupar a vaga (Erik, 23/10)"
   },
   {
    "n": 9,
@@ -155,6 +157,26 @@
    "status": "publicado",
    "nota": "TECSI autorizou o case em 19/10",
    "url": "https://www.instagram.com/p/De11sDcCkzM/"
+  }
+ ],
+ "reels": [
+  {
+   "slug": "m03-um-clique",
+   "title": "Um clique faz cinco (automação de processos)",
+   "file": "reels/m03-um-clique.mp4",
+   "date": "2026-10-27T20:00",
+   "cover_ms": 22000,
+   "metricool_id": 404485919,
+   "status": "agendado"
+  },
+  {
+   "slug": "m02-transformacoes",
+   "title": "O mesmo site, reorganizado (sites sob medida)",
+   "file": "reels/m02-transformacoes.mp4",
+   "date": "2026-11-03T20:00",
+   "cover_ms": 11000,
+   "metricool_id": 404486130,
+   "status": "agendado"
   }
  ]
 }
