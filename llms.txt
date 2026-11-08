@@ -1,0 +1,20 @@
+# Zyphy
+
+> A Zyphy é uma agência de tecnologia de São Paulo (SP) que faz criação de sites, SEO e GEO, gestão de Google Ads e Meta Ads, IA no WhatsApp e automação de processos para pequenas e médias empresas. Atendimento online. Quem conversa com o cliente é quem programa o projeto. Todo projeto começa com um diagnóstico grátis de 1 página, entregue em 1 dia.
+
+Contato: WhatsApp +55 11 92450-7188 · contato@zyphy.com.br · Instagram @zyphytech
+
+## Serviços
+
+- [Criação de sites](https://www.zyphy.com.br/criacao-de-sites/): sites institucionais e landing pages feitos do zero pra transformar visita em contato, com WhatsApp à vista, uma página por serviço e cada clique medido.
+- [SEO e GEO](https://www.zyphy.com.br/seo-e-geo/): SEO pra aparecer no Google e GEO pra ser citado por IAs como ChatGPT e Gemini, com painel mostrando a origem das visitas.
+- [Anúncios](https://www.zyphy.com.br/anuncios/): gestão de Google Ads e Meta Ads com a conta no nome da empresa, medição configurada e relatório semanal.
+- [IA para empresas](https://www.zyphy.com.br/ia-para-empresas/): atendimento automático no WhatsApp e agentes de IA para tarefas repetidas.
+- [Automação e sistemas](https://www.zyphy.com.br/automacao-e-sistemas/): automação de processos com n8n, modernização de sistemas antigos e dashboards.
+
+## Mais
+
+- [Projetos](https://www.zyphy.com.br/projetos/): TECSI (site, SEO, Google Ads e acompanhamento), Vora Jewelry e TecNova.
+- [Como funciona](https://www.zyphy.com.br/como-funciona/): diagnóstico grátis, proposta fechada, construção com prévia, publicação e acompanhamento opcional.
+- [Contato](https://www.zyphy.com.br/contato/)
+- [Política de privacidade](https://www.zyphy.com.br/privacidade/)
