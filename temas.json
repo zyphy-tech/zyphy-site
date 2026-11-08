@@ -240,6 +240,167 @@
    "total": 11,
    "status": "ideia",
    "data": "2026-10-17"
+  },
+  {
+   "slug": "m-fieldfix-por-dentro",
+   "tema": "O técnico mais próximo aceita",
+   "formato": "motion",
+   "pilar": "apps",
+   "angulo": "Por dentro do FieldFix: a empresa abre o chamado no mapa, o raio cresce, o técnico mais próximo aceita e o status anda até concluído.",
+   "virada": "Ninguém precisa ligar pra perguntar se o técnico já saiu.",
+   "so_em_movimento": "mapa com raio crescendo, pino acendendo, linha de status avançando",
+   "fonte": "Projeto FieldFix no site zyphy.com.br",
+   "notas": {
+    "intencao": 3,
+    "prova": 3,
+    "salvavel": 2,
+    "ponte": 3,
+    "novidade": 3
+   },
+   "total": 14,
+   "status": "ideia",
+   "data": "2026-11-07"
+  },
+  {
+   "slug": "m-agenda-sozinha",
+   "tema": "A agenda que se preenche sozinha",
+   "formato": "motion",
+   "pilar": "automação",
+   "angulo": "Telefone tocando sem ninguém atender contra um calendário que se preenche pelo link, com confirmação e lembrete automáticos.",
+   "virada": "O horário das 23h foi marcado sem ninguém acordado.",
+   "so_em_movimento": "horários do calendário acendendo um a um, lembrete saindo",
+   "fonte": "Serviços do site: automação de processos e sites",
+   "notas": {
+    "intencao": 3,
+    "prova": 2,
+    "salvavel": 3,
+    "ponte": 3,
+    "novidade": 3
+   },
+   "total": 14,
+   "status": "ideia",
+   "data": "2026-11-07"
+  },
+  {
+   "slug": "m-google-le-seu-site",
+   "tema": "O que o Google vê no seu site",
+   "formato": "motion",
+   "pilar": "sites",
+   "angulo": "A página bonita vira esqueleto: título, descrição e imagens sem texto alternativo, como o robô de busca lê (SEO técnico, não anúncio).",
+   "virada": "Bonito pra você, vazio pro Google.",
+   "so_em_movimento": "a página se despindo em camadas até sobrar só o que o robô lê",
+   "fonte": "Fila de motions (tema 3); serviço de sites do site",
+   "notas": {
+    "intencao": 2,
+    "prova": 2,
+    "salvavel": 3,
+    "ponte": 3,
+    "novidade": 3
+   },
+   "total": 13,
+   "status": "ideia",
+   "data": "2026-11-07"
+  },
+  {
+   "slug": "m-vora-360",
+   "tema": "A joia que gira na sua mão",
+   "formato": "motion",
+   "pilar": "sites",
+   "angulo": "Vora Jewelry: o dedo arrasta e a peça gira 360°, a personalização troca o acabamento, a página carrega com performance 85.",
+   "virada": "Na loja física você pega a peça na mão. Aqui também.",
+   "so_em_movimento": "giro 360° e troca de acabamento em tempo real",
+   "fonte": "Projeto Vora Jewelry no site zyphy.com.br",
+   "notas": {
+    "intencao": 2,
+    "prova": 3,
+    "salvavel": 2,
+    "ponte": 3,
+    "novidade": 3
+   },
+   "total": 13,
+   "status": "ideia",
+   "data": "2026-11-07"
+  },
+  {
+   "slug": "m-tecnova-rolagem",
+   "tema": "O celular que se desmonta na rolagem",
+   "formato": "motion",
+   "pilar": "sites",
+   "angulo": "TecNova: conforme a pessoa rola, o celular se separa em peças e cada peça explica um serviço da assistência.",
+   "virada": "Quem entende o conserto confia no orçamento.",
+   "so_em_movimento": "desmontagem controlada pela rolagem",
+   "fonte": "Projeto TecNova no site zyphy.com.br",
+   "notas": {
+    "intencao": 2,
+    "prova": 3,
+    "salvavel": 2,
+    "ponte": 3,
+    "novidade": 3
+   },
+   "total": 13,
+   "status": "ideia",
+   "data": "2026-11-07"
+  },
+  {
+   "slug": "m-orcamento-sozinho",
+   "tema": "O orçamento que se monta sozinho",
+   "formato": "motion",
+   "pilar": "automação",
+   "angulo": "Cliente, itens e prazo entram num formulário e sai um orçamento padronizado em PDF, sem copiar e colar no Word.",
+   "virada": "Todo orçamento sai com a mesma cara, e no mesmo dia.",
+   "so_em_movimento": "campos voando para o documento e o PDF se fechando",
+   "fonte": "temas.json: proposta-montada-a-mao (ideia de carrossel; se virar motion, sai da fila de carrossel)",
+   "notas": {
+    "intencao": 3,
+    "prova": 2,
+    "salvavel": 3,
+    "ponte": 3,
+    "novidade": 2
+   },
+   "total": 13,
+   "status": "ideia",
+   "data": "2026-11-07"
+  },
+  {
+   "slug": "m-site-para-todo-mundo",
+   "tema": "Site para todo mundo",
+   "formato": "motion",
+   "pilar": "sites",
+   "angulo": "Acessibilidade: contraste baixo sobe, a letra cresce, o botão minúsculo vira alvo grande e o leitor de tela narra a página.",
+   "virada": "Quem enxerga pouco também compra.",
+   "so_em_movimento": "contraste e tamanho mudando ao vivo, leitor de tela destacando cada elemento",
+   "fonte": "Fila de motions (tema 9)",
+   "notas": {
+    "intencao": 2,
+    "prova": 2,
+    "salvavel": 3,
+    "ponte": 2,
+    "novidade": 3
+   },
+   "total": 12,
+   "status": "ideia",
+   "data": "2026-11-07"
+  },
+  {
+   "slug": "m-sistemas-conversam",
+   "tema": "Sistemas que não conversam",
+   "formato": "motion",
+   "pilar": "automação",
+   "angulo": "O mesmo pedido digitado 3 vezes em 3 sistemas; integrados, ele entra uma vez e aparece em todos (o que é uma API).",
+   "virada": "Digita uma vez, aparece em tudo.",
+   "so_em_movimento": "o dado viajando entre três telas",
+   "fonte": "Fila de motions (tema 2)",
+   "notas": {
+    "intencao": 3,
+    "prova": 2,
+    "salvavel": 2,
+    "ponte": 3,
+    "novidade": 1
+   },
+   "total": 11,
+   "status": "ideia",
+   "data": "2026-11-07",
+   "obs": "novidade 1: perto demais do motion 03-um-clique; adiado"
   }
  ]
 }
