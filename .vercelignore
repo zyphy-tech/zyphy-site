@@ -1,19 +1,26 @@
 # Lista branca: ignora tudo e libera só o que o site carrega.
-# Conferido contra index.html, fieldfix/privacidade/, css/ e js/ em 29/09/2026.
-# Arquivo novo que o site passe a usar precisa entrar aqui.
+# Conferido contra o site novo (10 páginas estáticas + 404) em 08/11/2026.
+# Arquivo ou pasta nova que o site passe a usar precisa entrar aqui.
 /*
 !/index.html
+!/404.html
 !/favicon.ico
 !/vercel.json
 !/robots.txt
 !/sitemap.xml
+!/llms.txt
 !/css
 !/js
 !/assets
 !/fieldfix
-# política da Zyphy concluída em 30/09/2026 (brief §3, QA-14)
+# política da Zyphy
 !/privacidade
-# dentro de assets/, o que o site não referencia
-/assets/video/hero-original.mp4
-/assets/img/08-*
-/assets/img/09-*
+# páginas do site novo (nov/2026)
+!/criacao-de-sites
+!/seo-e-geo
+!/anuncios
+!/ia-para-empresas
+!/automacao-e-sistemas
+!/projetos
+!/como-funciona
+!/contato
