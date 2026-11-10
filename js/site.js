@@ -21,6 +21,8 @@
       if(serv.length)t+='\nPreciso de: '+serv.join(', ')+'.';
       if(v('mensagem'))t+='\n'+v('mensagem');
       if(v('whatsapp'))t+='\nMeu WhatsApp: '+v('whatsapp');
+      // medição: o envio vale depois da validação, sem dado pessoal (só os serviços marcados)
+      if(window.zyphyMedir)window.zyphyMedir('envio_formulario',{posicao:'formulario',servicos:serv.join(', ')});
       window.open('https://wa.me/5511924507188?text='+encodeURIComponent(t),'_blank','noopener');
     });
   }

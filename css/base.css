@@ -151,3 +151,27 @@ summary{min-height:44px !important}
 }
 @media (max-width:350px){.zcta{font-size:13px !important;padding:0 12px !important}.zlogo{font-size:21px !important}.tq-m{font-size:13px}}
 @media (prefers-reduced-motion:reduce){*{animation:none !important}}
+/* aviso de cookies (js/medicao.js) */
+.zck{position:fixed;z-index:180;left:16px;right:16px;bottom:16px;max-width:520px;box-sizing:border-box;background:#0E3634;color:#E3EFED;border-radius:18px;padding:18px 20px;box-shadow:0 14px 40px rgba(5,11,11,.35);font-family:'DM Sans',system-ui,sans-serif;font-size:15px;line-height:1.45}
+.zck-tit{margin:0 0 6px;font-size:17px;font-weight:700;color:#FFFFFF}
+.zck-txt{margin:0}
+.zck a{color:#00E0E1}
+.zck a:hover{color:#FFFFFF}
+.zck-ops{display:grid;gap:10px;margin:14px 0 0}
+.zck-ops[hidden]{display:none}
+.zck-op{display:flex;gap:10px;align-items:flex-start;cursor:pointer}
+.zck-op input{margin:3px 0 0;width:18px;height:18px;accent-color:#00CBCC;flex:none}
+.zck-op-txt{display:grid;gap:2px}
+.zck-op-txt b{color:#FFFFFF}
+.zck-acoes{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.zck-b{flex:1 1 30%;white-space:nowrap;min-height:44px;padding:0 16px;border-radius:999px;border:0;background:#00CBCC;color:#050B0B;font:600 15px 'DM Sans',system-ui,sans-serif;cursor:pointer}
+.zck-b:hover{background:#00E0E1}
+.zck-b2{background:transparent;color:#E3EFED;border:1px solid rgba(227,239,237,.4)}
+.zck-b2:hover{background:rgba(227,239,237,.1)}
+.zck-link{background:none;border:0;padding:4px 0;margin:0;font:inherit;color:inherit;text-align:left;cursor:pointer;text-decoration:none}
+.zf .zck-link{color:#93ADAA}
+.zck-link:hover,.zf .zck-link:hover{color:#E3EFED}
+@media (min-width:700px){.zck{left:24px;bottom:24px;right:auto}}
+@media print{.zck{display:none}}
+.zck-abrir{font-family:'DM Sans',system-ui,sans-serif;color:#0E3634;cursor:pointer;margin-top:8px}
+.zck-abrir[hidden]{display:none}
