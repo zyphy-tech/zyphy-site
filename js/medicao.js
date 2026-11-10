@@ -3,7 +3,7 @@
 // Tag Manager; aqui só o consentimento, o aviso e os eventos de contato no dataLayer.
 // Sem GTM_ID nada carrega e o aviso não aparece.
 (function(){
-  var GTM_ID = ''; // ex.: 'GTM-ABC1234'
+  var GTM_ID = 'GTM-KT6KVFMX'; // contêiner "zyphy.com.br" da conta Zyphy (contato.zyphy), criado em 10/11/2026
   var CHAVE = 'zyphy_consentimento', VERSAO = 1, VALIDADE_DIAS = 365;
 
   var dl = window.dataLayer = window.dataLayer || [];
