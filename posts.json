@@ -1,188 +1,258 @@
 {
- "metricool": {
-  "blogId": "7488838",
-  "timezone": "America/Sao_Paulo",
-  "network": "instagram",
-  "account": "@zyphytech"
- },
- "image_base": "https://raw.githubusercontent.com/zyphy-tech/zyphy-site/instagram/posts/",
- "posts": [
-  {
-   "n": 1,
-   "folder": "01-planilha-nao-e-sistema",
-   "title": "Planilha não é sistema",
-   "pilar": "sistemas",
-   "date": "2026-10-19T12:00",
-   "metricool_id": 398781157,
-   "status": "publicado",
-   "url": "https://www.instagram.com/p/DerimeeiJEr/"
+  "metricool": {
+    "blogId": "7488838",
+    "timezone": "America/Sao_Paulo",
+    "network": "instagram",
+    "account": "@zyphytech"
   },
-  {
-   "n": 2,
-   "folder": "02-dominio",
-   "title": "O domínio tem que ser seu",
-   "pilar": "sites",
-   "date": "2026-10-21T12:00",
-   "metricool_id": 398781295,
-   "status": "publicado",
-   "url": "https://www.instagram.com/p/DewsfnoCPLJ/"
-  },
-  {
-   "n": 3,
-   "folder": "03-whatsapp-virou-a-empresa",
-   "title": "O WhatsApp virou a empresa",
-   "pilar": "atendimento",
-   "date": "2026-11-21T12:00",
-   "metricool_id": 400379988,
-   "status": "agendado",
-   "nota": "movido de 23/10 pra 21/11 (sábado) a pedido do Erik, pra dar lugar ao case TECSI"
-  },
-  {
-   "n": 4,
-   "folder": "04-quem-fala-programa",
-   "title": "Quem fala com você programa",
-   "pilar": "processo Zyphy",
-   "date": "2026-10-25T20:00",
-   "metricool_id": 398781399,
-   "status": "publicado",
-   "url": "https://www.instagram.com/p/De716pIiJfv/"
-  },
-  {
-   "n": 5,
-   "folder": "05-sistema-que-ninguem-mexe",
-   "title": "O sistema que ninguém mexe",
-   "pilar": "sistemas",
-   "date": "2026-11-22T20:00",
-   "metricool_id": 420388271,
-   "status": "agendado",
-   "nota": "movido de 27/10 pra 22/11 para o Reel 03 ocupar a vaga (Erik, 23/10)",
-   "redesenho": "capa e slides internos refeitos em 07/11 (virada em faixa ciano, lavanda nos dados, texto de apoio maior); slide 4 de 12/11 virou Bloqueie o curioso"
-  },
-  {
-   "n": 6,
-   "folder": "06-checklist-site",
-   "title": "Peça isso antes de fechar (checklist de site)",
-   "pilar": "sites",
-   "date": "2026-10-29T12:00",
-   "metricool_id": 398781484,
-   "status": "publicado",
-   "url": "https://www.instagram.com/p/DfFSYh9iEeN/"
-  },
-  {
-   "n": 7,
-   "folder": "07-dashboard-5-segundos",
-   "title": "Dashboard em 5 segundos",
-   "pilar": "dashboards",
-   "date": "2026-11-01T20:00",
-   "metricool_id": 398781537,
-   "status": "agendado"
-  },
-  {
-   "n": 8,
-   "folder": "08-preco-prazo-escopo",
-   "title": "Preço, prazo e escopo fixos",
-   "pilar": "processo Zyphy",
-   "date": "2026-11-24T12:00",
-   "metricool_id": 404486080,
-   "status": "agendado",
-   "nota": "movido de 03/11 pra 24/11 para o Reel 02 ocupar a vaga (Erik, 23/10)"
-  },
-  {
-   "n": 9,
-   "folder": "09-site-invadido",
-   "title": "Seu site pode estar invadido",
-   "pilar": "sites",
-   "date": "2026-11-05T12:00",
-   "metricool_id": 398781621,
-   "status": "agendado"
-  },
-  {
-   "n": 10,
-   "folder": "10-preview",
-   "title": "Use antes de ir ao ar (preview)",
-   "pilar": "processo Zyphy",
-   "date": "2026-11-08T20:00",
-   "metricool_id": 398781671,
-   "status": "agendado"
-  },
-  {
-   "n": 11,
-   "folder": "11-bastidores-decisoes",
-   "title": "Bastidores: decisão anotada",
-   "pilar": "bastidores",
-   "date": "2026-11-10T12:00",
-   "metricool_id": 398781745,
-   "status": "agendado"
-  },
-  {
-   "n": 12,
-   "folder": "12-50-buscas",
-   "title": "50 buscas valem mais que 5.000",
-   "pilar": "google ads",
-   "date": "2026-11-12T12:00",
-   "metricool_id": 420388028,
-   "status": "agendado",
-   "redesenho": "capa e slides internos refeitos em 07/11 (virada em faixa ciano, lavanda nos dados, texto de apoio maior); slide 4 de 12/11 virou Bloqueie o curioso"
-  },
-  {
-   "n": 13,
-   "folder": "13-cpc-barato",
-   "title": "CPC barato é armadilha",
-   "pilar": "google ads",
-   "date": "2026-11-15T20:00",
-   "metricool_id": 398781858,
-   "status": "agendado"
-  },
-  {
-   "n": 14,
-   "folder": "14-whatsapp-parado",
-   "title": "WhatsApp parado mata o anúncio",
-   "pilar": "google ads",
-   "date": "2026-11-17T12:00",
-   "metricool_id": 420388262,
-   "status": "agendado",
-   "redesenho": "capa e slides internos refeitos em 07/11 (virada em faixa ciano, lavanda nos dados, texto de apoio maior); slide 4 de 12/11 virou Bloqueie o curioso"
-  },
-  {
-   "n": 15,
-   "folder": "15-planilha-de-contatos",
-   "title": "Primeiro, a planilha de contatos",
-   "pilar": "google ads",
-   "date": "2026-11-19T12:00",
-   "metricool_id": 398781919,
-   "status": "agendado"
-  },
-  {
-   "n": 16,
-   "folder": "16-case-tecsi",
-   "title": "Case TECSI: 4 coisas que o seu site não faz",
-   "pilar": "case",
-   "date": "2026-10-23T12:00",
-   "metricool_id": 400378078,
-   "status": "publicado",
-   "nota": "TECSI autorizou o case em 19/10",
-   "url": "https://www.instagram.com/p/De11sDcCkzM/"
-  }
- ],
- "reels": [
-  {
-   "slug": "m03-um-clique",
-   "title": "Um clique faz cinco (automação de processos)",
-   "file": "reels/m03-um-clique.mp4",
-   "date": "2026-10-27T20:00",
-   "cover_ms": 22000,
-   "metricool_id": 404485919,
-   "status": "publicado",
-   "url": "https://www.instagram.com/reel/DfA_eyllPmH/"
-  },
-  {
-   "slug": "m02-transformacoes",
-   "title": "O mesmo site, reorganizado (sites sob medida)",
-   "file": "reels/m02-transformacoes.mp4",
-   "date": "2026-11-03T20:00",
-   "cover_ms": 11000,
-   "metricool_id": 404486130,
-   "status": "agendado"
-  }
- ]
+  "image_base": "https://raw.githubusercontent.com/zyphy-tech/zyphy-site/instagram/posts/",
+  "posts": [
+    {
+      "n": 1,
+      "folder": "01-planilha-nao-e-sistema",
+      "title": "Planilha não é sistema",
+      "pilar": "sistemas",
+      "date": "2026-10-19T12:00",
+      "metricool_id": 398781157,
+      "status": "publicado",
+      "url": "https://www.instagram.com/p/DerimeeiJEr/"
+    },
+    {
+      "n": 2,
+      "folder": "02-dominio",
+      "title": "O domínio tem que ser seu",
+      "pilar": "sites",
+      "date": "2026-10-21T12:00",
+      "metricool_id": 398781295,
+      "status": "publicado",
+      "url": "https://www.instagram.com/p/DewsfnoCPLJ/"
+    },
+    {
+      "n": 3,
+      "folder": "03-whatsapp-virou-a-empresa",
+      "title": "O WhatsApp virou a empresa",
+      "pilar": "atendimento",
+      "date": "2026-11-21T12:00",
+      "metricool_id": 424776323,
+      "status": "rascunho",
+      "nota": "Tirado da fila em 11/11 para dar vaga aos Reels; refazer no formato novo antes de voltar."
+    },
+    {
+      "n": 4,
+      "folder": "04-quem-fala-programa",
+      "title": "Quem fala com você programa",
+      "pilar": "processo Zyphy",
+      "date": "2026-10-25T20:00",
+      "metricool_id": 398781399,
+      "status": "publicado",
+      "url": "https://www.instagram.com/p/De716pIiJfv/"
+    },
+    {
+      "n": 5,
+      "folder": "05-sistema-que-ninguem-mexe",
+      "title": "O sistema que ninguém mexe",
+      "pilar": "sistemas",
+      "date": "2026-11-22T20:00",
+      "metricool_id": 420388271,
+      "status": "agendado",
+      "nota": "movido de 27/10 pra 22/11 para o Reel 03 ocupar a vaga (Erik, 23/10)",
+      "redesenho": "capa e slides internos refeitos em 07/11 (virada em faixa ciano, lavanda nos dados, texto de apoio maior); slide 4 de 12/11 virou Bloqueie o curioso"
+    },
+    {
+      "n": 6,
+      "folder": "06-checklist-site",
+      "title": "Peça isso antes de fechar (checklist de site)",
+      "pilar": "sites",
+      "date": "2026-10-29T12:00",
+      "metricool_id": 398781484,
+      "status": "publicado",
+      "url": "https://www.instagram.com/p/DfFSYh9iEeN/"
+    },
+    {
+      "n": 7,
+      "folder": "07-dashboard-5-segundos",
+      "title": "Dashboard em 5 segundos",
+      "pilar": "dashboards",
+      "date": "2026-11-01T20:00",
+      "metricool_id": 398781537,
+      "status": "publicado",
+      "url": "https://www.instagram.com/p/DfN3bE9DVWs/"
+    },
+    {
+      "n": 8,
+      "folder": "08-preco-prazo-escopo",
+      "title": "Preço, prazo e escopo fixos",
+      "pilar": "processo Zyphy",
+      "date": "2026-11-24T12:00",
+      "metricool_id": 424776334,
+      "status": "rascunho",
+      "nota": "Tirado da fila em 11/11 para dar vaga aos Reels; refazer no formato novo antes de voltar."
+    },
+    {
+      "n": 9,
+      "folder": "09-site-invadido",
+      "title": "Seu site pode estar invadido",
+      "pilar": "sites",
+      "date": "2026-11-05T12:00",
+      "metricool_id": 398781621,
+      "status": "publicado",
+      "url": "https://www.instagram.com/p/DfXT8vnjT8b/"
+    },
+    {
+      "n": 10,
+      "folder": "10-preview",
+      "title": "Use antes de ir ao ar (preview)",
+      "pilar": "processo Zyphy",
+      "date": "2026-11-08T20:15",
+      "metricool_id": 398781671,
+      "status": "publicado",
+      "url": "https://www.instagram.com/p/Dff6ifRjU0f/"
+    },
+    {
+      "n": 11,
+      "folder": "11-bastidores-decisoes",
+      "title": "Bastidores: decisão anotada",
+      "pilar": "bastidores",
+      "date": "2026-11-10T12:00",
+      "metricool_id": 398781745,
+      "status": "publicado",
+      "url": "https://www.instagram.com/p/DfkL0lRitut/"
+    },
+    {
+      "n": 12,
+      "folder": "12-50-buscas",
+      "title": "50 buscas valem mais que 5.000",
+      "pilar": "google ads",
+      "date": "2026-11-12T12:00",
+      "metricool_id": 420388028,
+      "status": "agendado",
+      "redesenho": "capa e slides internos refeitos em 07/11 (virada em faixa ciano, lavanda nos dados, texto de apoio maior); slide 4 de 12/11 virou Bloqueie o curioso"
+    },
+    {
+      "n": 13,
+      "folder": "13-cpc-barato",
+      "title": "CPC barato é armadilha",
+      "pilar": "google ads",
+      "date": "2026-11-15T20:00",
+      "metricool_id": 424776301,
+      "status": "rascunho",
+      "nota": "Tirado da fila em 11/11 para dar vaga aos Reels; refazer no formato novo antes de voltar."
+    },
+    {
+      "n": 14,
+      "folder": "14-whatsapp-parado",
+      "title": "WhatsApp parado mata o anúncio",
+      "pilar": "google ads",
+      "date": "2026-11-17T12:00",
+      "metricool_id": 420388262,
+      "status": "agendado",
+      "redesenho": "capa e slides internos refeitos em 07/11 (virada em faixa ciano, lavanda nos dados, texto de apoio maior); slide 4 de 12/11 virou Bloqueie o curioso"
+    },
+    {
+      "n": 15,
+      "folder": "15-planilha-de-contatos",
+      "title": "Primeiro, a planilha de contatos",
+      "pilar": "google ads",
+      "date": "2026-11-19T12:00",
+      "metricool_id": 424776310,
+      "status": "rascunho",
+      "nota": "Tirado da fila em 11/11 para dar vaga aos Reels; refazer no formato novo antes de voltar."
+    },
+    {
+      "n": 16,
+      "folder": "16-case-tecsi",
+      "title": "Case TECSI: 4 coisas que o seu site não faz",
+      "pilar": "case",
+      "date": "2026-10-23T12:00",
+      "metricool_id": 400378078,
+      "status": "publicado",
+      "nota": "TECSI autorizou o case em 19/10",
+      "url": "https://www.instagram.com/p/De11sDcCkzM/"
+    }
+  ],
+  "reels": [
+    {
+      "slug": "m03-um-clique",
+      "title": "Um clique faz cinco (automação de processos)",
+      "file": "reels/m03-um-clique.mp4",
+      "date": "2026-10-27T20:00",
+      "cover_ms": 22000,
+      "metricool_id": 404485919,
+      "status": "publicado",
+      "url": "https://www.instagram.com/reel/DfA_eyllPmH/"
+    },
+    {
+      "slug": "m02-transformacoes",
+      "title": "O mesmo site, reorganizado (sites sob medida)",
+      "file": "reels/m02-transformacoes.mp4",
+      "date": "2026-11-03T20:00",
+      "cover_ms": 11000,
+      "metricool_id": 404486130,
+      "status": "publicado",
+      "url": "https://www.instagram.com/reel/DfTA_lxAgno/"
+    },
+    {
+      "slug": "m06-agenda-sozinha",
+      "title": "A agenda que se preenche sozinha",
+      "file": "reels/m06-agenda-sozinha.mp4",
+      "date": "2026-11-15T18:00",
+      "cover_ms": 500,
+      "metricool_id": 424775594,
+      "status": "agendado"
+    },
+    {
+      "slug": "m08-google-ve",
+      "title": "O que o Google vê no seu site (narração Davi)",
+      "file": "reels/m08-google-ve.mp4",
+      "date": "2026-11-19T18:00",
+      "cover_ms": 500,
+      "metricool_id": 424775620,
+      "status": "agendado"
+    },
+    {
+      "slug": "m09-orcamento-sozinho",
+      "title": "O orçamento que se monta sozinho",
+      "file": "reels/m09-orcamento-sozinho.mp4",
+      "date": "2026-11-24T18:00",
+      "cover_ms": 500,
+      "metricool_id": 424775659,
+      "status": "agendado"
+    },
+    {
+      "slug": "m10-site-para-todo-mundo",
+      "title": "Site para todo mundo (acessibilidade)",
+      "file": "reels/m10-site-para-todo-mundo.mp4",
+      "date": "2026-11-26T18:00",
+      "cover_ms": 500,
+      "metricool_id": 424775686,
+      "status": "agendado"
+    },
+    {
+      "slug": "m05-formulario",
+      "title": "Formulário de 3 campos",
+      "file": "reels/m05-formulario.mp4",
+      "date": "2026-12-01T18:00",
+      "cover_ms": 10000,
+      "metricool_id": 424775717,
+      "status": "agendado"
+    },
+    {
+      "slug": "m01-planilha",
+      "title": "Pedido que vai sozinho pra planilha",
+      "file": "reels/m01-planilha.mp4",
+      "date": "2026-12-03T18:00",
+      "cover_ms": 15000,
+      "metricool_id": 424775743,
+      "status": "agendado"
+    },
+    {
+      "slug": "m04-caminho-do-clique",
+      "title": "O caminho de um clique",
+      "file": "reels/m04-caminho-do-clique.mp4",
+      "date": "2026-12-08T18:00",
+      "cover_ms": 20000,
+      "metricool_id": 424775761,
+      "status": "agendado"
+    }
+  ]
 }
