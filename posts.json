@@ -253,6 +253,15 @@
       "cover_ms": 20000,
       "metricool_id": 424775761,
       "status": "agendado"
+    },
+    {
+      "slug": "m12-feito-do-zero",
+      "title": "Feito do zero (narração do Erik, sem TecNova e Vora)",
+      "file": "reels/m12-feito-do-zero.mp4",
+      "date": "2026-12-10T18:00",
+      "cover_ms": 500,
+      "metricool_id": 424788129,
+      "status": "agendado"
     }
   ]
 }
