@@ -9,6 +9,8 @@
 !/robots.txt
 !/sitemap.xml
 !/llms.txt
+# verificação do Google Search Console (contato.zyphy): não remover, senão a verificação cai
+!/google0fc5cfa1f3a9a28a.html
 !/css
 !/js
 !/assets
