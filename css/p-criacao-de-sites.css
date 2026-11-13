@@ -9,3 +9,17 @@
 .site img{width:100%;height:auto;display:block;border-radius:6px}
 .phone{background:#0E3634;border-radius:22px;padding:6px;box-sizing:border-box;box-shadow:0 20px 40px rgba(14,54,52,.25)}
 .phone img{width:100%;height:auto;display:block;border-radius:17px}
+/* formulário de pedido de proposta (os mesmos estilos da página de contato) */
+.cchip{position:relative;display:inline-flex;cursor:pointer}
+.cchip input{position:absolute;opacity:0;pointer-events:none}
+.cchip span{display:inline-flex;align-items:center;height:38px;padding:0 14px;border:1px solid #2A4A48;border-radius:999px;font-size:14px;font-weight:600;color:#E3EFED;background:#133030;transition:background .15s ease,color .15s ease}
+.cchip input:checked+span{background:#00CBCC;color:#050B0B;border-color:#00CBCC}
+.cchip input:focus-visible+span{outline:2px solid #00CBCC;outline-offset:2px}
+.fin{font:inherit;font-weight:400;font-size:16px;height:50px;padding:0 16px;border:1px solid #2A4A48;border-radius:14px;background:#133030;color:#FFFFFF;box-sizing:border-box;width:100%}
+.fin::placeholder{color:#6F8F8C}
+.fin:focus{outline:2px solid #00CBCC;outline-offset:1px;border-color:transparent}
+textarea.fin{height:auto;padding:14px 16px;resize:vertical}
+.flab{display:flex;flex-direction:column;gap:7px;font-size:14px;font-weight:600;color:#E3EFED}
+.dark{background:#0E3634;color:#FFFFFF;border-color:#0E3634}
+.dark p{color:#A9C4C1}
+.dark a{color:#00E0E1}
