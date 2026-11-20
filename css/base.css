@@ -175,3 +175,6 @@ summary{min-height:44px !important}
 @media print{.zck{display:none}}
 .zck-abrir{font-family:'DM Sans',system-ui,sans-serif;color:#0E3634;cursor:pointer;margin-top:8px}
 .zck-abrir[hidden]{display:none}
+
+/* H1 com cara de selo (home): sem a margem padrão do h1; tamanho e peso vêm da classe do selo */
+h1.pill{margin:0;text-wrap:balance}
