@@ -181,7 +181,9 @@ h1.pill{margin:0;text-wrap:balance}
 
 /* ===== Painel novo (nov/2026) ==========================================================
    Os prints ficam em /assets/img/painel/ e saem do script de captura do zyphy-painel
-   (empresa e números de exemplo). Como atualizar: docs/painel-no-site.md. */
+   (empresa e números de exemplo). Como atualizar: docs/painel-no-site.md.
+   Computador: recortes do painel dentro da moldura escura (.pnl).
+   Celular (até 760px): a tela do painel como aparece no telefone, dentro de um aparelho (.fone). */
 /* A moldura é um bloco comum, não flex: no Safari do iPhone, imagem que é item de flex em coluna
    (com a moldura dentro de outro flex) sai mais alta do que devia, esticada. O espaço entre os
    prints vem da margem de baixo de cada filho. */
@@ -210,34 +212,40 @@ h1.pill{margin:0;text-wrap:balance}
 .tour{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:44px;align-items:start}
 .tour-media{min-width:0;display:flex;flex-direction:column;gap:16px}
 .tour>.anl{position:sticky;top:104px;gap:24px}
-/* "um por vez" (só no celular): um recorte na tela, desliza pro lado ou toca no número */
-.tour-track{display:none;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:none;border-radius:14px}
+.tour-solo{display:flex;flex-direction:column;gap:16px}
+/* O celular. A tela tem proporção fixa (390x600, pelo padding-top) e a imagem preenche por
+   object-fit: não tem como sair esticada, em nenhum navegador. */
+.fone{position:relative;box-sizing:border-box;width:292px;max-width:100%;margin:0 auto 14px;padding:7px;border-radius:40px;background:#0B1F1E;box-shadow:0 30px 60px rgba(14,54,52,.22)}
+.fone .visor{position:relative;height:0;padding-top:153.846%;border-radius:33px;overflow:hidden;background:#0E3634}
+.fone .visor img{display:block;width:100%;height:100%;object-fit:cover;object-position:top;border-radius:0}
+.fone .visor>img{position:absolute;left:0;top:0}
+/* "um por vez": as telas ficam lado a lado dentro do celular; desliza ou toca no número */
+.tour-track{position:absolute;left:0;top:0;width:100%;height:100%;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:none}
 .tour-track::-webkit-scrollbar{display:none}
-.pnl .tour-track>img{flex:0 0 100%;width:100%;height:100%;object-fit:contain;scroll-snap-align:center;scroll-snap-stop:always}
-.tour-track.r-ads{aspect-ratio:374/521}
-.tour-track.r-seo{aspect-ratio:374/608}
-.tour-track.r-rel{aspect-ratio:374/600}
-.tour-track:focus-visible{outline:2px solid #00CBCC;outline-offset:3px}
+.tour-track>img{flex:0 0 100%;scroll-snap-align:center;scroll-snap-stop:always}
+.tour-track:focus-visible{outline:2px solid #00CBCC;outline-offset:-4px}
 .tour-nav{display:none;gap:10px;align-items:center}
 .tour-nav button{flex:none;width:44px;height:44px;padding:0;border-radius:999px;border:1.5px solid #B9CFCC;background:transparent;color:#4F6B69;font:700 15px/1 'DM Sans',system-ui,sans-serif;cursor:pointer}
 .tour-nav.pills button{width:auto;padding:0 18px}
 .tour-nav button[aria-pressed="true"]{background:#00CBCC;border-color:#00CBCC;color:#050B0B}
 .tour-nav button:focus-visible{outline:2px solid #0E3634;outline-offset:2px}
 .tour-nav .hint{margin-left:auto;font-size:13px;color:#4F6B69}
-.tour-solo{display:flex;flex-direction:column;gap:16px}
 @media (max-width:1000px){.tour{grid-template-columns:1fr;gap:28px}.tour>.anl{position:static}}
+@media (max-width:1000px) and (min-width:761px){.tour>.anl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 32px}}
 @media (max-width:760px){
 .only-d{display:none !important}
-.pnl.pnl{padding:10px}
-.tour{gap:16px}
-.tour-track{display:flex}
-.tour-js .tour-nav{display:flex}
+/* no celular a moldura escura some: quem emoldura é o aparelho */
+.pnl{background:none !important;box-shadow:none !important;padding:0 !important;border-radius:0 !important}
+.pnl .cap.cap{text-align:center;color:#4F6B69;padding:0}
+/* o aviso "Novo contato" fica na lateral de cima do aparelho, sem cobrir número */
+.pnl .nov-m{top:64px !important;bottom:auto !important;right:0 !important;left:auto !important}
+.tour{gap:14px}
+.tour-media{gap:14px}
+.tour-js .tour-nav{display:flex;justify-content:center}
+.tour-nav .hint{margin-left:6px}
 /* com o script ligado, a legenda mostra só o item que está na tela, com a explicação */
 .tour-js .anl li{display:none}
 .tour-js .anl li.on{display:flex}
 .tour-js .anl li.on>b{display:none}
 .tour-js .anl li.on .ad{display:block}
-/* no topo de /anuncios/ o aviso "Novo contato" sobe pra borda da moldura: embaixo ele cobria o último número */
-.pnl .nov-m.nov-top{top:-22px !important;bottom:auto !important}
 }
-@media (max-width:1000px) and (min-width:761px){.tour>.anl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 32px}}
