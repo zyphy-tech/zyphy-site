@@ -182,10 +182,18 @@ h1.pill{margin:0;text-wrap:balance}
 /* ===== Painel novo (nov/2026) ==========================================================
    Os prints ficam em /assets/img/painel/ e saem do script de captura do zyphy-painel
    (empresa e números de exemplo). Como atualizar: docs/painel-no-site.md. */
+/* A moldura é um bloco comum, não flex: no Safari do iPhone, imagem que é item de flex em coluna
+   (com a moldura dentro de outro flex) sai mais alta do que devia, esticada. O espaço entre os
+   prints vem da margem de baixo de cada filho. */
+.pnl>*{margin:0 0 12px}
+.pnl>*:last-child,.pnl>.nov-m{margin-bottom:0}
+.pnl>.cap,.pnl picture{display:block}
+.pnl>div.q0{margin-left:auto}
+.pnl .row>div>*+*{margin-top:12px}
 /* só no computador / só no celular: imagem com loading="lazy" escondida não é baixada */
 @media (min-width:761px){.only-m{display:none !important}}
 /* dois cartões lado a lado dentro da moldura */
-.pnl .duo{display:flex;gap:12px}
+.pnl .duo{display:flex;gap:12px;align-items:flex-start}
 .pnl .duo>img{flex:1 1 0;min-width:0}
 .pnl .duo{animation:none !important;opacity:1 !important;transform:none !important}
 /* print com bolinhas: cada bolinha fica no canto de cima do cartão que ela explica */
@@ -205,7 +213,7 @@ h1.pill{margin:0;text-wrap:balance}
 /* "um por vez" (só no celular): um recorte na tela, desliza pro lado ou toca no número */
 .tour-track{display:none;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:none;border-radius:14px}
 .tour-track::-webkit-scrollbar{display:none}
-.tour-track>img{flex:0 0 100%;height:100%;object-fit:contain;scroll-snap-align:center;scroll-snap-stop:always}
+.pnl .tour-track>img{flex:0 0 100%;width:100%;height:100%;object-fit:contain;scroll-snap-align:center;scroll-snap-stop:always}
 .tour-track.r-ads{aspect-ratio:374/521}
 .tour-track.r-seo{aspect-ratio:374/608}
 .tour-track.r-rel{aspect-ratio:374/600}

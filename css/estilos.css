@@ -29,7 +29,7 @@
 .s10f57ff.s10f57ff.s10f57ff{max-width: 1180px; margin: 0 auto; padding: 64px 28px 104px; display: flex; flex-wrap: wrap; gap: 56px; align-items: flex-start}
 .s112b707.s112b707.s112b707{max-width: 1180px; margin: 0 auto; padding: 0 28px 104px; display: flex; flex-direction: column; gap: 36px}
 .s11d4123.s11d4123.s11d4123{display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 24px}
-.s14f45d9.s14f45d9.s14f45d9{flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 12px}
+.s14f45d9.s14f45d9.s14f45d9{flex: 1 1 0; min-width: 0; display: block}
 .s1564c83.s1564c83.s1564c83{display: flex; flex-wrap: wrap; gap: 44px; align-items: center}
 .s178137a.s178137a.s178137a{flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 16px}
 .s17ab9cb.s17ab9cb.s17ab9cb{margin: 0; font-size: 14px; color: #4F6B69}
