@@ -150,6 +150,8 @@ summary{min-height:44px !important}
 .zf .fcol a{padding:4px 0}
 }
 @media (max-width:350px){.zcta{font-size:13px !important;padding:0 12px !important}.zlogo{font-size:21px !important}.tq-m{font-size:13px}}
+/* caixa de busca do topo de /seo-e-geo/: em tela estreita a frase "conserto de celular" não cabia */
+@media (max-width:374px){.s6214c14{padding-left:16px !important;padding-right:16px !important;gap:8px !important}}
 @media (prefers-reduced-motion:reduce){*{animation:none !important}}
 /* aviso de cookies (js/medicao.js) */
 .zck{position:fixed;z-index:180;left:16px;right:16px;bottom:16px;max-width:520px;box-sizing:border-box;background:#0E3634;color:#E3EFED;border-radius:18px;padding:18px 20px;box-shadow:0 14px 40px rgba(5,11,11,.35);font-family:'DM Sans',system-ui,sans-serif;font-size:15px;line-height:1.45}
