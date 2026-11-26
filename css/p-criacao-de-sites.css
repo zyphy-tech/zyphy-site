@@ -9,6 +9,16 @@
 .site img{width:100%;height:auto;display:block;border-radius:6px}
 .phone{background:#0E3634;border-radius:22px;padding:6px;box-sizing:border-box;box-shadow:0 20px 40px rgba(14,54,52,.25)}
 .phone img{width:100%;height:auto;display:block;border-radius:17px}
+/* hero no celular: o site de exemplo ocupa a largura toda e o celular aparece inteiro, por cima
+   do canto dele. Antes a caixa tinha altura fixa: o site ficava pequeno num canto, o celular saía
+   cortado embaixo e sobrava um vazio no meio. */
+@media (max-width:760px){
+.mock-m.tall.tall{height:auto !important;box-sizing:border-box;padding:18px 16px 132px}
+.mock-m.tall>.site{position:static !important;width:100% !important}
+.mock-m.tall>.phone{right:16px !important;bottom:16px !important;width:29% !important;max-width:118px;padding:5px;border-radius:18px}
+.mock-m.tall>.phone img{border-radius:14px}
+.mock-m.tall>.q4{left:16px !important;bottom:46px !important}
+}
 /* formulário de pedido de proposta (os mesmos estilos da página de contato) */
 .cchip{position:relative;display:inline-flex;cursor:pointer}
 .cchip input{position:absolute;opacity:0;pointer-events:none}
